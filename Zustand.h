@@ -13,11 +13,14 @@
 #include"Poeppel.h"
 #include"Verbindung.h"
 #include<iostream>
+#include<vector>
 using std::cout;
 using std::endl;
 
 class Zustand {
 	Poeppel* poeppelListe[MAX_SPIELER]; //hier soll an der Sortierung keiner rumpfuschen
+	unsigned short find_min(Vector actual, unsigned short ** &index) const;
+	void calculate_surround(Vector actual, unsigned short ** &index) const;
 public:
 	Zustand(Brett &Spielbrett); //Startzustand
 	Zustand(const Zustand&);
@@ -40,6 +43,7 @@ public:
 	const Verbindung &getVerbindung(Vector a, Vector b) const;
 	void addPoeppel(Poeppel insert);
 	void resetAll();
+	unsigned short** distance(Vector target) const;
 };
 
 #endif /* ZUSTAND_H_ */
