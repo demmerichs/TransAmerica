@@ -1,0 +1,14 @@
+xxcxxcxcxcxcx------
+xxxxxxxxxxcxxx-----
+xcxxxxxcxxxxxxc----
+xxxcxxxxxxxcxxxx---
+xcxxxcxxxxxxxcxxx--
+-cxxxxxxcxxcxxxxx--
+-xxxxcxxxxxxxxxcxx-
+--xxxxxxxxxxxxxxxc-
+--xcxxxxcxcxcxxxxxx
+--xxxxxxxxxxxxxxxcx
+---cxxxcxcxxxxxxcxx
+----xxcxxxxxxxxcxxx
+------xxxxxcxcxxxcx
+-----------xxxxxcxx

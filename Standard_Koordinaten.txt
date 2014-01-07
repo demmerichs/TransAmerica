@@ -1,0 +1,13 @@
+cxxxxxxxxx----------
+cxxcxxxcxxcx---xx---
+xxxxxxxxxxcxx--cxc--
+-cxxxxxxxxxxxcxxxx--
+-xxxcxxxxcxxxxxxxc--
+--cxxxxcxxxxxxxcxc--
+--cxxxxxxxxcxcxxxx--
+---xxxxxxxxxxxxxxxc-
+----xxxxcxxcxxxxxcxx
+-----cxcxxxxxxxcxxxx
+------cxxxxxxcxxxcxc
+--------xxcxxxxxxxxx
+-----------xxxcxcxxc
