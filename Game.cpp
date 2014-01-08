@@ -18,7 +18,8 @@ Game::Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord) :
 		punkte[i] = 13;
 }
 
-Game::Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord, unsigned seed) :
+Game::Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord,
+		unsigned seed) :
 		spieleranzahl(anzahl), KIliste(KIaufgelistet), startstartspieler(
 				starter), Spielbrett(bord), aktuellerZustand(
 				Zustand(Spielbrett)), handkarten(0) {
@@ -106,12 +107,13 @@ void Game::spieleRunde(short startspieler) {
 		short spielerfarbe = KIliste[spielerAmZug].spielerfarbe;
 		if (aktuellerZug.gueltig(aktuellerZustand, spielerfarbe)) {
 			aktuellerZug.ausfuehren(aktuellerZustand);
-			zugListe.push_back(aktuellerZug);
 		}
 		Spielbrett.aktAusgabe(aktuellerZustand.schieneGelegt);
+		zustandsListe.push_back(aktuellerZustand);
 	}
+	this->graphicOutput();
 	for (int i = 0; i < spieleranzahl; i++) {
-		punkte[i] -= punkteabzug(i); //TODO entweder jeder programmiert selbst, oder eine absolute zaehlweise
+		punkte[i] -= 1;//TODO punkteabzug(i);
 	}
 	//TODO Zwischenstand provisorium
 	cout << "Spieler 1 hat noch " << punkte[0] << " Punkte." << endl
@@ -121,32 +123,36 @@ void Game::spieleRunde(short startspieler) {
 //TODO folgendes Provisorium
 int Game::punkteabzug(int spieler) {
 	unsigned short minuspoints;
-	for (int i=0;i<5;i++){
-		minuspoints+=aktuellerZustand.distance(KIliste[spieler].handkarten[i]->place,aktuellerZustand.pointsBelongingToRailwaySystem(KIliste[spieler].spielerfarbe));
+	for (int i = 0; i < 5; i++) {
+		minuspoints += aktuellerZustand.distance(
+				KIliste[spieler].handkarten[i]->place,
+				aktuellerZustand.pointsBelongingToRailwaySystem(
+						KIliste[spieler].spielerfarbe));
 	}
 	return minuspoints;
 }
 
 void Game::kartenAusteilen() {
-	short maxNr=MAX_STADTNR;
-	if(this->spieleranzahl<SPIELER_GRENZE)
-		maxNr=STADTNR_GRENZE;
-	for(int farbe=1;farbe<=MAX_FARBEN;farbe++){
-		short kartenzahl=maxNr;
+	short maxNr = MAX_STADTNR;
+	if (this->spieleranzahl < SPIELER_GRENZE)
+		maxNr = STADTNR_GRENZE;
+	for (int farbe = 1; farbe <= MAX_FARBEN; farbe++) {
+		short kartenzahl = maxNr;
 		vector<short> rest;
-		for(int j=0;j<kartenzahl;j++)
-			rest.push_back(j+1);
+		for (int j = 0; j < kartenzahl; j++)
+			rest.push_back(j + 1);
 		vector<short> stapel;
-		for(int j=0;j<kartenzahl;j++){
-			short randomInt=rand()%(kartenzahl-j);
+		for (int j = 0; j < kartenzahl; j++) {
+			short randomInt = rand() % (kartenzahl - j);
 			stapel.push_back(rest[randomInt]);
 			vector<short>::iterator it;
-			it=rest.begin();
-			it+=randomInt;
+			it = rest.begin();
+			it += randomInt;
 			rest.erase(it);
 		}
-		for(int spielernr=0;spielernr<spieleranzahl;spielernr++){
-			KIliste[spielernr].handkarten[farbe-1]=Spielbrett.getStadt(farbe,stapel[spielernr]);
+		for (int spielernr = 0; spielernr < spieleranzahl; spielernr++) {
+			KIliste[spielernr].handkarten[farbe - 1] = Spielbrett.getStadt(
+					farbe, stapel[spielernr]);
 		}
 	}
 
@@ -154,7 +160,7 @@ void Game::kartenAusteilen() {
 	for (int i = 0; i < spieleranzahl; i++) {
 		cout << "Spieler " << (i + 1) << endl;
 		for (int j = 0; j < MAX_FARBEN; j++)
-			cout << KIliste[i].handkarten[j]->name<< endl;
+			cout << KIliste[i].handkarten[j]->name << endl;
 	}
 }
 
@@ -166,4 +172,13 @@ void Game::PoeppelAufstellen(short startspieler) {
 		Poeppel neuGesetzt(KIliste[nr].spielerfarbe, nrWahl);
 		aktuellerZustand.addPoeppel(neuGesetzt);
 	} while (nr != (startspieler - 1 + spieleranzahl) % spieleranzahl);
+}
+
+void Game::graphicOutput() const {
+	/*TODO hey niklas, pack hier rein, was immer du willst, die Zustaende
+	 * sind in this->zustandsListe gespeichert und vom Typ StateList (class). Guck in
+	 * die Klassenbeschreibung, aber dir stehen auf jeden fall ganz gewohnt
+	 * size(), push_back(Zustand) (brauchst du aber hoffentlich nicht) und get(int i) zur
+	 * Verfuegung!
+	 */
 }

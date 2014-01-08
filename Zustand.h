@@ -26,6 +26,7 @@ public:
 	Zustand(Brett &Spielbrett); //Startzustand
 	Zustand(const Zustand&);
 	virtual ~Zustand();
+	//Zustand &operator=(const Zustand&) const;
 
 	short schienenNetzNummer[MAX_X][MAX_Y]; //jeder hat eine eigene SchienenNetzNummer, kann ueber Poeppel bestimmt werden
 	bool schieneGelegt[MAX_X][MAX_Y][3]; //zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. RichtungsWert
@@ -41,7 +42,7 @@ public:
 	static short RichtungsWert(const Vector&);
 	void resetNr_ZuNr_(const short, const short);
 	void schieneLegen(const Verbindung&);
-	const Verbindung &getVerbindung(Vector a, Vector b) const;
+	const Verbindung* getVerbindung(Vector a, Vector b) const;
 	void addPoeppel(Poeppel insert);
 	void resetAll();
 	unsigned short** evaluateBoard(Vector target) const;

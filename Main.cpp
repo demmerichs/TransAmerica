@@ -14,16 +14,15 @@
 #include<iostream>
 using namespace std;
 
-int main() {
+int main(int argc, char* argv[]) {
 	Brett board;
 	board.Ausgabe();
 	testKI virt[] = { testKI(-1), testKI(-2) };
 	Game game1(2, 0, virt, board);
 	game1.spielen();
-	return 0;
 }
 /*
-  A---D
+ A---D
  / \ /
-C---B
-*/
+ C---B
+ */

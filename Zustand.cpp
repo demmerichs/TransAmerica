@@ -6,6 +6,7 @@
  */
 
 #include "Zustand.h"
+#include <limits>
 
 Zustand::Zustand(Brett &board) :
 		anzahlPoeppel(0), Spielbrett(board) {
@@ -32,6 +33,24 @@ Zustand::Zustand(const Zustand &copy) :
 		for (int j = 0; j < MAX_Y; j++)
 			schienenNetzNummer[i][j] = copy.schienenNetzNummer[i][j];
 }
+
+/*
+Zustand& Zustand::operator=(const Zustand& copy) const{
+	this->Spielbrett=copy.Spielbrett;
+	this->anzahlPoeppel = copy.anzahlPoeppel;
+	for (int i = 0; i < MAX_SPIELER; i++)
+		poeppelListe[i] = new Poeppel(*copy.poeppelListe[i]);
+	for (int i = 0; i < MAX_X; i++)
+		for (int j = 0; j < MAX_Y; j++)
+			for (int k = 0; k < 3; k++)
+				schieneGelegt[i][j][k] = copy.schieneGelegt[i][j][k];
+	for (int i = 0; i < MAX_X; i++)
+		for (int j = 0; j < MAX_Y; j++)
+			schienenNetzNummer[i][j] = copy.schienenNetzNummer[i][j];
+	return *this;
+}
+*/
+
 
 Zustand::~Zustand() {
 	for (int i = 0; i < MAX_SPIELER; i++)
@@ -114,15 +133,15 @@ void Zustand::schieneLegen(const Verbindung &sollGelegt) {
 //TODO Exceptions
 }
 
-const Verbindung &Zustand::getVerbindung(Vector a, Vector b) const {
+const Verbindung* Zustand::getVerbindung(Vector a, Vector b) const {
 	Vector eins = a;
 	Vector zwei = b;
 	if ((b - a).x < 0 || (b - a).y < 0) {
 		eins = b;
 		zwei = a;
 	}
-	const Verbindung &ruckgabe =
-			*this->Spielbrett.Kanten[eins.x][eins.y][this->RichtungsWert(
+	const Verbindung* ruckgabe =
+			this->Spielbrett.Kanten[eins.x][eins.y][this->RichtungsWert(
 					zwei - eins)];
 	return ruckgabe;
 }

@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -92,27 +92,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aaf9b7c99d7346912440690d39009ff62"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaf9b7c99d7346912440690d39009ff62"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>City</b> (<a class="el" href="class_vector.html">Vector</a>)</td></tr>
-<tr class="separator:aaf9b7c99d7346912440690d39009ff62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d0f70f96ab8c2e130639170d129b245"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9d0f70f96ab8c2e130639170d129b245"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>City</b> (string name, short cityColour, short number, <a class="el" href="class_vector.html">Vector</a> place)</td></tr>
+<tr class="separator:a9d0f70f96ab8c2e130639170d129b245"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a38b5e8b9bd4e263434eae0344913d341"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a38b5e8b9bd4e263434eae0344913d341"></a>
 string&#160;</td><td class="memItemRight" valign="bottom"><b>name</b></td></tr>
 <tr class="separator:a38b5e8b9bd4e263434eae0344913d341"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8a3df46028c9f5db34f707081fde957"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af8a3df46028c9f5db34f707081fde957"></a>
-short&#160;</td><td class="memItemRight" valign="bottom"><b>stadtfarbe</b></td></tr>
-<tr class="separator:af8a3df46028c9f5db34f707081fde957"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e9fd868f1e0068a6627549ff5195ab1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e9fd868f1e0068a6627549ff5195ab1"></a>
-short&#160;</td><td class="memItemRight" valign="bottom"><b>nummer</b></td></tr>
-<tr class="separator:a4e9fd868f1e0068a6627549ff5195ab1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89ccdada4bb2208dc4fdc0578a136952"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a89ccdada4bb2208dc4fdc0578a136952"></a>
-<a class="el" href="class_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><b>ort</b></td></tr>
-<tr class="separator:a89ccdada4bb2208dc4fdc0578a136952"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a420db1ce9ab7de0d10d4da18b7d5e7a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a420db1ce9ab7de0d10d4da18b7d5e7a2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>Null</b></td></tr>
-<tr class="separator:a420db1ce9ab7de0d10d4da18b7d5e7a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe0317c4414810339140c1d94c25ba25"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afe0317c4414810339140c1d94c25ba25"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><b>cityColour</b></td></tr>
+<tr class="separator:afe0317c4414810339140c1d94c25ba25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fecf97dc1cbd61bb1bd27325decad52"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0fecf97dc1cbd61bb1bd27325decad52"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><b>number</b></td></tr>
+<tr class="separator:a0fecf97dc1cbd61bb1bd27325decad52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5198a6b2528d631949b17af95895a405"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5198a6b2528d631949b17af95895a405"></a>
+<a class="el" href="class_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><b>place</b></td></tr>
+<tr class="separator:a5198a6b2528d631949b17af95895a405"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="_city_8h_source.html">City.h</a></li>
@@ -121,7 +118,7 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>Null</b></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 6 2014 21:10:46 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 8 2014 19:28:45 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

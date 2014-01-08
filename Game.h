@@ -18,6 +18,7 @@ using std::vector;
 #include"KIspieler.h"
 #include"Poeppel.h"
 #include"Konstant.h"
+#include"StateList.h"
 
 class Game {
 	const short spieleranzahl;
@@ -25,7 +26,7 @@ class Game {
 	short startstartspieler;
 	Brett &Spielbrett;
 	Zustand aktuellerZustand;
-	vector<Move> zugListe;
+	StateList zustandsListe;
 	short* punkte;
 	const City *** handkarten;
 	short grenzwert;
@@ -37,8 +38,12 @@ class Game {
 	bool keinVerlierer() const;
 	bool keinRundenGewinner() const;
 	bool RundenGewinner(short spieler) const;
-	//provisorium TODO
 	int punkteabzug(int spieler);
+	/**
+	 * This method gets called when the game
+	 * calculations finished and the graphical UserInterface shall come up.
+	 */
+	void graphicOutput() const;
 
 public:
 	Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord);

@@ -70,7 +70,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
      onmouseover="return searchBox.OnSearchSelectShow()"
      onmouseout="return searchBox.OnSearchSelectHide()"
      onkeydown="return searchBox.OnSearchSelectKey(event)">
-<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a></div>
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>All</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Classes</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Functions</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Variables</a></div>
 
 <!-- iframe showing the search results (closed by default) -->
 <div id="MSearchResultsWindow">
@@ -88,17 +88,15 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <p>This is the complete list of members for <a class="el" href="class_coordinate.html">Coordinate</a>, including all inherited members.</p>
 <table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Coordinate</b>() (defined in <a class="el" href="class_coordinate.html">Coordinate</a>)</td><td class="entry"><a class="el" href="class_coordinate.html">Coordinate</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Coordinate</b>(short x, short y) (defined in <a class="el" href="class_coordinate.html">Coordinate</a>)</td><td class="entry"><a class="el" href="class_coordinate.html">Coordinate</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Coordinate</b>(short x, short y, const City &amp;CityOnCoordinate) (defined in <a class="el" href="class_coordinate.html">Coordinate</a>)</td><td class="entry"><a class="el" href="class_coordinate.html">Coordinate</a></td><td class="entry"></td></tr>
-  <tr><td class="entry"><a class="el" href="class_vector.html#ac57f428cc1e03ce8cd3c9f6c98a8336f">distance</a>() const </td><td class="entry"><a class="el" href="class_vector.html">Vector</a></td><td class="entry"></td></tr>
-  <tr class="even"><td class="entry"><a class="el" href="class_vector.html#a50123df9754e508f3d4aa7cb72f38905">dump</a>() const </td><td class="entry"><a class="el" href="class_vector.html">Vector</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
-  <tr bgcolor="#f0f0f0"><td class="entry"><b>Null</b> (defined in <a class="el" href="class_coordinate.html">Coordinate</a>)</td><td class="entry"><a class="el" href="class_coordinate.html">Coordinate</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_coordinate.html#afa539ca7218f25717e25482babf0bfc9">Coordinate</a>(short x, short y)</td><td class="entry"><a class="el" href="class_coordinate.html">Coordinate</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_coordinate.html#ad60539c2d440527e34f4ab23a85c8389">Coordinate</a>(short x, short y, const City *const CityOnCoordinate)</td><td class="entry"><a class="el" href="class_coordinate.html">Coordinate</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_vector.html#ac57f428cc1e03ce8cd3c9f6c98a8336f">distance</a>() const </td><td class="entry"><a class="el" href="class_vector.html">Vector</a></td><td class="entry"></td></tr>
+  <tr><td class="entry"><a class="el" href="class_vector.html#a50123df9754e508f3d4aa7cb72f38905">dump</a>() const </td><td class="entry"><a class="el" href="class_vector.html">Vector</a></td><td class="entry"><span class="mlabel">inline</span></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>operator+</b>(const Vector) const  (defined in <a class="el" href="class_vector.html">Vector</a>)</td><td class="entry"><a class="el" href="class_vector.html">Vector</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>operator-</b>(const Vector) const  (defined in <a class="el" href="class_vector.html">Vector</a>)</td><td class="entry"><a class="el" href="class_vector.html">Vector</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>Vector</b>() (defined in <a class="el" href="class_vector.html">Vector</a>)</td><td class="entry"><a class="el" href="class_vector.html">Vector</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>Vector</b>(short x, short y) (defined in <a class="el" href="class_vector.html">Vector</a>)</td><td class="entry"><a class="el" href="class_vector.html">Vector</a></td><td class="entry"></td></tr>
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>vorOrt</b> (defined in <a class="el" href="class_coordinate.html">Coordinate</a>)</td><td class="entry"><a class="el" href="class_coordinate.html">Coordinate</a></td><td class="entry"></td></tr>
+  <tr class="even"><td class="entry"><a class="el" href="class_coordinate.html#aa8e26100ecf4f1c45555a7cb14f6364e">vorOrt</a></td><td class="entry"><a class="el" href="class_coordinate.html">Coordinate</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>x</b> (defined in <a class="el" href="class_vector.html">Vector</a>)</td><td class="entry"><a class="el" href="class_vector.html">Vector</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>y</b> (defined in <a class="el" href="class_vector.html">Vector</a>)</td><td class="entry"><a class="el" href="class_vector.html">Vector</a></td><td class="entry"></td></tr>
   <tr bgcolor="#f0f0f0"><td class="entry"><b>~Coordinate</b>() (defined in <a class="el" href="class_coordinate.html">Coordinate</a>)</td><td class="entry"><a class="el" href="class_coordinate.html">Coordinate</a></td><td class="entry"><span class="mlabel">virtual</span></td></tr>
@@ -106,7 +104,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </table></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Jan 6 2014 21:10:46 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Jan 8 2014 19:28:45 for My Project by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
