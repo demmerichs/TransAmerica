@@ -18,6 +18,7 @@ using std::vector;
 #include"KIspieler.h"
 #include"Poeppel.h"
 #include"Konstant.h"
+#include"StateList.h"
 
 class Game {
 	const short spieleranzahl;
@@ -25,7 +26,7 @@ class Game {
 	short startstartspieler;
 	Brett &Spielbrett;
 	Zustand aktuellerZustand;
-	vector<Move> zugListe;
+	StateList zustandsListe;
 	short* punkte;
 	const City *** handkarten;
 	short grenzwert;

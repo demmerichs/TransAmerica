@@ -33,6 +33,24 @@ Zustand::Zustand(const Zustand &copy) :
 			schienenNetzNummer[i][j] = copy.schienenNetzNummer[i][j];
 }
 
+/*
+Zustand& Zustand::operator=(const Zustand& copy) const{
+	this->Spielbrett=copy.Spielbrett;
+	this->anzahlPoeppel = copy.anzahlPoeppel;
+	for (int i = 0; i < MAX_SPIELER; i++)
+		poeppelListe[i] = new Poeppel(*copy.poeppelListe[i]);
+	for (int i = 0; i < MAX_X; i++)
+		for (int j = 0; j < MAX_Y; j++)
+			for (int k = 0; k < 3; k++)
+				schieneGelegt[i][j][k] = copy.schieneGelegt[i][j][k];
+	for (int i = 0; i < MAX_X; i++)
+		for (int j = 0; j < MAX_Y; j++)
+			schienenNetzNummer[i][j] = copy.schienenNetzNummer[i][j];
+	return *this;
+}
+*/
+
+
 Zustand::~Zustand() {
 	for (int i = 0; i < MAX_SPIELER; i++)
 		delete poeppelListe[i];

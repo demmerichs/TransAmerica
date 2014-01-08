@@ -26,6 +26,7 @@ public:
 	Zustand(Brett &Spielbrett); //Startzustand
 	Zustand(const Zustand&);
 	virtual ~Zustand();
+	//Zustand &operator=(const Zustand&) const;
 
 	short schienenNetzNummer[MAX_X][MAX_Y]; //jeder hat eine eigene SchienenNetzNummer, kann ueber Poeppel bestimmt werden
 	bool schieneGelegt[MAX_X][MAX_Y][3]; //zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. RichtungsWert

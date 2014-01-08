@@ -106,12 +106,12 @@ void Game::spieleRunde(short startspieler) {
 		short spielerfarbe = KIliste[spielerAmZug].spielerfarbe;
 		if (aktuellerZug.gueltig(aktuellerZustand, spielerfarbe)) {
 			aktuellerZug.ausfuehren(aktuellerZustand);
-			zugListe.push_back(aktuellerZug);
 		}
 		Spielbrett.aktAusgabe(aktuellerZustand.schieneGelegt);
+		zustandsListe.push_back(aktuellerZustand);
 	}
 	for (int i = 0; i < spieleranzahl; i++) {
-		punkte[i] -= punkteabzug(i); //TODO entweder jeder programmiert selbst, oder eine absolute zaehlweise
+		punkte[i] -= punkteabzug(i);
 	}
 	//TODO Zwischenstand provisorium
 	cout << "Spieler 1 hat noch " << punkte[0] << " Punkte." << endl
