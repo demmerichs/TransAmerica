@@ -14,9 +14,9 @@
 #include<iostream>
 using namespace std;
 
-int main(int argc, char* argv) {
-  QApplication a(argc, argv);
-  Brett board;
+int main(int argc, char* argv[]) {
+	QApplication a(argc, argv);
+	Brett board;
 	board.Ausgabe();
 	testKI virt[] = { testKI(-1), testKI(-2) };
 	Game game1(2, 0, virt, board);
@@ -24,7 +24,7 @@ int main(int argc, char* argv) {
 	return a.exec();
 }
 /*
-  A---D
+ A---D
  / \ /
-C---B
-*/
+ C---B
+ */
