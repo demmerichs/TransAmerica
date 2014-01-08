@@ -147,12 +147,12 @@ void Zustand::resetAll() {
 }
 
 unsigned short** Zustand::evaluateBoard(Vector target) const {
-	unsigned short **index = new unsigned short*[20];
-	for (int i = 0; i < 20; i++) {
-		index[i] = new unsigned short[13];
+	unsigned short **index = new unsigned short*[MAX_X];
+	for (int i = 0; i < MAX_X; i++) {
+		index[i] = new unsigned short[MAX_Y];
 	}
-	for (int i = 0; i < 20; i++) {
-		for (int j = 0; j < 13; j++) {
+	for (int i = 0; i < MAX_X; i++) {
+		for (int j = 0; j < MAX_Y; j++) {
 			index[i][j] = std::numeric_limits<unsigned short>::max();
 		}
 	}
@@ -162,62 +162,41 @@ unsigned short** Zustand::evaluateBoard(Vector target) const {
 	vector<Vector> new_changed;
 	old_changed.push_back(target);
 	vector<Vector>::iterator it;
-	while(old_changed.size()!=0){
-		for(it=old_changed.begin();it!=old_changed.end();it++){
-			calculate_surround(*it,index,new_changed);
+	while (old_changed.size() != 0) {
+		for (it = old_changed.begin(); it != old_changed.end(); it++) {
+			calculate_surround(*it, index, new_changed);
 		}
-		old_changed=new_changed;
+		old_changed = new_changed;
 		new_changed.clear();
 	}
 	return index;
 }
 
-void Zustand::calculate_surround(Vector actual,
-		unsigned short ** &index, vector<Vector> &new_changed) const {
-	Vector w(actual.x + 1, actual.y), sw(actual.x + 1, actual.y + 1), se(
-			actual.x, actual.y + 1), e(actual.x - 1, actual.y), ne(actual.x - 1,
-			actual.y - 1), nw(actual.x, actual.y - 1);
-//TODO vector mit den 6 elementen machen
-
-	Vector vecs[6]={Vector(1,0),Vector(0,1),Vector(1,1),Vector(-1,0),Vector(0,-1),Vector(-1,-1)};
-
-	//actual+vecs[i];
-
-	unsigned short wi = find_min(w, index);
-	if (index[w.x][w.y] > wi) {
-		index[w.x][w.y] = wi;
-		new_changed.push_back(w);
-	};
-	unsigned short swi = find_min(sw, index);
-	if (index[sw.x][sw.y] > swi) {
-		index[sw.x][sw.y] = swi;
-		new_changed.push_back(sw);
-	};
-	unsigned short sei = find_min(se, index);
-	if (index[se.x][se.y] > sei) {
-		index[se.x][se.y] = sei;
-		new_changed.push_back(se);
-	};
-	unsigned short ei = find_min(e, index);
-	if (index[e.x][e.y] > ei) {
-		index[e.x][e.y] = ei;
-		new_changed.push_back(e);
-	};
-	unsigned short nei = find_min(ne, index);
-	if (index[ne.x][ne.y] > nei) {
-		index[ne.x][ne.y] = nei;
-		new_changed.push_back(ne);
-	};
-	unsigned short nwi = find_min(nw, index);
-	if (index[nw.x][nw.y] > nwi) {
-		index[nw.x][nw.y] = nwi;
-		new_changed.push_back(nw);
-	};
+void Zustand::calculate_surround(Vector actual, unsigned short ** &index,
+		vector<Vector> &new_changed) const {
+	Vector vecs[6] = { Vector(1, 0), Vector(1, 1), Vector(0, 1), Vector(-1, 0),
+			Vector(-1, -1), Vector(0, -1) };
+	unsigned short results[6];
+	Vector now;
+	for (int i = 0; i < 6; i++) {
+		now = (actual + vecs[i]);
+		if (now.x >= 0 && now.x <= MAX_X && now.y >= 0 && now.y <= MAX_Y) {
+			results[i] = find_min(now, index);
+			if (index[now.x][now.y] > results[i]) {
+				index[now.x][now.y] = results[i];
+				new_changed.push_back(now);
+			}
+		}
+	}
 }
 
 unsigned short Zustand::find_min(Vector actual,
 		unsigned short ** &index) const {
-	unsigned short min = 1000, a, b, c, d, e, f;
+	unsigned short min = std::numeric_limits<unsigned short>::max(), a, b, c, d,
+			e, f;
+	vector<unsigned short> possibilities;
+	vector<unsigned short>::iterator it;
+
 	/*
 	 *	 e   f
 	 *	  \ /
@@ -225,89 +204,95 @@ unsigned short Zustand::find_min(Vector actual,
 	 *	  / \
 	 *   c   b
 	 */
-//TODO vector mit abcdef und Schleife machen
-	if (this->Spielbrett.Kanten[actual.x][actual.y][0])
-		a = 2;
-	else if (this->schieneGelegt[actual.x][actual.y][0])
-		a = 0;
-	else
-		a = 1;
-	a = a + index[actual.x + 1][actual.y];
 
-	if (this->Spielbrett.Kanten[actual.x][actual.y][2])
-		b = 2;
-	else if (this->schieneGelegt[actual.x][actual.y][2])
-		b = 0;
-	else
-		b = 1;
-	b = b + index[actual.x + 1][actual.y + 1];
-
-	if (this->Spielbrett.Kanten[actual.x][actual.y][1])
-		c = 2;
-	else if (this->schieneGelegt[actual.x][actual.y][1])
-		c = 0;
-	else
-		c = 1;
-	c = c + index[actual.x][actual.y + 1];
-
-	if (this->Spielbrett.Kanten[actual.x - 1][actual.y][0])
-		d = 2;
-	else if (this->schieneGelegt[actual.x - 1][actual.y][0])
-		d = 0;
-	else
-		d = 1;
-	d = d + index[actual.x - 1][actual.y];
-
-	if (this->Spielbrett.Kanten[actual.x - 1][actual.y - 1][2])
-		e = 2;
-	else if (this->schieneGelegt[actual.x - 1][actual.y - 1][2])
-		e = 0;
-	else
-		e = 1;
-	e = e + index[actual.x - 1][actual.y - 1];
-
-	if (this->Spielbrett.Kanten[actual.x][actual.y - 1][1])
-		f = 2;
-	else if (this->schieneGelegt[actual.x][actual.y - 1][1])
-		f = 0;
-	else
-		f = 1;
-	f = f + index[actual.x][actual.y - 1];
-
-	min = a;
-	if (b < min)
-		min = b;
-	if (c < min)
-		min = c;
-	if (d < min)
-		min = d;
-	if (e < min)
-		min = e;
-	if (f < min)
-		min = f;
-
+	if (actual.x < MAX_X-1) {
+		if (this->Spielbrett.Kanten[actual.x][actual.y][0])
+			a = 2;
+		else if (this->schieneGelegt[actual.x][actual.y][0])
+			a = 0;
+		else
+			a = 1;
+		a = a + index[actual.x + 1][actual.y];
+		possibilities.push_back(a);
+	}
+	if (actual.x < MAX_X-1 && actual.y < MAX_Y-1) {
+		if (this->Spielbrett.Kanten[actual.x][actual.y][2])
+			b = 2;
+		else if (this->schieneGelegt[actual.x][actual.y][2])
+			b = 0;
+		else
+			b = 1;
+		b = b + index[actual.x + 1][actual.y + 1];
+		possibilities.push_back(b);
+	}
+	if (actual.y < MAX_Y-1) {
+		if (this->Spielbrett.Kanten[actual.x][actual.y][1])
+			c = 2;
+		else if (this->schieneGelegt[actual.x][actual.y][1])
+			c = 0;
+		else
+			c = 1;
+		c = c + index[actual.x][actual.y + 1];
+		possibilities.push_back(c);
+	}
+	if (actual.x > 0) {
+		if (this->Spielbrett.Kanten[actual.x - 1][actual.y][0])
+			d = 2;
+		else if (this->schieneGelegt[actual.x - 1][actual.y][0])
+			d = 0;
+		else
+			d = 1;
+		d = d + index[actual.x - 1][actual.y];
+		possibilities.push_back(d);
+	}
+	if (actual.x > 0 && actual.y > 0) {
+		if (this->Spielbrett.Kanten[actual.x - 1][actual.y - 1][2])
+			e = 2;
+		else if (this->schieneGelegt[actual.x - 1][actual.y - 1][2])
+			e = 0;
+		else
+			e = 1;
+		e = e + index[actual.x - 1][actual.y - 1];
+		possibilities.push_back(e);
+	}
+	if (actual.y > 0) {
+		if (this->Spielbrett.Kanten[actual.x][actual.y - 1][1])
+			f = 2;
+		else if (this->schieneGelegt[actual.x][actual.y - 1][1])
+			f = 0;
+		else
+			f = 1;
+		f = f + index[actual.x][actual.y - 1];
+		possibilities.push_back(f);
+	}
+	min = 1000;
+	for (it = possibilities.begin(); it != possibilities.end(); it++) {
+		if (min > *it) {
+			min = *it;
+		}
+	}
 	return min;
 }
 
-
-vector<Vector> Zustand::pointsBelongingToRailwaySystem(short playercolour) const{
-	int playersRailwayID=this->getPoeppel(playercolour).schienennetznummer;
+vector<Vector> Zustand::pointsBelongingToRailwaySystem(
+		short playercolour) const {
+	int playersRailwayID = this->getPoeppel(playercolour).schienennetznummer;
 	vector<Vector> returnval;
-	for(int i=0;i<MAX_X;i++)
-		for(int j=0;j<MAX_Y;j++)
-			if(playersRailwayID==this->schienenNetzNummer[i][j])
-				returnval.push_back(Vector(i,j));
+	for (int i = 0; i < MAX_X; i++)
+		for (int j = 0; j < MAX_Y; j++)
+			if (playersRailwayID == this->schienenNetzNummer[i][j])
+				returnval.push_back(Vector(i, j));
 	return returnval;
 }
 
-
-unsigned short Zustand::distance(Vector target,const vector<Vector> &possibleStarts) const{
-	unsigned short distance=std::numeric_limits<unsigned short>::max();
-	unsigned short ** array=this->evaluateBoard(target);
-	for(int i=0;i<possibleStarts.size();i++){
-		Vector act=possibleStarts[i];
-		if(array[act.x][act.y] < distance)
-			distance=array[act.x][act.y];
+unsigned short Zustand::distance(Vector target,
+		const vector<Vector> &possibleStarts) const {
+	unsigned short distance = std::numeric_limits<unsigned short>::max();
+	unsigned short ** array = this->evaluateBoard(target);
+	for (int i = 0; i < possibleStarts.size(); i++) {
+		Vector act = possibleStarts[i];
+		if (array[act.x][act.y] < distance)
+			distance = array[act.x][act.y];
 	}
 	return distance;
 }
