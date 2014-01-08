@@ -146,10 +146,7 @@ void Zustand::resetAll() {
 		}
 }
 
-unsigned short** Zustand::distance(Vector target) const {
-
-	//#include<vector> TODO
-
+unsigned short** Zustand::evaluateBoard(Vector target) const {
 	unsigned short **index = new unsigned short*[20];
 	for (int i = 0; i < 20; i++) {
 		index[i] = new unsigned short[13];
@@ -160,24 +157,62 @@ unsigned short** Zustand::distance(Vector target) const {
 		}
 	}
 	index[target.x][target.y] = 0;
-	this->find_min(target, index);
-	vector<Vector> joo;
 
+	vector<Vector> old_changed;
+	vector<Vector> new_changed;
+	old_changed.push_back(target);
+	vector<Vector>::iterator it;
+	while(old_changed.size()!=0){
+		for(it=old_changed.begin();it!=old_changed.end();it++){
+			calculate_surround(*it,index,new_changed);
+		}
+		old_changed=new_changed;
+		new_changed.clear();
+	}
 	return index;
-
 }
 
 void Zustand::calculate_surround(Vector actual,
-		unsigned short ** &index) const {
+		unsigned short ** &index, vector<Vector> &new_changed) const {
 	Vector w(actual.x + 1, actual.y), sw(actual.x + 1, actual.y + 1), se(
 			actual.x, actual.y + 1), e(actual.x - 1, actual.y), ne(actual.x - 1,
 			actual.y - 1), nw(actual.x, actual.y - 1);
-	find_min(w, index);
-	find_min(sw, index);
-	find_min(se, index);
-	find_min(e, index);
-	find_min(ne, index);
-	find_min(nw, index);
+//TODO vector mit den 6 elementen machen
+
+	Vector vecs[6]={Vector(1,0),Vector(0,1),Vector(1,1),Vector(-1,0),Vector(0,-1),Vector(-1,-1)};
+
+	//actual+vecs[i];
+
+	unsigned short wi = find_min(w, index);
+	if (index[w.x][w.y] > wi) {
+		index[w.x][w.y] = wi;
+		new_changed.push_back(w);
+	};
+	unsigned short swi = find_min(sw, index);
+	if (index[sw.x][sw.y] > swi) {
+		index[sw.x][sw.y] = swi;
+		new_changed.push_back(sw);
+	};
+	unsigned short sei = find_min(se, index);
+	if (index[se.x][se.y] > sei) {
+		index[se.x][se.y] = sei;
+		new_changed.push_back(se);
+	};
+	unsigned short ei = find_min(e, index);
+	if (index[e.x][e.y] > ei) {
+		index[e.x][e.y] = ei;
+		new_changed.push_back(e);
+	};
+	unsigned short nei = find_min(ne, index);
+	if (index[ne.x][ne.y] > nei) {
+		index[ne.x][ne.y] = nei;
+		new_changed.push_back(ne);
+	};
+	unsigned short nwi = find_min(nw, index);
+	if (index[nw.x][nw.y] > nwi) {
+		index[nw.x][nw.y] = nwi;
+		new_changed.push_back(nw);
+	};
 }
 
 unsigned short Zustand::find_min(Vector actual,
@@ -190,7 +225,7 @@ unsigned short Zustand::find_min(Vector actual,
 	 *	  / \
 	 *   c   b
 	 */
-
+//TODO vector mit abcdef und Schleife machen
 	if (this->Spielbrett.Kanten[actual.x][actual.y][0])
 		a = 2;
 	else if (this->schieneGelegt[actual.x][actual.y][0])
@@ -252,4 +287,27 @@ unsigned short Zustand::find_min(Vector actual,
 		min = f;
 
 	return min;
+}
+
+
+vector<Vector> Zustand::pointsBelongingToRailwaySystem(short playercolour) const{
+	int playersRailwayID=this->getPoeppel(playercolour).schienennetznummer;
+	vector<Vector> returnval;
+	for(int i=0;i<MAX_X;i++)
+		for(int j=0;j<MAX_Y;j++)
+			if(playersRailwayID==this->schienenNetzNummer[i][j])
+				returnval.push_back(Vector(i,j));
+	return returnval;
+}
+
+
+unsigned short Zustand::distance(Vector target,const vector<Vector> &possibleStarts) const{
+	unsigned short distance=std::numeric_limits<unsigned short>::max();
+	unsigned short ** array=this->evaluateBoard(target);
+	for(int i=0;i<possibleStarts.size();i++){
+		Vector act=possibleStarts[i];
+		if(array[act.x][act.y] < distance)
+			distance=array[act.x][act.y];
+	}
+	return distance;
 }

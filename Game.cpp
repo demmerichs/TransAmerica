@@ -111,7 +111,7 @@ void Game::spieleRunde(short startspieler) {
 		Spielbrett.aktAusgabe(aktuellerZustand.schieneGelegt);
 	}
 	for (int i = 0; i < spieleranzahl; i++) {
-		punkte[i] -= punkteabzug(i); //TODO entweder jeder programmiert selbst, oder eine absolute zŠhlweise
+		punkte[i] -= punkteabzug(i); //TODO entweder jeder programmiert selbst, oder eine absolute zaehlweise
 	}
 	//TODO Zwischenstand provisorium
 	cout << "Spieler 1 hat noch " << punkte[0] << " Punkte." << endl
@@ -120,10 +120,11 @@ void Game::spieleRunde(short startspieler) {
 
 //TODO folgendes Provisorium
 int Game::punkteabzug(int spieler) {
-	if (RundenGewinner(spieler))
-		return 0;
-	else
-		return 1;
+	unsigned short minuspoints;
+	for (int i=0;i<5;i++){
+		minuspoints+=aktuellerZustand.distance(KIliste[spieler].handkarten[i]->place,aktuellerZustand.pointsBelongingToRailwaySystem(KIliste[spieler].spielerfarbe));
+	}
+	return minuspoints;
 }
 
 void Game::kartenAusteilen() {

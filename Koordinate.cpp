@@ -15,4 +15,6 @@ Coordinate::Coordinate(short x, short y, const City* const ort) :
 		Vector(x, y), vorOrt(ort){
 }
 
-Coordinate::~Coordinate() {}
+Coordinate::~Coordinate() {
+
+}

@@ -30,6 +30,7 @@ const short MAX_Y=13;
 //positiv von 1 bis n, mit n=MAX_FARBEN Anzahl der Farben
 const short NULL_FARBE=0;
 const short MAX_FARBEN=5;
+const short COLOURS[5] = {1,2,3,4,5};
 const short BLAU=1;
 const short GELB=2;
 const short GRUEN=3;
