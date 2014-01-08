@@ -6,6 +6,7 @@
  */
 
 #include "Zustand.h"
+#include <limits>
 
 Zustand::Zustand(Brett &board) :
 		anzahlPoeppel(0), Spielbrett(board) {

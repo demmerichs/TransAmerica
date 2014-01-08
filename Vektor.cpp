@@ -6,6 +6,9 @@
  */
 
 #include "Vektor.h"
+#include <cmath>
+
+using namespace std;
 
 Vector::Vector() :
 		x(-1), y(-1) {
