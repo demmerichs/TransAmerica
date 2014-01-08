@@ -111,6 +111,7 @@ void Game::spieleRunde(short startspieler) {
 		Spielbrett.aktAusgabe(aktuellerZustand.schieneGelegt);
 		zustandsListe.push_back(aktuellerZustand);
 	}
+	this->graphicOutput();
 	for (int i = 0; i < spieleranzahl; i++) {
 		punkte[i] -= punkteabzug(i);
 	}
