@@ -38,8 +38,12 @@ class Game {
 	bool keinVerlierer() const;
 	bool keinRundenGewinner() const;
 	bool RundenGewinner(short spieler) const;
-	//provisorium TODO
 	int punkteabzug(int spieler);
+	/**
+	 * This method gets called when the game
+	 * calculations finished and the graphical UserInterface shall come up.
+	 */
+	void graphicOutput() const;
 
 public:
 	Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord);
