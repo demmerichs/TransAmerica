@@ -113,7 +113,7 @@ void Game::spieleRunde(short startspieler) {
 	}
 	this->graphicOutput();
 	for (int i = 0; i < spieleranzahl; i++) {
-		punkte[i] -= punkteabzug(i);
+		punkte[i] -= 1;//TODO punkteabzug(i);
 	}
 	//TODO Zwischenstand provisorium
 	cout << "Spieler 1 hat noch " << punkte[0] << " Punkte." << endl

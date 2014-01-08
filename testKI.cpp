@@ -38,7 +38,7 @@ Move testKI::zug(Zustand &aktuell) const {
 					first = Vector(0, sign(diff.y));
 			} else
 				first = Vector(sign(diff.x), sign(diff.x));
-			firsty = &aktuell.getVerbindung(a, a + first);
+			firsty = aktuell.getVerbindung(a, a + first);
 			diff = aktStadt - a - first;
 			dis = diff.distance();
 			if (dis != 0) {
@@ -50,7 +50,7 @@ Move testKI::zug(Zustand &aktuell) const {
 						second = Vector(0, sign(diff.y));
 				} else
 					second = Vector(sign(diff.x), sign(diff.x));
-				secondary = &aktuell.getVerbindung(a + first,
+				secondary = aktuell.getVerbindung(a + first,
 						a + first + second);
 			}
 			Move ruckgabe(this->spielerfarbe, firsty, secondary);

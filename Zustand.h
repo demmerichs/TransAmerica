@@ -42,7 +42,7 @@ public:
 	static short RichtungsWert(const Vector&);
 	void resetNr_ZuNr_(const short, const short);
 	void schieneLegen(const Verbindung&);
-	const Verbindung &getVerbindung(Vector a, Vector b) const;
+	const Verbindung* getVerbindung(Vector a, Vector b) const;
 	void addPoeppel(Poeppel insert);
 	void resetAll();
 	unsigned short** evaluateBoard(Vector target) const;

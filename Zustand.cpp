@@ -133,15 +133,15 @@ void Zustand::schieneLegen(const Verbindung &sollGelegt) {
 //TODO Exceptions
 }
 
-const Verbindung &Zustand::getVerbindung(Vector a, Vector b) const {
+const Verbindung* Zustand::getVerbindung(Vector a, Vector b) const {
 	Vector eins = a;
 	Vector zwei = b;
 	if ((b - a).x < 0 || (b - a).y < 0) {
 		eins = b;
 		zwei = a;
 	}
-	const Verbindung &ruckgabe =
-			*this->Spielbrett.Kanten[eins.x][eins.y][this->RichtungsWert(
+	const Verbindung* ruckgabe =
+			this->Spielbrett.Kanten[eins.x][eins.y][this->RichtungsWert(
 					zwei - eins)];
 	return ruckgabe;
 }
