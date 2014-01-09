@@ -78,7 +78,7 @@ void Brett::Ausgabe() const {
 
 const City* const Brett::durchsucheListe(short x, short y) const {
 	for (int i = 0; i < anzahlStaedte; i++) {
-		if (Stadtliste[i]->place.x == x && Stadtliste[i]->place.y == y) {
+		if (Stadtliste[i]->x == x && Stadtliste[i]->y == y) {
 			return Stadtliste[i];
 		}
 	}

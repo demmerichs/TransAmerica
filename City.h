@@ -13,7 +13,7 @@
 #include<string>
 using namespace std;
 
-class City {
+class City : public Vector{
 	City();
 public:
 	City(string name, short cityColour, short number, Vector place);
@@ -23,7 +23,6 @@ public:
 	string name;
 	short cityColour;
 	short number; //Staedte kriegen einfache Kennnummern
-	Vector place;
 };
 
 #endif /* CITY_H_ */

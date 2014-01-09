@@ -79,7 +79,7 @@ bool Game::RundenGewinner(short spieler) const {
 	for (int i = 0; i < MAX_FARBEN; i++) {
 		if (schienennr
 				!= aktuellerZustand.getSchienenNetzNummer(
-						KIliste[spieler].handkarten[i]->place))
+						*KIliste[spieler].handkarten[i]))
 			return false;
 	}
 	return true;
@@ -122,10 +122,10 @@ void Game::spieleRunde(short startspieler) {
 
 //TODO folgendes Provisorium
 int Game::punkteabzug(int spieler) {
-	unsigned short minuspoints=0;
+	unsigned short minuspoints = 0;
 	for (int i = 0; i < 5; i++) {
 		minuspoints += aktuellerZustand.distance(
-				KIliste[spieler].handkarten[i]->place,
+				*KIliste[spieler].handkarten[i],
 				aktuellerZustand.pointsBelongingToRailwaySystem(
 						KIliste[spieler].spielerfarbe));
 	}
