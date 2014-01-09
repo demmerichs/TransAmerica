@@ -226,10 +226,10 @@ unsigned short Zustand::find_min(Vector actual,
 	unsigned short min = std::numeric_limits<unsigned short>::max();
 	Vector richtungsvektoren[] = { Vector(1, 0), Vector(1, 1), Vector(0, 1),
 			Vector(-1, 0), Vector(-1, -1), Vector(0, -1) };
-	for (Vector vec : richtungsvektoren) {
-		const Verbindung* connection = getVerbindung(actual + vec, actual);
+	for (int i=0;i<6;i++) {
+		const Verbindung* connection = getVerbindung(actual + richtungsvektoren[i], actual);
 		if (connection != 0) {
-			unsigned short value = index[(actual + vec).x][(actual + vec).y];
+			unsigned short value = index[(actual + richtungsvektoren[i]).x][(actual + richtungsvektoren[i]).y];
 // what kind of connection is it?
 			if (!this->schieneGelegt[connection->first.x][connection->first.y][this->RichtungsWert(
 					connection->richtung)]) {
