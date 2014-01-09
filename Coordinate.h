@@ -10,7 +10,7 @@
 
 #include"Konstant.h"
 #include"City.h"
-#include"Vektor.h"
+#include"Vector.h"
 
 /**
  * Objects of this class are coordiantes on the board, where the x-axis is parallel to the

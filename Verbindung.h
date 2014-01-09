@@ -8,7 +8,7 @@
 #ifndef VERBINDUNG_H_
 #define VERBINDUNG_H_
 
-#include"Vektor.h"
+#include"Vector.h"
 #include"Coordinate.h"
 #include"Konstant.h"
 

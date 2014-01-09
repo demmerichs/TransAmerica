@@ -9,7 +9,7 @@
 #define CITY_H_
 
 #include"Konstant.h"
-#include"Vektor.h"
+#include"Vector.h"
 #include<string>
 using namespace std;
 
