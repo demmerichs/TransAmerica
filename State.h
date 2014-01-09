@@ -1,12 +1,12 @@
 /*
- * Zustand.h
+ * State.h
  *
  *  Created on: 03.12.2013
  *      Author: David
  */
 
-#ifndef ZUSTAND_H_
-#define ZUSTAND_H_
+#ifndef STATE_H_
+#define STATE_H_
 
 #include"Konstant.h"
 #include"Brett.h"
@@ -17,16 +17,16 @@
 using std::cout;
 using std::endl;
 
-class Zustand {
+class State {
 	Poeppel* poeppelListe[MAX_SPIELER]; //hier soll an der Sortierung keiner rumpfuschen
 	unsigned short find_min(Vector actual, unsigned short ** &index) const;
 	void calculate_surround(Vector actual, unsigned short ** &index,
 			vector<Vector> &new_changed) const;
 public:
-	Zustand(Brett &Spielbrett); //Startzustand
-	Zustand(const Zustand&);
-	virtual ~Zustand();
-	//Zustand &operator=(const Zustand&) const;
+	State(Brett &Spielbrett); //Startzustand
+	State(const State&);
+	virtual ~State();
+	//State &operator=(const State&) const;
 
 	short schienenNetzNummer[MAX_X][MAX_Y]; //jeder hat eine eigene SchienenNetzNummer, kann ueber Poeppel bestimmt werden
 	bool schieneGelegt[MAX_X][MAX_Y][3]; //zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. RichtungsWert
@@ -53,4 +53,4 @@ public:
 	static void dumpEvaluateBoard(unsigned short ** & index);
 };
 
-#endif /* ZUSTAND_H_ */
+#endif /* STATE_H_ */

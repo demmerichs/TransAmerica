@@ -10,7 +10,7 @@
 
 #include"Konstant.h"
 #include"Verbindung.h"
-#include"Zustand.h"
+#include"State.h"
 
 class Move {
 private:
@@ -25,8 +25,8 @@ public:
 	Move(short spielerfarbe, const Verbindung* belegt1, const Verbindung* belegt2);
 	virtual ~Move();
 
-	bool gueltig(Zustand, short);
-	void ausfuehren(Zustand&) const;
+	bool gueltig(State, short);
+	void ausfuehren(State&) const;
 
 	void dump() const;
 	Move& operator=(const Move& zuweisung) {

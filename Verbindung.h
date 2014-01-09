@@ -9,7 +9,7 @@
 #define VERBINDUNG_H_
 
 #include"Vektor.h"
-#include"Koordinate.h"
+#include"Coordinate.h"
 #include"Konstant.h"
 
 class Verbindung {

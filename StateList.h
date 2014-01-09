@@ -8,18 +8,18 @@
 #ifndef STATELIST_H_
 #define STATELIST_H_
 
-#include"Zustand.h"
+#include"State.h"
 
 class StateList{
 	int capacity;
 	int actualSize;
-	Zustand** list;
+	State** list;
 public:
 	StateList();
 	virtual ~StateList();
 
-	void push_back(const Zustand&);
-	const Zustand& get(int i) const;
+	void push_back(const State&);
+	const State& get(int i) const;
 	int size() const;
 };
 
