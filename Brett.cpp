@@ -101,18 +101,24 @@ Verbindung**** Brett::kantenAnlegen() const {
 							*Gitter[i + 1][j], false);
 				else
 					testKanten[i][j][0] = 0;
+			else
+				testKanten[i][j][0] = 0;
 			if (j + 1 < MAX_Y)
 				if (!Gitter[i][j] == 0 && !Gitter[i][j + 1] == 0)
 					testKanten[i][j][1] = new Verbindung(*Gitter[i][j],
 							*Gitter[i][j + 1], false);
 				else
 					testKanten[i][j][1] = 0;
+			else
+				testKanten[i][j][1] = 0;
 			if (j + 1 < MAX_Y && i + 1 < MAX_X)
 				if (!Gitter[i][j] == 0 && !Gitter[i + 1][j + 1] == 0)
 					testKanten[i][j][2] = new Verbindung(*Gitter[i][j],
 							*Gitter[i + 1][j + 1], false);
 				else
 					testKanten[i][j][2] = 0;
+			else
+				testKanten[i][j][2] = 0;
 		}
 	}
 	ifstream Verbindungsinput((BRETTNAME + "_Hindernisse.txt").data());
