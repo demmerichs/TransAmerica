@@ -35,22 +35,21 @@ Zustand::Zustand(const Zustand &copy) :
 }
 
 /*
-Zustand& Zustand::operator=(const Zustand& copy) const{
-	this->Spielbrett=copy.Spielbrett;
-	this->anzahlPoeppel = copy.anzahlPoeppel;
-	for (int i = 0; i < MAX_SPIELER; i++)
-		poeppelListe[i] = new Poeppel(*copy.poeppelListe[i]);
-	for (int i = 0; i < MAX_X; i++)
-		for (int j = 0; j < MAX_Y; j++)
-			for (int k = 0; k < 3; k++)
-				schieneGelegt[i][j][k] = copy.schieneGelegt[i][j][k];
-	for (int i = 0; i < MAX_X; i++)
-		for (int j = 0; j < MAX_Y; j++)
-			schienenNetzNummer[i][j] = copy.schienenNetzNummer[i][j];
-	return *this;
-}
-*/
-
+ Zustand& Zustand::operator=(const Zustand& copy) const{
+ this->Spielbrett=copy.Spielbrett;
+ this->anzahlPoeppel = copy.anzahlPoeppel;
+ for (int i = 0; i < MAX_SPIELER; i++)
+ poeppelListe[i] = new Poeppel(*copy.poeppelListe[i]);
+ for (int i = 0; i < MAX_X; i++)
+ for (int j = 0; j < MAX_Y; j++)
+ for (int k = 0; k < 3; k++)
+ schieneGelegt[i][j][k] = copy.schieneGelegt[i][j][k];
+ for (int i = 0; i < MAX_X; i++)
+ for (int j = 0; j < MAX_Y; j++)
+ schienenNetzNummer[i][j] = copy.schienenNetzNummer[i][j];
+ return *this;
+ }
+ */
 
 Zustand::~Zustand() {
 	for (int i = 0; i < MAX_SPIELER; i++)
@@ -136,13 +135,16 @@ void Zustand::schieneLegen(const Verbindung &sollGelegt) {
 const Verbindung* Zustand::getVerbindung(Vector a, Vector b) const {
 	Vector eins = a;
 	Vector zwei = b;
+	const Verbindung* ruckgabe = 0;
 	if ((b - a).x < 0 || (b - a).y < 0) {
 		eins = b;
 		zwei = a;
 	}
-	const Verbindung* ruckgabe =
-			this->Spielbrett.Kanten[eins.x][eins.y][this->RichtungsWert(
-					zwei - eins)];
+	if (eins.x >= 0 && eins.y >= 0 && zwei.x >= 0 && zwei.y >= 0
+			&& eins.x < MAX_X && eins.y < MAX_Y && zwei.x < MAX_X
+			&& zwei.y < MAX_Y)
+		ruckgabe = this->Spielbrett.Kanten[eins.x][eins.y][this->RichtungsWert(
+				zwei - eins)];
 	return ruckgabe;
 }
 
@@ -165,6 +167,16 @@ void Zustand::resetAll() {
 		}
 }
 
+#include <iomanip>
+void Zustand::dumpEvaluateBoard(unsigned short ** & index) {
+	for (int j = 0; j < MAX_Y; j++) {
+		for (int i = 0; i < MAX_X; i++) {
+			cout << std::setw(6) << index[i][j];
+		}
+		cout << endl;
+	}
+}
+
 unsigned short** Zustand::evaluateBoard(Vector target) const {
 	unsigned short **index = new unsigned short*[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
@@ -172,7 +184,7 @@ unsigned short** Zustand::evaluateBoard(Vector target) const {
 	}
 	for (int i = 0; i < MAX_X; i++) {
 		for (int j = 0; j < MAX_Y; j++) {
-			index[i][j] = std::numeric_limits<unsigned short>::max();
+			index[i][j] = std::numeric_limits<unsigned short>::max()/2;
 		}
 	}
 	index[target.x][target.y] = 0;
@@ -199,7 +211,7 @@ void Zustand::calculate_surround(Vector actual, unsigned short ** &index,
 	Vector now;
 	for (int i = 0; i < 6; i++) {
 		now = (actual + vecs[i]);
-		if (now.x >= 0 && now.x <= MAX_X && now.y >= 0 && now.y <= MAX_Y) {
+		if (now.x >= 0 && now.x < MAX_X && now.y >= 0 && now.y < MAX_Y) {
 			results[i] = find_min(now, index);
 			if (index[now.x][now.y] > results[i]) {
 				index[now.x][now.y] = results[i];
@@ -211,83 +223,24 @@ void Zustand::calculate_surround(Vector actual, unsigned short ** &index,
 
 unsigned short Zustand::find_min(Vector actual,
 		unsigned short ** &index) const {
-	unsigned short min = std::numeric_limits<unsigned short>::max(), a, b, c, d,
-			e, f;
-	vector<unsigned short> possibilities;
-	vector<unsigned short>::iterator it;
-
-	/*
-	 *	 e   f
-	 *	  \ /
-	 * d-- x --a
-	 *	  / \
-	 *   c   b
-	 */
-
-	if (actual.x < MAX_X-1) {
-		if (this->Spielbrett.Kanten[actual.x][actual.y][0])
-			a = 2;
-		else if (this->schieneGelegt[actual.x][actual.y][0])
-			a = 0;
-		else
-			a = 1;
-		a = a + index[actual.x + 1][actual.y];
-		possibilities.push_back(a);
-	}
-	if (actual.x < MAX_X-1 && actual.y < MAX_Y-1) {
-		if (this->Spielbrett.Kanten[actual.x][actual.y][2])
-			b = 2;
-		else if (this->schieneGelegt[actual.x][actual.y][2])
-			b = 0;
-		else
-			b = 1;
-		b = b + index[actual.x + 1][actual.y + 1];
-		possibilities.push_back(b);
-	}
-	if (actual.y < MAX_Y-1) {
-		if (this->Spielbrett.Kanten[actual.x][actual.y][1])
-			c = 2;
-		else if (this->schieneGelegt[actual.x][actual.y][1])
-			c = 0;
-		else
-			c = 1;
-		c = c + index[actual.x][actual.y + 1];
-		possibilities.push_back(c);
-	}
-	if (actual.x > 0) {
-		if (this->Spielbrett.Kanten[actual.x - 1][actual.y][0])
-			d = 2;
-		else if (this->schieneGelegt[actual.x - 1][actual.y][0])
-			d = 0;
-		else
-			d = 1;
-		d = d + index[actual.x - 1][actual.y];
-		possibilities.push_back(d);
-	}
-	if (actual.x > 0 && actual.y > 0) {
-		if (this->Spielbrett.Kanten[actual.x - 1][actual.y - 1][2])
-			e = 2;
-		else if (this->schieneGelegt[actual.x - 1][actual.y - 1][2])
-			e = 0;
-		else
-			e = 1;
-		e = e + index[actual.x - 1][actual.y - 1];
-		possibilities.push_back(e);
-	}
-	if (actual.y > 0) {
-		if (this->Spielbrett.Kanten[actual.x][actual.y - 1][1])
-			f = 2;
-		else if (this->schieneGelegt[actual.x][actual.y - 1][1])
-			f = 0;
-		else
-			f = 1;
-		f = f + index[actual.x][actual.y - 1];
-		possibilities.push_back(f);
-	}
-	min = 1000;
-	for (it = possibilities.begin(); it != possibilities.end(); it++) {
-		if (min > *it) {
-			min = *it;
+	unsigned short min = std::numeric_limits<unsigned short>::max();
+	Vector richtungsvektoren[] = { Vector(1, 0), Vector(1, 1), Vector(0, 1),
+			Vector(-1, 0), Vector(-1, -1), Vector(0, -1) };
+	for (Vector vec : richtungsvektoren) {
+		const Verbindung* connection = getVerbindung(actual + vec, actual);
+		if (connection != 0) {
+			unsigned short value = index[(actual + vec).x][(actual + vec).y];
+// what kind of connection is it?
+			if (!this->schieneGelegt[connection->first.x][connection->first.y][this->RichtungsWert(
+					connection->richtung)]) {
+				if (connection->hindernis)
+					value += 2;
+				else
+					value += 1;
+			}
+			if (value < min) {
+				min = value;
+			}
 		}
 	}
 	return min;
@@ -308,6 +261,7 @@ unsigned short Zustand::distance(Vector target,
 		const vector<Vector> &possibleStarts) const {
 	unsigned short distance = std::numeric_limits<unsigned short>::max();
 	unsigned short ** array = this->evaluateBoard(target);
+	dumpEvaluateBoard(array);
 	for (int i = 0; i < possibleStarts.size(); i++) {
 		Vector act = possibleStarts[i];
 		if (array[act.x][act.y] < distance)

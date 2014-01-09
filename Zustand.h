@@ -49,6 +49,8 @@ public:
 	unsigned short distance(Vector target,
 			const vector<Vector> &possibleStarts) const;
 	vector<Vector> pointsBelongingToRailwaySystem(short playercolour) const;
+
+	static void dumpEvaluateBoard(unsigned short ** & index);
 };
 
 #endif /* ZUSTAND_H_ */

@@ -113,7 +113,7 @@ void Game::spieleRunde(short startspieler) {
 	}
 	this->graphicOutput();
 	for (int i = 0; i < spieleranzahl; i++) {
-		punkte[i] -= 1;//TODO punkteabzug(i);
+		punkte[i] -= punkteabzug(i);
 	}
 	//TODO Zwischenstand provisorium
 	cout << "Spieler 1 hat noch " << punkte[0] << " Punkte." << endl
@@ -122,7 +122,7 @@ void Game::spieleRunde(short startspieler) {
 
 //TODO folgendes Provisorium
 int Game::punkteabzug(int spieler) {
-	unsigned short minuspoints;
+	unsigned short minuspoints=0;
 	for (int i = 0; i < 5; i++) {
 		minuspoints += aktuellerZustand.distance(
 				KIliste[spieler].handkarten[i]->place,
