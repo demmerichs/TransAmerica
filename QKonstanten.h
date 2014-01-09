@@ -1,0 +1,4 @@
+#ifndef QKONSTANTEN_H
+#define QKONSTANTEN_H
+
+#endif // QKONSTANTEN_H
