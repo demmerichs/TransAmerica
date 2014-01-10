@@ -19,15 +19,17 @@ using std::vector;
 #include"Poeppel.h"
 #include"Konstant.h"
 #include"StateList.h"
+#include"window.h"
 
 class Game {
+  friend class UIEXEC;
 	const short spieleranzahl;
 	const KIspieler* KIliste;
 	short startstartspieler;
 	Brett &Spielbrett;
 	Zustand aktuellerZustand;
-	StateList zustandsListe;
-	short* punkte;
+  StateList zustandsListe;
+  short* punkte;
 	const City *** handkarten;
 	short grenzwert;
 
@@ -39,6 +41,7 @@ class Game {
 	bool keinRundenGewinner() const;
 	bool RundenGewinner(short spieler) const;
 	int punkteabzug(int spieler);
+
 	/**
 	 * This method gets called when the game
 	 * calculations finished and the graphical UserInterface shall come up.
@@ -50,7 +53,9 @@ public:
 	Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord, unsigned seed);
 	virtual ~Game();
 
-	void spielen();
+        void spielen();
+
+
 };
 
 #endif /* GAME_H_ */

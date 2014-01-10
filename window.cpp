@@ -2,7 +2,7 @@
 
 #include "window.h"
 #include "spielbrett.h"
-
+#include <iostream>
 
 
 
@@ -14,18 +14,24 @@ Window::Window()
   pofp4 =new QLabel (tr("El Paso"));
   pofp5 =new QLabel (tr("Jacksonville"));
   pofp6 =new QLabel (tr(""));
+
   toolBoxLabel =new QLabel (tr("ToolBox"));
   QFont font = toolBoxLabel->font();
   font.setBold(true);
   font.setUnderline(true);
   font.setPointSize(font.pointSize()*1.4);
+
   toolBoxLabel->setFont(font);
   vektorSpinBox =new QSpinBox;
   showTownsCheckBox = new QCheckBox;
-  vektorSpinBox->setRange(0,20);
+  vektorSpinBox->setRange(0,1000);
   vektorSpinBox->setWrapping(false);
   vektorSpinBox->setSuffix(tr(". Zustand"));
-  spielbrett = new Spielbrett;
+  spielbrett = new Spielbrett(this);
+
+  /**
+    Layout-Design
+    */
   QGridLayout* mainLayout = new QGridLayout;
   QFormLayout* toolLayout = new QFormLayout;
   mainLayout->addWidget(pofp1, 1,0,Qt::AlignHCenter );
@@ -40,8 +46,25 @@ Window::Window()
   toolLayout->addRow(tr("Geladener Zustand:"), vektorSpinBox);
   toolLayout->addRow(tr("Zeige Staedte:"), showTownsCheckBox);
   setLayout(mainLayout);
+
+  /**
+    Connect-Implementationen
+    */
   setWindowTitle(tr("Transamerica - Das Spiel (Testversion 1.0)"));
   //connect(vektorSpinBox, SIGNAL(valueChanged(int)), spielbrett, SLOT(zustandChanged(int)));
+  connect(vektorSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setZustandscounter(int)));
   connect(showTownsCheckBox, SIGNAL(toggled(bool)), spielbrett, SLOT(drawCityChanged(bool)));
   //setStyleSheet(" background-color: blue");
+}
+
+void Window::setZp(Zustand *aktuellerZustand){
+    cout << "Aufruf von setZp" << endl;
+    aZp=aktuellerZustand;
+    zustandInitialized=true;
+    spielbrett->update();
+}
+void Window::setZustandscounter(int i){
+    cout << i << endl;
+    Zustandcounter= i;
+    requestZp(i);
 }

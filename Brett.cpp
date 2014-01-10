@@ -76,7 +76,7 @@ void Brett::Ausgabe() const {
 	}
 }
 
-const City* const Brett::durchsucheListe(short x, short y) const {
+City* const Brett::durchsucheListe(short x, short y) const {
 	for (int i = 0; i < anzahlStaedte; i++) {
 		if (Stadtliste[i]->place.x == x && Stadtliste[i]->place.y == y) {
 			return Stadtliste[i];
@@ -101,18 +101,24 @@ Verbindung**** Brett::kantenAnlegen() const {
 							*Gitter[i + 1][j], false);
 				else
 					testKanten[i][j][0] = 0;
+            else
+                testKanten[i][j][0] = 0;
 			if (j + 1 < MAX_Y)
 				if (!Gitter[i][j] == 0 && !Gitter[i][j + 1] == 0)
 					testKanten[i][j][1] = new Verbindung(*Gitter[i][j],
 							*Gitter[i][j + 1], false);
 				else
 					testKanten[i][j][1] = 0;
+            else
+                testKanten[i][j][1] = 0;
 			if (j + 1 < MAX_Y && i + 1 < MAX_X)
 				if (!Gitter[i][j] == 0 && !Gitter[i + 1][j + 1] == 0)
 					testKanten[i][j][2] = new Verbindung(*Gitter[i][j],
 							*Gitter[i + 1][j + 1], false);
 				else
 					testKanten[i][j][2] = 0;
+            else
+                testKanten[i][j][2] = 0;
 		}
 	}
 	ifstream Verbindungsinput((BRETTNAME + "_Hindernisse.txt").data());
@@ -162,9 +168,9 @@ Verbindung**** Brett::kantenAnlegen() const {
 	return testKanten;
 }
 
-const City** Brett::stadtlisteAnlegen() const {
+ City** Brett::stadtlisteAnlegen() const {
 	ifstream Stadtinput((BRETTNAME + "_Staedte.txt").data());
-	const City** testStadtliste = new const City*[anzahlStaedte];
+    City** testStadtliste = new City*[anzahlStaedte];
 	for (int i = 0; i < anzahlStaedte; i++) {
 		string name;
 		short cityColour, number;
@@ -174,7 +180,7 @@ const City** Brett::stadtlisteAnlegen() const {
 		Stadtinput >> place.y;
 		Stadtinput >> cityColour;
 		Stadtinput >> number;
-		testStadtliste[i] = new const City(name, cityColour, number, place);
+        testStadtliste[i] = new City(name, cityColour, number, place);
 	}
 	return testStadtliste;
 }
@@ -250,9 +256,9 @@ void Brett::aktAusgabe(bool kanten[MAX_X][MAX_Y][3]) const {
 	}
 }
 
-const City* Brett::getStadt(short farbe, short nr) const {
+City* Brett::getStadt(short farbe, short nr) const {
 	for (int i = 0; i < anzahlStaedte; i++) {
-		const City* aktStadt = this->Stadtliste[i];
+        City* aktStadt = this->Stadtliste[i];
 		if (aktStadt->cityColour == farbe && aktStadt->number == nr)
 			return aktStadt;
 	}

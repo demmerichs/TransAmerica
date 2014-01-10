@@ -9,8 +9,10 @@
 #define STATELIST_H_
 
 #include"Zustand.h"
+#include <QObject>
 
-class StateList{
+class StateList: public QObject{
+  Q_OBJECT
 	int capacity;
 	int actualSize;
 	Zustand** list;
@@ -19,8 +21,14 @@ public:
 	virtual ~StateList();
 
 	void push_back(const Zustand&);
-	const Zustand& get(int i) const;
-	int size() const;
+  int size() const;
+  Zustand* get(int i) const;
+public slots:
+  void callGet (int i); //kleine Hilfe um get aufzurufen
+signals:
+  void emitGet(Zustand* aZp);
+
+
 };
 
 #endif /* STATELIST_H_ */
