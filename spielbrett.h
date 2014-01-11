@@ -13,8 +13,8 @@ class Spielbrett: public QWidget
   Q_OBJECT
 public:
   Spielbrett(Window* parentalWindow, QWidget* parent = 0);
-  QSize minimumSizeHint ()const;
-  QSize sizeHint ()const;
+  //QSize minimumSizeHint ()const;
+  //QSize sizeHint ()const;
 
 public slots:
   void zustandChanged(int);

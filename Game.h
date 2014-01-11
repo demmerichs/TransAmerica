@@ -23,13 +23,14 @@ using std::vector;
 
 class Game {
   friend class UIEXEC;
+  friend class Window;
 	const short spieleranzahl;
 	const KIspieler* KIliste;
 	short startstartspieler;
 	Brett &Spielbrett;
 	Zustand aktuellerZustand;
-  StateList zustandsListe;
-  short* punkte;
+    StateList zustandsListe;
+    short* punkte;
 	const City *** handkarten;
 	short grenzwert;
 
