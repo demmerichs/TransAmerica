@@ -50,7 +50,7 @@ void Spielbrett::paintEvent(QPaintEvent*)
   background.load("images/bg2.jpg");
   painter.drawPixmap(0,0, background);
   QPixmap blauCity;
-  blauCity.load("images/blau.gifd");
+  blauCity.load("images/blau.gif");
   QTransform transform;
   transform.translate(110.5,40.5);
   transform.scale(1 ,sqrt(3)/2.);
@@ -106,20 +106,20 @@ void Spielbrett::paintEvent(QPaintEvent*)
           // << "  Stadt = " << parentalWindow->aZp->Spielbrett.Stadtliste[i]->name<< endl;
 
 
-      painter.drawPixmap(transform.map(QPoint(static_cast <short> (parentalWindow->aZp->Spielbrett.Stadtliste[i]->place.x*sL)*sL-8.5,
+      painter.drawPixmap(transform.map(QPoint(static_cast <short> (parentalWindow->aZp->Spielbrett.Stadtliste[i]->place.x)*sL-8.5,
                                                static_cast <short> (parentalWindow->aZp->Spielbrett.Stadtliste[i]->place.y)*sL-8.5)), blauCity);
       }
     }
-  /**
-    draws the poeppel
-  for (int i=0; i<(parentalWindow->aZp->anzahlPoeppel); i++)
+
+  //draws the poeppel
+  for (int i=-1; i>=-2;i--)
   {
-      painter.drawRoundedRect(parentalWindow->aZp->getPoeppel(i).startposition.x,
-                              parentalWindow->aZp->getPoeppel(i).startposition.y,
+	  QPoint bla=transform.map(QPoint(parentalWindow->aZp->getPoeppel(i).startposition.x*sL-12,
+              parentalWindow->aZp->getPoeppel(i).startposition.y*sL-25));
+      painter.drawRoundedRect(bla.x(),bla.y(),
                               12, 25, 4, 4);
 
   }
-*/
  }
 void Spielbrett::zustandChanged(int counter)
 {
