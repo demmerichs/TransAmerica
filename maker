@@ -1,0 +1,12 @@
+all:
+	rm -rf TransAmerica.rpo
+	rm -rf Makefile
+	qmake -project
+	qmake -spec macx-g++ TransAmerica.pro
+	make
+
+clean:
+	make clean
+	rm Makefile
+	rm -rf TransAmerica.pro
+	rm -rf TransAmerica.app
