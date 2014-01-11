@@ -11,10 +11,10 @@ void UIEXEC::doTheMagic(){
     /**
       window implementation
       */
-    wp = new Window;
-    wp->setFixedSize(1500,1200);
+    wp = new Window(game1);
     wp->setWindowTitle(tr("Transamerica - Testversion - GITHUB"));
     wp->show();
+    wp->playAutomatically();
     /**
       call of the game algorithmus
       */

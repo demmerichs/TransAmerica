@@ -6,7 +6,7 @@
 const QPen thinPen(Qt::darkGray, 1);
 const QPen thinRedPen(Qt::red, 1);
 const QPen fatPen(Qt::black, 4);
-const double sL = 30.4;
+const double sL = 30.2;
 
 
 bool testValid (int x,int y, int dir)
@@ -32,6 +32,7 @@ Spielbrett::Spielbrett(Window* parentalWindow, QWidget* parent)
 //   }
 //  Schienen[5][7][0]=1;
   drawCity=false;
+  setFixedSize(1220,784);
   setBackgroundRole(QPalette::Base);
   setAutoFillBackground(true);
 }
@@ -47,11 +48,11 @@ void Spielbrett::paintEvent(QPaintEvent*)
   painter.setPen(fatPen);
   QPixmap background;
   background.load("images/bg2.jpg");
-  painter.drawPixmap(0,10.5, background);
+  painter.drawPixmap(0,0, background);
   QPixmap blauCity;
-  blauCity.load("images/blau.gif");
+  blauCity.load("images/blau.gifd");
   QTransform transform;
-  transform.translate(110.5,50.5);
+  transform.translate(110.5,40.5);
   transform.scale(1 ,sqrt(3)/2.);
   transform.shear(-0.5,0);
   QTransform inverseTransform = transform.inverted();
@@ -130,6 +131,7 @@ void Spielbrett::drawCityChanged(bool enable)
   drawCity=enable;
   update();
 }
+/*
 QSize Spielbrett::minimumSizeHint() const
 {
   return QSize(100,100);
@@ -140,3 +142,4 @@ QSize Spielbrett::sizeHint() const
 {
  return QSize(1000,750);
 }
+*/
