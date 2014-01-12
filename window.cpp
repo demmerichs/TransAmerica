@@ -76,11 +76,9 @@ Window::Window(Game *game)
   Slot-Implementationen
   */
 void Window::setZp(Zustand *aktuellerZustand){
-    cout << "Aufruf von setZp" << endl;
+   // cout << "Aufruf von setZp" << endl;
     aZp=aktuellerZustand;
     zustandInitialized=true;
-    //player1->setText(QString("%1").arg(gamep->punkte[0]));
-    //player2->setText(QString("%1").arg(gamep->punkte[1]));
     spielbrett->update();
 }
 void Window::setZustandscounter(int i){

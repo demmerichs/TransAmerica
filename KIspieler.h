@@ -29,6 +29,7 @@ public:
 	string programmierer;	//Hier kann ein Name fuer die KI eingespeichert werden
 
 	friend class Game;
+    friend class Spielbrett;
 };
 
 #endif /* KISPIELER_H_ */

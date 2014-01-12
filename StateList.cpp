@@ -46,7 +46,8 @@ void StateList::callGet (int i){
 }
 
 Zustand* StateList::get(int i) const{
-    if(i>=size()) {return list[size()];}
+    if(i>=size()) {return list[size()-1];}
+    if(i<0) {return list[0];}
     return list[i];
 }
 

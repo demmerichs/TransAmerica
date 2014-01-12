@@ -8,29 +8,50 @@ const QPen thinRedPen(Qt::red, 1);
 const QPen fatPen(Qt::black, 4);
 const double sL = 30.2;
 
+enum Farbart{
+    spielerfarbe, stadtfarbe
+};
 
-bool testValid (int x,int y, int dir)
+struct Mycolor{
+    QColor q;
+    char* s;
+
+};
+
+Mycolor getColor (int i, Farbart art)
 {
-  if (x==MAX_X-1&&(dir==0||dir==1)) {return false;}
-  else if (y==MAX_Y-1&&(dir==1||dir==2)) {return false;}
-  else if (y>4&&x<y-4) {return false;}
-  return true;
+    Mycolor rV;
+    switch (art)
+    {
+    case spielerfarbe:
+        assert(i<=-1&&i>=-6);
+        if (i==-1)  rV.q=(QColor(Qt::blue));
+        else if (i==-2)  rV.q=(QColor(Qt::yellow));
+        else if (i==-3)  rV.q=(QColor(Qt::green));
+        else if (i==-4)  rV.q=(QColor(Qt::magenta));
+        else if (i==-5)  rV.q=(QColor("#ffa500"));
+        else if (i==-6)  rV.q=(QColor(Qt::white));
+        break;
+    case stadtfarbe:
+        //assert(i>=0&&i<=5); //Müll, da Stadtliste nicht konsistent
+        if (i==1)  rV.s=("images/blau.gif");
+        else if (i==2)  rV.s=("images/gelb.gif");
+        else if (i==3)  rV.s=("images/gruen.gif");
+        else if (i==4)  rV.s=("images/orange.gif");
+        else if (i==5)  rV.s=("images/rot.gif");
+        else rV.s=(" ");
+    default:
+        rV.q=(QColor(Qt::black));
+
+    }
+    return rV;
 }
+
+
 Spielbrett::Spielbrett(Window* parentalWindow, QWidget* parent)
-    : QWidget(parent), parentalWindow(parentalWindow)
+    :parentalWindow(parentalWindow)
 {
 
-  //Füllen der Schienen
-//  for(int a=0; a<0; a++){
-//    zustandsvector.push_back();
-//    for(int i=0; i<MAX_X; i++){
-//      for (int j=0; j<MAX_Y; j++){
-//          for (int k=0; k<3; k++){
-//            Schienen[i][j][k]=false;
-//          }
-//      }
-//   }
-//  Schienen[5][7][0]=1;
   drawCity=false;
   setFixedSize(1220,784);
   setBackgroundRole(QPalette::Base);
@@ -38,29 +59,35 @@ Spielbrett::Spielbrett(Window* parentalWindow, QWidget* parent)
 }
 void Spielbrett::paintEvent(QPaintEvent*)
 {
-  if(parentalWindow->zustandInitialized==false) {return;}
   QPainter painter(this);
+
+
+  if(parentalWindow->zustandInitialized==false) {return;}
+  QPixmap background("images/bg2.jpg");
+//  QPixmap blueCity("images/blau.gif");
+//  QPixmap greenCity("images/gruen.gif");
+//  QPixmap yellowCity("images/gelb.gif");
+//  QPixmap orangeCity("images/orange.gif");
+//  QPixmap redCity("images/rot.gif");
+
   QTransform scale;
   scale.scale(2,2);
   painter.setWorldTransform(scale, true);
-  painter.setPen(thinPen);
-  painter.setRenderHints(QPainter::Antialiasing, true);
-  painter.setPen(fatPen);
-  QPixmap background;
-  background.load("images/bg2.jpg");
   painter.drawPixmap(0,0, background);
-  QPixmap blauCity;
-  blauCity.load("images/blau.gif");
   QTransform transform;
   transform.translate(110.5,40.5);
   transform.scale(1 ,sqrt(3)/2.);
   transform.shear(-0.5,0);
   QTransform inverseTransform = transform.inverted();
+  painter.setWorldTransform(transform, true);
 
-  painter.setWorldTransform(transform, transform.isInvertible());
-  //painter.drawLine(0,0,100,100);
-  //painter.drawLine(0,0,0,100);
-  //painter.drawLine(0,0,100,0);
+
+  painter.setRenderHints(QPainter::Antialiasing, true);
+
+/**
+  draws the Railway-System
+  */
+
   for(int i=0; i<MAX_X; i++){
     for (int j=0; j<MAX_Y; j++){
        if (!(parentalWindow->aZp->Spielbrett.Kanten[i][j][0]==NULL))
@@ -85,7 +112,11 @@ void Spielbrett::paintEvent(QPaintEvent*)
         painter.drawLine(i*sL, j*sL, i*sL, j*sL+sL);
        }
     }
-  }
+   }
+  /**
+    draws the names of the citys
+    */
+
   painter.setWorldTransform(inverseTransform, true);
   if (drawCity){
       painter.drawText(transform.map(QPoint(0+5, 1*sL)), tr("Portland"));
@@ -97,33 +128,48 @@ void Spielbrett::paintEvent(QPaintEvent*)
   /**
     draw the city.gifs
     */
-  //aZp->Spielbrett.Stadtliste[i in range 34]->
+
   for(int i= 0; i<35; i++){
       if (parentalWindow->aZp->Spielbrett.Stadtliste[i]!=NULL)
       {
-      cout << "i = " << i << "  x = " <<parentalWindow->aZp->Spielbrett.Stadtliste[i]->place.x
+      /*cout << "i = " << i << "  x = " <<parentalWindow->aZp->Spielbrett.Stadtliste[i]->place.x
            << "  y = " << parentalWindow->aZp->Spielbrett.Stadtliste[i]->place.y << endl;
           // << "  Stadt = " << parentalWindow->aZp->Spielbrett.Stadtliste[i]->name<< endl;
-
-
-      painter.drawPixmap(transform.map(QPoint(static_cast <short> (parentalWindow->aZp->Spielbrett.Stadtliste[i]->place.x)*sL-8.5,
-                                               static_cast <short> (parentalWindow->aZp->Spielbrett.Stadtliste[i]->place.y)*sL-8.5)), blauCity);
+*/
+      painter.drawPixmap(transform.map(QPoint((parentalWindow->aZp->Spielbrett.Stadtliste[i]->place.x)*sL-12,
+                                               (parentalWindow->aZp->Spielbrett.Stadtliste[i]->place.y)*sL-8.5)),
+                                        QPixmap(getColor(parentalWindow->aZp->Spielbrett.Stadtliste[i]->cityColour, stadtfarbe).s));
       }
     }
+   //TODO find solution to draw Handkarten without segmentation fault
+  /* for(int i=0; i<2; i++)
+  {
+      for (int j=0; j<5; j++){
+          if (parentalWindow->gamep->KIliste[i].handkarten[j]!=NULL)
+          {
+              painter.drawPixmap(transform.map(QPoint((parentalWindow->gamep->KIliste[i].handkarten[j]->place.x)*sL-12,
+                                                       (parentalWindow->gamep->KIliste[i].handkarten[j]->place.y)*sL-8.5)),
+                                                QPixmap(getColor(parentalWindow->gamep->KIliste[i].handkarten[j]->cityColour, stadtfarbe).s));
+          }
+      }
+  }*/
 
   //draws the poeppel
   for (int i=-1; i>=-2;i--)
   {
-	  QPoint bla=transform.map(QPoint(parentalWindow->aZp->getPoeppel(i).startposition.x*sL-12,
+      QBrush brush(getColor(i, spielerfarbe).q);
+      painter.setBrush(brush);
+      QPoint point = transform.map(QPoint(parentalWindow->aZp->getPoeppel(i).startposition.x*sL-18,
               parentalWindow->aZp->getPoeppel(i).startposition.y*sL-25));
-      painter.drawRoundedRect(bla.x(),bla.y(),
-                              12, 25, 4, 4);
+
+      painter.drawRoundedRect(point.x(),point.y(),
+                              10, 25, 2, 2);
 
   }
  }
+
 void Spielbrett::zustandChanged(int counter)
 {
-  Schienen[counter][counter/2][0]=true;
   update();
 }
 void Spielbrett::drawCityChanged(bool enable)

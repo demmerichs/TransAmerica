@@ -2,10 +2,12 @@
 #define SPIELBRETT_H
 
 #include <QWidget>
-#include <vector>
+#include <QColor>
 #include "Konstant.h"
 #include "Zustand.h"
 #include "window.h"
+
+
 
 
 class Spielbrett: public QWidget
@@ -24,7 +26,6 @@ protected:
   void paintEvent(QPaintEvent* event);
 
 private:
-  bool Schienen[MAX_X][MAX_Y][3];
   bool drawCity;
   Window* parentalWindow;
 
