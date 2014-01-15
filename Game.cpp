@@ -10,7 +10,7 @@
 Game::Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord) :
 		spieleranzahl(anzahl), KIliste(KIaufgelistet), startstartspieler(
 				starter), Spielbrett(bord), aktuellerZustand(
-				State(Spielbrett)){
+				State(Spielbrett)), handkarten(0) {
 	srand((unsigned) time(0));
 	grenzwert = 0;
 	punkte = new short[spieleranzahl];
@@ -22,7 +22,7 @@ Game::Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord,
 		unsigned seed) :
 		spieleranzahl(anzahl), KIliste(KIaufgelistet), startstartspieler(
 				starter), Spielbrett(bord), aktuellerZustand(
-				State(Spielbrett)) {
+				State(Spielbrett)), handkarten(0) {
 	srand(seed);
 	grenzwert = 0;
 	punkte = new short[spieleranzahl];
@@ -122,7 +122,7 @@ void Game::spieleRunde(short startspieler) {
 
 //TODO folgendes Provisorium
 int Game::punkteabzug(int spieler) {
-	unsigned short minuspoints = 0;
+	unsigned short minuspoints=0;
 	for (int i = 0; i < 5; i++) {
 		minuspoints += aktuellerZustand.distance(
 				*KIliste[spieler].handkarten[i],

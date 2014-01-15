@@ -2,10 +2,12 @@
 #define SPIELBRETT_H
 
 #include <QWidget>
-#include <vector>
+#include <QColor>
 #include "Konstant.h"
-#include "Zustand.h"
+#include "State.h"
 #include "window.h"
+
+
 
 
 class Spielbrett: public QWidget
@@ -13,8 +15,8 @@ class Spielbrett: public QWidget
   Q_OBJECT
 public:
   Spielbrett(Window* parentalWindow, QWidget* parent = 0);
-  QSize minimumSizeHint ()const;
-  QSize sizeHint ()const;
+  //QSize minimumSizeHint ()const;
+  //QSize sizeHint ()const;
 
 public slots:
   void zustandChanged(int);
@@ -24,7 +26,6 @@ protected:
   void paintEvent(QPaintEvent* event);
 
 private:
-  bool Schienen[MAX_X][MAX_Y][3];
   bool drawCity;
   Window* parentalWindow;
 

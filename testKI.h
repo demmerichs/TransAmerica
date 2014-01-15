@@ -10,7 +10,7 @@
 
 #include "KIspieler.h"
 #include"Move.h"
-#include"Zustand.h"
+#include"State.h"
 
 class testKI: public KIspieler {
 public:

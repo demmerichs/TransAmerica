@@ -14,6 +14,7 @@
 #include"Verbindung.h"
 #include<iostream>
 #include<vector>
+#include <limits>
 using std::cout;
 using std::endl;
 
@@ -22,11 +23,12 @@ class State {
 	unsigned short find_min(Vector actual, unsigned short ** &index) const;
 	void calculate_surround(Vector actual, unsigned short ** &index,
 			vector<Vector> &new_changed) const;
+	//State operator=(const State&);
 public:
 	State(Brett &Spielbrett); //Startzustand
 	State(const State&);
 	virtual ~State();
-	//State &operator=(const State&) const;
+	State &operator=(const State&) const;
 
 	short schienenNetzNummer[MAX_X][MAX_Y]; //jeder hat eine eigene SchienenNetzNummer, kann ueber Poeppel bestimmt werden
 	bool schieneGelegt[MAX_X][MAX_Y][3]; //zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. RichtungsWert

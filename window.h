@@ -2,10 +2,13 @@
 #define WINDOW_H
 
 #include <QWidget>
+#include "State.h"
+#include "Game.h"
 
 class QLabel;
 class QSpinBox;
 class QCheckBox;
+class QLCDNumber;
 
 class Spielbrett;
 
@@ -14,20 +17,26 @@ class Window : public QWidget
   Q_OBJECT
 
   friend class Spielbrett;
+  friend class UIEXEC;
 public:
-   Window();
+   Window(Game* game=0);
   
 private:
   Spielbrett* spielbrett;
-  /* diverse Labels
+  State* aZp;
+  Game* gamep;
+  int Zustandcounter;
+  bool zustandInitialized;
+  /**
+     diverse Labels
      diverse Combo-/Spin-boxen
      */
-  QLabel* pofp1;
-  QLabel* pofp2;
-  QLabel* pofp3;
-  QLabel* pofp4;
-  QLabel* pofp5;
-  QLabel* pofp6;
+  QLabel* town1;
+  QLabel* town2;
+  QLabel* town3;
+  QLabel* town4;
+  QLabel* town5;
+  QLabel* town6;
   QLabel* player1;
   QLabel* player2;
   QLabel* player3;
@@ -37,6 +46,13 @@ private:
   QLabel* toolBoxLabel;
   QSpinBox* vektorSpinBox;
   QCheckBox* showTownsCheckBox;
+  QLCDNumber* counterLCD;
+  void playAutomatically();
+signals:
+  void requestZp(int);
+public slots:
+  void setZp(State* aktuellerZustand);
+  void setZustandscounter(int i);
 };
 
 #endif // WINDOW_H

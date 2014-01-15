@@ -5,7 +5,7 @@
  *      Author: David
  */
 
-#include "Vektor.h"
+#include "Vector.h"
 #include <cmath>
 
 using namespace std;

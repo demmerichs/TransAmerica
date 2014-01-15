@@ -6,7 +6,6 @@
  */
 
 #include "State.h"
-#include <limits>
 
 State::State(Brett &board) :
 		anzahlPoeppel(0), Spielbrett(board) {
@@ -167,15 +166,16 @@ void State::resetAll() {
 		}
 }
 
-/** This function creates a two-dimensional array.
- * In the end each entry 'array[x][y]' shows off the distance between the vector (x,y) of the Board
- * and the requested target vector.
- * [Here distance means how many rails one has to use to connect the two positions.]
- *
- * Therefore the six values around the target coordinate are calculated first. From now on
- * the surrounding of all vectors that were recently assigned with a new value are calculated until the complete
- * board is calculated.
- */
+#include <iomanip>
+void State::dumpEvaluateBoard(unsigned short ** & index) {
+	for (int j = 0; j < MAX_Y; j++) {
+		for (int i = 0; i < MAX_X; i++) {
+			cout << std::setw(6) << index[i][j];
+		}
+		cout << endl;
+	}
+}
+
 unsigned short** State::evaluateBoard(Vector target) const {
 	unsigned short **index = new unsigned short*[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
@@ -183,7 +183,7 @@ unsigned short** State::evaluateBoard(Vector target) const {
 	}
 	for (int i = 0; i < MAX_X; i++) {
 		for (int j = 0; j < MAX_Y; j++) {
-			index[i][j] = std::numeric_limits<unsigned short>::max() / 2;
+			index[i][j] = std::numeric_limits<unsigned short>::max()/2;
 		}
 	}
 	index[target.x][target.y] = 0;
@@ -202,21 +202,6 @@ unsigned short** State::evaluateBoard(Vector target) const {
 	return index;
 }
 
-/** As the name says this function just dumps the 2D-array calculated in the evaluateBoard function.
- */
-#include <iomanip>
-void State::dumpEvaluateBoard(unsigned short ** & index) {
-	for (int j = 0; j < MAX_Y; j++) {
-		for (int i = 0; i < MAX_X; i++) {
-			cout << std::setw(6) << index[i][j];
-		}
-		cout << endl;
-	}
-}
-
-/** This function is used in the evaluateBoard function.
- * The values for the 2D-array of the surrounding 6 positions are calculated.
- */
 void State::calculate_surround(Vector actual, unsigned short ** &index,
 		vector<Vector> &new_changed) const {
 	Vector vecs[6] = { Vector(1, 0), Vector(1, 1), Vector(0, 1), Vector(-1, 0),
@@ -235,17 +220,15 @@ void State::calculate_surround(Vector actual, unsigned short ** &index,
 	}
 }
 
-/** This function is used in the evaluateBoard function.
- * It finds the minimum value for requested vector of the 2D-array taking into account the six surrounding values.
- */
-unsigned short State::find_min(Vector actual, unsigned short ** &index) const {
+unsigned short State::find_min(Vector actual,
+		unsigned short ** &index) const {
 	unsigned short min = std::numeric_limits<unsigned short>::max();
 	Vector richtungsvektoren[] = { Vector(1, 0), Vector(1, 1), Vector(0, 1),
 			Vector(-1, 0), Vector(-1, -1), Vector(0, -1) };
-	for (Vector vec : richtungsvektoren) {
-		const Verbindung* connection = getVerbindung(actual + vec, actual);
+	for (int i=0;i<6;i++) {
+		const Verbindung* connection = getVerbindung(actual + richtungsvektoren[i], actual);
 		if (connection != 0) {
-			unsigned short value = index[(actual + vec).x][(actual + vec).y];
+			unsigned short value = index[(actual + richtungsvektoren[i]).x][(actual + richtungsvektoren[i]).y];
 // what kind of connection is it?
 			if (!this->schieneGelegt[connection->first.x][connection->first.y][this->RichtungsWert(
 					connection->richtung)]) {
@@ -262,9 +245,8 @@ unsigned short State::find_min(Vector actual, unsigned short ** &index) const {
 	return min;
 }
 
-/** This function returns a vector with all vectors belonging to one's railway system.
- */
-vector<Vector> State::pointsBelongingToRailwaySystem(short playercolour) const {
+vector<Vector> State::pointsBelongingToRailwaySystem(
+		short playercolour) const {
 	int playersRailwayID = this->getPoeppel(playercolour).schienennetznummer;
 	vector<Vector> returnval;
 	for (int i = 0; i < MAX_X; i++)
@@ -274,9 +256,6 @@ vector<Vector> State::pointsBelongingToRailwaySystem(short playercolour) const {
 	return returnval;
 }
 
-/** The lengths of the shortest route between the given railway system
- * the target coordinate gets calculated.
- */
 unsigned short State::distance(Vector target,
 		const vector<Vector> &possibleStarts) const {
 	unsigned short distance = std::numeric_limits<unsigned short>::max();

@@ -36,10 +36,18 @@ void StateList::push_back(const State &state) {
 	actualSize++;
 }
 
-const State& StateList::get(int i) const {
-	return *list[i];
-}
 
 int StateList::size() const{
 	return actualSize;
 }
+
+void StateList::callGet (int i){
+  emitGet(get(i-1));
+}
+
+State* StateList::get(int i) const{
+    if(i>=size()) {return list[size()-1];}
+    if(i<0) {return list[0];}
+    return list[i];
+}
+

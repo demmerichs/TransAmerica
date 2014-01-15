@@ -6,7 +6,7 @@
  */
 
 #include "testKI.h"
-#include "Vektor.h"
+#include "Vector.h"
 #include "Konstant.h"
 #include <cmath>
 
@@ -25,7 +25,7 @@ Move testKI::zug(State &aktuell) const {
 	const Verbindung* secondary = 0;
 	for (int i = 0; i < 5; i++) {
 		firsty = secondary = 0;
-		Vector aktStadt = handkarten[i]->place;
+		Vector aktStadt = *handkarten[i];
 		Vector a = getNaechsterPunktZu(aktStadt, aktuell);
 		Vector diff = aktStadt - a;
 		short dis = diff.distance();
@@ -92,10 +92,11 @@ Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 	return ruckgabe;
 }
 
-Vector testKI::poeppelSetzen(State &aktuell) const {
+
+Vector testKI::poeppelSetzen(State &currenState) const {
 	for (int i = 0; i < MAX_FARBEN; i++) {
 		if (handkarten[i]->cityColour == GELB)
-			return handkarten[i]->place;
+			return *handkarten[i];
 	}
 	cout << "Gelbe Stadt nicht gefunden in Handkarten!" << endl;
 	return Vector(10, 6);
