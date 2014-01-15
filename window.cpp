@@ -28,7 +28,7 @@ Window::Window(Game *game)
   toolBoxLabel->setFont(font);
   vektorSpinBox =new QSpinBox;
   showTownsCheckBox = new QCheckBox;
-  vektorSpinBox->setRange(0,1000);
+  vektorSpinBox->setRange(0,gamep->zustandsListe.size());
   vektorSpinBox->setWrapping(false);
   vektorSpinBox->setSuffix(tr(". Zustand"));
   counterLCD=new QLCDNumber;
@@ -69,14 +69,14 @@ Window::Window(Game *game)
   //connect(vektorSpinBox, SIGNAL(valueChanged(int)), spielbrett, SLOT(zustandChanged(int)));
   connect(vektorSpinBox, SIGNAL(valueChanged(int)), this, SLOT(setZustandscounter(int)));
   connect(showTownsCheckBox, SIGNAL(toggled(bool)), spielbrett, SLOT(drawCityChanged(bool)));
-  connect(this, SIGNAL(requestZp(int)), counterLCD, SLOT(display(int)));
+  //connect(this, SIGNAL(requestZp(int)), counterLCD, SLOT(display(int)));
   //setStyleSheet(" background-color: brown");
 }
 /**
   Slot-Implementationen
   */
 void Window::setZp(State *aktuellerZustand){
-   // cout << "Aufruf von setZp" << endl;
+    cout << "Aufruf von setZp" << endl;
     aZp=aktuellerZustand;
     zustandInitialized=true;
     spielbrett->update();
@@ -84,8 +84,14 @@ void Window::setZp(State *aktuellerZustand){
 void Window::setZustandscounter(int i){
     cout << i << endl;
     Zustandcounter= i;
-    requestZp(i);
+    if (gamep!=0) setZp(gamep->zustandsListe.get(i));
+
 }
-void Window::playAutomatically(){
-    for (int i=0; i<=100; i++) QTimer::singleShot(10, this , SLOT(setZustandcounter(int i)));
+void Window::setGamep(Game *game){
+    gamep=game;
+    vektorSpinBox->setRange(0,gamep->zustandsListe.size());
 }
+
+//void Window::playAutomatically(){
+//    for (int i=0; i<=100; i++) QTimer::singleShot(10, this , SLOT(setZustandcounter(int i)));
+//}

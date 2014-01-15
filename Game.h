@@ -24,7 +24,6 @@ using std::vector;
 class Game {
   friend class UIEXEC;
   friend class Window;
-  friend class Spielbrett;
 	const short spieleranzahl;
 	const KIspieler* KIliste;
 	short startstartspieler;

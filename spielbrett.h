@@ -7,8 +7,7 @@
 #include "State.h"
 #include "window.h"
 
-
-
+class Window;
 
 class Spielbrett: public QWidget
 {
@@ -28,6 +27,7 @@ protected:
 private:
   bool drawCity;
   Window* parentalWindow;
+
 
 };
 

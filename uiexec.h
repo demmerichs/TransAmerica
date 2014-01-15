@@ -4,11 +4,12 @@
 #include"Konstant.h"
 #include"Brett.h"
 #include"Game.h"
-#include <QObject>
+#include <QString>
 
-class UIEXEC: public QObject
+
+class UIEXEC
 {
-  Q_OBJECT
+
 public:
   UIEXEC();
   Window* wp;

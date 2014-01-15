@@ -4,6 +4,8 @@
 #include <QWidget>
 #include "State.h"
 #include "Game.h"
+#include "spielbrett.h"
+
 
 class QLabel;
 class QSpinBox;
@@ -20,11 +22,11 @@ class Window : public QWidget
   friend class UIEXEC;
 public:
    Window(Game* game=0);
-  
+   void setGamep(Game* game);
 private:
-  Spielbrett* spielbrett;
   State* aZp;
   Game* gamep;
+  Spielbrett* spielbrett;
   int Zustandcounter;
   bool zustandInitialized;
   /**
@@ -47,11 +49,9 @@ private:
   QSpinBox* vektorSpinBox;
   QCheckBox* showTownsCheckBox;
   QLCDNumber* counterLCD;
-  void playAutomatically();
-signals:
-  void requestZp(int);
-public slots:
-  void setZp(State* aktuellerZustand);
+  //void playAutomatically
+  void setZp(State*);
+private slots:
   void setZustandscounter(int i);
 };
 
