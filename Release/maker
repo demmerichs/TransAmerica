@@ -2,11 +2,11 @@ all:
 	rm -rf TransAmerica.rpo
 	rm -rf Makefile
 	qmake -project ../
-	qmake -spec macx-g++ Debug.pro
+	qmake -spec macx-g++ Release.pro
 	make
 
 clean:
 	make clean
 	rm Makefile
-	rm -rf Debug.pro
-	rm -rf Debug.app
+	rm -rf Release.pro
+	rm -rf Release.app
