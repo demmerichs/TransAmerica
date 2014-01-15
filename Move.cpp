@@ -38,7 +38,7 @@ Move::~Move() {
 	// TODO Auto-generated destructor stub
 }
 
-bool Move::gueltig(Zustand aktZu, short spielerfarb) {
+bool Move::gueltig(State aktZu, short spielerfarb) {
 	gueltigkeitUEberprueft = true;
 	//checken, ob der Spieler richtige Farbe verwendet hat
 	if (spielerfarb != this->spielerfarbe) {
@@ -58,7 +58,7 @@ bool Move::gueltig(Zustand aktZu, short spielerfarb) {
 	//prüfe, ob Verbindung an schienennr anliegt
 	if (aktZu.schienenNetzNummerVon_Ist_(*Belegt[0], schienennr)) {
 		richtigBelegt = true;
-		//wenn ja, schiene legen, neuer Zustand, also neue schienennr und dann zweite schiene analog
+		//wenn ja, schiene legen, neuer State, also neue schienennr und dann zweite schiene analog
 		if (anzahlSchienen == 1) {
 			gueltigkeit = true;
 		} else {
@@ -73,7 +73,7 @@ bool Move::gueltig(Zustand aktZu, short spielerfarb) {
 	} else if (anzahlSchienen == 2
 			&& aktZu.schienenNetzNummerVon_Ist_(*Belegt[1], schienennr)) {
 		richtigBelegt = false;
-		//wenn ja, schiene legen, neuer Zustand, also neue schienennr und dann zweite schiene analog
+		//wenn ja, schiene legen, neuer State, also neue schienennr und dann zweite schiene analog
 		aktZu.schieneLegen(*Belegt[1]);
 		schienennr = aktZu.getPoeppel(spielerfarbe).schienennetznummer;
 		if (aktZu.schienenNetzNummerVon_Ist_(*Belegt[0], schienennr)) {
@@ -101,7 +101,7 @@ bool Move::gueltig(Zustand aktZu, short spielerfarb) {
 	return gueltigkeit;
 }
 
-void Move::ausfuehren(Zustand& akt) const { //TODO ausfuehren je nach Anzahl schienen
+void Move::ausfuehren(State& akt) const { //TODO ausfuehren je nach Anzahl schienen
 	if (!gueltigkeitUEberprueft) {
 		cout
 				<< "Zug::ausfuehren:Zug sollte ohne Ueberpruefung ausgefuehrt werden"

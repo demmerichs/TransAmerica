@@ -18,21 +18,21 @@ StateList::~StateList() {
 	delete list;
 }
 
-void StateList::push_back(const Zustand &state) {
+void StateList::push_back(const State &state) {
 	if (capacity < actualSize+1) {
 		if (capacity == 0)
 			capacity++;
 		else
 			capacity *= 2;
-		Zustand** newList=new Zustand*[capacity];
+		State** newList=new State*[capacity];
 		for(int i=0;i<actualSize;i++){
-			newList[i]=new Zustand(*list[i]);
+			newList[i]=new State(*list[i]);
 			delete list[i];
 		}
 		delete list;
 		list=newList;
 	}
-	list[actualSize] =new Zustand(state);
+	list[actualSize] =new State(state);
 	actualSize++;
 }
 
@@ -45,7 +45,7 @@ void StateList::callGet (int i){
   emitGet(get(i-1));
 }
 
-Zustand* StateList::get(int i) const{
+State* StateList::get(int i) const{
     if(i>=size()) {return list[size()-1];}
     if(i<0) {return list[0];}
     return list[i];

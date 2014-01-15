@@ -19,8 +19,8 @@ testKI::~testKI() {
 	// TODO Auto-generated destructor stub
 }
 
-Move testKI::zug(Zustand &aktuell) const {
-	const Zustand sicherkopie(aktuell);
+Move testKI::zug(State &aktuell) const {
+	const State sicherkopie(aktuell);
 	const Verbindung* firsty = 0;
 	const Verbindung* secondary = 0;
 	for (int i = 0; i < 5; i++) {
@@ -72,7 +72,7 @@ short testKI::sign(short a) {
 		return 0;
 }
 
-Vector testKI::getNaechsterPunktZu(Vector b, Zustand akt) const {
+Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 	Vector ruckgabe(0, 0);
 	short aktSchienennummer =
 			akt.getPoeppel(this->spielerfarbe).schienennetznummer;
@@ -92,7 +92,8 @@ Vector testKI::getNaechsterPunktZu(Vector b, Zustand akt) const {
 	return ruckgabe;
 }
 
-Vector testKI::poeppelSetzen(Zustand &aktuell) const {
+
+Vector testKI::poeppelSetzen(State &currenState) const {
 	for (int i = 0; i < MAX_FARBEN; i++) {
 		if (handkarten[i]->cityColour == GELB)
 			return handkarten[i]->place;

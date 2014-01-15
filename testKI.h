@@ -10,16 +10,16 @@
 
 #include "KIspieler.h"
 #include"Move.h"
-#include"Zustand.h"
+#include"State.h"
 
 class testKI: public KIspieler {
 public:
 	testKI(short farbe);
 	virtual ~testKI();
-	Move zug(Zustand &aktuell) const;
-	Vector poeppelSetzen(Zustand &aktuell) const;
+	Move zug(State &aktuell) const;
+	Vector poeppelSetzen(State &aktuell) const;
 
-	Vector getNaechsterPunktZu(Vector,Zustand) const;
+	Vector getNaechsterPunktZu(Vector,State) const;
 
 	static short sign(short);
 };

@@ -2,7 +2,7 @@
 #define WINDOW_H
 
 #include <QWidget>
-#include "Zustand.h"
+#include "State.h"
 #include "Game.h"
 
 class QLabel;
@@ -23,7 +23,7 @@ public:
   
 private:
   Spielbrett* spielbrett;
-  Zustand* aZp;
+  State* aZp;
   Game* gamep;
   int Zustandcounter;
   bool zustandInitialized;
@@ -51,7 +51,7 @@ private:
 signals:
   void requestZp(int);
 public slots:
-  void setZp(Zustand* aktuellerZustand);
+  void setZp(State* aktuellerZustand);
   void setZustandscounter(int i);
 };
 

@@ -75,7 +75,7 @@ Window::Window(Game *game)
 /**
   Slot-Implementationen
   */
-void Window::setZp(Zustand *aktuellerZustand){
+void Window::setZp(State *aktuellerZustand){
    // cout << "Aufruf von setZp" << endl;
     aZp=aktuellerZustand;
     zustandInitialized=true;

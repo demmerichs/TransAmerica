@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QColor>
 #include "Konstant.h"
-#include "Zustand.h"
+#include "State.h"
 #include "window.h"
 
 

@@ -1,14 +1,13 @@
 /*
- * Zustand.cpp
+ * State.cpp
  *
  *  Created on: 03.12.2013
  *      Author: David
  */
 
-#include "Zustand.h"
-#include <limits>
+#include "State.h"
 
-Zustand::Zustand(Brett &board) :
+State::State(Brett &board) :
 		anzahlPoeppel(0), Spielbrett(board) {
 	for (int i = 0; i < MAX_SPIELER; i++)
 		poeppelListe[i] = new Poeppel;
@@ -20,7 +19,7 @@ Zustand::Zustand(Brett &board) :
 		}
 }
 
-Zustand::Zustand(const Zustand &copy) :
+State::State(const State &copy) :
 		Spielbrett(copy.Spielbrett) {
 	anzahlPoeppel = copy.anzahlPoeppel;
 	for (int i = 0; i < MAX_SPIELER; i++)
@@ -35,7 +34,7 @@ Zustand::Zustand(const Zustand &copy) :
 }
 
 /*
- Zustand& Zustand::operator=(const Zustand& copy) const{
+ State& State::operator=(const State& copy) const{
  this->Spielbrett=copy.Spielbrett;
  this->anzahlPoeppel = copy.anzahlPoeppel;
  for (int i = 0; i < MAX_SPIELER; i++)
@@ -51,16 +50,16 @@ Zustand::Zustand(const Zustand &copy) :
  }
  */
 
-Zustand::~Zustand() {
+State::~State() {
 	for (int i = 0; i < MAX_SPIELER; i++)
 		delete poeppelListe[i];
 }
 
-Poeppel Zustand::getPoeppel(const short spielerfarbe) const {
+Poeppel State::getPoeppel(const short spielerfarbe) const {
 	return *poeppelListe[-spielerfarbe - 1];
 }
 
-bool Zustand::schienenNetzNummerVon_Ist_(const Verbindung &von,
+bool State::schienenNetzNummerVon_Ist_(const Verbindung &von,
 		const short schienennr) const {
 	bool ruckgabe = false;
 	if (getSchienenNetzNummer(von.first) == schienennr)
@@ -70,20 +69,20 @@ bool Zustand::schienenNetzNummerVon_Ist_(const Verbindung &von,
 	return ruckgabe;
 }
 
-short Zustand::getSchienenNetzNummer(const Vector &koo) const {
+short State::getSchienenNetzNummer(const Vector &koo) const {
 	return schienenNetzNummer[koo.x][koo.y];
 }
 
-void Zustand::setSchienenNetzNummer(const Coordinate &koo, const short nr) {
+void State::setSchienenNetzNummer(const Coordinate &koo, const short nr) {
 	schienenNetzNummer[koo.x][koo.y] = nr;
 }
 
-void Zustand::setSchiene(const Verbindung& input) {
+void State::setSchiene(const Verbindung& input) {
 	schieneGelegt[input.first.x][input.first.y][RichtungsWert(input.richtung)] =
 			true;
 }
 
-short Zustand::RichtungsWert(const Vector & richtung) {
+short State::RichtungsWert(const Vector & richtung) {
 	//zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. RichtungsWert
 	short summe = richtung.x * 2 + richtung.y;
 	switch (summe) {
@@ -99,7 +98,7 @@ short Zustand::RichtungsWert(const Vector & richtung) {
 	}
 }
 
-void Zustand::resetNr_ZuNr_(const short von, const short zu) {
+void State::resetNr_ZuNr_(const short von, const short zu) {
 	for (int i = 0; i < MAX_SPIELER; i++)
 		if (this->poeppelListe[i]->schienennetznummer == von)
 			this->poeppelListe[i]->schienennetznummer = zu;
@@ -109,7 +108,7 @@ void Zustand::resetNr_ZuNr_(const short von, const short zu) {
 				this->schienenNetzNummer[i][j] = zu;
 }
 
-void Zustand::schieneLegen(const Verbindung &sollGelegt) {
+void State::schieneLegen(const Verbindung &sollGelegt) {
 	setSchiene(sollGelegt);
 	short nummerFirst = getSchienenNetzNummer(sollGelegt.first);
 	short nummerSecond = getSchienenNetzNummer(sollGelegt.second);
@@ -132,7 +131,7 @@ void Zustand::schieneLegen(const Verbindung &sollGelegt) {
 //TODO Exceptions
 }
 
-const Verbindung* Zustand::getVerbindung(Vector a, Vector b) const {
+const Verbindung* State::getVerbindung(Vector a, Vector b) const {
 	Vector eins = a;
 	Vector zwei = b;
 	const Verbindung* ruckgabe = 0;
@@ -148,14 +147,14 @@ const Verbindung* Zustand::getVerbindung(Vector a, Vector b) const {
 	return ruckgabe;
 }
 
-void Zustand::addPoeppel(Poeppel insert) {
+void State::addPoeppel(Poeppel insert) {
 	this->anzahlPoeppel++;
 	this->schienenNetzNummer[insert.startposition.x][insert.startposition.y] =
 			insert.spielerfarbe;
 	poeppelListe[-insert.spielerfarbe - 1] = new Poeppel(insert);
 }
 
-void Zustand::resetAll() {
+void State::resetAll() {
 	anzahlPoeppel = 0;
 	for (int i = 0; i < MAX_SPIELER; i++)
 		poeppelListe[i] = new Poeppel;
@@ -168,7 +167,7 @@ void Zustand::resetAll() {
 }
 
 #include <iomanip>
-void Zustand::dumpEvaluateBoard(unsigned short ** & index) {
+void State::dumpEvaluateBoard(unsigned short ** & index) {
 	for (int j = 0; j < MAX_Y; j++) {
 		for (int i = 0; i < MAX_X; i++) {
 			cout << std::setw(6) << index[i][j];
@@ -177,7 +176,7 @@ void Zustand::dumpEvaluateBoard(unsigned short ** & index) {
 	}
 }
 
-unsigned short** Zustand::evaluateBoard(Vector target) const {
+unsigned short** State::evaluateBoard(Vector target) const {
 	unsigned short **index = new unsigned short*[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
 		index[i] = new unsigned short[MAX_Y];
@@ -203,7 +202,7 @@ unsigned short** Zustand::evaluateBoard(Vector target) const {
 	return index;
 }
 
-void Zustand::calculate_surround(Vector actual, unsigned short ** &index,
+void State::calculate_surround(Vector actual, unsigned short ** &index,
 		vector<Vector> &new_changed) const {
 	Vector vecs[6] = { Vector(1, 0), Vector(1, 1), Vector(0, 1), Vector(-1, 0),
 			Vector(-1, -1), Vector(0, -1) };
@@ -221,7 +220,7 @@ void Zustand::calculate_surround(Vector actual, unsigned short ** &index,
 	}
 }
 
-unsigned short Zustand::find_min(Vector actual,
+unsigned short State::find_min(Vector actual,
 		unsigned short ** &index) const {
 	unsigned short min = std::numeric_limits<unsigned short>::max();
 	Vector richtungsvektoren[] = { Vector(1, 0), Vector(1, 1), Vector(0, 1),
@@ -246,7 +245,7 @@ unsigned short Zustand::find_min(Vector actual,
 	return min;
 }
 
-vector<Vector> Zustand::pointsBelongingToRailwaySystem(
+vector<Vector> State::pointsBelongingToRailwaySystem(
 		short playercolour) const {
 	int playersRailwayID = this->getPoeppel(playercolour).schienennetznummer;
 	vector<Vector> returnval;
@@ -257,7 +256,7 @@ vector<Vector> Zustand::pointsBelongingToRailwaySystem(
 	return returnval;
 }
 
-unsigned short Zustand::distance(Vector target,
+unsigned short State::distance(Vector target,
 		const vector<Vector> &possibleStarts) const {
 	unsigned short distance = std::numeric_limits<unsigned short>::max();
 	unsigned short ** array = this->evaluateBoard(target);

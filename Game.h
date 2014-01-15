@@ -13,7 +13,7 @@
 #include<ctime>
 using std::vector;
 #include"Brett.h"
-#include"Zustand.h"
+#include"State.h"
 #include"Move.h"
 #include"KIspieler.h"
 #include"Poeppel.h"
@@ -29,7 +29,7 @@ class Game {
 	const KIspieler* KIliste;
 	short startstartspieler;
 	Brett &Spielbrett;
-	Zustand aktuellerZustand;
+	State aktuellerZustand;
     StateList zustandsListe;
     short* punkte;
 	const City *** handkarten;

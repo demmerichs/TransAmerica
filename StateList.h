@@ -8,25 +8,25 @@
 #ifndef STATELIST_H_
 #define STATELIST_H_
 
-#include"Zustand.h"
+#include"State.h"
 #include <QObject>
 
 class StateList: public QObject{
   Q_OBJECT
 	int capacity;
 	int actualSize;
-	Zustand** list;
+	State** list;
 public:
 	StateList();
 	virtual ~StateList();
 
-	void push_back(const Zustand&);
+	void push_back(const State&);
   int size() const;
-  Zustand* get(int i) const;
+  State* get(int i) const;
 public slots:
   void callGet (int i); //kleine Hilfe um get aufzurufen
 signals:
-  void emitGet(Zustand* aZp);
+  void emitGet(State* aZp);
 
 
 };

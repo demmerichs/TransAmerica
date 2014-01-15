@@ -29,7 +29,7 @@ void UIEXEC::doTheMagic(){
       */
     // TODO some connects
      connect(wp, SIGNAL(requestZp(int)), &(game1->zustandsListe), SLOT(callGet(int)) );
-     connect(&(game1->zustandsListe), SIGNAL(emitGet(Zustand*)), wp, SLOT(setZp(Zustand*)));
+     connect(&(game1->zustandsListe), SIGNAL(emitGet(State*)), wp, SLOT(setZp(State*)));
 
 
 

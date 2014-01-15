@@ -10,7 +10,7 @@
 Game::Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord) :
 		spieleranzahl(anzahl), KIliste(KIaufgelistet), startstartspieler(
 				starter), Spielbrett(bord), aktuellerZustand(
-				Zustand(Spielbrett)), handkarten(0) {
+				State(Spielbrett)), handkarten(0) {
 	srand((unsigned) time(0));
 	grenzwert = 0;
 	punkte = new short[spieleranzahl];
@@ -22,7 +22,7 @@ Game::Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord,
 		unsigned seed) :
 		spieleranzahl(anzahl), KIliste(KIaufgelistet), startstartspieler(
 				starter), Spielbrett(bord), aktuellerZustand(
-				Zustand(Spielbrett)), handkarten(0) {
+				State(Spielbrett)), handkarten(0) {
 	srand(seed);
 	grenzwert = 0;
 	punkte = new short[spieleranzahl];
@@ -102,7 +102,7 @@ void Game::spieleRunde(short startspieler) {
 		zugnr++;
 		cout << "Dies ist der " << zugnr << ". Zug:" << endl;
 		spielerAmZug = (spielerAmZug + 1) % spieleranzahl;
-		Zustand kopie(aktuellerZustand);
+		State kopie(aktuellerZustand);
 		Move aktuellerZug = KIliste[spielerAmZug].zug(kopie);
 		short spielerfarbe = KIliste[spielerAmZug].spielerfarbe;
 		if (aktuellerZug.gueltig(aktuellerZustand, spielerfarbe)) {
@@ -178,7 +178,7 @@ void Game::graphicOutput() const {
 	/*TODO hey niklas, pack hier rein, was immer du willst, die Zustaende
 	 * sind in this->zustandsListe gespeichert und vom Typ StateList (class). Guck in
 	 * die Klassenbeschreibung, aber dir stehen auf jeden fall ganz gewohnt
-	 * size(), push_back(Zustand) (brauchst du aber hoffentlich nicht) und get(int i) zur
+	 * size(), push_back(State) (brauchst du aber hoffentlich nicht) und get(int i) zur
 	 * Verfuegung!
 	 */
 }
