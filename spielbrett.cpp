@@ -56,6 +56,7 @@ Spielbrett::Spielbrett(Window* parentalWindow, QWidget* parent)
   setFixedSize(1220,784);
   setBackgroundRole(QPalette::Base);
   setAutoFillBackground(true);
+  setMouseTracking(true);
 }
 void Spielbrett::paintEvent(QPaintEvent*)
 {

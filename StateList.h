@@ -11,8 +11,7 @@
 #include"Zustand.h"
 #include <QObject>
 
-class StateList: public QObject{
-  Q_OBJECT
+class StateList{
 	int capacity;
 	int actualSize;
 	Zustand** list;
@@ -23,10 +22,6 @@ public:
 	void push_back(const Zustand&);
   int size() const;
   Zustand* get(int i) const;
-public slots:
-  void callGet (int i); //kleine Hilfe um get aufzurufen
-signals:
-  void emitGet(Zustand* aZp);
 
 
 };

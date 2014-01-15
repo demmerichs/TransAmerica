@@ -41,9 +41,6 @@ int StateList::size() const{
 	return actualSize;
 }
 
-void StateList::callGet (int i){
-  emitGet(get(i-1));
-}
 
 Zustand* StateList::get(int i) const{
     if(i>=size()) {return list[size()-1];}
