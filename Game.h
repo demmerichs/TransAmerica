@@ -15,8 +15,8 @@ using std::vector;
 #include"Brett.h"
 #include"State.h"
 #include"Move.h"
-#include"KIspieler.h"
-#include"Poeppel.h"
+#include"AI.h"
+#include"Pawn.h"
 #include"Konstant.h"
 #include"StateList.h"
 #include"window.h"
@@ -25,7 +25,7 @@ class Game {
   friend class UIEXEC;
   friend class Window;
 	const short spieleranzahl;
-	const KIspieler* KIliste;
+	const AI* KIliste;
 	short startstartspieler;
 	Brett &Spielbrett;
 	State aktuellerZustand;
@@ -43,15 +43,9 @@ class Game {
 	bool RundenGewinner(short spieler) const;
 	int punkteabzug(int spieler);
 
-	/**
-	 * This method gets called when the game
-	 * calculations finished and the graphical UserInterface shall come up.
-	 */
-	void graphicOutput() const;
-
 public:
-	Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord);
-	Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord, unsigned seed);
+	Game(short anzahl, short starter, AI* KIaufgelistet, Brett &bord);
+	Game(short anzahl, short starter, AI* KIaufgelistet, Brett &bord, unsigned seed);
 	virtual ~Game();
 
         void spielen();

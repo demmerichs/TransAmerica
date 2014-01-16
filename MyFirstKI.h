@@ -8,9 +8,9 @@
 #ifndef MYFIRSTKI_H_
 #define MYFIRSTKI_H_
 
-#include "KIspieler.h"
+#include "AI.h"
 
-class MyFirstKI: public KIspieler {
+class MyFirstKI: public AI {
 public:
 	MyFirstKI(short spielerfarbe);
 	virtual ~MyFirstKI();

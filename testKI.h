@@ -8,11 +8,11 @@
 #ifndef TESTKI_H_
 #define TESTKI_H_
 
-#include "KIspieler.h"
+#include "AI.h"
 #include"Move.h"
 #include"State.h"
 
-class testKI: public KIspieler {
+class testKI: public AI {
 public:
 	testKI(short farbe);
 	virtual ~testKI();

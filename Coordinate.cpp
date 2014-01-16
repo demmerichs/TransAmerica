@@ -16,5 +16,4 @@ Coordinate::Coordinate(short x, short y, const City* const ort) :
 }
 
 Coordinate::~Coordinate() {
-
 }

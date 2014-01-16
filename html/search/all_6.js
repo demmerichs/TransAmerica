@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['poeppel',['Poeppel',['../class_poeppel.html',1,'']]]
+  ['poeppel',['Poeppel',['../class_Pawn.html',1,'']]]
 ];

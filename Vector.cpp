@@ -6,13 +6,12 @@
  */
 
 #include "Vector.h"
-#include <cmath>
 
 using namespace std;
 
-Vector::Vector() :
+/*Vector::Vector() :
 		x(-1), y(-1) {
-}
+}*/
 
 Vector::Vector(short x, short y): x(x), y(y) {
 }

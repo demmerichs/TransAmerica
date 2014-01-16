@@ -11,7 +11,7 @@
 #include <cmath>
 
 testKI::testKI(short farb) :
-		KIspieler(farb) {
+		AI(farb) {
 	this->programmierer = "David";
 }
 
@@ -94,8 +94,8 @@ Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 
 
 Vector testKI::poeppelSetzen(State &currenState) const {
-	for (int i = 0; i < MAX_FARBEN; i++) {
-		if (handkarten[i]->cityColour == GELB)
+	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {
+		if (handkarten[i]->cityColour == C_YELLOW)
 			return *handkarten[i];
 	}
 	cout << "Gelbe Stadt nicht gefunden in Handkarten!" << endl;

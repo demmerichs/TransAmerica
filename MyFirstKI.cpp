@@ -7,7 +7,7 @@
 
 #include "MyFirstKI.h"
 
-MyFirstKI::MyFirstKI(short spielerfarbe): KIspieler(spielerfarbe) {
+MyFirstKI::MyFirstKI(short spielerfarbe): AI(spielerfarbe) {
 	programmierer="Marvin";
 }
 

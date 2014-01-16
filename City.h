@@ -8,20 +8,20 @@
 #ifndef CITY_H_
 #define CITY_H_
 
-#include"Konstant.h"
-#include"Vector.h"
 #include<string>
 using namespace std;
 
+#include"Konstant.h"
+#include"Vector.h"
+
 class City : public Vector{
-	City();
 public:
-	City(string name, short cityColour, short number, Vector place);
+	City(string name, CITYCOLOURS cityColour, short number, Vector place);
 	virtual ~City();
 
 	//TODO mehr const setzen
 	string name;
-	short cityColour;
+	CITYCOLOURS cityColour;
 	short number; //Staedte kriegen einfache Kennnummern
 };
 

@@ -9,6 +9,8 @@
 #define VECTOR_H_
 
 #include<iostream>
+#include <cmath>
+
 #include"Konstant.h"
 
 /**
@@ -18,7 +20,6 @@
 
 class Vector {
 public:
-	Vector();
 	Vector(short x, short y);
 	virtual ~Vector();
 	short x;

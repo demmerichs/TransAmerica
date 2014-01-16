@@ -9,9 +9,8 @@
 #define STATELIST_H_
 
 #include"State.h"
-#include <QObject>
 
-class StateList{
+class StateList {
 	int capacity;
 	int actualSize;
 	State** list;
@@ -19,10 +18,9 @@ public:
 	StateList();
 	virtual ~StateList();
 
-	void push_back(const State&);
-  int size() const;
-  State* get(int i) const;
-  
+	void push_back(const State*);
+	int size() const;
+	State* get(int i) const;
 };
 
 #endif /* STATELIST_H_ */

@@ -1,6 +1,6 @@
 #include "uiexec.h"
 
-#include"KIspieler.h"
+#include"AI.h"
 #include"testKI.h"
 #include"MyFirstKI.h"
 #include<iostream>

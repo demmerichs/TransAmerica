@@ -7,10 +7,10 @@
 
 #include "Game.h"
 
-Game::Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord) :
+Game::Game(short anzahl, short starter, AI* KIaufgelistet, Brett &bord) :
 		spieleranzahl(anzahl), KIliste(KIaufgelistet), startstartspieler(
-				starter), Spielbrett(bord), aktuellerZustand(
-				State(Spielbrett)), handkarten(0) {
+				starter), Spielbrett(bord), aktuellerZustand(State(Spielbrett)), handkarten(
+				0) {
 	srand((unsigned) time(0));
 	grenzwert = 0;
 	punkte = new short[spieleranzahl];
@@ -18,11 +18,11 @@ Game::Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord) :
 		punkte[i] = 13;
 }
 
-Game::Game(short anzahl, short starter, KIspieler* KIaufgelistet, Brett &bord,
+Game::Game(short anzahl, short starter, AI* KIaufgelistet, Brett &bord,
 		unsigned seed) :
 		spieleranzahl(anzahl), KIliste(KIaufgelistet), startstartspieler(
-				starter), Spielbrett(bord), aktuellerZustand(
-				State(Spielbrett)), handkarten(0) {
+				starter), Spielbrett(bord), aktuellerZustand(State(Spielbrett)), handkarten(
+				0) {
 	srand(seed);
 	grenzwert = 0;
 	punkte = new short[spieleranzahl];
@@ -76,7 +76,7 @@ bool Game::keinRundenGewinner() const {
 bool Game::RundenGewinner(short spieler) const {
 	short schienennr = aktuellerZustand.getPoeppel(
 			KIliste[spieler].spielerfarbe).schienennetznummer;
-	for (int i = 0; i < MAX_FARBEN; i++) {
+	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {
 		if (schienennr
 				!= aktuellerZustand.getSchienenNetzNummer(
 						*KIliste[spieler].handkarten[i]))
@@ -109,9 +109,8 @@ void Game::spieleRunde(short startspieler) {
 			aktuellerZug.ausfuehren(aktuellerZustand);
 		}
 		Spielbrett.aktAusgabe(aktuellerZustand.schieneGelegt);
-		zustandsListe.push_back(aktuellerZustand);
+		zustandsListe.push_back(&aktuellerZustand);
 	}
-	this->graphicOutput();
 	for (int i = 0; i < spieleranzahl; i++) {
 		punkte[i] -= punkteabzug(i);
 	}
@@ -122,7 +121,7 @@ void Game::spieleRunde(short startspieler) {
 
 //TODO folgendes Provisorium
 int Game::punkteabzug(int spieler) {
-	unsigned short minuspoints=0;
+	unsigned short minuspoints = 0;
 	for (int i = 0; i < 5; i++) {
 		minuspoints += aktuellerZustand.distance(
 				*KIliste[spieler].handkarten[i],
@@ -136,7 +135,8 @@ void Game::kartenAusteilen() {
 	short maxNr = MAX_STADTNR;
 	if (this->spieleranzahl < SPIELER_GRENZE)
 		maxNr = STADTNR_GRENZE;
-	for (int farbe = 1; farbe <= MAX_FARBEN; farbe++) {
+
+	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {
 		short kartenzahl = maxNr;
 		vector<short> rest;
 		for (int j = 0; j < kartenzahl; j++)
@@ -151,15 +151,15 @@ void Game::kartenAusteilen() {
 			rest.erase(it);
 		}
 		for (int spielernr = 0; spielernr < spieleranzahl; spielernr++) {
-			KIliste[spielernr].handkarten[farbe - 1] = Spielbrett.getStadt(
-					farbe, stapel[spielernr]);
+			KIliste[spielernr].handkarten[CITYCOLOURS_LIST[i]] =
+					Spielbrett.getStadt(CITYCOLOURS_LIST[i], stapel[spielernr]);
 		}
 	}
 
 	cout << "Handkarten:" << endl;
 	for (int i = 0; i < spieleranzahl; i++) {
 		cout << "Spieler " << (i + 1) << endl;
-		for (int j = 0; j < MAX_FARBEN; j++)
+		for (int j = 0; j < NUMBER_CITYCOLOURS; j++)
 			cout << KIliste[i].handkarten[j]->name << endl;
 	}
 }
@@ -169,16 +169,7 @@ void Game::PoeppelAufstellen(short startspieler) {
 	do {
 		nr = (nr + 1) % spieleranzahl;
 		Vector nrWahl = KIliste[nr].poeppelSetzen(aktuellerZustand);
-		Poeppel neuGesetzt(KIliste[nr].spielerfarbe, nrWahl);
+		Pawn neuGesetzt(KIliste[nr].spielerfarbe, nrWahl);
 		aktuellerZustand.addPoeppel(neuGesetzt);
 	} while (nr != (startspieler - 1 + spieleranzahl) % spieleranzahl);
-}
-
-void Game::graphicOutput() const {
-	/*TODO hey niklas, pack hier rein, was immer du willst, die Zustaende
-	 * sind in this->zustandsListe gespeichert und vom Typ StateList (class). Guck in
-	 * die Klassenbeschreibung, aber dir stehen auf jeden fall ganz gewohnt
-	 * size(), push_back(State) (brauchst du aber hoffentlich nicht) und get(int i) zur
-	 * Verfuegung!
-	 */
 }

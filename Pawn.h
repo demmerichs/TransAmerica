@@ -1,27 +1,26 @@
 /*
- * Poeppel.h
+ * Pawn.h
  *
  *  Created on: 01.12.2013
  *      Author: David
  */
 
-#ifndef POEPPEL_H_
-#define POEPPEL_H_
+#ifndef PAWN_H_
+#define PAWN_H_
 
 #include"Vector.h"
 
-class Poeppel {
+class Pawn {
 public:
-	Poeppel();
-	Poeppel(short farb, Vector pos);
-	Poeppel(const Poeppel &copy) :
+	Pawn(short colour, Vector pos);
+	Pawn(const Pawn &copy) :
 			schienennetznummer(copy.schienennetznummer), spielerfarbe(
 					copy.spielerfarbe), startposition(copy.startposition) {
 	}
-	virtual ~Poeppel();
+	virtual ~Pawn();
 	short schienennetznummer;
 	const short spielerfarbe;
 	const Vector startposition;
 };
 
-#endif /* POEPPEL_H_ */
+#endif /* PAWN_H_ */

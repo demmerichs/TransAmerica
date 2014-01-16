@@ -9,6 +9,8 @@
 #define KONSTANT_STANDARD_H_
 
 #include<string>
+#include<fstream>
+#include<vector>
 
 //#define DEBUG
 
@@ -21,21 +23,17 @@ const std::string BRETTNAME = "Standard";
 const short KEINSCHIENENNETZ=0;
 
 //Koordinatenwerte
-const short NULL_KOOWERT=-1;
+const short NULL_COORDINATE_VALUE=-1;
 const short MAX_X=20; /**< The maximum possible x-value on the board.*/
 const short MAX_Y=13;
 
 
 //stadtfarben
-//positiv von 1 bis n, mit n=MAX_FARBEN Anzahl der Farben
-const short NULL_FARBE=0;
-const short MAX_FARBEN=5;
-const short COLOURS[5] = {1,2,3,4,5};
-const short BLAU=1;
-const short GELB=2;
-const short GRUEN=3;
-const short ORANGE=4;
-const short ROT=5;
+//positiv von 1 bis n, mit n=NUMBER_CITYCOLOURS Anzahl der Farben
+const short NUMBER_CITYCOLOURS=5;
+enum CITYCOLOURS{C_BLUE,C_GREEN,C_ORANGE,C_RED,C_YELLOW,C_NULLCOLOUR};
+const CITYCOLOURS CITYCOLOURS_LIST[]={C_BLUE,C_GREEN,C_ORANGE,C_RED,C_YELLOW};
+CITYCOLOURS operator>>(std::ifstream &infile,CITYCOLOURS &citycolour);
 
 //stadtnummern
 //von 1 bis k, mit k=MAX_STADTNR
@@ -45,13 +43,8 @@ const short SPIELER_GRENZE=4;
 const short STADTNR_GRENZE=5;
 
 //spielerfarben
-//negativ von -1 bis -n mit MAX_SPIELER=n
-const short SPIELER_BLAU=-1;
-const short SPIELER_GELB=-2;
-const short SPIELER_GRUEN=-3;
-const short SPIELER_LILA=-4;
-const short SPIELER_ORANGE=-5;
-const short SPIELER_WEISS=-6;
-const short MAX_SPIELER=6;
+//negativ von -1 bis -n mit MAX_PLAYER=n
+enum PLAYERCOLOURS{P_BLUE,P_GREEN,P_ORANGE,P_VIOLET,P_WHITE,P_YELLOW};
+const short MAX_PLAYER=6;
 
 #endif /* KONSTANT_STANDARD_H_ */

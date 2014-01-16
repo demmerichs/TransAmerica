@@ -18,7 +18,7 @@ StateList::~StateList() {
 	delete list;
 }
 
-void StateList::push_back(const State &state) {
+void StateList::push_back(const State* state) {
 	if (capacity < actualSize+1) {
 		if (capacity == 0)
 			capacity++;
@@ -32,7 +32,7 @@ void StateList::push_back(const State &state) {
 		delete list;
 		list=newList;
 	}
-	list[actualSize] =new State(state);
+	list[actualSize] =new State(*state);
 	actualSize++;
 }
 

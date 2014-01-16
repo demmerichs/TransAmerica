@@ -8,7 +8,7 @@
 #ifndef BRETT_H_
 #define BRETT_H_
 
-#include "Konstant.h"
+//#include "Konstant.h"
 #include <fstream>
 #include <iostream>
 #include "Coordinate.h"

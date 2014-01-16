@@ -173,8 +173,9 @@ Verbindung**** Brett::kantenAnlegen() const {
     City** testStadtliste = new City*[anzahlStaedte];
 	for (int i = 0; i < anzahlStaedte; i++) {
 		string name;
-		short cityColour, number;
-		Vector place;
+		short number;
+		CITYCOLOURS cityColour;
+		Vector place(0,0);
 		Stadtinput >> name;
 		Stadtinput >> place.x;
 		Stadtinput >> place.y;
