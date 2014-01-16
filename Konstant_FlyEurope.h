@@ -10,7 +10,7 @@
 
 #include<string>
 
-//Brett
+//Board
 //name der Brettdateien
 const std::string BRETTNAME = "FlyEurope";
 

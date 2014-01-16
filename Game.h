@@ -12,27 +12,26 @@
 #include<cstdlib>
 #include<ctime>
 using std::vector;
-#include"Brett.h"
+#include"Board.h"
 #include"State.h"
 #include"Move.h"
 #include"AI.h"
 #include"Pawn.h"
 #include"Konstant.h"
 #include"StateList.h"
-#include"window.h"
 
 class Game {
-  friend class UIEXEC;
-  friend class Window;
+protected:
 	const short spieleranzahl;
 	const AI* KIliste;
 	short startstartspieler;
-	Brett &Spielbrett;
-	State aktuellerZustand;
-    StateList zustandsListe;
-    short* punkte;
-	//const City *** handkarten;
+	Board &gameBoard;
+	State currentState;
+	StateList stateList;
+	short* points;
+	std::vector<City***> playingCards;
 	short grenzwert;
+	short round, turn;
 
 	void setzeGrenzwertNeu();
 	void spieleRunde(short);
@@ -44,12 +43,12 @@ class Game {
 	int punkteabzug(int spieler);
 
 public:
-	Game(short anzahl, short starter, AI* KIaufgelistet, Brett &bord);
-	Game(short anzahl, short starter, AI* KIaufgelistet, Brett &bord, unsigned seed);
+	Game(short anzahl, short starter, AI* KIaufgelistet, Board &bord);
+	Game(short anzahl, short starter, AI* KIaufgelistet, Board &bord,
+			unsigned seed);
 	virtual ~Game();
 
-        void spielen();
-
+	void spielen();
 
 };
 

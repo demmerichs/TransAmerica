@@ -9,7 +9,7 @@
 #define MOVE_H_
 
 #include"Konstant.h"
-#include"Verbindung.h"
+#include"Connection.h"
 #include"State.h"
 
 class Move {
@@ -17,15 +17,15 @@ private:
 	bool gueltigkeit;
 	bool gueltigkeitUEberprueft;
 	bool richtigBelegt;	//TODO
-	short spielerfarbe;
+	PLAYERCOLOUR spielerfarbe;
 	short anzahlSchienen;
-	const Verbindung* Belegt[2];
+	const Connection* Belegt[2];
 
 public:
-	Move(short spielerfarbe, const Verbindung* belegt1, const Verbindung* belegt2);
+	Move(PLAYERCOLOUR spielerfarbe, const Connection* belegt1, const Connection* belegt2);
 	virtual ~Move();
 
-	bool gueltig(State, short);
+	bool gueltig(State, PLAYERCOLOUR);
 	void ausfuehren(State&) const;
 
 	void dump() const;

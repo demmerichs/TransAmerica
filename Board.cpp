@@ -1,18 +1,18 @@
 /*
- * Brett.cpp
+ * Board.cpp
  *
  *  Created on: 03.12.2013
  *      Author: David
  */
 
-#include "Brett.h"
+#include "Board.h"
 
-Brett::Brett() :
+Board::Board() :
 		anzahlStaedte(35), Stadtliste(stadtlisteAnlegen()), Gitter(
 				gitterAnlegen()), Kanten(kantenAnlegen()) {
 }
 
-Brett::~Brett() {
+Board::~Board() {
 	delete[] Stadtliste;
 	for (int i = 0; i < MAX_X; i++) {
 		for (int j = 0; j < MAX_Y; j++) {
@@ -28,7 +28,7 @@ Brett::~Brett() {
 	delete[] Kanten;
 }
 
-void Brett::Ausgabe() const {
+void Board::Ausgabe() const {
 	for (int y = 0; y < 2 * MAX_Y - 1; y++) {
 		for (int leerzeichen = 0; leerzeichen < 2 * MAX_Y - 2 - y;
 				leerzeichen++)
@@ -76,7 +76,7 @@ void Brett::Ausgabe() const {
 	}
 }
 
-City* const Brett::durchsucheListe(short x, short y) const {
+City* const Board::durchsucheListe(short x, short y) const {
 	for (int i = 0; i < anzahlStaedte; i++) {
 		if (Stadtliste[i]->x == x && Stadtliste[i]->y == y) {
 			return Stadtliste[i];
@@ -88,16 +88,16 @@ City* const Brett::durchsucheListe(short x, short y) const {
 	return Stadtliste[0];
 }
 
-Verbindung**** Brett::kantenAnlegen() const {
+Connection**** Board::kantenAnlegen() const {
 	//Verbindungen einzeichnen
-	Verbindung**** testKanten = new Verbindung***[MAX_X];
+	Connection**** testKanten = new Connection***[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
-		testKanten[i] = new Verbindung**[MAX_Y];
+		testKanten[i] = new Connection**[MAX_Y];
 		for (int j = 0; j < MAX_Y; j++) {
-			testKanten[i][j] = new Verbindung*[3];
+			testKanten[i][j] = new Connection*[3];
 			if (i + 1 < MAX_X)
 				if (!Gitter[i][j] == 0 && !Gitter[i + 1][j] == 0)
-					testKanten[i][j][0] = new Verbindung(*Gitter[i][j],
+					testKanten[i][j][0] = new Connection(*Gitter[i][j],
 							*Gitter[i + 1][j], false);
 				else
 					testKanten[i][j][0] = 0;
@@ -105,7 +105,7 @@ Verbindung**** Brett::kantenAnlegen() const {
 				testKanten[i][j][0] = 0;
 			if (j + 1 < MAX_Y)
 				if (!Gitter[i][j] == 0 && !Gitter[i][j + 1] == 0)
-					testKanten[i][j][1] = new Verbindung(*Gitter[i][j],
+					testKanten[i][j][1] = new Connection(*Gitter[i][j],
 							*Gitter[i][j + 1], false);
 				else
 					testKanten[i][j][1] = 0;
@@ -113,7 +113,7 @@ Verbindung**** Brett::kantenAnlegen() const {
 				testKanten[i][j][1] = 0;
 			if (j + 1 < MAX_Y && i + 1 < MAX_X)
 				if (!Gitter[i][j] == 0 && !Gitter[i + 1][j + 1] == 0)
-					testKanten[i][j][2] = new Verbindung(*Gitter[i][j],
+					testKanten[i][j][2] = new Connection(*Gitter[i][j],
 							*Gitter[i + 1][j + 1], false);
 				else
 					testKanten[i][j][2] = 0;
@@ -168,13 +168,13 @@ Verbindung**** Brett::kantenAnlegen() const {
 	return testKanten;
 }
 
- City** Brett::stadtlisteAnlegen() const {
+ City** Board::stadtlisteAnlegen() const {
 	ifstream Stadtinput((BRETTNAME + "_Staedte.txt").data());
     City** testStadtliste = new City*[anzahlStaedte];
 	for (int i = 0; i < anzahlStaedte; i++) {
 		string name;
 		short number;
-		CITYCOLOURS cityColour;
+		CITYCOLOUR cityColour;
 		Vector place(0,0);
 		Stadtinput >> name;
 		Stadtinput >> place.x;
@@ -186,7 +186,7 @@ Verbindung**** Brett::kantenAnlegen() const {
 	return testStadtliste;
 }
 
-Coordinate*** Brett::gitterAnlegen() const {
+Coordinate*** Board::gitterAnlegen() const {
 	Coordinate*** testGitter = new Coordinate**[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
 		testGitter[i] = new Coordinate*[MAX_Y];
@@ -209,7 +209,7 @@ Coordinate*** Brett::gitterAnlegen() const {
 	return testGitter;
 }
 
-void Brett::aktAusgabe(bool** kanten[3]) const {
+void Board::aktAusgabe(bool** kanten[3]) const {
 	for (int y = 0; y < 2 * MAX_Y - 1; y++) {
 		for (int leerzeichen = 0; leerzeichen < 2 * MAX_Y - 2 - y;
 				leerzeichen++)
@@ -257,7 +257,7 @@ void Brett::aktAusgabe(bool** kanten[3]) const {
 	}
 }
 
-City* Brett::getStadt(short farbe, short nr) const {
+City* Board::getStadt(short farbe, short nr) const {
 	for (int i = 0; i < anzahlStaedte; i++) {
         City* aktStadt = this->Stadtliste[i];
 		if (aktStadt->cityColour == farbe && aktStadt->number == nr)

@@ -7,7 +7,7 @@
 
 #include "AI.h"
 
-AI::AI(short farb): spielerfarbe(farb){
+AI::AI(PLAYERCOLOUR farb): spielerfarbe(farb){
 	handkarten=new const City*[NUMBER_CITYCOLOURS];
 	programmierer="";
 }

@@ -1,22 +1,22 @@
 /*
- * Verbindung.cpp
+ * Connection.cpp
  *
  *  Created on: 11.11.2013
  *      Author: David
  */
 
-#include "Verbindung.h"
+#include "Connection.h"
 
-Verbindung::Verbindung(const Coordinate &first, const Coordinate &second, bool hindernis) :
+Connection::Connection(const Coordinate &first, const Coordinate &second, bool hindernis) :
 		first((first.x + first.y <= second.x + second.y) ? first : second), second(
 				(first.x + first.y <= second.x + second.y) ? second : first), richtung(
 				second - first), hindernis(hindernis) {
 }
 
-Verbindung::~Verbindung() {
+Connection::~Connection() {
 	// TODO Auto-generated destructor stub
 }
 
-const Verbindung& Verbindung::operator=(const Verbindung& copy) const{
+const Connection& Connection::operator=(const Connection& copy) const{
 	return copy;
 }

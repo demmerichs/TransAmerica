@@ -16,12 +16,12 @@ using namespace std;
 
 class City : public Vector{
 public:
-	City(string name, CITYCOLOURS cityColour, short number, Vector place);
+	City(string name, CITYCOLOUR cityColour, short number, Vector place);
 	virtual ~City();
 
 	//TODO mehr const setzen
 	string name;
-	CITYCOLOURS cityColour;
+	CITYCOLOUR cityColour;
 	short number; //Staedte kriegen einfache Kennnummern
 };
 

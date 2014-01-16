@@ -7,61 +7,61 @@
 
 #include "Game.h"
 
-Game::Game(short anzahl, short starter, AI* KIaufgelistet, Brett &bord) :
+Game::Game(short anzahl, short starter, AI* KIaufgelistet, Board &bord) :
 		spieleranzahl(anzahl), KIliste(KIaufgelistet), startstartspieler(
-				starter), Spielbrett(bord), aktuellerZustand(State(Spielbrett))/*, handkarten(
-				0)*/ {
+				starter), gameBoard(bord), currentState(State(gameBoard))/*, handkarten(
+ 0)*/{
 	srand((unsigned) time(0));
 	grenzwert = 0;
-	punkte = new short[spieleranzahl];
+	points = new short[spieleranzahl];
 	for (int i = 0; i < spieleranzahl; i++)
-		punkte[i] = 13;
+		points[i] = 13;
 }
 
-Game::Game(short anzahl, short starter, AI* KIaufgelistet, Brett &bord,
+Game::Game(short anzahl, short starter, AI* KIaufgelistet, Board &bord,
 		unsigned seed) :
 		spieleranzahl(anzahl), KIliste(KIaufgelistet), startstartspieler(
-				starter), Spielbrett(bord), aktuellerZustand(State(Spielbrett))/*, handkarten(
-				0)*/ {
+				starter), gameBoard(bord), currentState(State(gameBoard))/*, handkarten(
+ 0)*/{
 	srand(seed);
 	grenzwert = 0;
-	punkte = new short[spieleranzahl];
+	points = new short[spieleranzahl];
 	for (int i = 0; i < spieleranzahl; i++)
-		punkte[i] = 13;
+		points[i] = 13;
 }
 
 Game::~Game() {
-	delete[] punkte;
+	delete[] points;
 }
 
 void Game::spielen() {
-	short rundennummer = 0;
+	round = 0;
 	short startspieler = startstartspieler - 1;
-	while (keinVerlierer() && rundennummer < 2) {
+	while (keinVerlierer() && round < 2) {
 		kartenAusteilen();
-		aktuellerZustand.resetAll();
+		currentState.resetAll();
 		startspieler = (startspieler + 1) % spieleranzahl;
-		rundennummer++;
-		cout << "Runde " << rundennummer << ":" << endl;
+		round++;
+		cout << "Runde " << round << ":" << endl;
 		spieleRunde(startspieler);
 	}
 	setzeGrenzwertNeu();
 	while (keinVerlierer()) {
 		kartenAusteilen();
-		aktuellerZustand.resetAll();
+		currentState.resetAll();
 		startspieler = (startspieler + 1) % spieleranzahl;
-		rundennummer++;
-		cout << "Runde " << rundennummer << ":" << endl;
+		round++;
+		cout << "Runde " << round << ":" << endl;
 		spieleRunde(startspieler);
 	}
-	cout << "Das Spiel ist nach " << rundennummer << " Runden zu Ende gegangen."
+	cout << "Das Spiel ist nach " << round << " Runden zu Ende gegangen."
 			<< endl;
 }
 
 bool Game::keinVerlierer() const {
 	bool ruckgabe = true;
 	for (short i = 0; i < spieleranzahl; i++)
-		ruckgabe = ruckgabe && (grenzwert < punkte[i]);
+		ruckgabe = ruckgabe && (grenzwert < points[i]);
 	return ruckgabe;
 }
 
@@ -74,11 +74,11 @@ bool Game::keinRundenGewinner() const {
 }
 
 bool Game::RundenGewinner(short spieler) const {
-	short schienennr = aktuellerZustand.getPoeppel(
-			KIliste[spieler].spielerfarbe).schienennetznummer;
+	short schienennr =
+			currentState.getPoeppel(KIliste[spieler].spielerfarbe).schienennetznummer;
 	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {
 		if (schienennr
-				!= aktuellerZustand.getSchienenNetzNummer(
+				!= currentState.getSchienenNetzNummer(
 						*KIliste[spieler].handkarten[i]))
 			return false;
 	}
@@ -88,8 +88,8 @@ bool Game::RundenGewinner(short spieler) const {
 void Game::setzeGrenzwertNeu() {
 	short minimum = 13;
 	for (int i = 0; i < spieleranzahl; i++)
-		if (minimum > punkte[i])
-			minimum = punkte[i];
+		if (minimum > points[i])
+			minimum = points[i];
 	if (minimum > 3)
 		grenzwert = minimum - 3;
 }
@@ -97,35 +97,37 @@ void Game::setzeGrenzwertNeu() {
 void Game::spieleRunde(short startspieler) {
 	PoeppelAufstellen(startspieler);
 	short spielerAmZug = startspieler - 1;
-	int zugnr = 0;
+	turn = 0;
 	while (keinRundenGewinner()) {
-		zugnr++;
-		cout << "Dies ist der " << zugnr << ". Zug:" << endl;
+		turn++;
+		cout << "Dies ist der " << turn << ". Zug:" << endl;
 		spielerAmZug = (spielerAmZug + 1) % spieleranzahl;
-		State kopie(aktuellerZustand);
+		PLAYERCOLOUR spielerfarbe = KIliste[spielerAmZug].spielerfarbe;
+		currentState.setRound(round);
+		currentState.setTurn(turn);
+		currentState.setPlayersTurn(spielerfarbe);
+		State kopie(currentState);
 		Move aktuellerZug = KIliste[spielerAmZug].zug(kopie);
-		short spielerfarbe = KIliste[spielerAmZug].spielerfarbe;
-		if (aktuellerZug.gueltig(aktuellerZustand, spielerfarbe)) {
-			aktuellerZug.ausfuehren(aktuellerZustand);
+		if (aktuellerZug.gueltig(currentState, spielerfarbe)) {
+			aktuellerZug.ausfuehren(currentState);
 		}
-		Spielbrett.aktAusgabe(aktuellerZustand.schieneGelegt);
-		zustandsListe.push_back(&aktuellerZustand);
+		gameBoard.aktAusgabe(currentState.schieneGelegt);
+		stateList.push_back(&currentState);
 	}
 	for (int i = 0; i < spieleranzahl; i++) {
-		punkte[i] -= punkteabzug(i);
+		points[i] -= punkteabzug(i);
 	}
 	//TODO Zwischenstand provisorium
-	cout << "Spieler 1 hat noch " << punkte[0] << " Punkte." << endl
-			<< "Spieler 2 hat noch " << punkte[1] << " Punkte." << endl;
+	cout << "Spieler 1 hat noch " << points[0] << " Punkte." << endl
+			<< "Spieler 2 hat noch " << points[1] << " Punkte." << endl;
 }
 
 //TODO folgendes Provisorium
 int Game::punkteabzug(int spieler) {
 	unsigned short minuspoints = 0;
 	for (int i = 0; i < 5; i++) {
-		minuspoints += aktuellerZustand.distance(
-				*KIliste[spieler].handkarten[i],
-				aktuellerZustand.pointsBelongingToRailwaySystem(
+		minuspoints += currentState.distance(*KIliste[spieler].handkarten[i],
+				currentState.pointsBelongingToRailwaySystem(
 						KIliste[spieler].spielerfarbe));
 	}
 	return minuspoints;
@@ -151,8 +153,8 @@ void Game::kartenAusteilen() {
 			rest.erase(it);
 		}
 		for (int spielernr = 0; spielernr < spieleranzahl; spielernr++) {
-			KIliste[spielernr].handkarten[CITYCOLOURS_LIST[i]] =
-					Spielbrett.getStadt(CITYCOLOURS_LIST[i], stapel[spielernr]);
+			KIliste[spielernr].handkarten[CITYCOLOUR_LIST[i]] =
+					gameBoard.getStadt(CITYCOLOUR_LIST[i], stapel[spielernr]);
 		}
 	}
 
@@ -168,8 +170,8 @@ void Game::PoeppelAufstellen(short startspieler) {
 	short nr = startspieler - 1;
 	do {
 		nr = (nr + 1) % spieleranzahl;
-		Vector nrWahl = KIliste[nr].poeppelSetzen(aktuellerZustand);
+		Vector nrWahl = KIliste[nr].poeppelSetzen(currentState);
 		Pawn neuGesetzt(KIliste[nr].spielerfarbe, nrWahl);
-		aktuellerZustand.addPoeppel(neuGesetzt);
+		currentState.addPoeppel(neuGesetzt);
 	} while (nr != (startspieler - 1 + spieleranzahl) % spieleranzahl);
 }

@@ -7,7 +7,7 @@
 
 #include "State.h"
 
-State::State(Brett &board) :
+State::State(Board &board) :
 		anzahlPoeppel(0), Spielbrett(board) {
 	sortedPawns=new Pawn*[MAX_PLAYER];
 	for (int i = 0; i < MAX_PLAYER; i++)
@@ -18,7 +18,7 @@ State::State(Brett &board) :
 		schienenNetzNummer[i] = new short[MAX_Y];
 		schieneGelegt[i] = new bool*[MAX_Y];
 		for (int j = 0; j < MAX_Y; j++) {
-			schienenNetzNummer[i][j] = KEINSCHIENENNETZ;
+			schienenNetzNummer[i][j] = NORAILS;
 			schieneGelegt[i][j] = new bool[3];
 			for (int k = 0; k < 3; k++)
 				schieneGelegt[i][j][k] = false;
@@ -28,6 +28,9 @@ State::State(Brett &board) :
 
 State::State(const State &copy) :
 		Spielbrett(copy.Spielbrett) {
+	turn=copy.turn;
+	round=copy.round;
+	playersTurn=copy.playersTurn;
 	sortedPawns=new Pawn*[MAX_PLAYER];
 	schienenNetzNummer = new short*[MAX_X];
 	schieneGelegt = new bool**[MAX_X];
@@ -35,7 +38,7 @@ State::State(const State &copy) :
 		schienenNetzNummer[i] = new short[MAX_Y];
 		schieneGelegt[i] = new bool*[MAX_Y];
 		for (int j = 0; j < MAX_Y; j++) {
-			schienenNetzNummer[i][j] = KEINSCHIENENNETZ;
+			schienenNetzNummer[i][j] = NORAILS;
 			schieneGelegt[i][j] = new bool[3];
 			for (int k = 0; k < 3; k++)
 				schieneGelegt[i][j][k] = false;
@@ -73,11 +76,11 @@ State::~State() {
 	delete[] schieneGelegt;
 }
 
-Pawn State::getPoeppel(const short spielerfarbe) const {
-	return *sortedPawns[-spielerfarbe - 1];
+Pawn State::getPoeppel(const PLAYERCOLOUR spielerfarbe) const {
+	return *sortedPawns[spielerfarbe];
 }
 
-bool State::schienenNetzNummerVon_Ist_(const Verbindung &von,
+bool State::schienenNetzNummerVon_Ist_(const Connection &von,
 		const short schienennr) const {
 	bool ruckgabe = false;
 	if (getSchienenNetzNummer(von.first) == schienennr)
@@ -95,7 +98,7 @@ void State::setSchienenNetzNummer(const Coordinate &koo, const short nr) {
 	schienenNetzNummer[koo.x][koo.y] = nr;
 }
 
-void State::setSchiene(const Verbindung& input) {
+void State::setSchiene(const Connection& input) {
 	schieneGelegt[input.first.x][input.first.y][RichtungsWert(input.richtung)] =
 			true;
 }
@@ -126,14 +129,14 @@ void State::resetNr_ZuNr_(const short von, const short zu) {
 				this->schienenNetzNummer[i][j] = zu;
 }
 
-void State::schieneLegen(const Verbindung &sollGelegt) {
+void State::schieneLegen(const Connection &sollGelegt) {
 	setSchiene(sollGelegt);
 	short nummerFirst = getSchienenNetzNummer(sollGelegt.first);
 	short nummerSecond = getSchienenNetzNummer(sollGelegt.second);
-	if (nummerFirst == KEINSCHIENENNETZ) {
+	if (nummerFirst == NORAILS) {
 		setSchienenNetzNummer(sollGelegt.first, nummerSecond);
 		return;
-	} else if (nummerSecond == KEINSCHIENENNETZ) {
+	} else if (nummerSecond == NORAILS) {
 		setSchienenNetzNummer(sollGelegt.second, nummerFirst);
 		return;
 	}
@@ -149,10 +152,10 @@ void State::schieneLegen(const Verbindung &sollGelegt) {
 //TODO Exceptions
 }
 
-const Verbindung* State::getVerbindung(Vector a, Vector b) const {
+const Connection* State::getVerbindung(Vector a, Vector b) const {
 	Vector eins = a;
 	Vector zwei = b;
-	const Verbindung* ruckgabe = 0;
+	const Connection* ruckgabe = 0;
 	if ((b - a).x < 0 || (b - a).y < 0) {
 		eins = b;
 		zwei = a;
@@ -168,9 +171,9 @@ const Verbindung* State::getVerbindung(Vector a, Vector b) const {
 void State::addPoeppel(Pawn insert) {
 	this->anzahlPoeppel++;
 	this->schienenNetzNummer[insert.startposition.x][insert.startposition.y] =
-			insert.spielerfarbe;
-	sortedPawns[-insert.spielerfarbe - 1] = new Pawn(insert);
-	unsortedPawns.push_back(sortedPawns[-insert.spielerfarbe - 1]);
+			insert.schienennetznummer;
+	sortedPawns[insert.spielerfarbe] = new Pawn(insert);
+	unsortedPawns.push_back(sortedPawns[insert.spielerfarbe]);
 }
 
 void State::resetAll() {
@@ -179,12 +182,12 @@ void State::resetAll() {
 		sortedPawns[i] = 0;
 	for (int i = 0; i < MAX_X; i++)
 		for (int j = 0; j < MAX_Y; j++) {
-			schienenNetzNummer[i][j] = KEINSCHIENENNETZ;
+			schienenNetzNummer[i][j] = NORAILS;
 			for (int k = 0; k < 3; k++)
 				schieneGelegt[i][j][k] = false;
 		}
 }
-
+/*
 #include <iomanip>
 void State::dumpEvaluateBoard(unsigned short ** & index) {
 	for (int j = 0; j < MAX_Y; j++) {
@@ -194,7 +197,7 @@ void State::dumpEvaluateBoard(unsigned short ** & index) {
 		cout << endl;
 	}
 }
-
+*/
 unsigned short** State::evaluateBoard(Vector target) const {
 	unsigned short **index = new unsigned short*[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
@@ -244,7 +247,7 @@ unsigned short State::find_min(Vector actual, unsigned short ** &index) const {
 	Vector richtungsvektoren[] = { Vector(1, 0), Vector(1, 1), Vector(0, 1),
 			Vector(-1, 0), Vector(-1, -1), Vector(0, -1) };
 	for (int i = 0; i < 6; i++) {
-		const Verbindung* connection = getVerbindung(
+		const Connection* connection = getVerbindung(
 				actual + richtungsvektoren[i], actual);
 		if (connection != 0) {
 			unsigned short value =
@@ -266,7 +269,7 @@ unsigned short State::find_min(Vector actual, unsigned short ** &index) const {
 	return min;
 }
 
-vector<Vector> State::pointsBelongingToRailwaySystem(short playercolour) const {
+vector<Vector> State::pointsBelongingToRailwaySystem(PLAYERCOLOUR playercolour) const {
 	int playersRailwayID = this->getPoeppel(playercolour).schienennetznummer;
 	vector<Vector> returnval;
 	for (int i = 0; i < MAX_X; i++)
@@ -280,7 +283,7 @@ unsigned short State::distance(Vector target,
 		const vector<Vector> &possibleStarts) const {
 	unsigned short distance = std::numeric_limits<unsigned short>::max();
 	unsigned short ** array = this->evaluateBoard(target);
-	dumpEvaluateBoard(array);
+	//dumpEvaluateBoard(array);
 	for (unsigned i = 0; i < possibleStarts.size(); i++) {
 		Vector act = possibleStarts[i];
 		if (array[act.x][act.y] < distance)

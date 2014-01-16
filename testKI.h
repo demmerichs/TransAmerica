@@ -14,7 +14,7 @@
 
 class testKI: public AI {
 public:
-	testKI(short farbe);
+	testKI(PLAYERCOLOUR farbe);
 	virtual ~testKI();
 	Move zug(State &aktuell) const;
 	Vector poeppelSetzen(State &aktuell) const;

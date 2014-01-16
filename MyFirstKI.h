@@ -12,7 +12,7 @@
 
 class MyFirstKI: public AI {
 public:
-	MyFirstKI(short spielerfarbe);
+	MyFirstKI(PLAYERCOLOUR spielerfarbe);
 	virtual ~MyFirstKI();
 };
 

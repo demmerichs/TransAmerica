@@ -7,7 +7,7 @@
 
 #include "Konstant_Standard.h"
 
-CITYCOLOURS operator>>(std::ifstream &infile, CITYCOLOURS &citycolour) {
+CITYCOLOUR operator>>(std::ifstream &infile, CITYCOLOUR &citycolour) {
 	std::string input;
 	infile >> input;
 	if (input.compare("BLUE") == 0) {

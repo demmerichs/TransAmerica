@@ -7,7 +7,7 @@
 
 #include "City.h"
 
-City::City(string name, CITYCOLOURS cityColour, short number, Vector place) :
+City::City(string name, CITYCOLOUR cityColour, short number, Vector place) :
 		Vector(place), name(name), cityColour(cityColour), number(number) {
 }
 

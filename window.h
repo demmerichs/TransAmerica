@@ -3,8 +3,10 @@
 
 #include <QWidget>
 #include "State.h"
-#include "Game.h"
+#include "GraphicGame.h"
 #include "spielbrett.h"
+#include <iostream>
+#include <QtGui>
 
 
 class QLabel;
@@ -21,11 +23,11 @@ class Window : public QWidget
   friend class Spielbrett;
   friend class UIEXEC;
 public:
-   Window(Game* game=0);
-   void setGamep(Game* game);
+   Window(GraphicGame* game=0);
+   void setGamep(GraphicGame* game);
 private:
   State* aZp;
-  Game* gamep;
+  GraphicGame* gamep;
   Spielbrett* spielbrett;
   int Zustandcounter;
   bool zustandInitialized;

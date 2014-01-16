@@ -10,7 +10,7 @@
 #include "Konstant.h"
 #include <cmath>
 
-testKI::testKI(short farb) :
+testKI::testKI(PLAYERCOLOUR farb) :
 		AI(farb) {
 	this->programmierer = "David";
 }
@@ -21,8 +21,8 @@ testKI::~testKI() {
 
 Move testKI::zug(State &aktuell) const {
 	const State sicherkopie(aktuell);
-	const Verbindung* firsty = 0;
-	const Verbindung* secondary = 0;
+	const Connection* firsty = 0;
+	const Connection* secondary = 0;
 	for (int i = 0; i < 5; i++) {
 		firsty = secondary = 0;
 		Vector aktStadt = *handkarten[i];

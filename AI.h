@@ -16,17 +16,15 @@
 #include"State.h"
 #include"Pawn.h"
 
-class Game;
-
 class AI {
 protected:
 	virtual Move zug(State &aktuell) const =0;	//hier wird der Zug implementiert
 	virtual Vector poeppelSetzen(State &aktuell) const =0;	//hier muss der Pawn gesetzt werden
 	const City** handkarten;	//array von handkartenzeigern, eine einfache Stadtliste
 public:
-	AI(short spielerfarbe);
+	AI(PLAYERCOLOUR spielerfarbe);
 	virtual ~AI();
-	const short spielerfarbe;
+	const PLAYERCOLOUR spielerfarbe;
 	string programmierer;	//Hier kann ein Name fuer die KI eingespeichert werden
 
 	friend class Game;

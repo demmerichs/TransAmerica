@@ -1,12 +1,8 @@
-#include <QtGui>
-
 #include "window.h"
-#include "spielbrett.h"
-#include <iostream>
 
-Window::Window(Game *game) :
+Window::Window(GraphicGame *game) :
 		gamep(game) {
-	//this->setZp(gamep->zustandsListe.get(0));
+	//this->setZp(gamep->stateList.get(0));
 	this->zustandInitialized=false;
 	town1 = new QLabel(tr("Portland"));
 	town2 = new QLabel(tr("Sacramento"));
@@ -27,7 +23,7 @@ Window::Window(Game *game) :
 	toolBoxLabel->setFont(font);
 	vektorSpinBox = new QSpinBox;
 	showTownsCheckBox = new QCheckBox;
-	vektorSpinBox->setRange(0, gamep->zustandsListe.size());
+	vektorSpinBox->setRange(0, gamep->stateList.size());
 	vektorSpinBox->setWrapping(false);
 	vektorSpinBox->setSuffix(tr(". Zustand"));
 	counterLCD = new QLCDNumber;
@@ -84,12 +80,12 @@ void Window::setZustandscounter(int i) {
 	cout << i << endl;
 	Zustandcounter = i;
 	if (gamep != 0)
-		setZp(gamep->zustandsListe.get(i));
+		setZp(gamep->stateList.get(i));
 
 }
-void Window::setGamep(Game *game) {
+void Window::setGamep(GraphicGame *game) {
 	gamep = game;
-	vektorSpinBox->setRange(0, gamep->zustandsListe.size());
+	vektorSpinBox->setRange(0, gamep->stateList.size());
 }
 
 //void Window::playAutomatically(){

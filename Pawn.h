@@ -12,15 +12,18 @@
 
 class Pawn {
 public:
-	Pawn(short colour, Vector pos);
+	Pawn(PLAYERCOLOUR colour, Vector pos);
 	Pawn(const Pawn &copy) :
 			schienennetznummer(copy.schienennetznummer), spielerfarbe(
 					copy.spielerfarbe), startposition(copy.startposition) {
 	}
 	virtual ~Pawn();
 	short schienennetznummer;
-	const short spielerfarbe;
+	const PLAYERCOLOUR spielerfarbe;
 	const Vector startposition;
+
+	friend class Game;
+	friend class State;
 };
 
 #endif /* PAWN_H_ */

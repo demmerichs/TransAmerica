@@ -8,7 +8,7 @@
 #include "Pawn.h"
 #include "Konstant.h"
 
-Pawn::Pawn(short farb, Vector pos) :
+Pawn::Pawn(PLAYERCOLOUR farb, Vector pos) :
 		spielerfarbe(farb), startposition(pos) {
 	schienennetznummer = farb;
 }

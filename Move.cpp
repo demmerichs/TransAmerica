@@ -12,15 +12,15 @@
  spielerfarbe), anzahlSchienen(0) {
  }
 
- Zug::Zug(short spielerfarbe, const Verbindung &belegt) :
+ Zug::Zug(short spielerfarbe, const Connection &belegt) :
  gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), spielerfarbe(
  spielerfarbe), anzahlSchienen(1) {
  Belegt[0] = &belegt;
  Belegt[1] = 0;
  }*/
 
-Move::Move(short spielerfarbe, const Verbindung* belegt1,
-		const Verbindung* belegt2) :
+Move::Move(PLAYERCOLOUR spielerfarbe, const Connection* belegt1,
+		const Connection* belegt2) :
 		gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), spielerfarbe(
 				spielerfarbe), anzahlSchienen(2) {
 	Belegt[0] = belegt1;
@@ -38,7 +38,7 @@ Move::~Move() {
 	// TODO Auto-generated destructor stub
 }
 
-bool Move::gueltig(State aktZu, short spielerfarb) {
+bool Move::gueltig(State aktZu, PLAYERCOLOUR spielerfarb) {
 	gueltigkeitUEberprueft = true;
 	//checken, ob der Spieler richtige Farbe verwendet hat
 	if (spielerfarb != this->spielerfarbe) {
@@ -55,7 +55,7 @@ bool Move::gueltig(State aktZu, short spielerfarb) {
 	//erste Schiene checken
 	//schienennr von Spieler
 	short schienennr = aktZu.getPoeppel(spielerfarb).schienennetznummer;
-	//prüfe, ob Verbindung an schienennr anliegt
+	//prüfe, ob Connection an schienennr anliegt
 	if (aktZu.schienenNetzNummerVon_Ist_(*Belegt[0], schienennr)) {
 		richtigBelegt = true;
 		//wenn ja, schiene legen, neuer State, also neue schienennr und dann zweite schiene analog

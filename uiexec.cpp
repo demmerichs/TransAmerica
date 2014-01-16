@@ -13,10 +13,10 @@ void UIEXEC::doTheMagic(){
     /**
       window implementation
       */
-    board = new Brett;
+    board = new Board;
     board->Ausgabe();
-    testKI virt[] = { testKI(-1), testKI(-2) };
-    game1 = new Game(2, 0, virt, *board);
+    testKI virt[] = { testKI(P_YELLOW), testKI(P_BLUE) };
+    game1 = new GraphicGame(2, 0, virt, *board);
     game1->spielen();
 
     wp = new Window(game1);
@@ -37,8 +37,8 @@ void UIEXEC::doTheMagic(){
       connect this shit
       */
     // TODO some connects
-     //connect(wp, SIGNAL(requestZp(int)), &(game1->zustandsListe), SLOT(callGet(int)) );
-     //connect(&(game1->zustandsListe), SIGNAL(emitGet(Zustand*)), wp, SLOT(setZp(Zustand*)));
+     //connect(wp, SIGNAL(requestZp(int)), &(game1->stateList), SLOT(callGet(int)) );
+     //connect(&(game1->stateList), SIGNAL(emitGet(Zustand*)), wp, SLOT(setZp(Zustand*)));
 
 
 

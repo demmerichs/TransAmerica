@@ -2,8 +2,8 @@
 #define UIEXEC_H
 #include "window.h"
 #include"Konstant.h"
-#include"Brett.h"
-#include"Game.h"
+#include"Board.h"
+#include"GraphicGame.h"
 #include <QString>
 
 
@@ -13,8 +13,8 @@ class UIEXEC
 public:
   UIEXEC();
   Window* wp;
-  Brett* board;
-  Game* game1;
+  Board* board;
+  GraphicGame* game1;
   void doTheMagic();
 
 };
