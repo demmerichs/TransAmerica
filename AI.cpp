@@ -13,7 +13,5 @@ AI::AI(short farb): spielerfarbe(farb){
 }
 
 AI::~AI() {
-	for(int i=0;i<NUMBER_CITYCOLOURS;i++)
-		delete handkarten[i];
 	delete[] handkarten;
 }

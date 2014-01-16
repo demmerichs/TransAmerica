@@ -14,7 +14,7 @@ enum Farbart{
 
 struct Mycolor{
     QColor q;
-    char* s;
+    string s;
 
 };
 
@@ -34,12 +34,13 @@ Mycolor getColor (int i, Farbart art)
         break;
     case stadtfarbe:
         //assert(i>=0&&i<=5); //Müll, da Stadtliste nicht konsistent
-        if (i==1)  rV.s=("images/blau.gif");
-        else if (i==2)  rV.s=("images/gelb.gif");
-        else if (i==3)  rV.s=("images/gruen.gif");
-        else if (i==4)  rV.s=("images/orange.gif");
-        else if (i==5)  rV.s=("images/rot.gif");
+        if (i==0)  rV.s=("images/blau.gif");
+        else if (i==4)  rV.s=("images/gelb.gif");
+        else if (i==1)  rV.s=("images/gruen.gif");
+        else if (i==2)  rV.s=("images/orange.gif");
+        else if (i==3)  rV.s=("images/rot.gif");
         else rV.s=(" ");
+        break;
     default:
         rV.q=(QColor(Qt::black));
 
@@ -138,7 +139,7 @@ QTransform scale;
 */
       painter.drawPixmap(transform.map(QPoint((parentalWindow->aZp->Spielbrett.Stadtliste[i]->x)*sL-12,
                                                (parentalWindow->aZp->Spielbrett.Stadtliste[i]->y)*sL-8.5)),
-                                        QPixmap(getColor(parentalWindow->aZp->Spielbrett.Stadtliste[i]->cityColour, stadtfarbe).s));
+                                        QPixmap(getColor(parentalWindow->aZp->Spielbrett.Stadtliste[i]->cityColour, stadtfarbe).s.c_str()));
       }
     }
    //TODO find solution to draw Handkarten without segmentation fault

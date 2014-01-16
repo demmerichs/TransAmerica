@@ -53,8 +53,6 @@ State::State(const State &copy) :
 		for (int j = 0; j < MAX_Y; j++)
 			for (int k = 0; k < 3; k++)
 				schieneGelegt[i][j][k] = copy.schieneGelegt[i][j][k];
-	int a;
-	//std::cin >> a;
 	for (int i = 0; i < MAX_X; i++)
 		for (int j = 0; j < MAX_Y; j++)
 			schienenNetzNummer[i][j] = copy.schienenNetzNummer[i][j];
