@@ -20,7 +20,7 @@ using std::endl;
 #include"Verbindung.h"
 
 class State {
-	Pawn* sortedPawns[MAX_PLAYER]; //hier soll an der Sortierung keiner rumpfuschen
+	Pawn** sortedPawns; //hier soll an der Sortierung keiner rumpfuschen
 	std::vector<Pawn*> unsortedPawns;
 	unsigned short find_min(Vector actual, unsigned short ** &index) const;
 	void calculate_surround(Vector actual, unsigned short ** &index,
@@ -33,8 +33,8 @@ public:
 	virtual ~State();
 	//State &operator=(const State&) const;
 
-	short schienenNetzNummer[MAX_X][MAX_Y]; //jeder hat eine eigene SchienenNetzNummer, kann ueber Pawn bestimmt werden
-	bool schieneGelegt[MAX_X][MAX_Y][3]; //zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. RichtungsWert
+	short** schienenNetzNummer;//[MAX_X][MAX_Y]; //jeder hat eine eigene SchienenNetzNummer, kann ueber Pawn bestimmt werden
+	bool*** schieneGelegt;//[MAX_X][MAX_Y][3]; //zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. RichtungsWert
 	short anzahlPoeppel;
 	const Brett &Spielbrett;
 

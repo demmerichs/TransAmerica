@@ -31,7 +31,7 @@ class Game {
 	State aktuellerZustand;
     StateList zustandsListe;
     short* punkte;
-	const City *** handkarten;
+	//const City *** handkarten;
 	short grenzwert;
 
 	void setzeGrenzwertNeu();

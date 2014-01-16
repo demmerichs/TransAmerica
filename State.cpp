@@ -9,30 +9,52 @@
 
 State::State(Brett &board) :
 		anzahlPoeppel(0), Spielbrett(board) {
+	sortedPawns=new Pawn*[MAX_PLAYER];
 	for (int i = 0; i < MAX_PLAYER; i++)
 		sortedPawns[i] = 0;
-	for (int i = 0; i < MAX_X; i++)
+	schienenNetzNummer = new short*[MAX_X];
+	schieneGelegt = new bool**[MAX_X];
+	for (int i = 0; i < MAX_X; i++) {
+		schienenNetzNummer[i] = new short[MAX_Y];
+		schieneGelegt[i] = new bool*[MAX_Y];
 		for (int j = 0; j < MAX_Y; j++) {
 			schienenNetzNummer[i][j] = KEINSCHIENENNETZ;
+			schieneGelegt[i][j] = new bool[3];
 			for (int k = 0; k < 3; k++)
 				schieneGelegt[i][j][k] = false;
 		}
+	}
 }
 
 State::State(const State &copy) :
 		Spielbrett(copy.Spielbrett) {
+	sortedPawns=new Pawn*[MAX_PLAYER];
+	schienenNetzNummer = new short*[MAX_X];
+	schieneGelegt = new bool**[MAX_X];
+	for (int i = 0; i < MAX_X; i++) {
+		schienenNetzNummer[i] = new short[MAX_Y];
+		schieneGelegt[i] = new bool*[MAX_Y];
+		for (int j = 0; j < MAX_Y; j++) {
+			schienenNetzNummer[i][j] = KEINSCHIENENNETZ;
+			schieneGelegt[i][j] = new bool[3];
+			for (int k = 0; k < 3; k++)
+				schieneGelegt[i][j][k] = false;
+		}
+	}
 	anzahlPoeppel = copy.anzahlPoeppel;
 	for (int i = 0; i < MAX_PLAYER; i++)
 		if (copy.sortedPawns[i])
 			sortedPawns[i] = new Pawn(*copy.sortedPawns[i]);
 		else
 			sortedPawns[i] = 0;
-	for(unsigned i=0; i<copy.unsortedPawns.size();i++)
+	for (unsigned i = 0; i < copy.unsortedPawns.size(); i++)
 		unsortedPawns.push_back(copy.unsortedPawns[i]);
 	for (int i = 0; i < MAX_X; i++)
 		for (int j = 0; j < MAX_Y; j++)
 			for (int k = 0; k < 3; k++)
 				schieneGelegt[i][j][k] = copy.schieneGelegt[i][j][k];
+	int a;
+	//std::cin >> a;
 	for (int i = 0; i < MAX_X; i++)
 		for (int j = 0; j < MAX_Y; j++)
 			schienenNetzNummer[i][j] = copy.schienenNetzNummer[i][j];
@@ -41,6 +63,16 @@ State::State(const State &copy) :
 State::~State() {
 	for (int i = 0; i < MAX_PLAYER; i++)
 		delete sortedPawns[i];
+	delete[] sortedPawns;
+	for (int i = 0; i < MAX_X; i++) {
+		for (int j = 0; j < MAX_Y; j++) {
+			delete[] schieneGelegt[i][j];
+		}
+		delete[] schienenNetzNummer[i];
+		delete[] schieneGelegt[i];
+	}
+	delete[] schienenNetzNummer;
+	delete[] schieneGelegt;
 }
 
 Pawn State::getPoeppel(const short spielerfarbe) const {
@@ -71,7 +103,7 @@ void State::setSchiene(const Verbindung& input) {
 }
 
 short State::RichtungsWert(const Vector & richtung) {
-	//zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. RichtungsWert
+//zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. RichtungsWert
 	short summe = richtung.x * 2 + richtung.y;
 	switch (summe) {
 	case 1:
@@ -87,7 +119,7 @@ short State::RichtungsWert(const Vector & richtung) {
 }
 
 void State::resetNr_ZuNr_(const short von, const short zu) {
-	for (unsigned i = 0; i <unsortedPawns.size(); i++)
+	for (unsigned i = 0; i < unsortedPawns.size(); i++)
 		if (this->unsortedPawns[i]->schienennetznummer == von)
 			this->unsortedPawns[i]->schienennetznummer = zu;
 	for (int i = 0; i < MAX_X; i++)
@@ -140,7 +172,7 @@ void State::addPoeppel(Pawn insert) {
 	this->schienenNetzNummer[insert.startposition.x][insert.startposition.y] =
 			insert.spielerfarbe;
 	sortedPawns[-insert.spielerfarbe - 1] = new Pawn(insert);
-	unsortedPawns.push_back(sortedPawns[-insert.spielerfarbe-1]);
+	unsortedPawns.push_back(sortedPawns[-insert.spielerfarbe - 1]);
 }
 
 void State::resetAll() {

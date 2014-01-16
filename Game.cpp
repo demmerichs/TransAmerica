@@ -9,8 +9,8 @@
 
 Game::Game(short anzahl, short starter, AI* KIaufgelistet, Brett &bord) :
 		spieleranzahl(anzahl), KIliste(KIaufgelistet), startstartspieler(
-				starter), Spielbrett(bord), aktuellerZustand(State(Spielbrett)), handkarten(
-				0) {
+				starter), Spielbrett(bord), aktuellerZustand(State(Spielbrett))/*, handkarten(
+				0)*/ {
 	srand((unsigned) time(0));
 	grenzwert = 0;
 	punkte = new short[spieleranzahl];
@@ -21,8 +21,8 @@ Game::Game(short anzahl, short starter, AI* KIaufgelistet, Brett &bord) :
 Game::Game(short anzahl, short starter, AI* KIaufgelistet, Brett &bord,
 		unsigned seed) :
 		spieleranzahl(anzahl), KIliste(KIaufgelistet), startstartspieler(
-				starter), Spielbrett(bord), aktuellerZustand(State(Spielbrett)), handkarten(
-				0) {
+				starter), Spielbrett(bord), aktuellerZustand(State(Spielbrett))/*, handkarten(
+				0)*/ {
 	srand(seed);
 	grenzwert = 0;
 	punkte = new short[spieleranzahl];

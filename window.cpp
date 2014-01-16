@@ -6,7 +6,8 @@
 
 Window::Window(Game *game) :
 		gamep(game) {
-	this->setZp(gamep->zustandsListe.get(0));
+	//this->setZp(gamep->zustandsListe.get(0));
+	this->zustandInitialized=false;
 	town1 = new QLabel(tr("Portland"));
 	town2 = new QLabel(tr("Sacramento"));
 	town3 = new QLabel(tr("San Diego"));

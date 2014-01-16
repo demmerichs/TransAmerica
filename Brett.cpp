@@ -209,7 +209,7 @@ Coordinate*** Brett::gitterAnlegen() const {
 	return testGitter;
 }
 
-void Brett::aktAusgabe(bool kanten[MAX_X][MAX_Y][3]) const {
+void Brett::aktAusgabe(bool** kanten[3]) const {
 	for (int y = 0; y < 2 * MAX_Y - 1; y++) {
 		for (int leerzeichen = 0; leerzeichen < 2 * MAX_Y - 2 - y;
 				leerzeichen++)
