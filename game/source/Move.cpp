@@ -35,7 +35,6 @@ Move::Move(PLAYERCOLOUR spielerfarbe, const Connection* belegt1,
 }
 
 Move::~Move() {
-	// TODO Auto-generated destructor stub
 }
 
 bool Move::gueltig(State aktZu, PLAYERCOLOUR spielerfarb) {
@@ -86,17 +85,17 @@ bool Move::gueltig(State aktZu, PLAYERCOLOUR spielerfarb) {
 		gueltigkeit = false;
 		return false;
 	}
-	short summe=0;
-	for(int i=0; i<2;i++){
-		if(Belegt[i]!=0){
-			if(Belegt[i]->hindernis)
-				summe+=2;
+	short summe = 0;
+	for (int i = 0; i < 2; i++) {
+		if (Belegt[i] != 0) {
+			if (Belegt[i]->hindernis)
+				summe += 2;
 			else
-				summe+=1;
+				summe += 1;
 		}
 	}
-	if(summe>2){
-		gueltigkeit=false;
+	if (summe > 2) {
+		gueltigkeit = false;
 	}
 	return gueltigkeit;
 }

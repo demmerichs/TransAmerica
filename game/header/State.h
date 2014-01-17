@@ -14,14 +14,13 @@
 using std::cout;
 using std::endl;
 
-#include"Konstant.h"
+#include"Constants.h"
 #include"Board.h"
 #include"Pawn.h"
 #include"Connection.h"
 
 class State {
 	Pawn** sortedPawns; //hier soll an der Sortierung keiner rumpfuschen
-	std::vector<Pawn*> unsortedPawns;
 	unsigned short find_min(Vector actual, unsigned short ** &index) const;
 	void calculate_surround(Vector actual, unsigned short ** &index,
 			vector<Vector> &new_changed) const;
@@ -40,6 +39,7 @@ public:
 	bool*** schieneGelegt;//[MAX_X][MAX_Y][3]; //zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. RichtungsWert
 	short anzahlPoeppel;
 	const Board &Spielbrett;
+	std::vector<Pawn*> unsortedPawns;
 
 	Pawn getPoeppel(const PLAYERCOLOUR spielerfarbe) const;
 	bool schienenNetzNummerVon_Ist_(const Connection&,
@@ -57,6 +57,7 @@ public:
 	unsigned short distance(Vector target,
 			const vector<Vector> &possibleStarts) const;
 	vector<Vector> pointsBelongingToRailwaySystem(PLAYERCOLOUR playercolour) const;
+	void aktAusgabe() const;
 
 	//static void dumpEvaluateBoard(unsigned short ** & index);
 

@@ -8,7 +8,7 @@
 #ifndef MOVE_H_
 #define MOVE_H_
 
-#include"Konstant.h"
+#include"Constants.h"
 #include"Connection.h"
 #include"State.h"
 
@@ -16,7 +16,7 @@ class Move {
 private:
 	bool gueltigkeit;
 	bool gueltigkeitUEberprueft;
-	bool richtigBelegt;	//TODO
+	bool richtigBelegt;
 	PLAYERCOLOUR spielerfarbe;
 	short anzahlSchienen;
 	const Connection* Belegt[2];

@@ -117,11 +117,11 @@ Connection**** Board::kantenAnlegen() const {
 							*Gitter[i + 1][j + 1], false);
 				else
 					testKanten[i][j][2] = 0;
-            else
-                testKanten[i][j][2] = 0;
+			else
+				testKanten[i][j][2] = 0;
 		}
 	}
-	ifstream Verbindungsinput((BRETTNAME + "_Hindernisse.txt").data());
+	ifstream Verbindungsinput((BRETTNAME + "barriers.txt").data());
 	string input;
 	Vector pos(0, 0);
 	while (true) {
@@ -136,27 +136,41 @@ Connection**** Board::kantenAnlegen() const {
 		} else {
 			switch (input[0]) {
 			case '0':
-				testKanten[pos.x][pos.y][0]->hindernis = true;
+				delete testKanten[pos.x][pos.y][0];
+				testKanten[pos.x][pos.y][0] = new Connection(
+						*Gitter[pos.x][pos.y], *Gitter[pos.x + 1][pos.y], true);
 				pos = pos + Vector(1, 0);
 				break;
 			case '1':
-				testKanten[pos.x][pos.y][1]->hindernis = true;
+				delete testKanten[pos.x][pos.y][1];
+				testKanten[pos.x][pos.y][1] = new Connection(
+						*Gitter[pos.x][pos.y], *Gitter[pos.x][pos.y + 1], true);
 				pos = pos + Vector(0, 1);
 				break;
 			case '2':
-				testKanten[pos.x][pos.y][2]->hindernis = true;
+				delete testKanten[pos.x][pos.y][2];
+				testKanten[pos.x][pos.y][2] = new Connection(
+						*Gitter[pos.x][pos.y], *Gitter[pos.x + 1][pos.y + 1],
+						true);
 				pos = pos + Vector(1, 1);
 				break;
 			case '3':
-				testKanten[pos.x - 1][pos.y][0]->hindernis = true;
+				delete testKanten[pos.x - 1][pos.y][0];
+				testKanten[pos.x - 1][pos.y][0] = new Connection(
+						*Gitter[pos.x - 1][pos.y], *Gitter[pos.x][pos.y], true);
 				pos = pos + Vector(-1, 0);
 				break;
 			case '4':
-				testKanten[pos.x][pos.y - 1][1]->hindernis = true;
+				delete testKanten[pos.x][pos.y - 1][1];
+				testKanten[pos.x][pos.y - 1][1] = new Connection(
+						*Gitter[pos.x][pos.y - 1], *Gitter[pos.x][pos.y], true);
 				pos = pos + Vector(0, -1);
 				break;
 			case '5':
-				testKanten[pos.x - 1][pos.y - 1][2]->hindernis = true;
+				delete testKanten[pos.x - 1][pos.y - 1][2];
+				testKanten[pos.x - 1][pos.y - 1][2] = new Connection(
+						*Gitter[pos.x - 1][pos.y - 1], *Gitter[pos.x][pos.y],
+						true);
 				pos = pos + Vector(-1, -1);
 				break;
 			default:
@@ -168,20 +182,20 @@ Connection**** Board::kantenAnlegen() const {
 	return testKanten;
 }
 
- City** Board::stadtlisteAnlegen() const {
-	ifstream Stadtinput((BRETTNAME + "_Staedte.txt").data());
-    City** testStadtliste = new City*[anzahlStaedte];
+City** Board::stadtlisteAnlegen() const {
+	ifstream Stadtinput((BRETTNAME + "cities.txt").data());
+	City** testStadtliste = new City*[anzahlStaedte];
 	for (int i = 0; i < anzahlStaedte; i++) {
 		string name;
 		short number;
 		CITYCOLOUR cityColour;
-		Vector place(0,0);
+		Vector place(0, 0);
 		Stadtinput >> name;
 		Stadtinput >> place.x;
 		Stadtinput >> place.y;
 		Stadtinput >> cityColour;
 		Stadtinput >> number;
-        testStadtliste[i] = new City(name, cityColour, number, place);
+		testStadtliste[i] = new City(name, cityColour, number, place);
 	}
 	return testStadtliste;
 }
@@ -191,7 +205,7 @@ Coordinate*** Board::gitterAnlegen() const {
 	for (int i = 0; i < MAX_X; i++) {
 		testGitter[i] = new Coordinate*[MAX_Y];
 	}
-	ifstream Koordinateninput((BRETTNAME + "_Koordinaten.txt").data());
+	ifstream Koordinateninput((BRETTNAME + "coordinates.txt").data());
 	for (int y = 0; y < MAX_Y; y++) {
 		string input;
 		Koordinateninput >> input;
@@ -209,57 +223,9 @@ Coordinate*** Board::gitterAnlegen() const {
 	return testGitter;
 }
 
-void Board::aktAusgabe(bool** kanten[3]) const {
-	for (int y = 0; y < 2 * MAX_Y - 1; y++) {
-		for (int leerzeichen = 0; leerzeichen < 2 * MAX_Y - 2 - y;
-				leerzeichen++)
-			cout << " ";
-		for (int x = 0; x < 2 * MAX_X - 1; x++) {
-			if (x % 2 == 0 && y % 2 == 0) {
-				if (this->Gitter[x / 2][y / 2] == 0)
-					cout << " ";
-				else if (this->Gitter[x / 2][y / 2]->vorOrt == 0)
-					cout << "X";
-				else
-					cout << Gitter[x / 2][y / 2]->vorOrt->name[0];
-				if (this->Kanten[x / 2][y / 2][0] != 0
-						&& kanten[x / 2][y / 2][0])
-					cout << "-";
-				else
-					cout << " ";
-			} else if (x % 2 == 0 && y % 2 == 1) {
-				if (this->Kanten[x / 2][(y - 1) / 2][1] != 0)
-					if (kanten[x / 2][(y - 1) / 2][1])
-						cout << "/ ";
-					else
-						cout << "  ";
-				else
-					cout << "  ";
-			} else if (x % 2 == 1 && y % 2 == 0) {
-				if (this->Kanten[(x - 1) / 2][y / 2][0] != 0)
-					if (kanten[(x - 1) / 2][y / 2][0])
-						cout << "--";
-					else
-						cout << "  ";
-				else
-					cout << "  ";
-			} else {
-				if (this->Kanten[(x - 1) / 2][(y - 1) / 2][2] != 0)
-					if (kanten[(x - 1) / 2][(y - 1) / 2][2])
-						cout << "\\ ";
-					else
-						cout << "  ";
-				else
-					cout << "  ";
-			}
-		}
-		cout << endl;
-	}
-}
-
 City* Board::getStadt(short farbe, short nr) const {
 	for (int i = 0; i < anzahlStaedte; i++) {
-        City* aktStadt = this->Stadtliste[i];
+		City* aktStadt = this->Stadtliste[i];
 		if (aktStadt->cityColour == farbe && aktStadt->number == nr)
 			return aktStadt;
 	}

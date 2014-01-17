@@ -170,7 +170,7 @@ const Connection* State::getVerbindung(Vector a, Vector b) const {
 
 void State::addPoeppel(Pawn insert) {
 	this->anzahlPoeppel++;
-	this->schienenNetzNummer[insert.startposition.x][insert.startposition.y] =
+	this->schienenNetzNummer[insert.x][insert.y] =
 			insert.schienennetznummer;
 	sortedPawns[insert.spielerfarbe] = new Pawn(insert);
 	unsortedPawns.push_back(sortedPawns[insert.spielerfarbe]);
@@ -186,6 +186,7 @@ void State::resetAll() {
 			for (int k = 0; k < 3; k++)
 				schieneGelegt[i][j][k] = false;
 		}
+	unsortedPawns.clear();
 }
 /*
 #include <iomanip>
@@ -290,4 +291,52 @@ unsigned short State::distance(Vector target,
 			distance = array[act.x][act.y];
 	}
 	return distance;
+}
+
+void State::aktAusgabe() const {
+	for (int y = 0; y < 2 * MAX_Y - 1; y++) {
+		for (int leerzeichen = 0; leerzeichen < 2 * MAX_Y - 2 - y;
+				leerzeichen++)
+			cout << " ";
+		for (int x = 0; x < 2 * MAX_X - 1; x++) {
+			if (x % 2 == 0 && y % 2 == 0) {
+				if (Spielbrett.Gitter[x / 2][y / 2] == 0)
+					cout << " ";
+				else if (Spielbrett.Gitter[x / 2][y / 2]->vorOrt == 0)
+					cout << "X";
+				else
+					cout << Spielbrett.Gitter[x / 2][y / 2]->vorOrt->name[0];
+				if (Spielbrett.Kanten[x / 2][y / 2][0] != 0
+						&& this->schieneGelegt[x / 2][y / 2][0])
+					cout << "-";
+				else
+					cout << " ";
+			} else if (x % 2 == 0 && y % 2 == 1) {
+				if (Spielbrett.Kanten[x / 2][(y - 1) / 2][1] != 0)
+					if (schieneGelegt[x / 2][(y - 1) / 2][1])
+						cout << "/ ";
+					else
+						cout << "  ";
+				else
+					cout << "  ";
+			} else if (x % 2 == 1 && y % 2 == 0) {
+				if (Spielbrett.Kanten[(x - 1) / 2][y / 2][0] != 0)
+					if (schieneGelegt[(x - 1) / 2][y / 2][0])
+						cout << "--";
+					else
+						cout << "  ";
+				else
+					cout << "  ";
+			} else {
+				if (Spielbrett.Kanten[(x - 1) / 2][(y - 1) / 2][2] != 0)
+					if (schieneGelegt[(x - 1) / 2][(y - 1) / 2][2])
+						cout << "\\ ";
+					else
+						cout << "  ";
+				else
+					cout << "  ";
+			}
+		}
+		cout << endl;
+	}
 }

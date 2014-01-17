@@ -17,7 +17,7 @@ using std::vector;
 #include"Move.h"
 #include"AI.h"
 #include"Pawn.h"
-#include"Konstant.h"
+#include"Constants.h"
 #include"StateList.h"
 
 class Game {

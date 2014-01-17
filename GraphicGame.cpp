@@ -13,6 +13,5 @@ GraphicGame::GraphicGame(short anzahl, short starter, AI* KIaufgelistet,
 }
 
 GraphicGame::~GraphicGame() {
-	// TODO Auto-generated destructor stub
 }
 

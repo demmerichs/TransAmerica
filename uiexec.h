@@ -1,7 +1,7 @@
 #ifndef UIEXEC_H
 #define UIEXEC_H
 #include "window.h"
-#include"Konstant.h"
+#include"Constants.h"
 #include"Board.h"
 #include"GraphicGame.h"
 #include <QString>

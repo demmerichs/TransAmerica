@@ -7,7 +7,7 @@
 
 #include "testKI.h"
 #include "Vector.h"
-#include "Konstant.h"
+#include "Constants.h"
 #include <cmath>
 
 testKI::testKI(PLAYERCOLOUR farb) :
@@ -16,7 +16,6 @@ testKI::testKI(PLAYERCOLOUR farb) :
 }
 
 testKI::~testKI() {
-	// TODO Auto-generated destructor stub
 }
 
 Move testKI::zug(State &aktuell) const {
@@ -91,7 +90,6 @@ Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 	}
 	return ruckgabe;
 }
-
 
 Vector testKI::poeppelSetzen(State &currenState) const {
 	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {

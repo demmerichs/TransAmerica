@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QColor>
-#include "Konstant.h"
+#include "Constants.h"
 #include "State.h"
 #include "window.h"
 

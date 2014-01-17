@@ -8,7 +8,7 @@
 #ifndef BOARD_H_
 #define BOARD_H_
 
-//#include "Konstant.h"
+//#include "Constants.h"
 #include <fstream>
 #include <iostream>
 #include "Coordinate.h"
@@ -30,7 +30,7 @@ public:
     City** stadtlisteAnlegen() const;//konstruiert Stadtliste TODO bei 2-3 Spielern direkt aussortieren
 	Connection**** kantenAnlegen() const;	//konstruiert Kanten/Verbindungen
 	void Ausgabe() const;	//Ausgabe des Bretts
-	void aktAusgabe(bool** gelegteSchienen[3]) const;//Ausgabe des Zustandes TODO muss verlegt werden in State
+	//Ausgabe des Zustandes TODO muss verlegt werden in State
     City* const durchsucheListe(short xkoo, short ykoo) const;//findet Stadt an entsprechender Coordinate
     City* getStadt(short farbe, short nr) const;
 };

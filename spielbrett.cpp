@@ -11,13 +11,7 @@ const double sL = 30.2;
 enum Farbart {
 	spielerfarbe, stadtfarbe
 };
-/*
-struct Mycolor {
-	QColor q;
-	string s;
 
-};
-*/
 QColor getQColor(PLAYERCOLOUR i) {
 	if (i == P_BLUE)
 		return QColor(Qt::blue);
@@ -50,34 +44,34 @@ QPixmap getPixmap(CITYCOLOUR i) {
 		return QPixmap(" ");
 }
 /*
-Mycolor getColor(PLAYERCOLOUR i, Farbart art) {
-	Mycolor rV;
-	switch (art) {
-	case spielerfarbe:
-		assert(i <= -1 && i >= -6);
+ Mycolor getColor(PLAYERCOLOUR i, Farbart art) {
+ Mycolor rV;
+ switch (art) {
+ case spielerfarbe:
+ assert(i <= -1 && i >= -6);
 
-	case stadtfarbe:
-		//assert(i>=0&&i<=5); //Müll, da Stadtliste nicht konsistent
-		if (i == 0)
-			rV.s = ("images/blau.gif");
-		else if (i == 4)
-			rV.s = ("images/gelb.gif");
-		else if (i == 1)
-			rV.s = ("images/gruen.gif");
-		else if (i == 2)
-			rV.s = ("images/orange.gif");
-		else if (i == 3)
-			rV.s = ("images/rot.gif");
-		else
-			rV.s = (" ");
-		break;
-	default:
-		rV.q = (QColor(Qt::black));
+ case stadtfarbe:
+ //assert(i>=0&&i<=5); //Müll, da Stadtliste nicht konsistent
+ if (i == 0)
+ rV.s = ("images/blau.gif");
+ else if (i == 4)
+ rV.s = ("images/gelb.gif");
+ else if (i == 1)
+ rV.s = ("images/gruen.gif");
+ else if (i == 2)
+ rV.s = ("images/orange.gif");
+ else if (i == 3)
+ rV.s = ("images/rot.gif");
+ else
+ rV.s = (" ");
+ break;
+ default:
+ rV.q = (QColor(Qt::black));
 
-	}
-	return rV;
-}
-*/
+ }
+ return rV;
+ }
+ */
 Spielbrett::Spielbrett(Window* parentalWindow, QWidget* parent) :
 		parentalWindow(parentalWindow) {
 
@@ -188,7 +182,6 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 							parentalWindow->aZp->Spielbrett.Stadtliste[i]->cityColour));
 		}
 	}
-	//TODO find solution to draw Handkarten without segmentation fault
 	/* for(int i=0; i<2; i++)
 	 {
 	 for (int j=0; j<5; j++){
@@ -203,16 +196,12 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 
 	//draws the poeppel
 	for (int k = 0; k < parentalWindow->aZp->anzahlPoeppel; k++) {
-		PLAYERCOLOUR i = PLAYERCOLOUR_LIST[k];
-		QBrush brush(getQColor(i));
+		Pawn* i = parentalWindow->aZp->unsortedPawns[k];
+		QBrush brush(getQColor(i->spielerfarbe));
 		painter.setBrush(brush);
 		QPoint point = transform.map(
-				QPoint(
-						parentalWindow->aZp->getPoeppel(i).startposition.x * sL
-								- 18,
-						parentalWindow->aZp->getPoeppel(i).startposition.y * sL
-								- 25));
-
+				QPoint(i->x * sL - 18,
+						i->y * sL - 25));
 		painter.drawRoundedRect(point.x(), point.y(), 10, 25, 2, 2);
 
 	}

@@ -7,16 +7,16 @@
 
 #include "Connection.h"
 
-Connection::Connection(const Coordinate &first, const Coordinate &second, bool hindernis) :
+Connection::Connection(const Coordinate &first, const Coordinate &second,
+		bool hindernis) :
 		first((first.x + first.y <= second.x + second.y) ? first : second), second(
 				(first.x + first.y <= second.x + second.y) ? second : first), richtung(
 				second - first), hindernis(hindernis) {
 }
 
 Connection::~Connection() {
-	// TODO Auto-generated destructor stub
 }
 
-const Connection& Connection::operator=(const Connection& copy) const{
+const Connection& Connection::operator=(const Connection& copy) const {
 	return copy;
 }

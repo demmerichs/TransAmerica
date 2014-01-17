@@ -111,18 +111,17 @@ void Game::spieleRunde(short startspieler) {
 		if (aktuellerZug.gueltig(currentState, spielerfarbe)) {
 			aktuellerZug.ausfuehren(currentState);
 		}
-		gameBoard.aktAusgabe(currentState.schieneGelegt);
+		currentState.aktAusgabe();
 		stateList.push_back(&currentState);
 	}
 	for (int i = 0; i < spieleranzahl; i++) {
 		points[i] -= punkteabzug(i);
 	}
-	//TODO Zwischenstand provisorium
-	cout << "Spieler 1 hat noch " << points[0] << " Punkte." << endl
-			<< "Spieler 2 hat noch " << points[1] << " Punkte." << endl;
+	for (int i = 0; i < spieleranzahl; i++)
+		cout << "Spieler " << i + 1 << " hat noch " << points[i] << " Punkte."
+				<< endl;
 }
 
-//TODO folgendes Provisorium
 int Game::punkteabzug(int spieler) {
 	unsigned short minuspoints = 0;
 	for (int i = 0; i < 5; i++) {

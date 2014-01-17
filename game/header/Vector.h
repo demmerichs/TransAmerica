@@ -11,7 +11,7 @@
 #include<iostream>
 #include <cmath>
 
-#include"Konstant.h"
+#include"Constants.h"
 
 /**
  * An object of the class Vector represents a 2-dimensional vector with two integer values.

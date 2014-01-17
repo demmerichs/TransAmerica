@@ -1,11 +1,11 @@
 /*
- * Constants_Standard.cpp
+ * standardConstants.cpp
  *
  *  Created on: 15.01.2014
  *      Author: David
  */
 
-#include "Konstant_Standard.h"
+#include "standardConstants.h"
 
 CITYCOLOUR operator>>(std::ifstream &infile, CITYCOLOUR &citycolour) {
 	std::string input;

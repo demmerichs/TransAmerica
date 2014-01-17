@@ -11,7 +11,7 @@
 #include<string>
 #include<iostream>
 
-#include"Konstant.h"
+#include"Constants.h"
 #include"Move.h"
 #include"State.h"
 #include"Pawn.h"

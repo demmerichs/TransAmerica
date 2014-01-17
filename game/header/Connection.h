@@ -10,7 +10,7 @@
 
 #include"Vector.h"
 #include"Coordinate.h"
-#include"Konstant.h"
+#include"Constants.h"
 
 class Connection {
 public:
@@ -19,7 +19,7 @@ public:
 	const Coordinate &first; //Summe der Komponenten kleiner als bei second zur Eindeutigkeit
 	const Coordinate &second;
 	const Vector richtung; //Differenz: second-first, also entweder (1,0) (0,1) oder (1,1)
-	bool hindernis;//TODO spaeter wieder const
+	const bool hindernis;
 
 	const Connection& operator=(const Connection&) const;
 };

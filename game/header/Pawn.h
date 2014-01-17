@@ -9,21 +9,18 @@
 #define PAWN_H_
 
 #include"Vector.h"
+#include "Constants.h"
 
-class Pawn {
+class Pawn: public Vector {
 public:
 	Pawn(PLAYERCOLOUR colour, Vector pos);
 	Pawn(const Pawn &copy) :
-			schienennetznummer(copy.schienennetznummer), spielerfarbe(
-					copy.spielerfarbe), startposition(copy.startposition) {
+			Vector(copy), schienennetznummer(copy.schienennetznummer), spielerfarbe(
+					copy.spielerfarbe) {
 	}
 	virtual ~Pawn();
 	short schienennetznummer;
 	const PLAYERCOLOUR spielerfarbe;
-	const Vector startposition;
-
-	friend class Game;
-	friend class State;
 };
 
 #endif /* PAWN_H_ */

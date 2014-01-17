@@ -1,22 +1,20 @@
 /*
- * Coordinate.h
+ * standardConstants.h
  *
  *  Created on: 18.11.2013
  *      Author: David
  */
 
-#ifndef KONSTANT_STANDARD_H_
-#define KONSTANT_STANDARD_H_
+#ifndef STANDARDCONSTANTS_H_
+#define STANDARDCONSTANTS_H_
 
 #include<string>
 #include<fstream>
 #include<vector>
 
-//#define DEBUG
-
 //Board
 //name der Brettdateien
-const std::string BRETTNAME = "Standard";
+const std::string BRETTNAME="./game/boardSettings/standard/";
 //string BRETTNAME = "FlyEurope";
 
 //Koordinatenwerte
@@ -45,4 +43,4 @@ enum PLAYERCOLOUR{P_BLUE,P_GREEN,P_ORANGE,P_VIOLET,P_WHITE,P_YELLOW,NORAILS};
 const PLAYERCOLOUR PLAYERCOLOUR_LIST[]={P_BLUE,P_GREEN,P_ORANGE,P_VIOLET,P_WHITE,P_YELLOW};
 const short MAX_PLAYER=6;
 
-#endif /* KONSTANT_STANDARD_H_ */
+#endif /* STANDARDCONSTANTS_H_ */
