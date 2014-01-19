@@ -168,7 +168,7 @@ const Connection* State::getVerbindung(Vector a, Vector b) const {
 	return ruckgabe;
 }
 
-void State::addPoeppel(Pawn insert) {
+void State::addPawn(Pawn insert) {
 	this->anzahlPoeppel++;
 	this->schienenNetzNummer[insert.x][insert.y] =
 			insert.schienennetznummer;

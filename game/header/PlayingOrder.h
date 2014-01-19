@@ -8,36 +8,40 @@
 #ifndef PLAYINGORDER_H_
 #define PLAYINGORDER_H_
 
-#include"Constants.h"
+#include"AI.h"
+//#include"iterator.h"
 
 class PlayingOrder {
 	class PlayingOrderElement {
 	public:
-		PLAYERCOLOUR playersTurn;
+		PlayingOrderElement(AI* player, PlayingOrderElement* next);
+		virtual ~PlayingOrderElement();
+		AI* playersTurn;
 		PlayingOrderElement* nextPlayer;
 	};
+	PlayingOrderElement** list;
 public:
-	PlayingOrder();
-	PlayingOrder(PLAYERCOLOUR**);
+	//PlayingOrder();
+	PlayingOrder(int numberPlayers, AI** order);
 	virtual ~PlayingOrder();
 
-	class iterator {
+	class iterator{
 	public:
+		iterator(PlayingOrderElement* cursor);
+		virtual ~iterator();
+
 		PlayingOrderElement* cursor;
 
-		PLAYERCOLOUR& operator->() const {
-			return cursor->playersTurn;
-		}
+		AI* operator->() const;
 
-		PLAYERCOLOUR& operator*() const {
-			return cursor->playersTurn;
-		}
+		AI* operator*() const;
 
-		iterator operator++() {
-			this->cursor = this->cursor->nextPlayer;
-			return *this;
-		}
+		iterator operator++();
+
+		bool operator!=(const PlayingOrder::iterator &rhs) const;
 	};
+
+	PlayingOrder::iterator begin(AI *player) const;
 };
 
 #endif /* PLAYINGORDER_H_ */

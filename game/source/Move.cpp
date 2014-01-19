@@ -37,7 +37,7 @@ Move::Move(PLAYERCOLOUR spielerfarbe, const Connection* belegt1,
 Move::~Move() {
 }
 
-bool Move::gueltig(State aktZu, PLAYERCOLOUR spielerfarb) {
+bool Move::valid(State aktZu, PLAYERCOLOUR spielerfarb) {
 	gueltigkeitUEberprueft = true;
 	//checken, ob der Spieler richtige Farbe verwendet hat
 	if (spielerfarb != this->spielerfarbe) {
@@ -100,7 +100,7 @@ bool Move::gueltig(State aktZu, PLAYERCOLOUR spielerfarb) {
 	return gueltigkeit;
 }
 
-void Move::ausfuehren(State& akt) const { //TODO ausfuehren je nach Anzahl schienen
+void Move::execute(State& akt) const { //TODO execute je nach Anzahl schienen
 	if (!gueltigkeitUEberprueft) {
 		cout
 				<< "Zug::ausfuehren:Zug sollte ohne Ueberpruefung ausgefuehrt werden"

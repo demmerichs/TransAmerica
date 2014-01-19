@@ -13,18 +13,20 @@
 #include"Constants.h"
 #include"RoundLogger.h"
 #include"Counter.h"
+#include"Board.h"
 
 class GameLogger {
 public:
 	GameLogger();
 	virtual ~GameLogger();
 
-	PLAYERCOLOUR startingPlayer;
+	AI* gameStartingPlayer;
+	std::vector<AI>* playerList;
+	Board& board;
 	PlayingOrder playingOrder;
 
 	Counter points;
 
-	unsigned rounds;
 	std::vector<RoundLogger> roundList;
 };
 

@@ -18,11 +18,9 @@ public:
 	SimulationLogger();
 	virtual ~SimulationLogger();
 
-	unsigned players;
 	std::vector<AI> playerList;
 	Counter gamesWon;
 
-	unsigned games;
 	std::vector<GameLogger> gameList;
 
 	Board board;

@@ -53,7 +53,7 @@ Move testKI::zug(State &aktuell) const {
 						a + first + second);
 			}
 			Move ruckgabe(this->spielerfarbe, firsty, secondary);
-			if (ruckgabe.gueltig(sicherkopie, this->spielerfarbe))
+			if (ruckgabe.valid(sicherkopie, this->spielerfarbe))
 				return Move(this->spielerfarbe, firsty, secondary);
 			else
 				return Move(this->spielerfarbe, firsty, 0);
@@ -91,7 +91,7 @@ Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 	return ruckgabe;
 }
 
-Vector testKI::poeppelSetzen(State &currenState) const {
+Vector testKI::setPawn(State &currenState) const {
 	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {
 		if (handkarten[i]->cityColour == C_YELLOW)
 			return *handkarten[i];

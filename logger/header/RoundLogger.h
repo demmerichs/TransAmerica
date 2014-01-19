@@ -8,6 +8,7 @@
 #ifndef ROUNDLOGGER_H_
 #define ROUNDLOGGER_H_
 
+#include<vector>
 #include"Constants.h"
 #include"PlayingOrder.h"
 #include"Counter.h"
@@ -19,14 +20,19 @@ public:
 	RoundLogger();
 	virtual ~RoundLogger();
 
-	PLAYERCOLOUR startingPlayer;
+	PlayingOrder &playingOrder;
+	std::vector<AI>* playerList;
+	Board &board;
+
+	AI* roundStartingPlayer;
 	City** playingCards;
 	Counter lostPoints;
 
 	Pawn** pawnList;
 
-	unsigned moves;
-	Move** moveList;
+	std::vector<Move> moveList;
+
+	void addMove(Move);
 };
 
 #endif /* ROUNDLOGGER_H_ */

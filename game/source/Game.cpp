@@ -108,8 +108,8 @@ void Game::spieleRunde(short startspieler) {
 		currentState.setPlayersTurn(spielerfarbe);
 		State kopie(currentState);
 		Move aktuellerZug = KIliste[spielerAmZug].zug(kopie);
-		if (aktuellerZug.gueltig(currentState, spielerfarbe)) {
-			aktuellerZug.ausfuehren(currentState);
+		if (aktuellerZug.valid(currentState, spielerfarbe)) {
+			aktuellerZug.execute(currentState);
 		}
 		currentState.aktAusgabe();
 		stateList.push_back(&currentState);
@@ -169,8 +169,8 @@ void Game::PoeppelAufstellen(short startspieler) {
 	short nr = startspieler - 1;
 	do {
 		nr = (nr + 1) % spieleranzahl;
-		Vector nrWahl = KIliste[nr].poeppelSetzen(currentState);
+		Vector nrWahl = KIliste[nr].setPawn(currentState);
 		Pawn neuGesetzt(KIliste[nr].spielerfarbe, nrWahl);
-		currentState.addPoeppel(neuGesetzt);
+		currentState.addPawn(neuGesetzt);
 	} while (nr != (startspieler - 1 + spieleranzahl) % spieleranzahl);
 }

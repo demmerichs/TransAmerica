@@ -25,8 +25,8 @@ public:
 	Move(PLAYERCOLOUR spielerfarbe, const Connection* belegt1, const Connection* belegt2);
 	virtual ~Move();
 
-	bool gueltig(State, PLAYERCOLOUR);
-	void ausfuehren(State&) const;
+	bool valid(State, PLAYERCOLOUR);
+	void execute(State&) const;
 
 	void dump() const;
 	Move& operator=(const Move& zuweisung) {

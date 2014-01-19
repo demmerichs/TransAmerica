@@ -51,7 +51,7 @@ public:
 	void resetNr_ZuNr_(const short, const short);
 	void schieneLegen(const Connection&);
 	const Connection* getVerbindung(Vector a, Vector b) const;
-	void addPoeppel(Pawn insert);
+	void addPawn(Pawn insert);
 	void resetAll();
 	unsigned short** evaluateBoard(Vector target) const;
 	unsigned short distance(Vector target,

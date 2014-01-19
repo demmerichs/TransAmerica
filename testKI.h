@@ -17,7 +17,7 @@ public:
 	testKI(PLAYERCOLOUR farbe);
 	virtual ~testKI();
 	Move zug(State &aktuell) const;
-	Vector poeppelSetzen(State &aktuell) const;
+	Vector setPawn(State &aktuell) const;
 
 	Vector getNaechsterPunktZu(Vector,State) const;
 

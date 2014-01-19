@@ -19,7 +19,7 @@
 class AI {
 protected:
 	virtual Move zug(State &aktuell) const =0;	//hier wird der Zug implementiert
-	virtual Vector poeppelSetzen(State &aktuell) const =0;	//hier muss der Pawn gesetzt werden
+	virtual Vector setPawn(State &aktuell) const =0;	//hier muss der Pawn gesetzt werden
 	const City** handkarten;	//array von handkartenzeigern, eine einfache Stadtliste
 public:
 	AI(PLAYERCOLOUR spielerfarbe);
@@ -28,6 +28,7 @@ public:
 	string programmierer;	//Hier kann ein Name fuer die KI eingespeichert werden
 
 	friend class Game;
+	friend class Round;
 };
 
 #endif /* AI_H_ */

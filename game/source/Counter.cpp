@@ -8,11 +8,20 @@
 #include "Counter.h"
 
 Counter::Counter() {
-	// TODO Auto-generated constructor stub
-
+	counter=new int[MAX_PLAYER];
+	for(int i=0;i<MAX_PLAYER;i++)
+		counter[i]=0;
 }
 
 Counter::~Counter() {
-	// TODO Auto-generated destructor stub
+	delete[] counter;
 }
 
+int Counter::add(AI* player, int counter){
+	this->counter[player->spielerfarbe]+=counter;
+	return this->counter[player->spielerfarbe];
+}
+
+int Counter::get(AI* player){
+	return counter[player->spielerfarbe];
+}
