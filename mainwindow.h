@@ -4,6 +4,8 @@
 #include "uiexec.h"
 #include "window.h"
 
+class QToolBar;
+
 class MainWindow : QMainWindow
 {
 public:

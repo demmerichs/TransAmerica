@@ -68,7 +68,7 @@ Window::Window(Game *game) :
 			SLOT(setZustandscounter(int)));
 	connect(showTownsCheckBox, SIGNAL(toggled(bool)), spielbrett,
 			SLOT(drawCityChanged(bool)));
-	//connect(this, SIGNAL(requestZp(int)), counterLCD, SLOT(display(int)));
+    connect(this, SIGNAL(requestZp(int)), counterLCD, SLOT(display(int)));
 	//setStyleSheet(" background-color: brown");
 }
 /**

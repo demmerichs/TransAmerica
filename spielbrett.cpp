@@ -3,9 +3,9 @@
 #include <cmath>
 #include "QKonstanten.h"
 
-const QPen thinPen(Qt::darkGray, 1);
-const QPen thinRedPen(Qt::red, 1);
-const QPen fatPen(Qt::black, 4);
+const QPen thinPen(Qt::darkGray,1,Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+const QPen thinRedPen(Qt::red, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+const QPen fatPen(Qt::black, 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
 const double sL = 30.2;
 
 enum Farbart{
@@ -65,11 +65,6 @@ void Spielbrett::paintEvent(QPaintEvent*)
 
  if(parentalWindow->zustandInitialized==false) {return;}
   QPixmap background("images/bg2.jpg");
-//  QPixmap blueCity("images/blau.gif");
-//  QPixmap greenCity("images/gruen.gif");
-//  QPixmap yellowCity("images/gelb.gif");
-//  QPixmap orangeCity("images/orange.gif");
-//  QPixmap redCity("images/rot.gif");
 
 QTransform scale;
   scale.scale(2,2);
