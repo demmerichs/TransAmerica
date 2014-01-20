@@ -11,6 +11,7 @@ class QLabel;
 class QSpinBox;
 class QCheckBox;
 class QLCDNumber;
+class QPushButton;
 
 class Spielbrett;
 
@@ -20,6 +21,7 @@ class Window : public QWidget
 
   friend class Spielbrett;
   friend class UIEXEC;
+  friend class MainWindow;
 public:
    Window(Game* game=0);
    void setGamep(Game* game);
@@ -46,6 +48,7 @@ private:
   QLabel* player5;
   QLabel* player6;
   QLabel* toolBoxLabel;
+  QPushButton* newGameButton;
   QSpinBox* vektorSpinBox;
   QCheckBox* showTownsCheckBox;
   QLCDNumber* counterLCD;
@@ -53,6 +56,7 @@ private:
   void setZp(State*);
 private slots:
   void setZustandscounter(int i);
+
 };
 
 #endif // WINDOW_H

@@ -27,12 +27,13 @@ Window::Window(Game *game) :
 	toolBoxLabel->setFont(font);
 	vektorSpinBox = new QSpinBox;
 	showTownsCheckBox = new QCheckBox;
+    newGameButton = new QPushButton(tr("New Game"));
 	vektorSpinBox->setRange(0, gamep->zustandsListe.size());
 	vektorSpinBox->setWrapping(false);
 	vektorSpinBox->setSuffix(tr(". Zustand"));
 	counterLCD = new QLCDNumber;
-	counterLCD->setDigitCount(4);
-	counterLCD->display(9999);
+    counterLCD->setDigitCount(2);
+    counterLCD->display(99);
 	spielbrett = new Spielbrett(this);
 
 	/**
@@ -55,11 +56,12 @@ Window::Window(Game *game) :
 	toolLayout->addRow(toolBoxLabel);
 	toolLayout->addRow(tr("Geladener Zustand:"), vektorSpinBox);
 	toolLayout->addRow(tr("Zeige Staedte:"), showTownsCheckBox);
+    toolLayout->addRow(newGameButton);
 	pointsLayout->addRow(tr("KI 1:"), player1);
 	pointsLayout->addRow(tr("KI 2:"), player2);
 	setLayout(mainLayout);
 
-	/**
+    /**
 	 Connect-Implementationen
 	 */
 	setWindowTitle(tr("Transamerica - Das Spiel (Testversion 1.0)"));
@@ -91,6 +93,8 @@ void Window::setGamep(Game *game) {
 	gamep = game;
 	vektorSpinBox->setRange(0, gamep->zustandsListe.size());
 }
+
+
 
 //void Window::playAutomatically(){
 //    for (int i=0; i<=100; i++) QTimer::singleShot(10, this , SLOT(setZustandcounter(int i)));
