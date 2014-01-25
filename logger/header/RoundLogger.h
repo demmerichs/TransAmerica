@@ -21,7 +21,7 @@ public:
 	virtual ~RoundLogger();
 
 	PlayingOrder &playingOrder;
-	std::vector<AI>* playerList;
+	std::vector<AI*> playerList;
 	Board &board;
 
 	AI* roundStartingPlayer;
@@ -30,9 +30,7 @@ public:
 
 	Pawn** pawnList;
 
-	std::vector<Move> moveList;
-
-	void addMove(Move);
+	std::vector<Move*> moveList;
 };
 
 #endif /* ROUNDLOGGER_H_ */

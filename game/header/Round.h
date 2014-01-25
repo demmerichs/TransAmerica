@@ -16,17 +16,18 @@
 #include"Board.h"
 
 class Round {
-	RoundLogger &roundLogger;
+	RoundLogger* roundLogger;
 	bool played;
 
 	void setPawns();
+	void dealCards();
 	int losingPoints(AI* player) const;
 	bool checkRoundWinner() const;
 	bool isRoundWinner(AI*) const;
 public:
 	State currentState;
 
-	Round(RoundLogger &roundLogger);
+	Round(RoundLogger* roundLogger);
 	virtual ~Round();
 
 	void play();

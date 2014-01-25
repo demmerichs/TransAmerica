@@ -21,13 +21,15 @@ public:
 	virtual ~GameLogger();
 
 	AI* gameStartingPlayer;
-	std::vector<AI>* playerList;
+	std::vector<AI*> playerList;
 	Board& board;
 	PlayingOrder playingOrder;
 
+	int deadLine; /** < if points equal or lower deadLine, you lose*/
+
 	Counter points;
 
-	std::vector<RoundLogger> roundList;
+	std::vector<RoundLogger*> roundList;
 };
 
 #endif /* GAMELOGGER_H_ */

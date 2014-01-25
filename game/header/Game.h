@@ -8,48 +8,21 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-#include<vector>
-#include<cstdlib>
-#include<ctime>
-using std::vector;
-#include"Board.h"
-#include"State.h"
-#include"Move.h"
-#include"AI.h"
-#include"Pawn.h"
-#include"Constants.h"
-#include"StateList.h"
+#include"GameLogger.h"
+#include"Counter.h"
+#include"Round.h"
 
 class Game {
-protected:
-	const short spieleranzahl;
-	const AI* KIliste;
-	short startstartspieler;
-	Board &gameBoard;
-	State currentState;
-	StateList stateList;
-	short* points;
-	std::vector<City***> playingCards;
-	short grenzwert;
-	short round, turn;
+	GameLogger* gameLogger;
+	bool played;
 
-	void setzeGrenzwertNeu();
-	void spieleRunde(short);
-	void kartenAusteilen();
-	void PoeppelAufstellen(short);
-	bool keinVerlierer() const;
-	bool keinRundenGewinner() const;
-	bool RundenGewinner(short spieler) const;
-	int punkteabzug(int spieler);
-
+	bool noLoser() const;
+	void setNewDeadLine();
 public:
-	Game(short anzahl, short starter, AI* KIaufgelistet, Board &bord);
-	Game(short anzahl, short starter, AI* KIaufgelistet, Board &bord,
-			unsigned seed);
+	Game(GameLogger* gameLogger);
 	virtual ~Game();
 
-	void spielen();
-
+	void play();
 };
 
 #endif /* GAME_H_ */

@@ -18,12 +18,14 @@ public:
 	SimulationLogger();
 	virtual ~SimulationLogger();
 
-	std::vector<AI> playerList;
+	std::vector<AI*> playerList;
 	Counter gamesWon;
 
-	std::vector<GameLogger> gameList;
+	std::vector<GameLogger*> gameList;
 
 	Board board;
+
+	unsigned int seed;
 };
 
 #endif /* SIMULATIONLOGGER_H_ */

@@ -17,7 +17,7 @@ public:
 	virtual ~Counter();
 
 	int add(AI* player, int counter);
-	int get(AI* player);
+	int get(AI* player) const;
 };
 
 #endif /* COUNTER_H_ */
