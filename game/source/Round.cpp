@@ -5,7 +5,7 @@
  *      Author: David
  */
 
-#include "Round.h"
+#include "../header/Round.h"
 
 Round::Round(RoundLogger* roundLogger) :
 		roundLogger(roundLogger), played(false), currentState(
@@ -26,18 +26,20 @@ void Round::play() {
 			roundLogger->roundStartingPlayer);
 	while (checkRoundWinner()) {
 		State copy(currentState);
-		Move* currentMove = currentPlayer->zug(copy);
+		Move* currentMove = new Move(currentPlayer->zug(copy));
 		if (currentMove->valid(currentState, currentPlayer->spielerfarbe)) {
 			currentMove->execute(currentState);
 			roundLogger->moveList.push_back(currentMove);
 		}
-		//currentState.aktAusgabe();
+		currentState.aktAusgabe();
+		++currentPlayer;
 	}
 	PlayingOrder::iterator playerIterator = roundLogger->playingOrder.begin(
 			roundLogger->roundStartingPlayer);
 	do {
 		roundLogger->lostPoints.add(*playerIterator,
 				losingPoints(*playerIterator));
+		++playerIterator;
 	} while (playerIterator
 			!= roundLogger->playingOrder.begin(roundLogger->roundStartingPlayer));
 	//end play-slope
@@ -92,7 +94,7 @@ bool Round::isRoundWinner(AI* player) const {
 
 void Round::dealCards() {
 	short maxNr = MAX_STADTNR;
-	if (this->spieleranzahl < SPIELER_GRENZE)
+	if ((int)this->roundLogger->playerList.size() < SPIELER_GRENZE)
 		maxNr = STADTNR_GRENZE;
 
 	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {
@@ -109,16 +111,16 @@ void Round::dealCards() {
 			it += randomInt;
 			rest.erase(it);
 		}
-		for (int spielernr = 0; spielernr < spieleranzahl; spielernr++) {
-			KIliste[spielernr].handkarten[CITYCOLOUR_LIST[i]] =
-					gameBoard.getStadt(CITYCOLOUR_LIST[i], stapel[spielernr]);
+		for (int spielernr = 0; spielernr < (int)roundLogger->playerList.size(); spielernr++) {
+			roundLogger->playerList[spielernr]->handkarten[CITYCOLOUR_LIST[i]] =
+					roundLogger->board.getStadt(CITYCOLOUR_LIST[i], stapel[spielernr]);
 		}
 	}
 
 	cout << "Handkarten:" << endl;
-	for (int i = 0; i < spieleranzahl; i++) {
+	for (int i = 0; i < (int) roundLogger->playerList.size(); i++) {
 		cout << "Spieler " << (i + 1) << endl;
 		for (int j = 0; j < NUMBER_CITYCOLOURS; j++)
-			cout << KIliste[i].handkarten[j]->name << endl;
+			cout << roundLogger->playerList[i]->handkarten[j]->name << endl;
 	}
 }

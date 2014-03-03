@@ -8,6 +8,6 @@
 #ifndef CONSTANTS_H_
 #define CONSTANTS_H_
 
-#include "standardConstants.h"
+#include "../boardSettings/standard/standardConstants.h"
 
 #endif /* CONSTANTS_H_ */

@@ -5,7 +5,7 @@
  *      Author: David
  */
 
-#include "Connection.h"
+#include "../header/Connection.h"
 
 Connection::Connection(const Coordinate &first, const Coordinate &second,
 		bool hindernis) :

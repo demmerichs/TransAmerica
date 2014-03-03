@@ -9,13 +9,14 @@
 #define SIMULATIONLOGGER_H_
 
 #include<vector>
-#include"AI.h"
+#include"../../game/header/AI.h"
 #include"GameLogger.h"
-#include"Counter.h"
+#include"../../game/header/Counter.h"
+#include<ctime>
 
 class SimulationLogger {
 public:
-	SimulationLogger();
+	SimulationLogger(std::vector<AI*> playerList, Board& board, int numberOfPlayers, unsigned int seed=(unsigned) time(0));
 	virtual ~SimulationLogger();
 
 	std::vector<AI*> playerList;
@@ -26,6 +27,8 @@ public:
 	Board board;
 
 	unsigned int seed;
+
+	std::vector<AI*> getPlayingOrder(int simulationNumber);
 };
 
 #endif /* SIMULATIONLOGGER_H_ */

@@ -14,10 +14,14 @@ class Counter {
 	int* counter;
 public:
 	Counter();
+	Counter(const Counter& copy);
 	virtual ~Counter();
 
 	int add(AI* player, int counter);
 	int get(AI* player) const;
+
+	Counter operator-(const Counter& rhs) const;
+	Counter operator=(const Counter& copy);
 };
 
 #endif /* COUNTER_H_ */

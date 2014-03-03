@@ -5,7 +5,7 @@
  *      Author: David
  */
 
-#include "State.h"
+#include "../header/State.h"
 
 State::State(Board &board) :
 		anzahlPoeppel(0), Spielbrett(board) {

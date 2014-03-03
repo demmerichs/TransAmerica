@@ -5,11 +5,18 @@
  *      Author: David
  */
 
-#include "GameLogger.h"
+#include "../header/GameLogger.h"
 
-GameLogger::GameLogger() {
-	// TODO Auto-generated constructor stub
-
+GameLogger::GameLogger(std::vector<AI*> playerList, Board& board,
+		PlayingOrder playingOrder, AI* gameStartingPlayer) :
+		gameStartingPlayer(gameStartingPlayer), playerList(playerList), board(
+				board), playingOrder(playingOrder), deadLine(0) {
+	PlayingOrder::iterator playerIterator = playingOrder.begin(
+			gameStartingPlayer);
+	do {
+		points.add(*playerIterator, 13);
+		++playerIterator;
+	} while (*playerIterator != gameStartingPlayer);
 }
 
 GameLogger::~GameLogger() {

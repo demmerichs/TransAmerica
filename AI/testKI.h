@@ -8,9 +8,12 @@
 #ifndef TESTKI_H_
 #define TESTKI_H_
 
-#include "AI.h"
-#include"Move.h"
-#include"State.h"
+#include "../game/header/AI.h"
+#include"../game/header/Move.h"
+#include"../game/header/State.h"
+#include "../game/header/Vector.h"
+#include "../game/header/Constants.h"
+#include <cmath>
 
 class testKI: public AI {
 public:
@@ -19,7 +22,7 @@ public:
 	Move zug(State &aktuell) const;
 	Vector setPawn(State &aktuell) const;
 
-	Vector getNaechsterPunktZu(Vector,State) const;
+	Vector getNaechsterPunktZu(Vector, State) const;
 
 	static short sign(short);
 };

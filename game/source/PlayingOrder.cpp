@@ -5,13 +5,15 @@
  *      Author: David
  */
 
-#include "PlayingOrder.h"
+#include "../header/PlayingOrder.h"
 
-PlayingOrder::PlayingOrder(int numberPlayers, AI** order) {
-	list=new PlayingOrderElement*[numberPlayers];
-	for(int i=0;i<numberPlayers-1;i++)
+PlayingOrder::PlayingOrder(std::vector<AI*> order) {
+	list=new PlayingOrderElement*[order.size()];
+	for(int i=0;i<(int)order.size()-1;i++)
 		list[i]=new PlayingOrderElement(order[i],list[i+1]);
-	list[numberPlayers]=new PlayingOrderElement(order[numberPlayers],list[0]);
+	list[order.size()-1]=new PlayingOrderElement(order[order.size()-1],list[0]);
+	for(int i=0;i<(int)order.size()-1;i++)
+		list[i]->nextPlayer=list[i+1];
 }
 
 PlayingOrder::~PlayingOrder() {

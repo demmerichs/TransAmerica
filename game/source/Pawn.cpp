@@ -5,7 +5,7 @@
  *      Author: David
  */
 
-#include "Pawn.h"
+#include "../header/Pawn.h"
 
 Pawn::Pawn(PLAYERCOLOUR farb, Vector pos) :
 		Vector(pos), spielerfarbe(farb) {

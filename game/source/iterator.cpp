@@ -5,7 +5,7 @@
  *      Author: David
  */
 
-#include "PlayingOrder.h"
+#include "../header/PlayingOrder.h"
 
 PlayingOrder::iterator::iterator(PlayingOrderElement* cursor) :
 		cursor(cursor) {

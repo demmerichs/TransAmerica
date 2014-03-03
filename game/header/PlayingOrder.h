@@ -22,7 +22,7 @@ class PlayingOrder {
 	PlayingOrderElement** list;
 public:
 	//PlayingOrder();
-	PlayingOrder(int numberPlayers, AI** order);
+	PlayingOrder(std::vector<AI*> order);
 	virtual ~PlayingOrder();
 
 	class iterator{

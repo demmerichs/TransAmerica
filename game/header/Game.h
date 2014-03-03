@@ -8,7 +8,7 @@
 #ifndef GAME_H_
 #define GAME_H_
 
-#include"GameLogger.h"
+#include"../../logger/header/GameLogger.h"
 #include"Counter.h"
 #include"Round.h"
 

@@ -5,7 +5,7 @@
  *      Author: David
  */
 
-#include "AI.h"
+#include "../header/AI.h"
 
 AI::AI(PLAYERCOLOUR farb): spielerfarbe(farb){
 	handkarten=new const City*[NUMBER_CITYCOLOURS];

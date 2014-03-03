@@ -5,7 +5,7 @@
  *      Author: David
  */
 
-#include "Move.h"
+#include "../header/Move.h"
 
 /*Zug::Zug(short spielerfarbe) :
  gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), spielerfarbe(

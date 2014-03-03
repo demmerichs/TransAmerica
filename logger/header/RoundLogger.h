@@ -9,15 +9,16 @@
 #define ROUNDLOGGER_H_
 
 #include<vector>
-#include"Constants.h"
-#include"PlayingOrder.h"
-#include"Counter.h"
-#include"Move.h"
-#include"Pawn.h"
+#include"../../game/header/Constants.h"
+#include"../../game/header/PlayingOrder.h"
+#include"../../game/header/Counter.h"
+#include"../../game/header/Move.h"
+#include"../../game/header/Pawn.h"
 
 class RoundLogger {
 public:
-	RoundLogger();
+	RoundLogger(PlayingOrder& playingOrder, std::vector<AI*> playerList,
+			Board& board, AI* roundStartingPlayer);
 	virtual ~RoundLogger();
 
 	PlayingOrder &playingOrder;

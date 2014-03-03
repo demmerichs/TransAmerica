@@ -3,7 +3,7 @@
 #include "window.h"
 #include"Constants.h"
 #include"Board.h"
-#include"GraphicGame.h"
+#include"SimulationLogger.h"
 #include <QString>
 
 
@@ -14,7 +14,7 @@ public:
   UIEXEC();
   Window* wp;
   Board* board;
-  GraphicGame* game1;
+  SimulationLogger* simulation;
   void doTheMagic();
 
 };

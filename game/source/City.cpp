@@ -5,7 +5,7 @@
  *      Author: David
  */
 
-#include "City.h"
+#include "../header/City.h"
 
 City::City(string name, CITYCOLOUR cityColour, short number, Vector place) :
 		Vector(place), name(name), cityColour(cityColour), number(number) {

@@ -5,7 +5,7 @@
  *      Author: David
  */
 
-#include "Coordinate.h"
+#include "../header/Coordinate.h"
 
 Coordinate::Coordinate(short x, short y) :
 		Vector(x, y), vorOrt(0){

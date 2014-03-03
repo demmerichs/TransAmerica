@@ -5,7 +5,7 @@
  *      Author: David
  */
 
-#include "Game.h"
+#include "../header/Game.h"
 
 #include <QtCore/QtCore>
 
@@ -18,19 +18,42 @@ Game::~Game() {
 
 void Game::play() {
 	assert(!played);
-
+	PlayingOrder::iterator playerIterator = gameLogger->playingOrder.begin(
+			gameLogger->gameStartingPlayer);
 	while (noLoser() && gameLogger->roundList.size() < 2) {
-		RoundLogger* currentRoundLogger = new RoundLogger;
+		RoundLogger* currentRoundLogger = new RoundLogger(
+				gameLogger->playingOrder, gameLogger->playerList,
+				gameLogger->board, *playerIterator);
 		Round currentRound(currentRoundLogger);
 		currentRound.play();
+		gameLogger->points = gameLogger->points
+				- currentRoundLogger->lostPoints;
 		gameLogger->roundList.push_back(currentRoundLogger);
+		std::cout << "Round ended" << std::endl;
+		for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
+			std::cout << "Player " << gameLogger->playerList[i]->spielerfarbe
+					<< " has "
+					<< gameLogger->points.get(gameLogger->playerList[i])
+					<< " points!" << std::endl;
+		++playerIterator;
 	}
 	setNewDeadLine();
 	while (noLoser()) {
-		RoundLogger* currentRoundLogger = new RoundLogger();
+		RoundLogger* currentRoundLogger = new RoundLogger(
+				gameLogger->playingOrder, gameLogger->playerList,
+				gameLogger->board, *playerIterator);
 		Round currentRound(currentRoundLogger);
 		currentRound.play();
+		gameLogger->points = gameLogger->points
+				- currentRoundLogger->lostPoints;
 		gameLogger->roundList.push_back(currentRoundLogger);
+		std::cout << "Round ended" << std::endl;
+		for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
+			std::cout << "Player " << gameLogger->playerList[i]->spielerfarbe
+					<< " has "
+					<< gameLogger->points.get(gameLogger->playerList[i])
+					<< " points!" << std::endl;
+		++playerIterator;
 	}
 
 	played = true;
@@ -44,6 +67,7 @@ bool Game::noLoser() const {
 		retValue = retValue
 				&& (gameLogger->deadLine
 						< gameLogger->points.get(*playerIterator));
+		++playerIterator;
 	} while (playerIterator
 			!= gameLogger->playingOrder.begin(gameLogger->gameStartingPlayer));
 	return retValue;
@@ -61,5 +85,4 @@ void Game::setNewDeadLine() {
 	if (gameLogger->deadLine < 0)
 		gameLogger->deadLine = 0;
 }
-
 

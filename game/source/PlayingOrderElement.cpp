@@ -5,9 +5,12 @@
  *      Author: David
  */
 
-#include"PlayingOrder.h"
+#include "../header/PlayingOrder.h"
 
 PlayingOrder::PlayingOrderElement::PlayingOrderElement(AI* ai,
 		PlayingOrder::PlayingOrderElement* next) :
 		playersTurn(ai), nextPlayer(next) {
+}
+
+PlayingOrder::PlayingOrderElement::~PlayingOrderElement() {
 }

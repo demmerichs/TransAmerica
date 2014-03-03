@@ -6,9 +6,6 @@
  */
 
 #include "testKI.h"
-#include "Vector.h"
-#include "Constants.h"
-#include <cmath>
 
 testKI::testKI(PLAYERCOLOUR farb) :
 		AI(farb) {

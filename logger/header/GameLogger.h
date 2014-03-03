@@ -9,15 +9,15 @@
 #define GAMELOGGER_H_
 
 #include<vector>
-#include"PlayingOrder.h"
-#include"Constants.h"
+#include"../../game/header/PlayingOrder.h"
+#include"../../game/header/Constants.h"
 #include"RoundLogger.h"
-#include"Counter.h"
-#include"Board.h"
+#include"../../game/header/Counter.h"
+#include"../../game/header/Board.h"
 
 class GameLogger {
 public:
-	GameLogger();
+	GameLogger(std::vector<AI*> playerList, Board& board, PlayingOrder playingOrder, AI* gameStartingPlayer);
 	virtual ~GameLogger();
 
 	AI* gameStartingPlayer;

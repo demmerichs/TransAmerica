@@ -5,10 +5,13 @@
  *      Author: David
  */
 
-#include "RoundLogger.h"
+#include "../header/RoundLogger.h"
 
-RoundLogger::RoundLogger(){
-	// TODO Auto-generated constructor stub
+RoundLogger::RoundLogger(PlayingOrder& playingOrder,
+		std::vector<AI*> playerList, Board& board, AI* roundStartingPlayer) :
+		playingOrder(playingOrder), playerList(playerList), board(board), roundStartingPlayer(
+				roundStartingPlayer) {
+	//TODO playing-cards dealing
 }
 
 RoundLogger::~RoundLogger() {

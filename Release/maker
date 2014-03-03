@@ -1,5 +1,5 @@
 all:
-	rm -rf TransAmerica.rpo
+	rm -rf TransAmerica.pro
 	rm -rf Makefile
 	qmake -project ../
 	qmake -spec macx-g++ Release.pro

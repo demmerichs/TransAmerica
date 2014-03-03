@@ -5,7 +5,7 @@
  *      Author: David
  */
 
-#include "Board.h"
+#include "../header/Board.h"
 
 Board::Board() :
 		anzahlStaedte(35), Stadtliste(stadtlisteAnlegen()), Gitter(

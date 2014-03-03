@@ -5,14 +5,23 @@
  *      Author: David
  */
 
-#include "Simulation.h"
+#include "../header/Simulation.h"
 
-Simulation::Simulation() {
-	// TODO Auto-generated constructor stub
+Simulation::Simulation(SimulationLogger* simulationLogger) :
+		simulationLogger(simulationLogger), ran(false) {}
 
+Simulation::~Simulation() {}
+
+void Simulation::run() {
+	assert(!ran);
+	for (int i = 0; i < (int) simulationLogger->gameList.size(); i++) {
+		std::vector<AI*> order=simulationLogger->getPlayingOrder(i);
+		PlayingOrder playingOrder(order);
+		GameLogger* currentGameLogger=new GameLogger(simulationLogger->playerList,
+				simulationLogger->board, playingOrder, order[0]);
+		Game currentGame(currentGameLogger);
+		currentGame.play();
+		simulationLogger->gameList[i]=currentGameLogger;
+	}
+	ran=true;
 }
-
-Simulation::~Simulation() {
-	// TODO Auto-generated destructor stub
-}
-
