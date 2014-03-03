@@ -3,13 +3,8 @@
 
 #include <QWidget>
 #include <QColor>
-<<<<<<< HEAD
 #include "../../game/header/Constants.h"
 #include "../../game/header/State.h"
-=======
-#include "Konstant.h"
-#include "State.h"
->>>>>>> refs/remotes/origin/master
 #include "window.h"
 
 class Window;
@@ -18,7 +13,7 @@ class Spielbrett: public QWidget
 {
   Q_OBJECT
 public:
-  Spielbrett(Window* parentalWindow, QWidget* parent = 0);
+  Spielbrett(Window* parentalWindow);
   //QSize minimumSizeHint ()const;
   //QSize sizeHint ()const;
 

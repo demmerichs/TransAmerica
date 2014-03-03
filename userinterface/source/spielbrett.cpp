@@ -44,7 +44,7 @@ QPixmap getPixmap(CITYCOLOUR i) {
 		return QPixmap(" ");
 }
 
-Spielbrett::Spielbrett(Window* parentalWindow, QWidget* parent) :
+Spielbrett::Spielbrett(Window* parentalWindow) :
 		parentalWindow(parentalWindow) {
 
 	drawCity = false;

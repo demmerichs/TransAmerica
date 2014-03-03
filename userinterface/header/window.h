@@ -47,6 +47,7 @@ private:
 	QLabel* player5;
 	QLabel* player6;
 	QLabel* toolBoxLabel;
+	QPushButton* newGameButton;
 	QSpinBox* vektorSpinBox;
 	QCheckBox* showTownsCheckBox;
 	QLCDNumber* counterLCD;

@@ -24,7 +24,7 @@ Window::Window(SimulationLogger *game) :
 	vektorSpinBox = new QSpinBox;
 	showTownsCheckBox = new QCheckBox;
     newGameButton = new QPushButton(tr("New Game"));
-	vektorSpinBox->setRange(0, gamep->zustandsListe.size());
+	vektorSpinBox->setRange(0, simulationp->gameList[0]->roundList[0]->moveList.size());
 	vektorSpinBox->setWrapping(false);
 	vektorSpinBox->setSuffix(tr(". Zustand"));
 	counterLCD = new QLCDNumber;
