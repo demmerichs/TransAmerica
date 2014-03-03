@@ -16,7 +16,8 @@
 
 class SimulationLogger {
 public:
-	SimulationLogger(std::vector<AI*> playerList, Board& board, int numberOfPlayers, unsigned int seed=(unsigned) time(0));
+	SimulationLogger(std::vector<AI*> playerList, Board& board,
+			int numberOfPlayers, unsigned int seed = (unsigned) time(0));
 	virtual ~SimulationLogger();
 
 	std::vector<AI*> playerList;

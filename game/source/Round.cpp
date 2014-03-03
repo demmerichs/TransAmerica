@@ -75,6 +75,7 @@ bool Round::checkRoundWinner() const {
 	do {
 		if(isRoundWinner(*playerIterator))
 			return false;
+		++playerIterator;
 	} while (playerIterator
 			!= roundLogger->playingOrder.begin(roundLogger->roundStartingPlayer));
 	return true;

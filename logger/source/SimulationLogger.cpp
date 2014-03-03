@@ -12,6 +12,7 @@ SimulationLogger::SimulationLogger(std::vector<AI*> playerList, Board& board,
 		playerList(playerList), gameList(
 				std::vector<GameLogger*>(numberOfGames)), board(board), seed(
 				seed) {
+	srand(seed);
 	assert(numberOfGames==(int)gameList.size());
 
 }
