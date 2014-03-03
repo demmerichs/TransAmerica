@@ -2,9 +2,9 @@
 #define WINDOW_H
 
 #include <QWidget>
-#include "State.h"
+#include "../../game/header/State.h"
 #include "spielbrett.h"
-#include "SimulationLogger.h"
+#include "../../logger/header/SimulationLogger.h"
 #include <iostream>
 #include <QtGui>
 

@@ -3,3 +3,5 @@
 /sources.mk
 /subdir.mk
 /AI
+/makefile
+/objects.mk

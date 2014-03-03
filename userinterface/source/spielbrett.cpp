@@ -1,7 +1,7 @@
 #include <QtGui>
-#include "spielbrett.h"
+#include "../header/spielbrett.h"
 #include <cmath>
-#include "QKonstanten.h"
+#include "../header/QKonstanten.h"
 
 const QPen thinPen(Qt::darkGray, 1);
 const QPen thinRedPen(Qt::red, 1);
