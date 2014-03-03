@@ -13,7 +13,7 @@ void UIEXEC::doTheMagic() {
 	/**
 	 window implementation
 	 */
-	Board* board = new Board;
+	board = new Board;
 	board->Ausgabe();
 	std::vector<AI*> players;
 	players.push_back(new testKI(P_YELLOW));

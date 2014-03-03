@@ -20,6 +20,7 @@ Q_OBJECT
 
 	friend class Spielbrett;
 	friend class UIEXEC;
+	friend class MainWindow;
 public:
 	Window(SimulationLogger* game = 0);
 	void setsimulationp(SimulationLogger* game);

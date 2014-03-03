@@ -3,9 +3,9 @@
 #include <cmath>
 #include "../header/QKonstanten.h"
 
-const QPen thinPen(Qt::darkGray, 1);
-const QPen thinRedPen(Qt::red, 1);
-const QPen fatPen(Qt::black, 4);
+const QPen thinPen(Qt::darkGray,1,Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+const QPen thinRedPen(Qt::red, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+const QPen fatPen(Qt::black, 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
 const double sL = 30.2;
 
 enum Farbart {

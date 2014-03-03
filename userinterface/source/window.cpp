@@ -23,15 +23,14 @@ Window::Window(SimulationLogger *game) :
 	toolBoxLabel->setFont(font);
 	vektorSpinBox = new QSpinBox;
 	showTownsCheckBox = new QCheckBox;
-	vektorSpinBox->setRange(0,
-			simulationp->gameList[0]->roundList[0]->moveList.size()); //TODO more spinboxes
+    newGameButton = new QPushButton(tr("New Game"));
+	vektorSpinBox->setRange(0, gamep->zustandsListe.size());
 	vektorSpinBox->setWrapping(false);
 	vektorSpinBox->setSuffix(tr(". Zustand"));
 	counterLCD = new QLCDNumber;
-	counterLCD->setDigitCount(4);
-	counterLCD->display(9999);
+    counterLCD->setDigitCount(2);
+    counterLCD->display(99);
 	spielbrett = new Spielbrett(this);
-
 	/**
 	 Layout-Design
 	 */
@@ -52,6 +51,7 @@ Window::Window(SimulationLogger *game) :
 	toolLayout->addRow(toolBoxLabel);
 	toolLayout->addRow(tr("Geladener Zustand:"), vektorSpinBox);
 	toolLayout->addRow(tr("Zeige Staedte:"), showTownsCheckBox);
+    toolLayout->addRow(newGameButton);
 	pointsLayout->addRow(tr("KI 1:"), player1);
 	pointsLayout->addRow(tr("KI 2:"), player2);
 	setLayout(mainLayout);

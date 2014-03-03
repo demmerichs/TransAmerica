@@ -3,8 +3,13 @@
 
 #include <QWidget>
 #include <QColor>
+<<<<<<< HEAD
 #include "../../game/header/Constants.h"
 #include "../../game/header/State.h"
+=======
+#include "Konstant.h"
+#include "State.h"
+>>>>>>> refs/remotes/origin/master
 #include "window.h"
 
 class Window;
