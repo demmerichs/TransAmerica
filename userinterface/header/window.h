@@ -24,9 +24,8 @@ class Window : public QWidget
   friend class UIEXEC;
 public:
    Window(SimulationLogger* game=0);
-   void setGamep(SimulationLogger* game);
+   void setsimulationp(SimulationLogger* game);
 private:
-  State* aZp;
   SimulationLogger* simulationp;
   Spielbrett* spielbrett;
   int Zustandcounter;

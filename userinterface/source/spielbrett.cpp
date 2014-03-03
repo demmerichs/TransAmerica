@@ -87,6 +87,14 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	if (parentalWindow->zustandInitialized == false) {
 		return;
 	}
+
+	//konstruiere aZp, workaround TODO
+	State* aZp = new State(parentalWindow->simulationp->board);
+	for(int i=0;i<parentalWindow->Zustandcounter;i++){
+		parentalWindow->simulationp->gameList[0]->roundList[0]->moveList[i]->execute(*aZp);
+	}
+	//end TODO
+
 	QPixmap background("images/bg2.jpg");
 //  QPixmap blueCity("images/blau.gif");
 //  QPixmap greenCity("images/gruen.gif");
@@ -113,30 +121,30 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 
 	for (int i = 0; i < MAX_X; i++) {
 		for (int j = 0; j < MAX_Y; j++) {
-			if (!(parentalWindow->aZp->Spielbrett.Kanten[i][j][0] == NULL)) {
-				if (parentalWindow->aZp->schieneGelegt[i][j][0] == true) {
+			if (!(aZp->Spielbrett.Kanten[i][j][0] == NULL)) {
+				if (aZp->schieneGelegt[i][j][0] == true) {
 					painter.setPen(fatPen);
-				} else if ((parentalWindow->aZp->Spielbrett.Kanten[i][j][0])->hindernis
+				} else if ((aZp->Spielbrett.Kanten[i][j][0])->hindernis
 						== true) {
 					painter.setPen(thinRedPen);
 				} else
 					painter.setPen(thinPen);
 				painter.drawLine(i * sL, j * sL, i * sL + sL, j * sL);
 			}
-			if (!(parentalWindow->aZp->Spielbrett.Kanten[i][j][2] == NULL)) {
-				if (parentalWindow->aZp->schieneGelegt[i][j][2] == true) {
+			if (!(aZp->Spielbrett.Kanten[i][j][2] == NULL)) {
+				if (aZp->schieneGelegt[i][j][2] == true) {
 					painter.setPen(fatPen);
-				} else if ((parentalWindow->aZp->Spielbrett.Kanten[i][j][2])->hindernis
+				} else if ((aZp->Spielbrett.Kanten[i][j][2])->hindernis
 						== true) {
 					painter.setPen(thinRedPen);
 				} else
 					painter.setPen(thinPen);
 				painter.drawLine(i * sL, j * sL, i * sL + sL, j * sL + sL);
 			}
-			if (!(parentalWindow->aZp->Spielbrett.Kanten[i][j][1] == NULL)) {
-				if (parentalWindow->aZp->schieneGelegt[i][j][1] == true) {
+			if (!(aZp->Spielbrett.Kanten[i][j][1] == NULL)) {
+				if (aZp->schieneGelegt[i][j][1] == true) {
 					painter.setPen(fatPen);
-				} else if ((parentalWindow->aZp->Spielbrett.Kanten[i][j][1])->hindernis
+				} else if ((aZp->Spielbrett.Kanten[i][j][1])->hindernis
 						== true) {
 					painter.setPen(thinRedPen);
 				} else
@@ -166,42 +174,40 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	 */
 
 	for (int i = 0; i < 35; i++) {
-		if (parentalWindow->aZp->Spielbrett.Stadtliste[i] != NULL) {
-			/*cout << "i = " << i << "  x = " <<parentalWindow->aZp->gameBoard.Stadtliste[i]->place.x
-			 << "  y = " << parentalWindow->aZp->gameBoard.Stadtliste[i]->place.y << endl;
-			 // << "  Stadt = " << parentalWindow->aZp->gameBoard.Stadtliste[i]->name<< endl;
+		if (aZp->Spielbrett.Stadtliste[i] != NULL) {
+			/*cout << "i = " << i << "  x = " <<aZp->gameBoard.Stadtliste[i]->place.x
+			 << "  y = " << aZp->gameBoard.Stadtliste[i]->place.y << endl;
+			 // << "  Stadt = " << aZp->gameBoard.Stadtliste[i]->name<< endl;
 			 */
 			painter.drawPixmap(
 					transform.map(
 							QPoint(
-									(parentalWindow->aZp->Spielbrett.Stadtliste[i]->x)
+									(aZp->Spielbrett.Stadtliste[i]->x)
 											* sL - 12,
-									(parentalWindow->aZp->Spielbrett.Stadtliste[i]->y)
+									(aZp->Spielbrett.Stadtliste[i]->y)
 											* sL - 8.5)),
 					getPixmap(
-							parentalWindow->aZp->Spielbrett.Stadtliste[i]->cityColour));
+							aZp->Spielbrett.Stadtliste[i]->cityColour));
 		}
 	}
 	/* for(int i=0; i<2; i++)
 	 {
 	 for (int j=0; j<5; j++){
-	 if (parentalWindow->gamep->KIliste[i].handkarten[j]!=NULL)
+	 if (parentalWindow->simulationp->KIliste[i].handkarten[j]!=NULL)
 	 {
-	 painter.drawPixmap(transform.map(QPoint((parentalWindow->gamep->KIliste[i].handkarten[j]->place.x)*sL-12,
-	 (parentalWindow->gamep->KIliste[i].handkarten[j]->place.y)*sL-8.5)),
-	 QPixmap(getColor(parentalWindow->gamep->KIliste[i].handkarten[j]->cityColour, stadtfarbe).s));
+	 painter.drawPixmap(transform.map(QPoint((parentalWindow->simulationp->KIliste[i].handkarten[j]->place.x)*sL-12,
+	 (parentalWindow->simulationp->KIliste[i].handkarten[j]->place.y)*sL-8.5)),
+	 QPixmap(getColor(parentalWindow->simulationp->KIliste[i].handkarten[j]->cityColour, stadtfarbe).s));
 	 }
 	 }
 	 }*/
 
 	//draws the poeppel
-	for (int k = 0; k < parentalWindow->aZp->anzahlPoeppel; k++) {
-		Pawn* i = parentalWindow->aZp->unsortedPawns[k];
+	for (int k = 0; k < aZp->anzahlPoeppel; k++) {
+		Pawn* i = aZp->unsortedPawns[k];
 		QBrush brush(getQColor(i->spielerfarbe));
 		painter.setBrush(brush);
-		QPoint point = transform.map(
-				QPoint(i->x * sL - 18,
-						i->y * sL - 25));
+		QPoint point = transform.map(QPoint(i->x * sL - 18, i->y * sL - 25));
 		painter.drawRoundedRect(point.x(), point.y(), 10, 25, 2, 2);
 
 	}

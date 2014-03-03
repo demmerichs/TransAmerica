@@ -1,8 +1,10 @@
-#include "window.h"
 
-Window::Window(GraphicGame *game) :
-		gamep(game) {
-	//this->setZp(gamep->stateList.get(0));
+#include "../header/window.h"
+#include "../../logger/header/SimulationLogger.h"
+
+Window::Window(SimulationLogger *game) :
+		simulationp(game) {
+	//this->setZp(simulationp->stateList.get(0));
 	this->zustandInitialized=false;
 	town1 = new QLabel(tr("Portland"));
 	town2 = new QLabel(tr("Sacramento"));
@@ -23,7 +25,7 @@ Window::Window(GraphicGame *game) :
 	toolBoxLabel->setFont(font);
 	vektorSpinBox = new QSpinBox;
 	showTownsCheckBox = new QCheckBox;
-	vektorSpinBox->setRange(0, gamep->stateList.size());
+	vektorSpinBox->setRange(0, simulationp->gameList[0]->roundList[0]->moveList.size());//TODO more spinboxes
 	vektorSpinBox->setWrapping(false);
 	vektorSpinBox->setSuffix(tr(". Zustand"));
 	counterLCD = new QLCDNumber;
@@ -72,20 +74,17 @@ Window::Window(GraphicGame *game) :
  */
 void Window::setZp(State *aktuellerZustand) {
 	cout << "Aufruf von setZp" << endl;
-	aZp = aktuellerZustand;
 	zustandInitialized = true;
 	spielbrett->update();
 }
 void Window::setZustandscounter(int i) {
 	cout << i << endl;
 	Zustandcounter = i;
-	if (gamep != 0)
-		setZp(gamep->stateList.get(i));
-
 }
-void Window::setGamep(GraphicGame *game) {
-	gamep = game;
-	vektorSpinBox->setRange(0, gamep->stateList.size());
+
+void Window::setsimulationp(SimulationLogger *game) {
+	simulationp = game;
+	vektorSpinBox->setRange(0, simulationp->gameList[0]->roundList[0]->moveList.size());
 }
 
 //void Window::playAutomatically(){

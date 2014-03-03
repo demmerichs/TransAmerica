@@ -1,23 +1,30 @@
-#include "uiexec.h"
 
-#include"AI.h"
-#include"testKI.h"
-#include<iostream>
-#include<cassert>
+#include "../header/uiexec.h"
+#include "../../game/header/AI.h"
+#include "../../ai/testKI.h"
+#include "../../game/header/Simulation.h"
+#include <iostream>
+#include <cassert>
 
 UIEXEC::UIEXEC() {
 }
+
 void UIEXEC::doTheMagic() {
 	/**
 	 window implementation
 	 */
-	board = new Board;
+	Board* board = new Board;
 	board->Ausgabe();
-	testKI virt[] = { testKI(P_YELLOW), testKI(P_BLUE), testKI(P_ORANGE) };
-	game1 = new GraphicGame(3, 0, virt, *board);
-	game1->spielen();
+	std::vector<AI*> players;
+	players.push_back(new testKI(P_YELLOW));
+	players.push_back(new testKI(P_BLUE));
+	players.push_back(new testKI(P_ORANGE));
 
-	wp = new Window(game1);
+	SimulationLogger* simulationLogger = new SimulationLogger(players, *board, 1);
+	Simulation simulation(simulationLogger);
+	simulation.run();
+
+	wp = new Window(simulationLogger);
 	wp->setWindowTitle(QObject::tr("Transamerica - Testversion - GITHUB"));
 	wp->show();
 

@@ -5,24 +5,20 @@
  *      Author: David
  */
 
-#include"logger/header/SimulationLogger.h"
-#include"AI/testKI.h"
-#include"game/header/AI.h"
-#include"game/header/Simulation.h"
-#include<vector>
+#include "logger/header/SimulationLogger.h"
+#include "AI/testKI.h"
+#include "game/header/AI.h"
+#include "game/header/Simulation.h"
+#include "userinterface/header/uiexec.h"
+#include <vector>
+#include <QApplication>
 
 int main(int argc, char* argv[]) {
-	Board* board = new Board;
-	board->Ausgabe();
-	std::vector<AI*> players;
-	players.push_back(new testKI(P_YELLOW));
-	players.push_back(new testKI(P_BLUE));
-	players.push_back(new testKI(P_ORANGE));
+	QApplication a(argc, argv);
+	UIEXEC uiexec;
+	uiexec.doTheMagic();
 
-	SimulationLogger* simulationLogger = new SimulationLogger(players, *board, 1);
-	Simulation simulation(simulationLogger);
-	simulation.run();
-	return 0;
+	return a.exec();
 }
 /*
  A---D
