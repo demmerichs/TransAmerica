@@ -28,6 +28,7 @@ public:
 	int deadLine; /** < if points equal or lower deadLine, you lose*/
 
 	Counter points;
+	Counter winnerPoints;
 
 	std::vector<RoundLogger*> roundList;
 };

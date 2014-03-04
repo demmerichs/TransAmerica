@@ -31,7 +31,6 @@ void Round::play() {
 			currentMove->execute(currentState);
 			roundLogger->moveList.push_back(currentMove);
 		}
-		currentState.aktAusgabe();
 		++currentPlayer;
 	}
 	PlayingOrder::iterator playerIterator = roundLogger->playingOrder.begin(

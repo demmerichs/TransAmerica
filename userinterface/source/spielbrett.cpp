@@ -176,19 +176,8 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 void Spielbrett::zustandChanged(int counter) {
 	update();
 }
+
 void Spielbrett::drawCityChanged(bool enable) {
 	drawCity = enable;
 	update();
 }
-/*
- QSize gameBoard::minimumSizeHint() const
- {
- return QSize(100,100);
- }
-
-
- QSize gameBoard::sizeHint() const
- {
- return QSize(1000,750);
- }
- */

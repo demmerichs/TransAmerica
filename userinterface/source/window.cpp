@@ -89,7 +89,6 @@ Window::Window(SimulationLogger *game) :
  Slot-Implementationen
  */
 void Window::setZp(State *aktuellerZustand) {
-	cout << "Aufruf von setZp" << endl;
 	aZp = aktuellerZustand;
 	spielbrett->update();
 }
@@ -144,7 +143,3 @@ void Window::setsimulationp(SimulationLogger *game) {
 	moveSpinBox->setRange(0,
 			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
 }
-
-//void Window::playAutomatically(){
-//    for (int i=0; i<=100; i++) QTimer::singleShot(10, this , SLOT(setZustandcounter(int i)));
-//}

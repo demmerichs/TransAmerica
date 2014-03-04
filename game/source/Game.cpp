@@ -53,9 +53,23 @@ void Game::play() {
 					<< " has "
 					<< gameLogger->points.get(gameLogger->playerList[i])
 					<< " points!" << std::endl;
+		std::cout << std::endl;
 		++playerIterator;
 	}
-
+	//TODO punktevergabe
+	int maxpoints = 0;
+	int numberWinners = 0;
+	for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
+		if (maxpoints < gameLogger->points.get(gameLogger->playerList[i]))
+			maxpoints = gameLogger->points.get(gameLogger->playerList[i]);
+	for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
+		if (maxpoints == gameLogger->points.get(gameLogger->playerList[i]))
+			numberWinners++;
+	for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
+		if (maxpoints == gameLogger->points.get(gameLogger->playerList[i]))
+			gameLogger->winnerPoints.add(gameLogger->playerList[i],
+					6 / numberWinners);
+	//TODO end
 	played = true;
 }
 

@@ -20,8 +20,11 @@ public:
 	int add(AI* player, int counter);
 	int get(AI* player) const;
 
+	Counter operator+(const Counter& rhs) const;
 	Counter operator-(const Counter& rhs) const;
 	Counter operator=(const Counter& copy);
+	Counter operator+=(const Counter& rhs);
+	Counter operator-=(const Counter& rhs);
 };
 
 #endif /* COUNTER_H_ */
