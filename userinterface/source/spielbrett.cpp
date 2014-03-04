@@ -56,9 +56,6 @@ Spielbrett::Spielbrett(Window* parentalWindow) :
 void Spielbrett::paintEvent(QPaintEvent*) {
 	QPainter painter(this);
 
-	if(!parentalWindow->zustandInitialized)
-		return;
-
 	QPixmap background("images/bg2.jpg");
 //  QPixmap blueCity("images/blau.gif");
 //  QPixmap greenCity("images/gruen.gif");

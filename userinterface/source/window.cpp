@@ -3,7 +3,6 @@
 
 Window::Window(SimulationLogger *game) :
 		simulationp(game) {
-	this->zustandInitialized = false;
 	town1 = new QLabel(tr("Portland"));
 	town2 = new QLabel(tr("Sacramento"));
 	town3 = new QLabel(tr("San Diego"));
@@ -22,17 +21,19 @@ Window::Window(SimulationLogger *game) :
 
 	toolBoxLabel->setFont(font);
 	gameSpinBox = new QSpinBox;
+	roundSpinBox = new QSpinBox;
+	moveSpinBox = new QSpinBox;
 	showTownsCheckBox = new QCheckBox;
 	newGameButton = new QPushButton(tr("New Game"));
-	gameSpinBox->setRange(0, simulationp->gameList.size());
+	gameSpinBox->setRange(1, simulationp->gameList.size());
 	gameSpinBox->setWrapping(false);
 	gameSpinBox->setSuffix(tr(". Spiel"));
-	roundSpinBox->setRange(0,
-			simulationp->gameList[gameCounter]->roundList.size());
+	roundSpinBox->setRange(1,
+			simulationp->gameList[0]->roundList.size());
 	roundSpinBox->setWrapping(false);
 	roundSpinBox->setSuffix(tr(". Runde"));
-	moveSpinBox->setRange(0,
-			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
+	moveSpinBox->setRange(1,
+			simulationp->gameList[0]->roundList[0]->moveList.size());
 	moveSpinBox->setWrapping(false);
 	moveSpinBox->setSuffix(tr(". Zug"));
 	counterLCD = new QLCDNumber;
@@ -81,6 +82,8 @@ Window::Window(SimulationLogger *game) :
 			SLOT(drawCityChanged(bool)));
 	//connect(this, SIGNAL(requestZp(int)), counterLCD, SLOT(display(int)));
 	//setStyleSheet(" background-color: brown");
+
+	setGameCounter(1);
 }
 /**
  Slot-Implementationen
@@ -88,17 +91,16 @@ Window::Window(SimulationLogger *game) :
 void Window::setZp(State *aktuellerZustand) {
 	cout << "Aufruf von setZp" << endl;
 	aZp = aktuellerZustand;
-	zustandInitialized = true;
 	spielbrett->update();
 }
 
 void Window::setGameCounter(int i) {
-	gameCounter = i;
+	gameCounter = i-1;
 	roundCounter = 0;
 	moveCounter = 0;
-	roundSpinBox->setRange(0,
+	roundSpinBox->setRange(1,
 			simulationp->gameList[gameCounter]->roundList.size());
-	moveSpinBox->setRange(0,
+	moveSpinBox->setRange(1,
 			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
 	if (simulationp != 0) {
 		State* currentState = new State(simulationp->board);
@@ -110,9 +112,9 @@ void Window::setGameCounter(int i) {
 }
 
 void Window::setRoundCounter(int i) {
-	roundCounter = i;
+	roundCounter = i-1;
 	moveCounter = 0;
-	moveSpinBox->setRange(0,
+	moveSpinBox->setRange(1,
 			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
 	if (simulationp != 0) {
 		State* currentState = new State(simulationp->board);

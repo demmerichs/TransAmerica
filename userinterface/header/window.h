@@ -31,7 +31,6 @@ private:
 	int gameCounter;
 	int roundCounter;
 	int moveCounter;
-	bool zustandInitialized;
 	/**
 	 diverse Labels
 	 diverse Combo-/Spin-boxen
