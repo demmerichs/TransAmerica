@@ -28,7 +28,9 @@ private:
 	State* aZp;
 	SimulationLogger* simulationp;
 	Spielbrett* spielbrett;
-	int Zustandcounter;
+	int gameCounter;
+	int roundCounter;
+	int moveCounter;
 	bool zustandInitialized;
 	/**
 	 diverse Labels
@@ -48,13 +50,17 @@ private:
 	QLabel* player6;
 	QLabel* toolBoxLabel;
 	QPushButton* newGameButton;
-	QSpinBox* vektorSpinBox;
+	QSpinBox* moveSpinBox;
+	QSpinBox* roundSpinBox;
+	QSpinBox* gameSpinBox;
 	QCheckBox* showTownsCheckBox;
 	QLCDNumber* counterLCD;
 	//void playAutomatically
 	void setZp(State*);
 private slots:
-	void setZustandscounter(int i);
+	void setGameCounter(int i);
+	void setRoundCounter(int i);
+	void setMoveCounter(int i);
 };
 
 #endif // WINDOW_H

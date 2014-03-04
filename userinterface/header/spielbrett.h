@@ -27,8 +27,6 @@ protected:
 private:
   bool drawCity;
   Window* parentalWindow;
-
-
 };
 
 #endif // SPIELBRETT_H

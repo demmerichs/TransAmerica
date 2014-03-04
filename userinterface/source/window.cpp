@@ -3,7 +3,7 @@
 
 Window::Window(SimulationLogger *game) :
 		simulationp(game) {
-	this->zustandInitialized=false;
+	this->zustandInitialized = false;
 	town1 = new QLabel(tr("Portland"));
 	town2 = new QLabel(tr("Sacramento"));
 	town3 = new QLabel(tr("San Diego"));
@@ -21,15 +21,23 @@ Window::Window(SimulationLogger *game) :
 	font.setPointSize(font.pointSize() * 1.4);
 
 	toolBoxLabel->setFont(font);
-	vektorSpinBox = new QSpinBox;
+	gameSpinBox = new QSpinBox;
 	showTownsCheckBox = new QCheckBox;
-    newGameButton = new QPushButton(tr("New Game"));
-	vektorSpinBox->setRange(0, simulationp->gameList[0]->roundList[0]->moveList.size());
-	vektorSpinBox->setWrapping(false);
-	vektorSpinBox->setSuffix(tr(". Zustand"));
+	newGameButton = new QPushButton(tr("New Game"));
+	gameSpinBox->setRange(0, simulationp->gameList.size());
+	gameSpinBox->setWrapping(false);
+	gameSpinBox->setSuffix(tr(". Spiel"));
+	roundSpinBox->setRange(0,
+			simulationp->gameList[gameCounter]->roundList.size());
+	roundSpinBox->setWrapping(false);
+	roundSpinBox->setSuffix(tr(". Runde"));
+	moveSpinBox->setRange(0,
+			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
+	moveSpinBox->setWrapping(false);
+	moveSpinBox->setSuffix(tr(". Zug"));
 	counterLCD = new QLCDNumber;
-    counterLCD->setDigitCount(2);
-    counterLCD->display(99);
+	counterLCD->setDigitCount(2);
+	counterLCD->display(99);
 	spielbrett = new Spielbrett(this);
 	/**
 	 Layout-Design
@@ -49,9 +57,11 @@ Window::Window(SimulationLogger *game) :
 	mainLayout->addLayout(pointsLayout, 10, 0, 2, 1);
 	mainLayout->addLayout(toolLayout, 0, 9, 8, 1);
 	toolLayout->addRow(toolBoxLabel);
-	toolLayout->addRow(tr("Geladener Zustand:"), vektorSpinBox);
+	toolLayout->addRow(tr("Geladenes Spiel:"), gameSpinBox);
+	toolLayout->addRow(tr("Geladene Runde: "), roundSpinBox);
+	toolLayout->addRow(tr("Geladener Zug:  "), moveSpinBox);
 	toolLayout->addRow(tr("Zeige Staedte:"), showTownsCheckBox);
-    toolLayout->addRow(newGameButton);
+	toolLayout->addRow(newGameButton);
 	pointsLayout->addRow(tr("KI 1:"), player1);
 	pointsLayout->addRow(tr("KI 2:"), player2);
 	setLayout(mainLayout);
@@ -61,8 +71,12 @@ Window::Window(SimulationLogger *game) :
 	 */
 	setWindowTitle(tr("Transamerica - Das Spiel (Testversion 1.0)"));
 	//connect(vektorSpinBox, SIGNAL(valueChanged(int)), spielbrett, SLOT(zustandChanged(int)));
-	connect(vektorSpinBox, SIGNAL(valueChanged(int)), this,
-			SLOT(setZustandscounter(int)));
+	connect(gameSpinBox, SIGNAL(valueChanged(int)), this,
+			SLOT(setGameCounter(int)));
+	connect(roundSpinBox, SIGNAL(valueChanged(int)), this,
+			SLOT(setRoundCounter(int)));
+	connect(moveSpinBox, SIGNAL(valueChanged(int)), this,
+			SLOT(setMoveCounter(int)));
 	connect(showTownsCheckBox, SIGNAL(toggled(bool)), spielbrett,
 			SLOT(drawCityChanged(bool)));
 	//connect(this, SIGNAL(requestZp(int)), counterLCD, SLOT(display(int)));
@@ -74,25 +88,59 @@ Window::Window(SimulationLogger *game) :
 void Window::setZp(State *aktuellerZustand) {
 	cout << "Aufruf von setZp" << endl;
 	aZp = aktuellerZustand;
-	zustandInitialized=true;
+	zustandInitialized = true;
 	spielbrett->update();
 }
 
-void Window::setZustandscounter(int i) {
-	cout << i << endl;
-	Zustandcounter = i;
+void Window::setGameCounter(int i) {
+	gameCounter = i;
+	roundCounter = 0;
+	moveCounter = 0;
+	roundSpinBox->setRange(0,
+			simulationp->gameList[gameCounter]->roundList.size());
+	moveSpinBox->setRange(0,
+			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
 	if (simulationp != 0) {
 		State* currentState = new State(simulationp->board);
-		for (int i = 0; i < Zustandcounter; i++)
-			simulationp->gameList[0]->roundList[0]->moveList[i]->execute(*currentState);
+		for (int i = 0; i < moveCounter; i++)
+			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList[i]->execute(
+					*currentState);
+		setZp(currentState);
+	}
+}
+
+void Window::setRoundCounter(int i) {
+	roundCounter = i;
+	moveCounter = 0;
+	moveSpinBox->setRange(0,
+			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
+	if (simulationp != 0) {
+		State* currentState = new State(simulationp->board);
+		for (int i = 0; i < moveCounter; i++)
+			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList[i]->execute(
+					*currentState);
+		setZp(currentState);
+	}
+}
+
+void Window::setMoveCounter(int i) {
+	moveCounter = i;
+	if (simulationp != 0) {
+		State* currentState = new State(simulationp->board);
+		for (int i = 0; i < moveCounter; i++)
+			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList[i]->execute(
+					*currentState);
 		setZp(currentState);
 	}
 }
 
 void Window::setsimulationp(SimulationLogger *game) {
 	simulationp = game;
-	vektorSpinBox->setRange(0,
-			simulationp->gameList[0]->roundList[0]->moveList.size());
+	gameSpinBox->setRange(0, simulationp->gameList.size());
+	roundSpinBox->setRange(0,
+			simulationp->gameList[gameCounter]->roundList.size());
+	moveSpinBox->setRange(0,
+			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
 }
 
 //void Window::playAutomatically(){
