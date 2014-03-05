@@ -32,7 +32,7 @@ Window::Window(SimulationLogger *game) :
 			simulationp->gameList[0]->roundList.size());
 	roundSpinBox->setWrapping(false);
 	roundSpinBox->setSuffix(tr(". Runde"));
-	moveSpinBox->setRange(1,
+	moveSpinBox->setRange(0,
 			simulationp->gameList[0]->roundList[0]->moveList.size());
 	moveSpinBox->setWrapping(false);
 	moveSpinBox->setSuffix(tr(". Zug"));
@@ -99,8 +99,10 @@ void Window::setGameCounter(int i) {
 	moveCounter = 0;
 	roundSpinBox->setRange(1,
 			simulationp->gameList[gameCounter]->roundList.size());
-	moveSpinBox->setRange(1,
+	roundSpinBox->setValue(1);
+	moveSpinBox->setRange(0,
 			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
+	moveSpinBox->setValue(0);
 	if (simulationp != 0) {
 		State* currentState = new State(simulationp->board);
 		for (int i = 0; i < moveCounter; i++)
@@ -113,8 +115,9 @@ void Window::setGameCounter(int i) {
 void Window::setRoundCounter(int i) {
 	roundCounter = i-1;
 	moveCounter = 0;
-	moveSpinBox->setRange(1,
+	moveSpinBox->setRange(0,
 			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
+	moveSpinBox->setValue(0);
 	if (simulationp != 0) {
 		State* currentState = new State(simulationp->board);
 		for (int i = 0; i < moveCounter; i++)
