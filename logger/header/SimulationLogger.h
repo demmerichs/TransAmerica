@@ -9,6 +9,7 @@
 #define SIMULATIONLOGGER_H_
 
 #include<vector>
+#include<cstdlib>
 #include"../../game/header/AI.h"
 #include"GameLogger.h"
 #include"../../game/header/Counter.h"

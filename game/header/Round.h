@@ -9,6 +9,7 @@
 #define ROUND_H_
 
 #include<cassert>
+#include<cstdlib>
 #include"PlayingOrder.h"
 #include"../../logger/header/RoundLogger.h"
 #include"State.h"

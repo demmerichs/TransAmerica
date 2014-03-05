@@ -19,11 +19,11 @@ void UIEXEC::doTheMagic() {
 	players.push_back(new testKI(P_BLUE));
 	players.push_back(new testKI(P_ORANGE));
 
-	SimulationLogger* simulationLogger = new SimulationLogger(players, *board, 100);
-	Simulation simulation(simulationLogger);
-	simulation.run();
+    simulationLogger = new SimulationLogger(players, *board, 10);
+    simulation = new Simulation(simulationLogger);
+    simulation->run();
 
-	wp = new Window(simulationLogger);
-	wp->setWindowTitle(QObject::tr("Transamerica - Testversion - GITHUB"));
-	wp->show();
+//	wp = new Window(simulationLogger);
+//	wp->setWindowTitle(QObject::tr("Transamerica - Testversion - GITHUB"));
+//	wp->show();
 }
