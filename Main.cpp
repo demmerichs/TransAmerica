@@ -6,18 +6,17 @@
  */
 
 #include "logger/header/SimulationLogger.h"
-#include "AI/testKI.h"
+#include "ai/testKI.h"
 #include "game/header/AI.h"
 #include "game/header/Simulation.h"
 #include "userinterface/header/uiexec.h"
+#include "userinterface/header/mainwindow.h"
 #include <vector>
 #include <QApplication>
 
 int main(int argc, char* argv[]) {
 	QApplication a(argc, argv);
-	UIEXEC uiexec;
-	uiexec.doTheMagic();
-
+    MainWindow mainWindow;
 	return a.exec();
 }
 /*

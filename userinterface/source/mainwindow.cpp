@@ -1,15 +1,21 @@
 #include "../header/mainwindow.h"
 #include "../header/window.h"
+#include "initialize.h"
 
 MainWindow::MainWindow()
 {
 	myGameExe = new UIEXEC;
-    wp = new Window(myGameExe->simulation);
     myGameExe->doTheMagic();
+    wp = new Window(myGameExe->simulationLogger);
     setCentralWidget(wp);
-    myToolBar = addToolBar(tr("Test"));
-   // connect(wp->newGameButton, SIGNAL(toggled(bool)), this, SLOT(newGame(bool))));
+    show();
+    connect(wp->newGameButton, SIGNAL(released()), this, SLOT(openInit()));
+}
 
-    //myToolBar = new QToolBar();
-    showMaximized();
+void MainWindow::openInit()
+{
+    Initialize dialog("Dies ist ein kleiner Test", this);
+    if (dialog.exec() == QDialog::Accepted);
+    setWindowTitle(dialog.name());
+    return;
 }

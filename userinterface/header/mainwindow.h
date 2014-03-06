@@ -6,8 +6,9 @@
 
 class QToolBar;
 
-class MainWindow : QMainWindow
+class MainWindow : public QMainWindow
 {
+    Q_OBJECT
 public:
     MainWindow();
 private:
@@ -15,7 +16,7 @@ private:
     Window* wp;
     QToolBar* myToolBar;
 private slots:
-    void newGame(bool isTrue);
+    void openInit();
 };
 
 #endif // MAINWINDOW_H
