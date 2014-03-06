@@ -55,11 +55,15 @@ private:
 	QCheckBox* showTownsCheckBox;
 	QLCDNumber* counterLCD;
 	//void playAutomatically
-	void setZp(State*);
+	void setZp();
+	void updateSpinBoxes();
+	bool setGameCounter(int i);
+	bool setRoundCounter(int i);
+	bool setMoveCounter(int i);
 private slots:
-	void setGameCounter(int i);
-	void setRoundCounter(int i);
-	void setMoveCounter(int i);
+	void gameSpinChanged(int i);
+	void roundSpinChanged(int i);
+	void moveSpinChanged(int i);
 };
 
 #endif // WINDOW_H

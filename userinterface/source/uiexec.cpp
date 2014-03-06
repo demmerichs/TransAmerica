@@ -19,7 +19,7 @@ void UIEXEC::doTheMagic() {
 	players.push_back(new testKI(P_BLUE));
 	players.push_back(new testKI(P_ORANGE));
 
-	SimulationLogger* simulationLogger = new SimulationLogger(players, *board, 100);
+	SimulationLogger* simulationLogger = new SimulationLogger(players, *board, 10);
 	Simulation simulation(simulationLogger);
 	simulation.run();
 

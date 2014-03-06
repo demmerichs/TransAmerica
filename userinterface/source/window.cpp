@@ -28,8 +28,7 @@ Window::Window(SimulationLogger *game) :
 	gameSpinBox->setRange(1, simulationp->gameList.size());
 	gameSpinBox->setWrapping(false);
 	gameSpinBox->setSuffix(tr(". Spiel"));
-	roundSpinBox->setRange(1,
-			simulationp->gameList[0]->roundList.size());
+	roundSpinBox->setRange(1, simulationp->gameList[0]->roundList.size());
 	roundSpinBox->setWrapping(false);
 	roundSpinBox->setSuffix(tr(". Runde"));
 	moveSpinBox->setRange(0,
@@ -73,76 +72,140 @@ Window::Window(SimulationLogger *game) :
 	setWindowTitle(tr("Transamerica - Das Spiel (Testversion 1.0)"));
 	//connect(vektorSpinBox, SIGNAL(valueChanged(int)), spielbrett, SLOT(zustandChanged(int)));
 	connect(gameSpinBox, SIGNAL(valueChanged(int)), this,
-			SLOT(setGameCounter(int)));
+			SLOT(gameSpinChanged(int)));
 	connect(roundSpinBox, SIGNAL(valueChanged(int)), this,
-			SLOT(setRoundCounter(int)));
+			SLOT(roundSpinChanged(int)));
 	connect(moveSpinBox, SIGNAL(valueChanged(int)), this,
-			SLOT(setMoveCounter(int)));
+			SLOT(moveSpinChanged(int)));
 	connect(showTownsCheckBox, SIGNAL(toggled(bool)), spielbrett,
 			SLOT(drawCityChanged(bool)));
 	//connect(this, SIGNAL(requestZp(int)), counterLCD, SLOT(display(int)));
 	//setStyleSheet(" background-color: brown");
-
-	setGameCounter(1);
+	gameCounter = 1;
+	roundCounter = 1;
+	moveCounter = 0;
+	aZp = 0;
+	updateSpinBoxes();
+	setZp();
 }
 /**
  Slot-Implementationen
  */
-void Window::setZp(State *aktuellerZustand) {
-	aZp = aktuellerZustand;
+void Window::setZp() {
+	if (simulationp != 0) {
+		if (aZp != 0)
+			delete aZp;
+		aZp = new State(simulationp->board);
+		for (int i = 0; i < moveCounter; i++)
+			simulationp->gameList[gameCounter - 1]->roundList[roundCounter - 1]->moveList[i]->execute(
+					*aZp);
+	}
 	spielbrett->update();
 }
 
-void Window::setGameCounter(int i) {
-	gameCounter = i-1;
-	roundCounter = 0;
-	moveCounter = 0;
-	roundSpinBox->setRange(1,
-			simulationp->gameList[gameCounter]->roundList.size());
-	roundSpinBox->setValue(1);
-	moveSpinBox->setRange(0,
-			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
-	moveSpinBox->setValue(0);
-	if (simulationp != 0) {
-		State* currentState = new State(simulationp->board);
-		for (int i = 0; i < moveCounter; i++)
-			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList[i]->execute(
-					*currentState);
-		setZp(currentState);
-	}
+bool Window::setGameCounter(int i) {
+	std::cout << "game" << std::endl;
+	int newGameCounter;
+	if (i == gameSpinBox->maximum())
+		newGameCounter = i - 1;
+	else if (i == gameSpinBox->minimum()) {
+		newGameCounter = i + 1;
+	} else
+		newGameCounter = i;
+	if (newGameCounter == gameCounter)
+		return false;
+	gameCounter = newGameCounter;
+	updateSpinBoxes();
+	return true;
 }
 
-void Window::setRoundCounter(int i) {
-	roundCounter = i-1;
-	moveCounter = 0;
-	moveSpinBox->setRange(0,
-			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
-	moveSpinBox->setValue(0);
-	if (simulationp != 0) {
-		State* currentState = new State(simulationp->board);
-		for (int i = 0; i < moveCounter; i++)
-			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList[i]->execute(
-					*currentState);
-		setZp(currentState);
-	}
+bool Window::setRoundCounter(int i) {
+	std::cout << "round" << std::endl;
+	int newRoundCounter;
+	if (i == roundSpinBox->maximum())
+		if (setGameCounter(gameCounter + 1))
+			newRoundCounter = roundSpinBox->minimum() + 1;
+		else
+			newRoundCounter = i - 1;
+	else if (i == roundSpinBox->minimum()) {
+		if (setGameCounter(gameCounter - 1))
+			newRoundCounter = roundSpinBox->maximum() - 1;
+		else
+			newRoundCounter = i + 1;
+	} else
+		newRoundCounter = i;
+	if (newRoundCounter == roundCounter)
+		return false;
+	roundCounter = newRoundCounter;
+	updateSpinBoxes();
+	return true;
 }
 
-void Window::setMoveCounter(int i) {
-	moveCounter = i;
-	if (simulationp != 0) {
-		State* currentState = new State(simulationp->board);
-		for (int i = 0; i < moveCounter; i++)
-			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList[i]->execute(
-					*currentState);
-		setZp(currentState);
+bool Window::setMoveCounter(int i) {
+	std::cout << "move" << std::endl;
+	int newMoveCounter;
+	if (i == moveSpinBox->maximum())
+		if (setRoundCounter(roundCounter + 1))
+			newMoveCounter = moveSpinBox->minimum() + 1;
+		else
+			newMoveCounter = i - 1;
+	else if (i == moveSpinBox->minimum()) {
+		if (setRoundCounter(roundCounter - 1))
+			newMoveCounter = moveSpinBox->maximum() - 1;
+		else
+			newMoveCounter = i + 1;
+	} else
+		newMoveCounter = i;
+	if (newMoveCounter == moveCounter) {
+		updateSpinBoxes();
+		return false;
 	}
+	moveCounter = newMoveCounter;
+	updateSpinBoxes();
+	return true;
+}
+
+void Window::gameSpinChanged(int i) {
+	setMoveCounter(0);
+	setRoundCounter(1);
+	setGameCounter(i);
+	setZp();
+}
+
+void Window::roundSpinChanged(int i) {
+	setMoveCounter(0);
+	setRoundCounter(i);
+	setZp();
+}
+
+void Window::moveSpinChanged(int i) {
+	setMoveCounter(i);
+	setZp();
 }
 
 void Window::setsimulationp(SimulationLogger *game) {
 	simulationp = game;
-	gameSpinBox->setRange(0, simulationp->gameList.size());
-	roundSpinBox->setRange(0,
-			simulationp->gameList[gameCounter]->roundList.size());
-	moveSpinBox->setRange(0,
-			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
+}
+
+void Window::updateSpinBoxes() {
+	gameSpinBox->blockSignals(true);
+	roundSpinBox->blockSignals(true);
+	moveSpinBox->blockSignals(true);
+	gameSpinBox->setRange(0, simulationp->gameList.size() + 1);
+	if (1 <= gameCounter && gameCounter <= (int) simulationp->gameList.size()) {
+		roundSpinBox->setRange(0,
+				simulationp->gameList[gameCounter - 1]->roundList.size() + 1);
+		if (1 <= roundCounter
+				&& roundCounter
+						<= (int) simulationp->gameList[gameCounter - 1]->roundList.size())
+			moveSpinBox->setRange(-1,
+					simulationp->gameList[gameCounter - 1]->roundList[roundCounter
+							- 1]->moveList.size() + 1);
+	}
+	gameSpinBox->setValue(gameCounter);
+	roundSpinBox->setValue(roundCounter);
+	moveSpinBox->setValue(moveCounter);
+	gameSpinBox->blockSignals(false);
+	roundSpinBox->blockSignals(false);
+	moveSpinBox->blockSignals(false);
 }

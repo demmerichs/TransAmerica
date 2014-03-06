@@ -184,6 +184,7 @@ Connection**** Board::kantenAnlegen() const {
 
 City** Board::stadtlisteAnlegen() const {
 	ifstream Stadtinput((BRETTNAME + "cities.txt").data());
+	//ifstream test("./game/boardSettings")
 	City** testStadtliste = new City*[anzahlStaedte];
 	for (int i = 0; i < anzahlStaedte; i++) {
 		string name;
