@@ -3,22 +3,30 @@
 
 #include <QDialog>
 #include <QLabel>
+#include <QSpinBox>
 #include <QLineEdit>
 #include <QDialogButtonBox>
-#include <QVBoxLayout>
-#include <QTableWidget>
+#include <QGridLayout>
+#include <QListWidget>
+#include <vector>
+#include "../game/header/AI.h"
+
 class Initialize: public QDialog
 {
 public:
     Initialize(const QString &title, QWidget* parent);
     QString name();
+    int numberOfGames();
+    std::vector<AI*> players;
 private:
     QStringList aiList;
     QLabel* nameLabel;
     QLineEdit* nameEdit;
-    QTableWidget* tableWidget;
+    QLabel* simulationLabel;
+    QSpinBox* simulationSpin;
+    QListWidget* listWidget;
     QDialogButtonBox* buttonBox;
-    QVBoxLayout* layout;
+    QGridLayout* layout;
 };
 
 #endif // INITIALIZE_H

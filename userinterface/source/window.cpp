@@ -2,7 +2,10 @@
 #include "../../logger/header/SimulationLogger.h"
 
 Window::Window(SimulationLogger *game) :
-		simulationp(game) {
+        simulationp(game) {
+    /**
+      Aukommentiert um Zusulassen, dass game = NULL
+      */
 	town1 = new QLabel(tr("Portland"));
 	town2 = new QLabel(tr("Sacramento"));
 	town3 = new QLabel(tr("San Diego"));
@@ -25,14 +28,18 @@ Window::Window(SimulationLogger *game) :
 	moveSpinBox = new QSpinBox;
 	showTownsCheckBox = new QCheckBox;
 	newGameButton = new QPushButton(tr("New Game"));
-	gameSpinBox->setRange(1, simulationp->gameList.size());
+    //gameSpinBox->setRange(1, simulationp->gameList.size());
 	gameSpinBox->setWrapping(false);
+    gameSpinBox->setSuffix(tr(". Spiel"));
+    //roundSpinBox->setRange(1,
+    //            simulationp->gameList[0]->roundList.size());
+    //roundSpinBox->setRange(1, simulationp->gameList[0]->roundList.size());
 	gameSpinBox->setSuffix(tr(". Spiel"));
-	roundSpinBox->setRange(1, simulationp->gameList[0]->roundList.size());
+    //roundSpinBox->setRange(1, simulationp->gameList[0]->roundList.size());
 	roundSpinBox->setWrapping(false);
 	roundSpinBox->setSuffix(tr(". Runde"));
-	moveSpinBox->setRange(0,
-			simulationp->gameList[0]->roundList[0]->moveList.size());
+    //moveSpinBox->setRange(0,
+    //        simulationp->gameList[0]->roundList[0]->moveList.size());
 	moveSpinBox->setWrapping(false);
 	moveSpinBox->setSuffix(tr(". Zug"));
 	counterLCD = new QLCDNumber;
@@ -69,8 +76,6 @@ Window::Window(SimulationLogger *game) :
 	/**
 	 Connect-Implementationen
 	 */
-	setWindowTitle(tr("Transamerica - Das Spiel (Testversion 1.0)"));
-	//connect(vektorSpinBox, SIGNAL(valueChanged(int)), spielbrett, SLOT(zustandChanged(int)));
 	connect(gameSpinBox, SIGNAL(valueChanged(int)), this,
 			SLOT(gameSpinChanged(int)));
 	connect(roundSpinBox, SIGNAL(valueChanged(int)), this,
@@ -78,30 +83,39 @@ Window::Window(SimulationLogger *game) :
 	connect(moveSpinBox, SIGNAL(valueChanged(int)), this,
 			SLOT(moveSpinChanged(int)));
 	connect(showTownsCheckBox, SIGNAL(toggled(bool)), spielbrett,
-			SLOT(drawCityChanged(bool)));
+            SLOT(drawCityChanged(bool)));
+    /**
+      Eventuell SimulationLogger* setzten
+      */
+    if (!simulationp==NULL) setsimulationp(game);
 	//connect(this, SIGNAL(requestZp(int)), counterLCD, SLOT(display(int)));
-	//setStyleSheet(" background-color: brown");
+
+    //setGameCounter(1);
+    //setStyleSheet(" background-color: brown");
 	gameCounter = 1;
 	roundCounter = 1;
 	moveCounter = 0;
+    aZp = NULL;
 	aZp = 0;
-	updateSpinBoxes();
+    if (!simulationp==NULL) updateSpinBoxes();
 	setZp();
 }
 /**
  Slot-Implementationen
  */
-void Window::setZp() {
-	if (simulationp != 0) {
-		if (aZp != 0)
-			delete aZp;
-		aZp = new State(simulationp->board);
-		for (int i = 0; i < moveCounter; i++)
-			simulationp->gameList[gameCounter - 1]->roundList[roundCounter - 1]->moveList[i]->execute(
-					*aZp);
-	}
-	spielbrett->update();
+void Window::setZp()
+{
+    if (simulationp != 0) {
+        if (aZp != 0)
+        delete aZp;
+        aZp = new State(simulationp->board);
+        for (int i = 0; i < moveCounter; i++)
+        simulationp->gameList[gameCounter - 1]->roundList[roundCounter - 1]->moveList[i]->execute(
+                    *aZp);
+    }
+    spielbrett->update();
 }
+
 
 bool Window::setGameCounter(int i) {
 	std::cout << "game" << std::endl;
@@ -137,9 +151,8 @@ bool Window::setRoundCounter(int i) {
 	if (newRoundCounter == roundCounter)
 		return false;
 	roundCounter = newRoundCounter;
-	updateSpinBoxes();
-	return true;
 }
+
 
 bool Window::setMoveCounter(int i) {
 	std::cout << "move" << std::endl;
@@ -185,6 +198,13 @@ void Window::moveSpinChanged(int i) {
 
 void Window::setsimulationp(SimulationLogger *game) {
 	simulationp = game;
+	gameSpinBox->setRange(0, simulationp->gameList.size());
+    setGameCounter(1);
+	roundSpinBox->setRange(0,
+			simulationp->gameList[gameCounter]->roundList.size());
+	moveSpinBox->setRange(0,
+			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
+
 }
 
 void Window::updateSpinBoxes() {

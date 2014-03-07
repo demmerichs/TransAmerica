@@ -56,6 +56,9 @@ Spielbrett::Spielbrett(Window* parentalWindow) :
 void Spielbrett::paintEvent(QPaintEvent*) {
 	QPainter painter(this);
 
+    if(parentalWindow->simulationp==NULL) return;
+    if(parentalWindow->aZp==NULL) return;
+
 	QPixmap background("images/bg2.jpg");
 //  QPixmap blueCity("images/blau.gif");
 //  QPixmap greenCity("images/gruen.gif");
@@ -81,8 +84,8 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	 */
 
 	for (int i = 0; i < MAX_X; i++) {
-		for (int j = 0; j < MAX_Y; j++) {
-			if (!(parentalWindow->aZp->Spielbrett.Kanten[i][j][0] == NULL)) {
+        for (int j = 0; j < MAX_Y; j++) {
+            if (!(parentalWindow->aZp->Spielbrett.Kanten[i][j][0] == NULL)) {
 				if (parentalWindow->aZp->schieneGelegt[i][j][0] == true) {
 					painter.setPen(fatPen);
 				} else if ((parentalWindow->aZp->Spielbrett.Kanten[i][j][0])->hindernis

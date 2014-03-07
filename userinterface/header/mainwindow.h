@@ -15,8 +15,10 @@ private:
     UIEXEC* myGameExe;
     Window* wp;
     QToolBar* myToolBar;
+    QAction* newSimulation;
 private slots:
     void openInit();
+    void startSimulation(int games);
 };
 
 #endif // MAINWINDOW_H
