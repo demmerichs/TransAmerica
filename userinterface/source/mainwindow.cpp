@@ -1,11 +1,12 @@
 #include "../header/mainwindow.h"
 #include "../header/window.h"
 #include "initialize.h"
+#include <iostream>
 
 MainWindow::MainWindow()
 {
 
-    wp = new Window;
+    wp = new Window();
     setCentralWidget(wp);
     show();
     connect(wp->newGameButton, SIGNAL(released()), this, SLOT(openInit()));
@@ -30,4 +31,12 @@ void MainWindow::openInit()
         startSimulation(dialog.numberOfGames());
        }
     return;
+}
+
+void MainWindow::mouseReleaseEvent(QMouseEvent* event)
+{
+    QPoint clickPoint = event->pos();
+    std::cout << "Mouse Click:" << "\t X:" << clickPoint.x()
+              << "\t Y:" << clickPoint.y() << std::endl;
+
 }
