@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vorort',['vorOrt',['../class_coordinate.html#aa8e26100ecf4f1c45555a7cb14f6364e',1,'Coordinate']]]
+  ['points',['points',['../class_game_logger.html#a55b51a277a00b08d8bbf68fe20fb8118',1,'GameLogger']]]
 ];

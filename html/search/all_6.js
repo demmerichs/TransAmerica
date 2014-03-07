@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['poeppel',['Poeppel',['../class_Pawn.html',1,'']]]
+  ['mainwindow',['MainWindow',['../class_main_window.html',1,'']]],
+  ['move',['Move',['../class_move.html',1,'']]]
 ];

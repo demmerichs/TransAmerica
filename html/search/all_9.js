@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['vector',['Vector',['../class_vector.html',1,'']]],
-  ['verbindung',['Verbindung',['../class_verbindung.html',1,'']]],
-  ['vorort',['vorOrt',['../class_coordinate.html#aa8e26100ecf4f1c45555a7cb14f6364e',1,'Coordinate']]]
+  ['simulation',['Simulation',['../class_simulation.html',1,'']]],
+  ['simulationlogger',['SimulationLogger',['../class_simulation_logger.html',1,'']]],
+  ['spielbrett',['Spielbrett',['../class_spielbrett.html',1,'']]],
+  ['state',['State',['../class_state.html',1,'']]]
 ];

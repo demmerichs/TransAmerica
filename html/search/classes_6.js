@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['statelist',['StateList',['../class_state_list.html',1,'']]]
+  ['pawn',['Pawn',['../class_pawn.html',1,'']]],
+  ['playingorder',['PlayingOrder',['../class_playing_order.html',1,'']]]
 ];

@@ -1,4 +1,3 @@
-
 #include "../header/uiexec.h"
 #include "../../game/header/AI.h"
 #include "../../ai/testKI.h"
@@ -19,9 +18,9 @@ void UIEXEC::doTheMagic() {
 	players.push_back(new testKI(P_BLUE));
 	players.push_back(new testKI(P_ORANGE));
 
-    simulationLogger = new SimulationLogger(players, *board, 10);
-    simulation = new Simulation(simulationLogger);
-    simulation->run();
+	simulationLogger = new SimulationLogger(players, *board, 10);
+	simulation = new Simulation(simulationLogger);
+	simulation->run();
 
 //	wp = new Window(simulationLogger);
 //	wp->setWindowTitle(QObject::tr("Transamerica - Testversion - GITHUB"));

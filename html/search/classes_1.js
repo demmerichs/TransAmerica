@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['city',['City',['../class_city.html',1,'']]],
-  ['coordinate',['Coordinate',['../class_coordinate.html',1,'']]]
+  ['board',['Board',['../class_board.html',1,'']]]
 ];

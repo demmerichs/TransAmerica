@@ -15,7 +15,7 @@ testKI::testKI(PLAYERCOLOUR farb) :
 testKI::~testKI() {
 }
 
-Move testKI::zug(State &aktuell) const {
+Move testKI::doMove(State &aktuell) const {
 	const State sicherkopie(aktuell);
 	const Connection* firsty = 0;
 	const Connection* secondary = 0;

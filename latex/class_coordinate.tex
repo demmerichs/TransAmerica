@@ -1,9 +1,8 @@
-\hypertarget{class_coordinate}{\section{Coordinate Class Reference}
+\section{Coordinate Class Reference}
 \label{class_coordinate}\index{Coordinate@{Coordinate}}
-}
 
 
-{\ttfamily \#include $<$Koordinate.\-h$>$}
+{\ttfamily \#include $<$Coordinate.\-h$>$}
 
 Inheritance diagram for Coordinate\-:\begin{figure}[H]
 \begin{center}
@@ -14,14 +13,14 @@ Inheritance diagram for Coordinate\-:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\hyperlink{class_coordinate_afa539ca7218f25717e25482babf0bfc9}{Coordinate} (short x, short y)
+{\bf Coordinate} (short x, short y)
 \item 
-\hyperlink{class_coordinate_ad60539c2d440527e34f4ab23a85c8389}{Coordinate} (short x, short y, const \hyperlink{class_city}{City} $\ast$const City\-On\-Coordinate)
+{\bf Coordinate} (short x, short y, const {\bf City} $\ast$const City\-On\-Coordinate)
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-const \hyperlink{class_city}{City} $\ast$const \hyperlink{class_coordinate_aa8e26100ecf4f1c45555a7cb14f6364e}{vor\-Ort}
+const {\bf City} $\ast$const {\bf vor\-Ort}
 \end{DoxyCompactItemize}
 
 
@@ -29,15 +28,15 @@ const \hyperlink{class_city}{City} $\ast$const \hyperlink{class_coordinate_aa8e2
 Objects of this class are coordiantes on the board, where the x-\/axis is parallel to the west-\/east direction and the y-\/axis parallel to the north-\/(south-\/west) direction. The (0,0) coordinate is the most upper left corner of the board. The range of the x-\/values is from 0 to M\-A\-X\-\_\-\-X and the y-\/values from 0 to M\-A\-X\-\_\-\-Y. 
 
 \subsection{Constructor \& Destructor Documentation}
-\hypertarget{class_coordinate_afa539ca7218f25717e25482babf0bfc9}{\index{Coordinate@{Coordinate}!Coordinate@{Coordinate}}
+\index{Coordinate@{Coordinate}!Coordinate@{Coordinate}}
 \index{Coordinate@{Coordinate}!Coordinate@{Coordinate}}
 \subsubsection[{Coordinate}]{\setlength{\rightskip}{0pt plus 5cm}Coordinate\-::\-Coordinate (
 \begin{DoxyParamCaption}
 \item[{short}]{x, }
 \item[{short}]{y}
 \end{DoxyParamCaption}
-)}}\label{class_coordinate_afa539ca7218f25717e25482babf0bfc9}
-This constructor creates a coordinate with no city on it. \hypertarget{class_coordinate_ad60539c2d440527e34f4ab23a85c8389}{\index{Coordinate@{Coordinate}!Coordinate@{Coordinate}}
+)}\label{class_coordinate_afa539ca7218f25717e25482babf0bfc9}
+This constructor creates a coordinate with no city on it. \index{Coordinate@{Coordinate}!Coordinate@{Coordinate}}
 \index{Coordinate@{Coordinate}!Coordinate@{Coordinate}}
 \subsubsection[{Coordinate}]{\setlength{\rightskip}{0pt plus 5cm}Coordinate\-::\-Coordinate (
 \begin{DoxyParamCaption}
@@ -45,16 +44,16 @@ This constructor creates a coordinate with no city on it. \hypertarget{class_coo
 \item[{short}]{y, }
 \item[{const {\bf City} $\ast$const}]{City\-On\-Coordinate}
 \end{DoxyParamCaption}
-)}}\label{class_coordinate_ad60539c2d440527e34f4ab23a85c8389}
+)}\label{class_coordinate_ad60539c2d440527e34f4ab23a85c8389}
 This constructor creates a coordinate with city on it. 
 
 \subsection{Member Data Documentation}
-\hypertarget{class_coordinate_aa8e26100ecf4f1c45555a7cb14f6364e}{\index{Coordinate@{Coordinate}!vor\-Ort@{vor\-Ort}}
+\index{Coordinate@{Coordinate}!vor\-Ort@{vor\-Ort}}
 \index{vor\-Ort@{vor\-Ort}!Coordinate@{Coordinate}}
-\subsubsection[{vor\-Ort}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf City}$\ast$ const Coordinate\-::vor\-Ort}}\label{class_coordinate_aa8e26100ecf4f1c45555a7cb14f6364e}
+\subsubsection[{vor\-Ort}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf City}$\ast$ const Coordinate\-::vor\-Ort}\label{class_coordinate_aa8e26100ecf4f1c45555a7cb14f6364e}
 This pointer is zero, if there is no city on the coordinate, otherwise it's pointing to the city. 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
-Koordinate.\-h\item 
-Koordinate.\-cpp\end{DoxyCompactItemize}
+game/header/Coordinate.\-h\item 
+game/source/Coordinate.\-cpp\end{DoxyCompactItemize}

@@ -19,7 +19,7 @@ class testKI: public AI {
 public:
 	testKI(PLAYERCOLOUR farbe);
 	virtual ~testKI();
-	Move zug(State &aktuell) const;
+	Move doMove(State &aktuell) const;
 	Vector setPawn(State &aktuell) const;
 
 	Vector getNaechsterPunktZu(Vector, State) const;

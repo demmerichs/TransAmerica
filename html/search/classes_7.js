@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['testki',['testKI',['../classtest_k_i.html',1,'']]]
+  ['round',['Round',['../class_round.html',1,'']]],
+  ['roundlogger',['RoundLogger',['../class_round_logger.html',1,'']]]
 ];

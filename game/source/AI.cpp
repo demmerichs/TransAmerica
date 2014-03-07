@@ -7,9 +7,18 @@
 
 #include "../header/AI.h"
 
-AI::AI(PLAYERCOLOUR farb): spielerfarbe(farb){
-	handkarten=new const City*[NUMBER_CITYCOLOURS];
-	programmierer="";
+std::set<PLAYERCOLOUR> AI::participatingPlayerColours;
+
+AI::AI(PLAYERCOLOUR farb) :
+		spielerfarbe(farb) {
+	if (AI::participatingPlayerColours.count(farb) >= 1) {
+		std::cout << "Two players have the same colour!" << std::endl;
+		std::exit(0);
+	}
+	AI::participatingPlayerColours.insert(farb);
+	handkarten = new const City*[NUMBER_CITYCOLOURS];
+	programmierer = "";
+	AIname = "";
 }
 
 AI::~AI() {

@@ -26,7 +26,7 @@ void Round::play() {
 			roundLogger->roundStartingPlayer);
 	while (checkRoundWinner()) {
 		State copy(currentState);
-		Move* currentMove = new Move(currentPlayer->zug(copy));
+		Move* currentMove = new Move(currentPlayer->doMove(copy));
 		if (currentMove->valid(currentState, currentPlayer->spielerfarbe)) {
 			currentMove->execute(currentState);
 			roundLogger->moveList.push_back(currentMove);

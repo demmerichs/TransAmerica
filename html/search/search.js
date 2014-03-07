@@ -7,10 +7,18 @@
 
 var indexSectionsWithContent =
 {
+  0: "abcdgimprstuvw",
+  1: "abcgimprstuvw",
+  2: "cdpw",
+  3: "pv"
 };
 
 var indexSectionNames =
 {
+  0: "all",
+  1: "classes",
+  2: "functions",
+  3: "variables"
 };
 
 function convertToId(search)
