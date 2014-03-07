@@ -15,7 +15,7 @@ Initialize::Initialize(const QString &title, QWidget *parent)
     buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
                                      | QDialogButtonBox::Cancel);
 
-    aiList << "KI1" << "KI2" << "KI3" << "Davids schlechte KI"
+    aiList << "KI1" << "KI2" << "KI3" << "Davids gute KI"
            << "Niklas perfekte KI" << "Julians KI" << "Standard KI";
     listWidget = new QListWidget;
     listWidget->addItems(aiList);

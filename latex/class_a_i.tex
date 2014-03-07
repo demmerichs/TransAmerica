@@ -18,26 +18,21 @@ Inheritance diagram for A\-I\-:\begin{figure}[H]
 const P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-U\-R {\bfseries spielerfarbe}\label{class_a_i_a87adeaec4c792d34d6df80b8b76c664d}
 
 \item 
-string {\bfseries programmierer}\label{class_a_i_a06b9b9ae45a8198a312a68b2d837dc5b}
-
+string {\bf programmierer}
 \item 
-string {\bfseries A\-Iname}\label{class_a_i_a6267e1052237d0fc5c9955cfb6b90dc6}
-
+string {\bf A\-Iname}
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual {\bf Move} {\bfseries do\-Move} ({\bf State} \&aktuell) const =0\label{class_a_i_a48035e33dd58899119f0e751602a9610}
-
+virtual {\bf Move} {\bf do\-Move} ({\bf State} \&aktuell) const =0
 \item 
-virtual {\bf Vector} {\bfseries set\-Pawn} ({\bf State} \&aktuell) const =0\label{class_a_i_ad96c33348a3dfd758443a3f08fc711cf}
-
+virtual {\bf Vector} {\bf set\-Pawn} ({\bf State} \&aktuell) const =0
 \end{DoxyCompactItemize}
 \subsection*{Protected Attributes}
 \begin{DoxyCompactItemize}
 \item 
-const {\bf City} $\ast$$\ast$ {\bfseries handkarten}\label{class_a_i_a6590ef2bcc78311781a95899a41ac6f5}
-
+const {\bf City} $\ast$$\ast$ {\bf handkarten}
 \end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
@@ -49,6 +44,43 @@ class {\bfseries Round}\label{class_a_i_aae72f8e1249fbf187032c257b544873d}
 
 \end{DoxyCompactItemize}
 
+
+\subsection{Member Function Documentation}
+\index{A\-I@{A\-I}!do\-Move@{do\-Move}}
+\index{do\-Move@{do\-Move}!AI@{A\-I}}
+\subsubsection[{do\-Move}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Move} A\-I\-::do\-Move (
+\begin{DoxyParamCaption}
+\item[{{\bf State} \&}]{aktuell}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{class_a_i_a48035e33dd58899119f0e751602a9610}
+hier wird der Zug implementiert 
+
+Implemented in {\bf test\-K\-I} \doxyref{}{p.}{classtest_k_i_ab58e500cbfcca1359e8d69f4ff748403}.
+
+\index{A\-I@{A\-I}!set\-Pawn@{set\-Pawn}}
+\index{set\-Pawn@{set\-Pawn}!AI@{A\-I}}
+\subsubsection[{set\-Pawn}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector} A\-I\-::set\-Pawn (
+\begin{DoxyParamCaption}
+\item[{{\bf State} \&}]{aktuell}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{class_a_i_ad96c33348a3dfd758443a3f08fc711cf}
+hier muss der \doxyref{Pawn}{p.}{class_pawn} gesetzt werden 
+
+Implemented in {\bf test\-K\-I} \doxyref{}{p.}{classtest_k_i_ab2290352b41b2293ccbfa175d1d1cc5f}.
+
+
+
+\subsection{Member Data Documentation}
+\index{A\-I@{A\-I}!A\-Iname@{A\-Iname}}
+\index{A\-Iname@{A\-Iname}!AI@{A\-I}}
+\subsubsection[{A\-Iname}]{\setlength{\rightskip}{0pt plus 5cm}string A\-I\-::\-A\-Iname}\label{class_a_i_a6267e1052237d0fc5c9955cfb6b90dc6}
+name der K\-I \index{A\-I@{A\-I}!handkarten@{handkarten}}
+\index{handkarten@{handkarten}!AI@{A\-I}}
+\subsubsection[{handkarten}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf City}$\ast$$\ast$ A\-I\-::handkarten\hspace{0.3cm}{\ttfamily [protected]}}\label{class_a_i_a6590ef2bcc78311781a95899a41ac6f5}
+array von handkartenzeigern, eine einfache Stadtliste \index{A\-I@{A\-I}!programmierer@{programmierer}}
+\index{programmierer@{programmierer}!AI@{A\-I}}
+\subsubsection[{programmierer}]{\setlength{\rightskip}{0pt plus 5cm}string A\-I\-::programmierer}\label{class_a_i_a06b9b9ae45a8198a312a68b2d837dc5b}
+wem die K\-I gehoert 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['simulation',['Simulation',['../class_simulation.html',1,'']]],
-  ['simulationlogger',['SimulationLogger',['../class_simulation_logger.html',1,'']]],
-  ['spielbrett',['Spielbrett',['../class_spielbrett.html',1,'']]],
-  ['state',['State',['../class_state.html',1,'']]]
+  ['round',['Round',['../class_round.html',1,'']]],
+  ['roundlogger',['RoundLogger',['../class_round_logger.html',1,'']]]
 ];
