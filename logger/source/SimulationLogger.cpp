@@ -22,5 +22,5 @@ SimulationLogger::~SimulationLogger() {
 }
 
 std::vector<AI*> SimulationLogger::getPlayingOrder(int simulationNumber){
-	return playerList;
+	return playerList;//TODO
 }

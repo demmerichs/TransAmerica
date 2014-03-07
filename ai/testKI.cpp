@@ -9,13 +9,13 @@
 
 testKI::testKI(PLAYERCOLOUR farb) :
 		AI(farb) {
-	this->programmierer = "David";
+	this->owner = "David";
 }
 
 testKI::~testKI() {
 }
 
-Move testKI::doMove(State &aktuell) const {
+Move testKI::doMove(State &aktuell) {
 	const State sicherkopie(aktuell);
 	const Connection* firsty = 0;
 	const Connection* secondary = 0;
@@ -88,7 +88,7 @@ Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 	return ruckgabe;
 }
 
-Vector testKI::setPawn(State &currenState) const {
+Vector testKI::setPawn(State &currenState) {
 	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {
 		if (handkarten[i]->cityColour == C_YELLOW)
 			return *handkarten[i];

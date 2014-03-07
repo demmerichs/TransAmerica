@@ -17,7 +17,7 @@ AI::AI(PLAYERCOLOUR farb) :
 	}
 	AI::participatingPlayerColours.insert(farb);
 	handkarten = new const City*[NUMBER_CITYCOLOURS];
-	programmierer = "";
+	owner = "";
 	AIname = "";
 }
 

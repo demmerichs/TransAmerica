@@ -25,6 +25,7 @@ class Round {
 	int losingPoints(AI* player) const;
 	bool checkRoundWinner() const;
 	bool isRoundWinner(AI*) const;
+	bool isPlayerConnectedToHisCities(AI* player, const State& state) const;
 public:
 	State currentState;
 

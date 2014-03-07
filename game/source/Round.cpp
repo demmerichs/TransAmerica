@@ -60,6 +60,20 @@ void Round::setPawns() {
 
 int Round::losingPoints(AI* player) const {
 	unsigned short minuspoints = 0;
+	std::vector<Connection*> path;
+	State copy(currentState);
+	if (player->countPoints(copy, path)) {
+		State copy(currentState);
+		for (int i = 0; i < (int) path.size(); i++)
+			copy.schieneLegen(*(path[i]));
+		if (isPlayerConnectedToHisCities(player, copy)) {
+			for (int i = 0; i < (int) path.size(); i++) {
+				minuspoints += (1 + path[i]->hindernis);
+				std::cout << (1 + path[i]->hindernis) << std::endl;
+			}
+			return minuspoints;
+		}
+	}
 	for (int i = 0; i < 5; i++) {
 		minuspoints += currentState.distance(*(player->handkarten[i]),
 				currentState.pointsBelongingToRailwaySystem(
@@ -72,7 +86,7 @@ bool Round::checkRoundWinner() const {
 	PlayingOrder::iterator playerIterator = roundLogger->playingOrder.begin(
 			roundLogger->roundStartingPlayer);
 	do {
-		if(isRoundWinner(*playerIterator))
+		if (isRoundWinner(*playerIterator))
 			return false;
 		++playerIterator;
 	} while (playerIterator
@@ -81,12 +95,13 @@ bool Round::checkRoundWinner() const {
 }
 
 bool Round::isRoundWinner(AI* player) const {
-	short schienennr =
-			currentState.getPoeppel(player->spielerfarbe).schienennetznummer;
+	return isPlayerConnectedToHisCities(player, currentState);
+}
+
+bool Round::isPlayerConnectedToHisCities(AI* player, const State& state) const {
+	short schienennr = state.getPoeppel(player->spielerfarbe).schienennetznummer;
 	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {
-		if (schienennr
-				!= currentState.getSchienenNetzNummer(
-						*(player->handkarten[i])))
+		if (schienennr != state.getSchienenNetzNummer(*(player->handkarten[i])))
 			return false;
 	}
 	return true;
@@ -94,7 +109,7 @@ bool Round::isRoundWinner(AI* player) const {
 
 void Round::dealCards() {
 	short maxNr = MAX_STADTNR;
-	if ((int)this->roundLogger->playerList.size() < SPIELER_GRENZE)
+	if ((int) this->roundLogger->playerList.size() < SPIELER_GRENZE)
 		maxNr = STADTNR_GRENZE;
 
 	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {
@@ -111,9 +126,11 @@ void Round::dealCards() {
 			it += randomInt;
 			rest.erase(it);
 		}
-		for (int spielernr = 0; spielernr < (int)roundLogger->playerList.size(); spielernr++) {
+		for (int spielernr = 0;
+				spielernr < (int) roundLogger->playerList.size(); spielernr++) {
 			roundLogger->playerList[spielernr]->handkarten[CITYCOLOUR_LIST[i]] =
-					roundLogger->board.getStadt(CITYCOLOUR_LIST[i], stapel[spielernr]);
+					roundLogger->board.getStadt(CITYCOLOUR_LIST[i],
+							stapel[spielernr]);
 		}
 	}
 
