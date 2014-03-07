@@ -7,23 +7,25 @@ Initialize::Initialize(const QString &title, QWidget *parent)
     nameLabel = new QLabel(tr("Name:"));
     nameEdit = new QLineEdit;
 
+    simulationLabel = new QLabel(tr("Number of simulations:"));
+    simulationSpin = new QSpinBox;
+    simulationSpin->setRange(1,1000);
+
+
     buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
-                                         | QDialogButtonBox::Cancel);
+                                     | QDialogButtonBox::Cancel);
 
-    aiList << "KI1" << "KI2" << "KI3";
-    tableWidget = new QTableWidget(aiList.count(),1);
-    for(int row=0; row < aiList.count(); row++)
-    {
-        QTableWidgetItem* ai = new QTableWidgetItem(aiList[row]);
-        ai->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable);
-        tableWidget->setItem(row, 0, ai);
-
-    }
-    layout = new QVBoxLayout;
-    layout->addWidget(nameLabel);
-    layout->addWidget(nameEdit);
-    layout->addWidget(tableWidget);
-    layout->addWidget(buttonBox);
+    aiList << "KI1" << "KI2" << "KI3" << "Davids schlechte KI"
+           << "Niklas perfekte KI" << "Julians KI" << "Standard KI";
+    listWidget = new QListWidget;
+    listWidget->addItems(aiList);
+    layout = new QGridLayout;
+    layout->addWidget(nameLabel, 0, 0);
+    layout->addWidget(nameEdit, 0, 1);
+    layout->addWidget(simulationLabel, 1, 0);
+    layout->addWidget(simulationSpin, 1, 1);
+    layout->addWidget(listWidget, 2, 0, 1, 2);
+    layout->addWidget(buttonBox, 3, 0, 1, 2);
     setLayout(layout);
     setWindowTitle(title);
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
@@ -32,4 +34,8 @@ Initialize::Initialize(const QString &title, QWidget *parent)
 QString Initialize::name()
 {
     return nameEdit->text();
+}
+int Initialize::numberOfGames()
+{
+    return simulationSpin->value();
 }

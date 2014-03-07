@@ -1,0 +1,92 @@
+\section{State Class Reference}
+\label{class_state}\index{State@{State}}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries State} ({\bf Board} \&{\bf Spielbrett})\label{class_state_ab8e8b562af12bba2ae71a14fcfd87673}
+
+\item 
+{\bfseries State} (const {\bf State} \&)\label{class_state_a5ca97340266d486dfa42225f19c40de3}
+
+\item 
+{\bf Pawn} {\bfseries get\-Poeppel} (const P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-U\-R spielerfarbe) const \label{class_state_a5ddfbac7a481236179ace80166f69da8}
+
+\item 
+bool {\bfseries schienen\-Netz\-Nummer\-Von\-\_\-\-Ist\-\_\-} (const {\bf Connection} \&, const short schienennr) const \label{class_state_a974ccf0cdff0adc321603f11c8df7970}
+
+\item 
+short {\bfseries get\-Schienen\-Netz\-Nummer} (const {\bf Vector} \&koo) const \label{class_state_a5d32c5f1439d14757830b7bbd6fde7cb}
+
+\item 
+void {\bfseries set\-Schienen\-Netz\-Nummer} (const {\bf Coordinate} \&koo, const short nr)\label{class_state_a61e844e517116c5ec1eaeb6886906df8}
+
+\item 
+void {\bfseries set\-Schiene} (const {\bf Connection} \&)\label{class_state_afa0cf80f1e1cc065fd63372c8ffc19be}
+
+\item 
+void {\bfseries reset\-Nr\-\_\-\-Zu\-Nr\-\_\-} (const short, const short)\label{class_state_ade757a61a90c393f8b7a3495221f1779}
+
+\item 
+void {\bfseries schiene\-Legen} (const {\bf Connection} \&)\label{class_state_a76034aee14f5704a970a7b4a831935e7}
+
+\item 
+const {\bf Connection} $\ast$ {\bfseries get\-Verbindung} ({\bf Vector} a, {\bf Vector} b) const \label{class_state_a668add718e776deb4fd34c5dbaeabfb5}
+
+\item 
+void {\bfseries add\-Pawn} ({\bf Pawn} insert)\label{class_state_a9a192466fc65d42a405b6c461f5ae1c7}
+
+\item 
+void {\bfseries reset\-All} ()\label{class_state_ae3cf3d6f8fd90d8a59d53ccb1290a46c}
+
+\item 
+unsigned short $\ast$$\ast$ {\bfseries evaluate\-Board} ({\bf Vector} target) const \label{class_state_a5bc0dd359e67c72d457a64277afaf621}
+
+\item 
+unsigned short {\bfseries distance} ({\bf Vector} target, const vector$<$ {\bf Vector} $>$ \&possible\-Starts) const \label{class_state_a2e17c63ec7373cf144f37933bef1d197}
+
+\item 
+vector$<$ {\bf Vector} $>$ {\bfseries points\-Belonging\-To\-Railway\-System} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-U\-R playercolour) const \label{class_state_ab039ad1b0cb7721e26946c79faff16d5}
+
+\item 
+void {\bfseries akt\-Ausgabe} () const \label{class_state_ade0adf3c0871edde2df2370718f0c8f6}
+
+\item 
+void {\bfseries set\-Round} (short x)\label{class_state_a468eb35199b879f9df58245540ca849c}
+
+\item 
+void {\bfseries set\-Turn} (short x)\label{class_state_a5f8cd95cb039eb5333a9fed80b7efd2f}
+
+\item 
+void {\bfseries set\-Players\-Turn} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-U\-R x)\label{class_state_af71c2a4c5a5c3969d3a6ac61e4d4e6d4}
+
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static short {\bfseries Richtungs\-Wert} (const {\bf Vector} \&)\label{class_state_ac1f87995c4da93c0a24f0d5564b8644c}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+short $\ast$$\ast$ {\bfseries schienen\-Netz\-Nummer}\label{class_state_aa596bf79a270efaacec2cdcc523c29cb}
+
+\item 
+bool $\ast$$\ast$$\ast$ {\bfseries schiene\-Gelegt}\label{class_state_a48273ba0bf0d613435726e39853c90d2}
+
+\item 
+short {\bfseries anzahl\-Poeppel}\label{class_state_a109a342df5b9c753c90e52d845581cfb}
+
+\item 
+const {\bf Board} \& {\bfseries Spielbrett}\label{class_state_ab70a887fdd766c1bf7e1605a97ce592a}
+
+\item 
+std\-::vector$<$ {\bf Pawn} $\ast$ $>$ {\bfseries unsorted\-Pawns}\label{class_state_af75d24cbceb25a2cb35f6416bdc374eb}
+
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+game/header/State.\-h\item 
+game/source/State.\-cpp\end{DoxyCompactItemize}
