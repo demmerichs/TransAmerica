@@ -13,7 +13,7 @@ AI::AI(PLAYERCOLOUR farb) :
 		spielerfarbe(farb) {
 	if (AI::participatingPlayerColours.count(farb) >= 1) {
 		std::cout << "Two players have the same colour!" << std::endl;
-		std::exit(0);
+        //std::exit(0);
 	}
 	AI::participatingPlayerColours.insert(farb);
 	handkarten = new const City*[NUMBER_CITYCOLOURS];

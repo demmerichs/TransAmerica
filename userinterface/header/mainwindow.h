@@ -1,6 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include <QMainWindow>
+#include <QMouseEvent>
 #include "uiexec.h"
 #include "window.h"
 
@@ -19,6 +20,8 @@ private:
 private slots:
     void openInit();
     void startSimulation(int games);
+protected:
+    void mouseReleaseEvent(QMouseEvent* event);
 };
 
 #endif // MAINWINDOW_H

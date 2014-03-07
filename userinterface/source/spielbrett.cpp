@@ -90,7 +90,7 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 					painter.setPen(fatPen);
 				} else if ((parentalWindow->aZp->Spielbrett.Kanten[i][j][0])->hindernis
 						== true) {
-					painter.setPen(thinRedPen);
+                    painter.setPen(thinRedPen);
 				} else
 					painter.setPen(thinPen);
 				painter.drawLine(i * sL, j * sL, i * sL + sL, j * sL);
