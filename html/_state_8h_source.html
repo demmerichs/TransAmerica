@@ -117,7 +117,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_state.html">State</a>&amp; operator=(<span class="keyword">const</span> <a class="code" href="class_state.html">State</a>&amp;);</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordtype">short</span> round;</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">short</span> turn;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    PLAYERCOLOUR playersTurn;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    PLAYERCOLOR playersTurn;</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_state.html">State</a>(<a class="code" href="class_board.html">Board</a> &amp;<a class="code" href="class_spielbrett.html">Spielbrett</a>); <span class="comment">//Startzustand</span></div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="class_state.html">State</a>(<span class="keyword">const</span> <a class="code" href="class_state.html">State</a>&amp;);</div>
@@ -130,7 +130,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_board.html">Board</a> &amp;Spielbrett;</div>
 <div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    std::vector&lt;Pawn*&gt; unsortedPawns;</div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_pawn.html">Pawn</a> getPoeppel(<span class="keyword">const</span> PLAYERCOLOUR spielerfarbe) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="class_pawn.html">Pawn</a> getPoeppel(<span class="keyword">const</span> PLAYERCOLOR spielerfarbe) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">bool</span> schienenNetzNummerVon_Ist_(<span class="keyword">const</span> <a class="code" href="class_connection.html">Connection</a>&amp;,</div>
 <div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">short</span> schienennr) <span class="keyword">const</span>; <span class="comment">//ueberprueft, ob die Connection an der schienennr anliegt</span></div>
 <div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">short</span> getSchienenNetzNummer(<span class="keyword">const</span> <a class="code" href="class_vector.html">Vector</a> &amp;koo) <span class="keyword">const</span>;</div>
@@ -145,14 +145,14 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>** evaluateBoard(<a class="code" href="class_vector.html">Vector</a> target) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> distance(<a class="code" href="class_vector.html">Vector</a> target,</div>
 <div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            <span class="keyword">const</span> vector&lt;Vector&gt; &amp;possibleStarts) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    vector&lt;Vector&gt; pointsBelongingToRailwaySystem(PLAYERCOLOUR playercolour) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    vector&lt;Vector&gt; pointsBelongingToRailwaySystem(PLAYERCOLOR playercolour) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> aktAusgabe() <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;</div>
 <div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="comment">//static void dumpEvaluateBoard(unsigned short ** &amp; index);</span></div>
 <div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;</div>
 <div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> setRound(<span class="keywordtype">short</span> x){round=x;}</div>
 <div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">void</span> setTurn(<span class="keywordtype">short</span> x){turn=x;}</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> setPlayersTurn(PLAYERCOLOUR x){playersTurn=x;}</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">void</span> setPlayersTurn(PLAYERCOLOR x){playersTurn=x;}</div>
 <div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;};</div>
 <div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;</div>
 <div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* STATE_H_ */</span><span class="preprocessor"></span></div>
@@ -166,7 +166,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 7 2014 11:52:58 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 8 2014 00:57:58 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

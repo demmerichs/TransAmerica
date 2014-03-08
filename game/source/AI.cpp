@@ -7,20 +7,20 @@
 
 #include "../header/AI.h"
 
-std::set<PLAYERCOLOUR> AI::participatingPlayerColours;
+std::set<PLAYERCOLOR> AI::participatingPlayerColours;
 
-AI::AI(PLAYERCOLOUR farb) :
-		spielerfarbe(farb) {
+AI::AI(PLAYERCOLOR farb) :
+		playercolor(farb) {
 	if (AI::participatingPlayerColours.count(farb) >= 1) {
 		std::cout << "Two players have the same colour!" << std::endl;
         //std::exit(0);
 	}
 	AI::participatingPlayerColours.insert(farb);
-	handkarten = new const City*[NUMBER_CITYCOLOURS];
+	hand = new const City*[NUMBER_CITYCOLOURS];
 	owner = "";
 	AIname = "";
 }
 
 AI::~AI() {
-	delete[] handkarten;
+	delete[] hand;
 }

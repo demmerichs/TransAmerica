@@ -12,7 +12,7 @@ enum Farbart {
 	spielerfarbe, stadtfarbe
 };
 
-QColor getQColor(PLAYERCOLOUR i) {
+QColor getQColor(PLAYERCOLOR i) {
 	if (i == P_BLUE)
 		return QColor(Qt::blue);
 	else if (i == P_YELLOW)
@@ -157,11 +157,11 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	/* for(int i=0; i<2; i++)
 	 {
 	 for (int j=0; j<5; j++){
-	 if (parentalWindow->simulationp->KIliste[i].handkarten[j]!=NULL)
+	 if (parentalWindow->simulationp->KIliste[i].hand[j]!=NULL)
 	 {
-	 painter.drawPixmap(transform.map(QPoint((parentalWindow->simulationp->KIliste[i].handkarten[j]->place.x)*sL-12,
-	 (parentalWindow->simulationp->KIliste[i].handkarten[j]->place.y)*sL-8.5)),
-	 QPixmap(getColor(parentalWindow->simulationp->KIliste[i].handkarten[j]->cityColour, stadtfarbe).s));
+	 painter.drawPixmap(transform.map(QPoint((parentalWindow->simulationp->KIliste[i].hand[j]->place.x)*sL-12,
+	 (parentalWindow->simulationp->KIliste[i].hand[j]->place.y)*sL-8.5)),
+	 QPixmap(getColor(parentalWindow->simulationp->KIliste[i].hand[j]->cityColour, stadtfarbe).s));
 	 }
 	 }
 	 }*/

@@ -17,7 +17,7 @@
 
 class testKI: public AI {
 public:
-	testKI(PLAYERCOLOUR farbe);
+	testKI(PLAYERCOLOR farbe);
 	virtual ~testKI();
 	Move doMove(State &aktuell);
 	Vector setPawn(State &aktuell);

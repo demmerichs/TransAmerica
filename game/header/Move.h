@@ -17,15 +17,15 @@ private:
 	bool gueltigkeit;
 	bool gueltigkeitUEberprueft;
 	bool richtigBelegt;
-	PLAYERCOLOUR spielerfarbe;
+	PLAYERCOLOR spielerfarbe;
 	short anzahlSchienen;
 	const Connection* Belegt[2];
 
 public:
-	Move(PLAYERCOLOUR spielerfarbe, const Connection* belegt1, const Connection* belegt2);
+	Move(PLAYERCOLOR spielerfarbe, const Connection* belegt1, const Connection* belegt2);
 	virtual ~Move();
 
-	bool valid(State, PLAYERCOLOUR);
+	bool valid(State, PLAYERCOLOR);
 	void execute(State&) const;
 
 	void dump() const;

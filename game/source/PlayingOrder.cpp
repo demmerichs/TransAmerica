@@ -23,7 +23,7 @@ PlayingOrder::~PlayingOrder() {
 PlayingOrder::iterator PlayingOrder::begin(AI* player) const{
 	iterator retValue=iterator(this->list[0]);
 	while(true){
-		if(retValue->spielerfarbe==player->spielerfarbe)
+		if(retValue->playercolor==player->playercolor)
 			return retValue;
 		++retValue;
 	}

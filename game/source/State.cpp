@@ -76,7 +76,7 @@ State::~State() {
 	delete[] schieneGelegt;
 }
 
-Pawn State::getPoeppel(const PLAYERCOLOUR spielerfarbe) const {
+Pawn State::getPoeppel(const PLAYERCOLOR spielerfarbe) const {
 	return *sortedPawns[spielerfarbe];
 }
 
@@ -270,7 +270,7 @@ unsigned short State::find_min(Vector actual, unsigned short ** &index) const {
 	return min;
 }
 
-vector<Vector> State::pointsBelongingToRailwaySystem(PLAYERCOLOUR playercolour) const {
+vector<Vector> State::pointsBelongingToRailwaySystem(PLAYERCOLOR playercolour) const {
 	int playersRailwayID = this->getPoeppel(playercolour).schienennetznummer;
 	vector<Vector> returnval;
 	for (int i = 0; i < MAX_X; i++)

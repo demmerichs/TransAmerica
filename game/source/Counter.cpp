@@ -24,12 +24,12 @@ Counter::~Counter() {
 }
 
 int Counter::add(AI* player, int counter) {
-	this->counter[player->spielerfarbe] += counter;
-	return this->counter[player->spielerfarbe];
+	this->counter[player->playercolor] += counter;
+	return this->counter[player->playercolor];
 }
 
 int Counter::get(AI* player) const {
-	return counter[player->spielerfarbe];
+	return counter[player->playercolor];
 }
 
 Counter Counter::operator+(const Counter& rhs) const {

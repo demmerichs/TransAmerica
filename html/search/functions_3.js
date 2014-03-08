@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['setpawn',['setPawn',['../classtest_k_i.html#ab2290352b41b2293ccbfa175d1d1cc5f',1,'testKI::setPawn()'],['../class_a_i.html#ad96c33348a3dfd758443a3f08fc711cf',1,'AI::setPawn()']]],
-  ['simulatesimulation',['simulateSimulation',['../class_u_i_e_x_e_c.html#a0253650bd333a3e0b4c4ce93a2ad94a3',1,'UIEXEC']]]
+  ['gatherinformationendofround',['gatherInformationEndOfRound',['../classtest_k_i.html#ad08fbc5e5f7a5686e02698b604feabb8',1,'testKI::gatherInformationEndOfRound()'],['../class_a_i.html#a8565a9ef04ac4f9913913c99f65213b2',1,'AI::gatherInformationEndOfRound()']]]
 ];

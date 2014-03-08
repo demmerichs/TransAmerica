@@ -28,7 +28,7 @@ class State {
 	State& operator=(const State&);
 	short round;
 	short turn;
-	PLAYERCOLOUR playersTurn;
+	PLAYERCOLOR playersTurn;
 public:
 	State(Board &Spielbrett); //Startzustand
 	State(const State&);
@@ -41,7 +41,7 @@ public:
 	const Board &Spielbrett;
 	std::vector<Pawn*> unsortedPawns;
 
-	Pawn getPoeppel(const PLAYERCOLOUR spielerfarbe) const;
+	Pawn getPoeppel(const PLAYERCOLOR spielerfarbe) const;
 	bool schienenNetzNummerVon_Ist_(const Connection&,
 			const short schienennr) const; //ueberprueft, ob die Connection an der schienennr anliegt
 	short getSchienenNetzNummer(const Vector &koo) const;
@@ -56,14 +56,14 @@ public:
 	unsigned short** evaluateBoard(Vector target) const;
 	unsigned short distance(Vector target,
 			const vector<Vector> &possibleStarts) const;
-	vector<Vector> pointsBelongingToRailwaySystem(PLAYERCOLOUR playercolour) const;
+	vector<Vector> pointsBelongingToRailwaySystem(PLAYERCOLOR playercolour) const;
 	void aktAusgabe() const;
 
 	//static void dumpEvaluateBoard(unsigned short ** & index);
 
 	void setRound(short x){round=x;}
 	void setTurn(short x){turn=x;}
-	void setPlayersTurn(PLAYERCOLOUR x){playersTurn=x;}
+	void setPlayersTurn(PLAYERCOLOR x){playersTurn=x;}
 };
 
 #endif /* STATE_H_ */

@@ -7,7 +7,7 @@
 
 #include "testKI.h"
 
-testKI::testKI(PLAYERCOLOUR farb) :
+testKI::testKI(PLAYERCOLOR farb) :
 		AI(farb) {
 	this->owner = "David";
 }
@@ -21,7 +21,7 @@ Move testKI::doMove(State &aktuell) {
 	const Connection* secondary = 0;
 	for (int i = 0; i < 5; i++) {
 		firsty = secondary = 0;
-		Vector aktStadt = *handkarten[i];
+		Vector aktStadt = *hand[i];
 		Vector a = getNaechsterPunktZu(aktStadt, aktuell);
 		Vector diff = aktStadt - a;
 		short dis = diff.distance();
@@ -49,14 +49,14 @@ Move testKI::doMove(State &aktuell) {
 				secondary = aktuell.getVerbindung(a + first,
 						a + first + second);
 			}
-			Move ruckgabe(this->spielerfarbe, firsty, secondary);
-			if (ruckgabe.valid(sicherkopie, this->spielerfarbe))
-				return Move(this->spielerfarbe, firsty, secondary);
+			Move ruckgabe(this->playercolor, firsty, secondary);
+			if (ruckgabe.valid(sicherkopie, this->playercolor))
+				return Move(this->playercolor, firsty, secondary);
 			else
-				return Move(this->spielerfarbe, firsty, 0);
+				return Move(this->playercolor, firsty, 0);
 		}
 	}
-	return Move(this->spielerfarbe, 0, 0);
+	return Move(this->playercolor, 0, 0);
 }
 
 short testKI::sign(short a) {
@@ -71,7 +71,7 @@ short testKI::sign(short a) {
 Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 	Vector ruckgabe(0, 0);
 	short aktSchienennummer =
-			akt.getPoeppel(this->spielerfarbe).schienennetznummer;
+			akt.getPoeppel(this->playercolor).schienennetznummer;
 	short minAbstand = MAX_X + MAX_Y;
 	for (int x = 0; x < MAX_X; x++) {
 		for (int y = 0; y < MAX_Y; y++) {
@@ -88,10 +88,10 @@ Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 	return ruckgabe;
 }
 
-Vector testKI::setPawn(State &currenState) {
+Vector testKI::setPawn(State &currentState) {
 	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {
-		if (handkarten[i]->cityColour == C_YELLOW)
-			return *handkarten[i];
+		if (hand[i]->cityColour == C_YELLOW)
+			return *hand[i];
 	}
 	cout << "Gelbe Stadt nicht gefunden in Handkarten!" << endl;
 	return Vector(10, 6);
