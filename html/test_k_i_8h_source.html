@@ -106,28 +106,35 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
 <div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classtest_k_i.html">   18</a></span>&#160;<span class="keyword">class </span><a class="code" href="classtest_k_i.html">testKI</a>: <span class="keyword">public</span> <a class="code" href="class_a_i.html">AI</a> {</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classtest_k_i.html">testKI</a>(PLAYERCOLOUR farbe);</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="classtest_k_i.html">testKI</a>(PLAYERCOLOR farbe);</div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classtest_k_i.html">testKI</a>();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_move.html">Move</a> <a class="code" href="classtest_k_i.html#ab58e500cbfcca1359e8d69f4ff748403">doMove</a>(<a class="code" href="class_state.html">State</a> &amp;aktuell) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_vector.html">Vector</a> <a class="code" href="classtest_k_i.html#ab2290352b41b2293ccbfa175d1d1cc5f">setPawn</a>(<a class="code" href="class_state.html">State</a> &amp;aktuell) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_vector.html">Vector</a> getNaechsterPunktZu(<a class="code" href="class_vector.html">Vector</a>, <a class="code" href="class_state.html">State</a>) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">short</span> sign(<span class="keywordtype">short</span>);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TESTKI_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_move.html">Move</a> <a class="code" href="classtest_k_i.html#ad7de22d69a58dca460270955eff84e76">doMove</a>(<a class="code" href="class_state.html">State</a> &amp;aktuell);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_vector.html">Vector</a> <a class="code" href="classtest_k_i.html#a209548aefee567d45db4bb449321aa55">setPawn</a>(<a class="code" href="class_state.html">State</a> &amp;aktuell);</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classtest_k_i.html#aa63e7bbbebbd5a3d01b60ccf7c9bf5f9">   24</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classtest_k_i.html#aa63e7bbbebbd5a3d01b60ccf7c9bf5f9">countPoints</a>(<a class="code" href="class_state.html">State</a>&amp;, std::vector&lt;Connection*&gt;) {</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;        <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    }</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classtest_k_i.html#ad08fbc5e5f7a5686e02698b604feabb8">   27</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classtest_k_i.html#ad08fbc5e5f7a5686e02698b604feabb8">gatherInformationEndOfRound</a>(<span class="keyword">const</span> <a class="code" href="class_round_logger.html">RoundLogger</a>*) {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    }</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_vector.html">Vector</a> getNaechsterPunktZu(<a class="code" href="class_vector.html">Vector</a>, <a class="code" href="class_state.html">State</a>) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">static</span> <span class="keywordtype">short</span> sign(<span class="keywordtype">short</span>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TESTKI_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="class_state_html"><div class="ttname"><a href="class_state.html">State</a></div><div class="ttdef"><b>Definition:</b> State.h:22</div></div>
 <div class="ttc" id="class_move_html"><div class="ttname"><a href="class_move.html">Move</a></div><div class="ttdef"><b>Definition:</b> Move.h:15</div></div>
-<div class="ttc" id="classtest_k_i_html_ab58e500cbfcca1359e8d69f4ff748403"><div class="ttname"><a href="classtest_k_i.html#ab58e500cbfcca1359e8d69f4ff748403">testKI::doMove</a></div><div class="ttdeci">Move doMove(State &amp;aktuell) const </div><div class="ttdef"><b>Definition:</b> testKI.cpp:18</div></div>
-<div class="ttc" id="class_a_i_html"><div class="ttname"><a href="class_a_i.html">AI</a></div><div class="ttdef"><b>Definition:</b> AI.h:20</div></div>
+<div class="ttc" id="classtest_k_i_html_a209548aefee567d45db4bb449321aa55"><div class="ttname"><a href="classtest_k_i.html#a209548aefee567d45db4bb449321aa55">testKI::setPawn</a></div><div class="ttdeci">Vector setPawn(State &amp;aktuell)</div><div class="ttdef"><b>Definition:</b> testKI.cpp:91</div></div>
+<div class="ttc" id="classtest_k_i_html_ad08fbc5e5f7a5686e02698b604feabb8"><div class="ttname"><a href="classtest_k_i.html#ad08fbc5e5f7a5686e02698b604feabb8">testKI::gatherInformationEndOfRound</a></div><div class="ttdeci">void gatherInformationEndOfRound(const RoundLogger *)</div><div class="ttdef"><b>Definition:</b> testKI.h:27</div></div>
+<div class="ttc" id="class_a_i_html"><div class="ttname"><a href="class_a_i.html">AI</a></div><div class="ttdef"><b>Definition:</b> AI.h:28</div></div>
 <div class="ttc" id="classtest_k_i_html"><div class="ttname"><a href="classtest_k_i.html">testKI</a></div><div class="ttdef"><b>Definition:</b> testKI.h:18</div></div>
-<div class="ttc" id="classtest_k_i_html_ab2290352b41b2293ccbfa175d1d1cc5f"><div class="ttname"><a href="classtest_k_i.html#ab2290352b41b2293ccbfa175d1d1cc5f">testKI::setPawn</a></div><div class="ttdeci">Vector setPawn(State &amp;aktuell) const </div><div class="ttdef"><b>Definition:</b> testKI.cpp:91</div></div>
+<div class="ttc" id="class_round_logger_html"><div class="ttname"><a href="class_round_logger.html">RoundLogger</a></div><div class="ttdef"><b>Definition:</b> RoundLogger.h:18</div></div>
+<div class="ttc" id="classtest_k_i_html_aa63e7bbbebbd5a3d01b60ccf7c9bf5f9"><div class="ttname"><a href="classtest_k_i.html#aa63e7bbbebbd5a3d01b60ccf7c9bf5f9">testKI::countPoints</a></div><div class="ttdeci">bool countPoints(State &amp;, std::vector&lt; Connection * &gt;)</div><div class="ttdef"><b>Definition:</b> testKI.h:24</div></div>
+<div class="ttc" id="classtest_k_i_html_ad7de22d69a58dca460270955eff84e76"><div class="ttname"><a href="classtest_k_i.html#ad7de22d69a58dca460270955eff84e76">testKI::doMove</a></div><div class="ttdeci">Move doMove(State &amp;aktuell)</div><div class="ttdef"><b>Definition:</b> testKI.cpp:18</div></div>
 <div class="ttc" id="class_vector_html"><div class="ttname"><a href="class_vector.html">Vector</a></div><div class="ttdef"><b>Definition:</b> Vector.h:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Fri Mar 7 2014 11:52:58 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 8 2014 00:57:58 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -9,12 +9,16 @@ Inheritance diagram for test\-K\-I\-:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries test\-K\-I} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-U\-R farbe)\label{classtest_k_i_a6a6166ca8fb468f949466a7f147c989f}
+{\bfseries test\-K\-I} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R farbe)\label{classtest_k_i_ac9ced0085410300732bb3103db6934e9}
 
 \item 
-{\bf Move} {\bf do\-Move} ({\bf State} \&aktuell) const 
+{\bf Move} {\bf do\-Move} ({\bf State} \&aktuell)
 \item 
-{\bf Vector} {\bf set\-Pawn} ({\bf State} \&aktuell) const 
+{\bf Vector} {\bf set\-Pawn} ({\bf State} \&aktuell)
+\item 
+bool {\bf count\-Points} ({\bf State} \&, std\-::vector$<$ {\bf Connection} $\ast$ $>$)
+\item 
+void {\bf gather\-Information\-End\-Of\-Round} (const {\bf Round\-Logger} $\ast$)
 \item 
 {\bf Vector} {\bfseries get\-Naechster\-Punkt\-Zu} ({\bf Vector}, {\bf State}) const \label{classtest_k_i_ae5c4cfdc479bb706a9adb84d41dff707}
 
@@ -29,16 +33,39 @@ static short {\bfseries sign} (short)\label{classtest_k_i_a22f65151709965a8d75c8
 
 
 \subsection{Member Function Documentation}
+\index{test\-K\-I@{test\-K\-I}!count\-Points@{count\-Points}}
+\index{count\-Points@{count\-Points}!testKI@{test\-K\-I}}
+\subsubsection[{count\-Points}]{\setlength{\rightskip}{0pt plus 5cm}bool test\-K\-I\-::count\-Points (
+\begin{DoxyParamCaption}
+\item[{{\bf State} \&}]{current\-State, }
+\item[{std\-::vector$<$ {\bf Connection} $\ast$ $>$}]{path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classtest_k_i_aa63e7bbbebbd5a3d01b60ccf7c9bf5f9}
+Here you can count your minus points at the end of each round. If you want to do so, you have to return true. For the beginning it is okay, if you just return false. Then the gamemaster will count the minuspoints. He counts in most cases the minimum of minuspoints you get, however in some cases the algorithm doesn't evaluate the best value. 
+
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a17ab5d8748cd5b8afc7e73c42ef12fb3}.
+
 \index{test\-K\-I@{test\-K\-I}!do\-Move@{do\-Move}}
 \index{do\-Move@{do\-Move}!testKI@{test\-K\-I}}
 \subsubsection[{do\-Move}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Move} test\-K\-I\-::do\-Move (
 \begin{DoxyParamCaption}
 \item[{{\bf State} \&}]{aktuell}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_ab58e500cbfcca1359e8d69f4ff748403}
-hier wird der Zug implementiert 
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_ad7de22d69a58dca460270955eff84e76}
+Inside this methode you calculate your next move in the game. 
 
-Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a48035e33dd58899119f0e751602a9610}.
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a79bb57422a56d4e941c538f2c7491953}.
+
+\index{test\-K\-I@{test\-K\-I}!gather\-Information\-End\-Of\-Round@{gather\-Information\-End\-Of\-Round}}
+\index{gather\-Information\-End\-Of\-Round@{gather\-Information\-End\-Of\-Round}!testKI@{test\-K\-I}}
+\subsubsection[{gather\-Information\-End\-Of\-Round}]{\setlength{\rightskip}{0pt plus 5cm}void test\-K\-I\-::gather\-Information\-End\-Of\-Round (
+\begin{DoxyParamCaption}
+\item[{const {\bf Round\-Logger} $\ast$}]{current\-Infos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classtest_k_i_ad08fbc5e5f7a5686e02698b604feabb8}
+At the end of each round you can take a look at the whole game and the playing cards of your opponents. This can be usefull, if you want to figure out there strategy and react to that over a simulation period. 
+
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a8565a9ef04ac4f9913913c99f65213b2}.
 
 \index{test\-K\-I@{test\-K\-I}!set\-Pawn@{set\-Pawn}}
 \index{set\-Pawn@{set\-Pawn}!testKI@{test\-K\-I}}
@@ -46,10 +73,10 @@ Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a48035e33dd58899119f0e751602a9610
 \begin{DoxyParamCaption}
 \item[{{\bf State} \&}]{aktuell}
 \end{DoxyParamCaption}
-) const\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_ab2290352b41b2293ccbfa175d1d1cc5f}
-hier muss der \doxyref{Pawn}{p.}{class_pawn} gesetzt werden 
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_a209548aefee567d45db4bb449321aa55}
+At the beginning of each round you have to define your starting position of your pawn. 
 
-Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_ad96c33348a3dfd758443a3f08fc711cf}.
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a0fbc5b7d4230575baf80217d0c250cc9}.
 
 
 

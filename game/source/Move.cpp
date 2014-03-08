@@ -7,19 +7,19 @@
 
 #include "../header/Move.h"
 
-/*Zug::Zug(short spielerfarbe) :
- gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), spielerfarbe(
- spielerfarbe), anzahlSchienen(0) {
+/*Zug::Zug(short playercolor) :
+ gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), playercolor(
+ playercolor), anzahlSchienen(0) {
  }
 
- Zug::Zug(short spielerfarbe, const Connection &belegt) :
- gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), spielerfarbe(
- spielerfarbe), anzahlSchienen(1) {
+ Zug::Zug(short playercolor, const Connection &belegt) :
+ gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), playercolor(
+ playercolor), anzahlSchienen(1) {
  Belegt[0] = &belegt;
  Belegt[1] = 0;
  }*/
 
-Move::Move(PLAYERCOLOUR spielerfarbe, const Connection* belegt1,
+Move::Move(PLAYERCOLOR spielerfarbe, const Connection* belegt1,
 		const Connection* belegt2) :
 		gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), spielerfarbe(
 				spielerfarbe), anzahlSchienen(2) {
@@ -37,7 +37,7 @@ Move::Move(PLAYERCOLOUR spielerfarbe, const Connection* belegt1,
 Move::~Move() {
 }
 
-bool Move::valid(State aktZu, PLAYERCOLOUR spielerfarb) {
+bool Move::valid(State aktZu, PLAYERCOLOR spielerfarb) {
 	gueltigkeitUEberprueft = true;
 	//checken, ob der Spieler richtige Farbe verwendet hat
 	if (spielerfarb != this->spielerfarbe) {

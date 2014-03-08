@@ -29,9 +29,11 @@ void Game::play() {
 		gameLogger->points = gameLogger->points
 				- currentRoundLogger->lostPoints;
 		gameLogger->roundList.push_back(currentRoundLogger);
+		for(int i=0;i<(int)gameLogger->playerList.size();i++)
+			gameLogger->playerList[i]->gatherInformationEndOfRound(currentRoundLogger);
 		std::cout << "Round ended" << std::endl;
 		for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
-			std::cout << "Player " << gameLogger->playerList[i]->spielerfarbe
+			std::cout << "Player " << gameLogger->playerList[i]->playercolor
 					<< " has "
 					<< gameLogger->points.get(gameLogger->playerList[i])
 					<< " points!" << std::endl;
@@ -49,7 +51,7 @@ void Game::play() {
 		gameLogger->roundList.push_back(currentRoundLogger);
 		std::cout << "Round ended" << std::endl;
 		for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
-			std::cout << "Player " << gameLogger->playerList[i]->spielerfarbe
+			std::cout << "Player " << gameLogger->playerList[i]->playercolor
 					<< " has "
 					<< gameLogger->points.get(gameLogger->playerList[i])
 					<< " points!" << std::endl;

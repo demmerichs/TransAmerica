@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['paintevent',['paintEvent',['../class_spielbrett.html#ad5c421ce5a9364a6e7b696049e93469b',1,'Spielbrett']]]
+  ['distance',['distance',['../class_vector.html#ac57f428cc1e03ce8cd3c9f6c98a8336f',1,'Vector']]],
+  ['domove',['doMove',['../classtest_k_i.html#ad7de22d69a58dca460270955eff84e76',1,'testKI::doMove()'],['../class_a_i.html#a79bb57422a56d4e941c538f2c7491953',1,'AI::doMove()']]],
+  ['dump',['dump',['../class_vector.html#a50123df9754e508f3d4aa7cb72f38905',1,'Vector']]]
 ];

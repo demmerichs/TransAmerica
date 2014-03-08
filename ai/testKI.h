@@ -17,11 +17,15 @@
 
 class testKI: public AI {
 public:
-	testKI(PLAYERCOLOUR farbe);
+	testKI(PLAYERCOLOR farbe);
 	virtual ~testKI();
-	Move doMove(State &aktuell) const;
-	Vector setPawn(State &aktuell) const;
-
+	Move doMove(State &aktuell);
+	Vector setPawn(State &aktuell);
+	bool countPoints(State&, std::vector<Connection*>) {
+		return false;
+	}
+	void gatherInformationEndOfRound(const RoundLogger*) {
+	}
 	Vector getNaechsterPunktZu(Vector, State) const;
 
 	static short sign(short);

@@ -7,7 +7,7 @@
 
 #include "../header/Pawn.h"
 
-Pawn::Pawn(PLAYERCOLOUR farb, Vector pos) :
+Pawn::Pawn(PLAYERCOLOR farb, Vector pos) :
 		Vector(pos), spielerfarbe(farb) {
 	schienennetznummer = farb;
 }

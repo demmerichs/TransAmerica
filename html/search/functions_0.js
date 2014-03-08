@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['coordinate',['Coordinate',['../class_coordinate.html#afa539ca7218f25717e25482babf0bfc9',1,'Coordinate::Coordinate(short x, short y)'],['../class_coordinate.html#ad60539c2d440527e34f4ab23a85c8389',1,'Coordinate::Coordinate(short x, short y, const City *const CityOnCoordinate)']]]
+  ['ai',['AI',['../class_a_i.html#a9bb746461aa9b9cbb169ce5c09906956',1,'AI']]]
 ];

@@ -29,7 +29,7 @@ void Simulation::run() {
 	}
 	//TODO ausgabe punkte
 	for (int i = 0; i < (int) simulationLogger->playerList.size(); i++)
-		std::cout << "Player " << simulationLogger->playerList[i]->spielerfarbe
+		std::cout << "Player " << simulationLogger->playerList[i]->playercolor
 				<< " has won "
 				<< simulationLogger->gamesWon.get(
 						simulationLogger->playerList[i]) / (double) 6.

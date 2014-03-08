@@ -13,14 +13,14 @@
 
 class Pawn: public Vector {
 public:
-	Pawn(PLAYERCOLOUR colour, Vector pos);
+	Pawn(PLAYERCOLOR colour, Vector pos);
 	Pawn(const Pawn &copy) :
 			Vector(copy), schienennetznummer(copy.schienennetznummer), spielerfarbe(
 					copy.spielerfarbe) {
 	}
 	virtual ~Pawn();
 	short schienennetznummer;
-	const PLAYERCOLOUR spielerfarbe;
+	const PLAYERCOLOR spielerfarbe;
 };
 
 #endif /* PAWN_H_ */
