@@ -26,7 +26,7 @@ public:
 	Initialize(const QString &title, QWidget* parent);
 	QString name();
 	int numberOfGames();
-	std::vector<AI*> players;
+	vector<AI*> players;
 private:
 	QStringList aiAvailable;
 	QList<QPair<QString, PLAYERCOLOR> > aiSelected;

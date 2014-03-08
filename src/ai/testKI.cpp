@@ -5,7 +5,18 @@
  *      Author: David
  */
 
-#include "testKI.h"
+#include "../../hdr/ai/testKI.h"
+
+//#include <qtextstream.h>
+#include <cmath>
+#include <cstdlib>
+#include <string>
+using std::string;
+
+#include "../../hdr/game/Constants.h"
+#include "../../hdr/game/City.h"
+#include "../../hdr/game/Move.h"
+#include "../../hdr/game/Pawn.h"
 
 testKI::testKI(PLAYERCOLOR farb) :
 		AI(farb) {
@@ -21,14 +32,14 @@ Move testKI::doMove(State &aktuell) {
 	const Connection* secondary = 0;
 	for (int i = 0; i < 5; i++) {
 		firsty = secondary = 0;
-		Vector aktStadt = *hand[i];
+		Vector aktStadt((*hand[i]));
 		Vector a = getNaechsterPunktZu(aktStadt, aktuell);
 		Vector diff = aktStadt - a;
 		short dis = diff.distance();
 		if (dis != 0) {
 			Vector first(0, 0);
 			if (diff.x != diff.y) {
-				if (std::abs(diff.x) >= std::abs(diff.y))
+				if (abs(diff.x) >= abs(diff.y))
 					first = Vector(sign(diff.x), 0);
 				else
 					first = Vector(0, sign(diff.y));
@@ -40,7 +51,7 @@ Move testKI::doMove(State &aktuell) {
 			if (dis != 0) {
 				Vector second(0, 0);
 				if (diff.x != diff.y) {
-					if (std::abs(diff.x) >= std::abs(diff.y))
+					if (abs(diff.x) >= abs(diff.y))
 						second = Vector(sign(diff.x), 0);
 					else
 						second = Vector(0, sign(diff.y));
@@ -70,8 +81,7 @@ short testKI::sign(short a) {
 
 Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 	Vector ruckgabe(0, 0);
-	short aktSchienennummer =
-			akt.getPawn(this->playercolor).schienennetznummer;
+	short aktSchienennummer = akt.getPawn(this->playercolor).schienennetznummer;
 	short minAbstand = MAX_X + MAX_Y;
 	for (int x = 0; x < MAX_X; x++) {
 		for (int y = 0; y < MAX_Y; y++) {

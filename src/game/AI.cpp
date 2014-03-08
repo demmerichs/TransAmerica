@@ -12,13 +12,13 @@
 #include "../../hdr/game/AI.h"
 //==============================
 // the actual code
-std::set<PLAYERCOLOR> AI::participatingPlayerColours;
+set<PLAYERCOLOR> AI::participatingPlayerColours;
 
 AI::AI(PLAYERCOLOR farb) :
 		playercolor(farb) {
 	if (AI::participatingPlayerColours.count(farb) >= 1) {
-		std::cout << "Two players have the same colour!" << std::endl;
-        //std::exit(0);
+		cout << "Two players have the same colour!" << endl;
+        exit(0);
 	}
 	AI::participatingPlayerColours.insert(farb);
 	hand = new const City*[NUMBER_CITYCOLOURS];

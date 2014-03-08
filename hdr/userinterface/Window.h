@@ -29,6 +29,7 @@ Q_OBJECT
 	friend class MainWindow;
 public:
 	Window(SimulationLogger* game = 0);
+	~Window();
 	void setsimulationp(SimulationLogger* game);
 private:
 	State* aZp;

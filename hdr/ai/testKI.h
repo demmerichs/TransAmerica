@@ -12,17 +12,16 @@
 //==============================
 // forward declared dependencies
 class Move;
-class State;
-class Vector;
+class RoundLogger;
 //==============================
 // included dependencies
-#include <cmath>
+#include <vector>
+using std::vector;
 
 #include "../game/AI.h"
-//#include"../game/header/Move.h"
-//#include"../game/header/State.h"
-//#include "../game/header/Vector.h"
 #include "../game/Constants.h"
+#include "../game/Connection.h"
+#include "../game/State.h"
 //==============================
 // the actual class
 class testKI: public AI {
@@ -31,7 +30,7 @@ public:
 	virtual ~testKI();
 	Move doMove(State &aktuell);
 	Vector setPawn(State &aktuell);
-	bool countPoints(State&, std::vector<Connection*>) {
+	bool countPoints(State&, vector<Connection*>) {
 		return false;
 	}
 	void gatherInformationEndOfRound(const RoundLogger*) {

@@ -213,7 +213,7 @@ Coordinate*** Board::gitterAnlegen() const {
 		for (int x = 0; x < MAX_X; x++) {
 			char inputletter = input[x];
 			if (inputletter == 'c') {
-				testGitter[x][y] = new Coordinate(x, y, durchsucheListe(x, y));
+				testGitter[x][y] = durchsucheListe(x, y);
 			} else if (inputletter == 'x') {
 				testGitter[x][y] = new Coordinate(x, y);
 			} else if (inputletter == '-') {

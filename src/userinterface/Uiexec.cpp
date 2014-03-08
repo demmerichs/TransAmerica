@@ -8,7 +8,7 @@ void UIEXEC::simulateSimulation(int games) {
 	 window implementation
 	 */
 	board = new Board;
-	std::vector<AI*> players;
+	vector<AI*> players;
 	players.push_back(new testKI(P_YELLOW));
 	players.push_back(new testKI(P_BLUE));
 	players.push_back(new testKI(P_ORANGE));

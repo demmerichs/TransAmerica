@@ -25,20 +25,20 @@ class GameLogger;
 // the actual class
 class SimulationLogger {
 public:
-	SimulationLogger(std::vector<AI*> playerList, Board& board,
+	SimulationLogger(vector<AI*> playerList, Board& board,
 			int numberOfPlayers, unsigned int seed = (unsigned) time(0));
 	virtual ~SimulationLogger();
 
-	std::vector<AI*> playerList;
+	vector<AI*> playerList;
 	Counter gamesWon;
 
-	std::vector<GameLogger*> gameList;
+	vector<GameLogger*> gameList;
 
 	Board board;
 
 	unsigned int seed;
 
-	std::vector<AI*> getPlayingOrder(int simulationNumber);
+	vector<AI*> getPlayingOrder(int simulationNumber);
 };
 
 #endif /* SIMULATIONLOGGER_H_ */

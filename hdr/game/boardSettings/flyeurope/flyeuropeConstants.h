@@ -12,7 +12,7 @@
 
 //Board
 //name der Brettdateien
-const std::string BRETTNAME = "hdr/game/boardSettings/flyeurope/";
+const string BRETTNAME = "hdr/game/boardSettings/flyeurope/";
 
 //schienennetznummer zu Beginn gleich der Farbnummer
 const short KEINSCHIENENNETZ = 0;

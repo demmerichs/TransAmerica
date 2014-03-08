@@ -7,8 +7,8 @@
 
 #include "standardConstants.h"
 
-CITYCOLOUR operator>>(std::ifstream &infile, CITYCOLOUR &citycolour) {
-	std::string input;
+CITYCOLOUR operator>>(ifstream &infile, CITYCOLOUR &citycolour) {
+	string input;
 	infile >> input;
 	if (input.compare("BLUE") == 0) {
 		citycolour = C_BLUE;

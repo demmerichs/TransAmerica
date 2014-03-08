@@ -5,33 +5,40 @@
  *      Author: David
  */
 
+//==============================
+// include guards
 #ifndef AI_H_
 #define AI_H_
-
+//==============================
+// forward declared dependencies
+class RoundLogger;
+//==============================
+// included dependencies
 #include<string>
 #include<iostream>
 #include<set>
+using std::string;
+using std::cout;
+using std::endl;
+using std::set;
 
 #include"Constants.h"
 #include"Move.h"
 #include"State.h"
 #include"Pawn.h"
-//#include"../../logger/header/SimulationLogger.h"
-
-class RoundLogger;
-
+//==============================
+// the actual class
 /**
  * If you want to create your own AI, you have to implement this class as a kind of interface.
  * You have to implement every abstract method.
  */
-
 class AI {
-	static std::set<PLAYERCOLOR> participatingPlayerColours;
+	static set<PLAYERCOLOR> participatingPlayerColours;
 protected:
 	virtual Move doMove(State &aktuell) =0; /**<Inside this methode you calculate your next move in the game.*/
 	virtual Vector setPawn(State &aktuell) =0; /**<At the beginning of each round you have to define your starting position of your pawn.*/
 	virtual bool countPoints(State &currentState,
-			std::vector<Connection*> path) =0;
+			vector<Connection*> path) =0;
 	/**<Here you can count your minus points at the end of each round.
 	 * If you want to do so, you have to return true.
 	 * For the beginning it is okay, if you just return false. Then the gamemaster will count the minuspoints.

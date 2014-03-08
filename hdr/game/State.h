@@ -5,18 +5,30 @@
  *      Author: David
  */
 
+//==============================
+// include guard
 #ifndef STATE_H_
 #define STATE_H_
+//==============================
+// forward declared dependencies
+class Board;
+class Connection;
+class Coordinate;
+//==============================
+// included dependencies
 
-#include<iostream>
-#include<vector>
-#include <limits>
+//#include <iostream>
+//#include <limits>
+#include <vector>
+
+using std::vector;
 
 #include"Constants.h"
-#include"Board.h"
+//#include"Board.h"
 #include"Pawn.h"
-#include"Connection.h"
-
+//#include"Connection.h"
+//==============================
+// the actual class
 class State {
 	Pawn** sortedPawns; //hier soll an der Sortierung keiner rumpfuschen
 	unsigned short find_min(Vector actual, unsigned short ** &index) const;
@@ -33,11 +45,11 @@ public:
 	virtual ~State();
 	//State &operator=(const State&) const;
 
-	short** railwayNumber;//[MAX_X][MAX_Y]; //jeder hat eine eigene SchienenNetzNummer, kann ueber Pawn bestimmt werden
-	bool*** railSet;//[MAX_X][MAX_Y][3]; //zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. DirectionValueOfVector
+	short** railwayNumber; //[MAX_X][MAX_Y]; //jeder hat eine eigene SchienenNetzNummer, kann ueber Pawn bestimmt werden
+	bool*** railSet; //[MAX_X][MAX_Y][3]; //zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. DirectionValueOfVector
 	short numberPawns;
 	const Board &board;
-	std::vector<Pawn*> unsortedPawns;
+	vector<Pawn*> unsortedPawns;
 
 	Pawn getPawn(const PLAYERCOLOR spielerfarbe) const;
 	bool isRailwayNumberOfConnectionEqualsNumber(const Connection&,
@@ -51,14 +63,21 @@ public:
 	void addPawn(Pawn insert);
 	void resetAll();
 	unsigned short** evaluateBoard(Vector target) const;
-	unsigned short distance(Vector target,
+	unsigned short distance(const Vector& target,
 			const vector<Vector> &possibleStarts) const;
-	vector<Vector> pointsBelongingToRailwaySystem(PLAYERCOLOR playercolour) const;
+	vector<Vector> pointsBelongingToRailwaySystem(
+			PLAYERCOLOR playercolour) const;
 	void dump() const;
 
-	void setRound(short x){round=x;}
-	void setTurn(short x){turn=x;}
-	void setPlayersTurn(PLAYERCOLOR x){playersTurn=x;}
+	void setRound(short x) {
+		round = x;
+	}
+	void setTurn(short x) {
+		turn = x;
+	}
+	void setPlayersTurn(PLAYERCOLOR x) {
+		playersTurn = x;
+	}
 };
 
 #endif /* STATE_H_ */

@@ -85,11 +85,6 @@ Window::Window(SimulationLogger *game) :
 			SLOT(moveSpinChanged(int)));
 	connect(showTownsCheckBox, SIGNAL(toggled(bool)), spielbrett,
 			SLOT(drawCityChanged(bool)));
-	/**
-	 Eventuell SimulationLogger* setzten
-	 */
-	if (simulationp)
-		setsimulationp(game);
 	//connect(this, SIGNAL(requestZp(int)), counterLCD, SLOT(display(int)));
 
 	//setGameCounter(1);
@@ -97,11 +92,31 @@ Window::Window(SimulationLogger *game) :
 	gameCounter = 1;
 	roundCounter = 1;
 	moveCounter = 0;
-	aZp = NULL;
 	aZp = 0;
 	if (simulationp)
 		updateSpinBoxes();
 	setZp();
+}
+
+Window::~Window() {
+	delete spielbrett;
+	delete simulationp;
+	delete aZp;
+	delete town1;
+	delete town2;
+	delete town3;
+	delete town4;
+	delete town5;
+	delete town6;
+	delete player1;
+	delete player2;
+	delete toolBoxLabel;
+	delete newGameButton;
+	delete moveSpinBox;
+	delete roundSpinBox;
+	delete gameSpinBox;
+	delete showTownsCheckBox;
+	delete counterLCD;
 }
 /**
  Slot-Implementationen
@@ -119,7 +134,7 @@ void Window::setZp() {
 }
 
 bool Window::setGameCounter(int i) {
-	std::cout << "game" << std::endl;
+	cout << "game" << endl;
 	int newGameCounter;
 	if (i == gameSpinBox->maximum())
 		newGameCounter = i - 1;
@@ -135,7 +150,7 @@ bool Window::setGameCounter(int i) {
 }
 
 bool Window::setRoundCounter(int i) {
-	std::cout << "round" << std::endl;
+	cout << "round" << endl;
 	int newRoundCounter;
 	if (i == roundSpinBox->maximum())
 		if (setGameCounter(gameCounter + 1))
@@ -157,7 +172,7 @@ bool Window::setRoundCounter(int i) {
 }
 
 bool Window::setMoveCounter(int i) {
-	std::cout << "move" << std::endl;
+	cout << "move" << endl;
 	int newMoveCounter;
 	if (i == moveSpinBox->maximum())
 		if (setRoundCounter(roundCounter + 1))
@@ -196,17 +211,6 @@ void Window::roundSpinChanged(int i) {
 void Window::moveSpinChanged(int i) {
 	setMoveCounter(i);
 	setZp();
-}
-
-void Window::setsimulationp(SimulationLogger *game) {
-	simulationp = game;
-	gameSpinBox->setRange(0, simulationp->gameList.size());
-	setGameCounter(1);
-	roundSpinBox->setRange(0,
-			simulationp->gameList[gameCounter]->roundList.size());
-	moveSpinBox->setRange(0,
-			simulationp->gameList[gameCounter]->roundList[roundCounter]->moveList.size());
-
 }
 
 void Window::updateSpinBoxes() {

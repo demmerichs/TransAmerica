@@ -125,8 +125,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a79bb57422a56d4e941c538f2c7491953"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fbc5b7d4230575baf80217d0c250cc9"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a0fbc5b7d4230575baf80217d0c250cc9">setPawn</a> (<a class="el" href="class_state.html">State</a> &amp;aktuell)=0</td></tr>
 <tr class="separator:a0fbc5b7d4230575baf80217d0c250cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17ab5d8748cd5b8afc7e73c42ef12fb3"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a17ab5d8748cd5b8afc7e73c42ef12fb3">countPoints</a> (<a class="el" href="class_state.html">State</a> &amp;currentState, std::vector&lt; <a class="el" href="class_connection.html">Connection</a> * &gt; path)=0</td></tr>
-<tr class="separator:a17ab5d8748cd5b8afc7e73c42ef12fb3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a7ae5d3ea77c112c01abe4bca84bb1e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a8a7ae5d3ea77c112c01abe4bca84bb1e">countPoints</a> (<a class="el" href="class_state.html">State</a> &amp;currentState, vector&lt; <a class="el" href="class_connection.html">Connection</a> * &gt; path)=0</td></tr>
+<tr class="separator:a8a7ae5d3ea77c112c01abe4bca84bb1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8565a9ef04ac4f9913913c99f65213b2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a8565a9ef04ac4f9913913c99f65213b2">gatherInformationEndOfRound</a> (const <a class="el" href="class_round_logger.html">RoundLogger</a> *currentInfos)=0</td></tr>
 <tr class="separator:a8565a9ef04ac4f9913913c99f65213b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -165,7 +165,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Round</b></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a17ab5d8748cd5b8afc7e73c42ef12fb3"></a>
+<a class="anchor" id="a8a7ae5d3ea77c112c01abe4bca84bb1e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -181,7 +181,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Round</b></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">std::vector&lt; <a class="el" href="class_connection.html">Connection</a> * &gt;&#160;</td>
+          <td class="paramtype">vector&lt; <a class="el" href="class_connection.html">Connection</a> * &gt;&#160;</td>
           <td class="paramname"><em>path</em>&#160;</td>
         </tr>
         <tr>
@@ -198,7 +198,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Round</b></td></tr>
 </div><div class="memdoc">
 <p>Here you can count your minus points at the end of each round. If you want to do so, you have to return true. For the beginning it is okay, if you just return false. Then the gamemaster will count the minuspoints. He counts in most cases the minimum of minuspoints you get, however in some cases the algorithm doesn't evaluate the best value. </p>
 
-<p>Implemented in <a class="el" href="classtest_k_i.html#aa63e7bbbebbd5a3d01b60ccf7c9bf5f9">testKI</a>.</p>
+<p>Implemented in <a class="el" href="classtest_k_i.html#a69c6849cb0674fada5c6fff87e0c4390">testKI</a>.</p>
 
 </div>
 </div>
@@ -351,7 +351,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Round</b></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 15:08:28 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Mar 8 2014 19:58:11 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -5,16 +5,22 @@
  *      Author: David
  */
 
+//==============================
+// include guard
 #ifndef CITY_H_
 #define CITY_H_
+//==============================
+// forward declared dependencies
+//==============================
+// included dependencies
+#include <string>
+using std::string;
 
-#include<string>
-using namespace std;
-
-#include"Constants.h"
-#include"Vector.h"
-
-class City : public Vector{
+#include "Constants.h"
+#include "Coordinate.h"
+//==============================
+// the actual class
+class City: public Coordinate {
 public:
 	City(string name, CITYCOLOUR cityColour, short number, Vector place);
 	virtual ~City();

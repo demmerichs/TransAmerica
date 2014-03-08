@@ -26,12 +26,12 @@ class Pawn;
 // the actual class
 class RoundLogger {
 public:
-	RoundLogger(PlayingOrder& playingOrder, std::vector<AI*> playerList,
+	RoundLogger(PlayingOrder& playingOrder, vector<AI*> playerList,
 			Board& board, AI* roundStartingPlayer);
 	virtual ~RoundLogger();
 
 	PlayingOrder &playingOrder;
-	std::vector<AI*> playerList;
+	vector<AI*> playerList;
 	Board &board;
 
 	AI* roundStartingPlayer;
@@ -40,7 +40,7 @@ public:
 
 	Pawn** pawnList;
 
-	std::vector<Move*> moveList;
+	vector<Move*> moveList;
 };
 
 #endif /* ROUNDLOGGER_H_ */

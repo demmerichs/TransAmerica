@@ -1,6 +1,12 @@
 //==============================
 // included dependencies
 #include "../../hdr/userinterface/Spielbrett.h"
+
+#include "../../hdr/game/Constants.h"
+#include "../../hdr/game/Board.h"
+#include "../../hdr/game/City.h"
+#include "../../hdr/game/Connection.h"
+#include "../../hdr/game/Pawn.h"
 #include "../../hdr/userinterface/Window.h"
 //==============================
 const QPen thinPen(Qt::darkGray, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);

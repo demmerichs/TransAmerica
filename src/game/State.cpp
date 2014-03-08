@@ -7,6 +7,15 @@
 
 #include "../../hdr/game/State.h"
 
+#include <limits>
+
+using std::numeric_limits;
+
+#include "../../hdr/game/Constants.h"
+#include "../../hdr/game/Board.h"
+#include "../../hdr/game/City.h"
+#include "../../hdr/game/Connection.h"
+
 State::State(Board &board) :
 		numberPawns(0), board(board) {
 	sortedPawns = new Pawn*[MAX_PLAYER];
@@ -189,7 +198,7 @@ void State::resetAll() {
  void State::dumpEvaluateBoard(unsigned short ** & index) {
  for (int j = 0; j < MAX_Y; j++) {
  for (int i = 0; i < MAX_X; i++) {
- cout << std::setw(6) << index[i][j];
+ cout << setw(6) << index[i][j];
  }
  cout << endl;
  }
@@ -202,7 +211,7 @@ unsigned short** State::evaluateBoard(Vector target) const {
 	}
 	for (int i = 0; i < MAX_X; i++) {
 		for (int j = 0; j < MAX_Y; j++) {
-			index[i][j] = std::numeric_limits<unsigned short>::max() / 2;
+			index[i][j] = numeric_limits<unsigned short>::max() / 2;
 		}
 	}
 	index[target.x][target.y] = 0;
@@ -240,7 +249,7 @@ void State::calculate_surround(Vector actual, unsigned short ** &index,
 }
 
 unsigned short State::find_min(Vector actual, unsigned short ** &index) const {
-	unsigned short min = std::numeric_limits<unsigned short>::max();
+	unsigned short min = numeric_limits<unsigned short>::max();
 	Vector richtungsvektoren[] = { Vector(1, 0), Vector(1, 1), Vector(0, 1),
 			Vector(-1, 0), Vector(-1, -1), Vector(0, -1) };
 	for (int i = 0; i < 6; i++) {
@@ -277,9 +286,9 @@ vector<Vector> State::pointsBelongingToRailwaySystem(
 	return returnval;
 }
 
-unsigned short State::distance(Vector target,
+unsigned short State::distance(const Vector& target,
 		const vector<Vector> &possibleStarts) const {
-	unsigned short distance = std::numeric_limits<unsigned short>::max();
+	unsigned short distance = numeric_limits<unsigned short>::max();
 	unsigned short ** array = this->evaluateBoard(target);
 	//dumpEvaluateBoard(array);
 	for (unsigned i = 0; i < possibleStarts.size(); i++) {

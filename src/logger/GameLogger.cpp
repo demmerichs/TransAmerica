@@ -7,7 +7,7 @@
 
 #include "../../hdr/logger/GameLogger.h"
 
-GameLogger::GameLogger(std::vector<AI*> playerList, Board& board,
+GameLogger::GameLogger(vector<AI*> playerList, Board& board,
 		PlayingOrder playingOrder, AI* gameStartingPlayer) :
 		gameStartingPlayer(gameStartingPlayer), playerList(playerList), board(
 				board), playingOrder(playingOrder), deadLine(0) {

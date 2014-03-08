@@ -7,7 +7,7 @@
 
 #include "../../hdr/game/PlayingOrder.h"
 
-PlayingOrder::PlayingOrder(std::vector<AI*> order) {
+PlayingOrder::PlayingOrder(vector<AI*> order) {
 	list = new PlayingOrderElement*[order.size()];
 	for (int i = 0; i < (int) order.size() - 1; i++)
 		list[i] = new PlayingOrderElement(order[i], list[i + 1]);

@@ -5,22 +5,29 @@
  *      Author: David
  */
 
+//==============================
+// include guard
 #ifndef VECTOR_H_
 #define VECTOR_H_
+//==============================
+// forward declared dependencies
+//==============================
+// included dependencies
 
-#include<iostream>
-#include <cmath>
+#include <iostream>
 
-#include"Constants.h"
-
+using std::cout;
+using std::endl;
+//==============================
+// the actual class
 /**
  * An object of the class Vector represents a 2-dimensional vector with two integer values.
  * It is a vector referenced to the board of the game.
  */
-
 class Vector {
 public:
 	Vector(short x, short y);
+	Vector(const Vector& copy);
 	virtual ~Vector();
 	short x;
 	short y;
@@ -32,7 +39,7 @@ public:
 	 the number of steps, because it doesn't take care of bridges/tunnels!*/
 
 	void dump() const {
-		std::cout << x << " " << y << std::endl;
+		cout << x << " " << y << endl;
 	} /**< Dumps the values of the vector on the standard stream. */
 };
 

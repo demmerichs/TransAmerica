@@ -16,7 +16,7 @@ Inheritance diagram for test\-K\-I\-:\begin{figure}[H]
 \item 
 {\bf Vector} {\bf set\-Pawn} ({\bf State} \&aktuell)
 \item 
-bool {\bf count\-Points} ({\bf State} \&, std\-::vector$<$ {\bf Connection} $\ast$ $>$)
+bool {\bf count\-Points} ({\bf State} \&, vector$<$ {\bf Connection} $\ast$ $>$)
 \item 
 void {\bf gather\-Information\-End\-Of\-Round} (const {\bf Round\-Logger} $\ast$)
 \item 
@@ -38,12 +38,12 @@ static short {\bfseries sign} (short)\label{classtest_k_i_a22f65151709965a8d75c8
 \subsubsection[{count\-Points}]{\setlength{\rightskip}{0pt plus 5cm}bool test\-K\-I\-::count\-Points (
 \begin{DoxyParamCaption}
 \item[{{\bf State} \&}]{current\-State, }
-\item[{std\-::vector$<$ {\bf Connection} $\ast$ $>$}]{path}
+\item[{vector$<$ {\bf Connection} $\ast$ $>$}]{path}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classtest_k_i_aa63e7bbbebbd5a3d01b60ccf7c9bf5f9}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classtest_k_i_a69c6849cb0674fada5c6fff87e0c4390}
 Here you can count your minus points at the end of each round. If you want to do so, you have to return true. For the beginning it is okay, if you just return false. Then the gamemaster will count the minuspoints. He counts in most cases the minimum of minuspoints you get, however in some cases the algorithm doesn't evaluate the best value. 
 
-Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a17ab5d8748cd5b8afc7e73c42ef12fb3}.
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a8a7ae5d3ea77c112c01abe4bca84bb1e}.
 
 \index{test\-K\-I@{test\-K\-I}!do\-Move@{do\-Move}}
 \index{do\-Move@{do\-Move}!testKI@{test\-K\-I}}

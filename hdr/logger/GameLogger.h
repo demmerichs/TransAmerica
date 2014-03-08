@@ -27,12 +27,12 @@ class Board;
 // the actual class
 class GameLogger {
 public:
-	GameLogger(std::vector<AI*> playerList, Board& board,
+	GameLogger(vector<AI*> playerList, Board& board,
 			PlayingOrder playingOrder, AI* gameStartingPlayer);
 	virtual ~GameLogger();
 
 	AI* gameStartingPlayer;
-	std::vector<AI*> playerList;
+	vector<AI*> playerList;
 	Board& board;
 	PlayingOrder playingOrder;
 
@@ -41,7 +41,7 @@ public:
 	Counter points;
 	Counter winnerPoints;
 
-	std::vector<RoundLogger*> roundList;
+	vector<RoundLogger*> roundList;
 };
 
 #endif /* GAMELOGGER_H_ */

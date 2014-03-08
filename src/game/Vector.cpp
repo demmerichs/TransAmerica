@@ -17,6 +17,10 @@ Vector::Vector(short x, short y) :
 		x(x), y(y) {
 }
 
+Vector::Vector(const Vector& copy) :
+		x(copy.x), y(copy.y) {
+}
+
 Vector::~Vector() {
 }
 

@@ -7,6 +7,18 @@
 
 #include "../../hdr/game/Round.h"
 
+#include <vector>
+
+#include "../../hdr/game/Constants.h"
+#include "../../hdr/game/Board.h"
+#include "../../hdr/game/City.h"
+#include "../../hdr/game/Connection.h"
+#include "../../hdr/game/Counter.h"
+#include "../../hdr/game/Move.h"
+#include "../../hdr/game/Pawn.h"
+
+
+
 Round::Round(RoundLogger* roundLogger) :
 		roundLogger(roundLogger), played(false), currentState(
 				State(roundLogger->board)) {
@@ -60,7 +72,7 @@ void Round::setPawns() {
 
 int Round::losingPoints(AI* player) const {
 	unsigned short minuspoints = 0;
-	std::vector<Connection*> path;
+	vector<Connection*> path;
 	State copy(currentState);
 	if (player->countPoints(copy, path)) {
 		State copy(currentState);
@@ -69,7 +81,7 @@ int Round::losingPoints(AI* player) const {
 		if (isPlayerConnectedToHisCities(player, copy)) {
 			for (int i = 0; i < (int) path.size(); i++) {
 				minuspoints += (1 + path[i]->hindernis);
-				std::cout << (1 + path[i]->hindernis) << std::endl;
+				cout << (1 + path[i]->hindernis) << endl;
 			}
 			return minuspoints;
 		}
