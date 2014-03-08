@@ -5,18 +5,19 @@
  *      Author: David
  */
 
-#include "logger/header/SimulationLogger.h"
-#include "ai/testKI.h"
-#include "game/header/AI.h"
-#include "game/header/Simulation.h"
-#include "userinterface/header/uiexec.h"
-#include "userinterface/header/mainwindow.h"
 #include <vector>
 #include <QApplication>
 
+#include "hdr/logger/SimulationLogger.h"
+#include "hdr/ai/testKI.h"
+#include "hdr/game/AI.h"
+#include "hdr/game/Simulation.h"
+#include "hdr/userinterface/uiexec.h"
+#include "hdr/userinterface/mainwindow.h"
+
 int main(int argc, char* argv[]) {
 	QApplication a(argc, argv);
-    MainWindow mainWindow;
+	MainWindow mainWindow;
 	return a.exec();
 }
 /*
