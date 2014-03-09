@@ -6,6 +6,7 @@
  */
 
 #include "../../hdr/game/Vector.h"
+#include <cmath>
 
 using namespace std;
 

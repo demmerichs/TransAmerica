@@ -14,7 +14,7 @@ class AI;
 #include "../game/Board.h"
 #include "../logger/SimulationLogger.h"
 #include "../game/Simulation.h"
-#include "../ai/AILIst.h"	//TODO remove list to somewhere more central
+#include "../ai/AIList.h"	//TODO remove list to somewhere more central
 //==============================
 // the actual class
 class UIEXEC {

@@ -1,4 +1,4 @@
-#include "initialize.h"
+#include "../../hdr/userinterface/Initialize.h"
 
 
 Initialize::Initialize(const QString &title, QWidget *parent)

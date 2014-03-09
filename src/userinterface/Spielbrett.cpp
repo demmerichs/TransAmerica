@@ -62,69 +62,35 @@ Spielbrett::Spielbrett(Window* parentalWindow) :
 void Spielbrett::paintEvent(QPaintEvent*) {
 	QPainter painter(this);
 
-	if (parentalWindow->simulationp == NULL)
-		return;
-	if (parentalWindow->aZp == NULL)
-		return;
+    QPixmap background("images/bg2.jpg");
+    QTransform scale;
+    scale.scale(2, 2);
+    painter.setWorldTransform(scale, true);
+    painter.drawPixmap(0, 0, background);
 
-	QPixmap background("images/bg2.jpg");
-//  QPixmap blueCity("images/blau.gif");
-//  QPixmap greenCity("images/gruen.gif");
-//  QPixmap yellowCity("images/gelb.gif");
-//  QPixmap orangeCity("images/orange.gif");
-//  QPixmap redCity("images/rot.gif");
+    if (!parentalWindow->simulationp || !parentalWindow->aZp)
+    {
+        painter.drawText(this->width()/2, this->height()/2, "NO VALID SIMULATION LOADED");
+		return;
+    }
 
-	QTransform scale;
-	scale.scale(2, 2);
-	painter.setWorldTransform(scale, true);
-	painter.drawPixmap(0, 0, background);
+
 	QTransform transform;
 	transform.translate(110.5, 40.5);
 	transform.scale(1, sqrt(3) / 2.);
 	transform.shear(-0.5, 0);
+
 	QTransform inverseTransform = transform.inverted();
 	painter.setWorldTransform(transform, true);
 
-	painter.setRenderHints(QPainter::Antialiasing, true);
+    painter.setRenderHints(QPainter::Antialiasing, true);
 
 	/**
 	 draws the Railway-System
 	 */
+    drawGrid(&painter);
+    drawRailway(&painter);
 
-	for (int i = 0; i < MAX_X; i++) {
-		for (int j = 0; j < MAX_Y; j++) {
-			if (!(parentalWindow->aZp->board.Kanten[i][j][0] == NULL)) {
-				if (parentalWindow->aZp->railSet[i][j][0] == true) {
-					painter.setPen(fatPen);
-				} else if ((parentalWindow->aZp->board.Kanten[i][j][0])->hindernis
-						== true) {
-					painter.setPen(thinRedPen);
-				} else
-					painter.setPen(thinPen);
-				painter.drawLine(i * sL, j * sL, i * sL + sL, j * sL);
-			}
-			if (!(parentalWindow->aZp->board.Kanten[i][j][2] == NULL)) {
-				if (parentalWindow->aZp->railSet[i][j][2] == true) {
-					painter.setPen(fatPen);
-				} else if ((parentalWindow->aZp->board.Kanten[i][j][2])->hindernis
-						== true) {
-					painter.setPen(thinRedPen);
-				} else
-					painter.setPen(thinPen);
-				painter.drawLine(i * sL, j * sL, i * sL + sL, j * sL + sL);
-			}
-			if (!(parentalWindow->aZp->board.Kanten[i][j][1] == NULL)) {
-				if (parentalWindow->aZp->railSet[i][j][1] == true) {
-					painter.setPen(fatPen);
-				} else if ((parentalWindow->aZp->board.Kanten[i][j][1])->hindernis
-						== true) {
-					painter.setPen(thinRedPen);
-				} else
-					painter.setPen(thinPen);
-				painter.drawLine(i * sL, j * sL, i * sL, j * sL + sL);
-			}
-		}
-	}
 	/**
 	 draws the names of the citys
 	 */
@@ -191,4 +157,57 @@ void Spielbrett::zustandChanged(int counter) {
 void Spielbrett::drawCityChanged(bool enable) {
 	drawCity = enable;
 	update();
+}
+
+void Spielbrett::drawGrid(QPainter* painter)
+{
+    for (int i = 0; i < MAX_X; i++) {
+        for (int j = 0; j < MAX_Y; j++) {
+            if (parentalWindow->aZp->board.Kanten[i][j][0]) {
+                if ((parentalWindow->aZp->board.Kanten[i][j][0])->hindernis) {
+                    painter->setPen(thinRedPen);
+                } else
+                    painter->setPen(thinPen);
+                painter->drawLine(i * sL, j * sL, i * sL + sL, j * sL);
+            }
+            if (parentalWindow->aZp->board.Kanten[i][j][2]) {
+                if (parentalWindow->aZp->board.Kanten[i][j][2]->hindernis) {
+                    painter->setPen(thinRedPen);
+                } else
+                    painter->setPen(thinPen);
+                painter->drawLine(i * sL, j * sL, i * sL + sL, j * sL + sL);
+            }
+            if (parentalWindow->aZp->board.Kanten[i][j][1]) {
+                if ((parentalWindow->aZp->board.Kanten[i][j][1])->hindernis) {
+                    painter->setPen(thinRedPen);
+                } else
+                    painter->setPen(thinPen);
+                painter->drawLine(i * sL, j * sL, i * sL, j * sL + sL);
+            }
+        }
+    }
+}
+
+void Spielbrett::drawRailway(QPainter *painter)
+{
+    painter->setPen(fatPen);
+    for (int i = 0; i < MAX_X; i++) {
+        for (int j = 0; j < MAX_Y; j++) {
+            if (parentalWindow->aZp->board.Kanten[i][j][0]) {
+                if (parentalWindow->aZp->railSet[i][j][0]) {
+                    painter->drawLine(i * sL, j * sL, i * sL + sL, j * sL);
+                }
+            }
+            if (parentalWindow->aZp->board.Kanten[i][j][2]) {
+                if (parentalWindow->aZp->railSet[i][j][2]) {
+                    painter->drawLine(i * sL, j * sL, i * sL + sL, j * sL + sL);
+                }
+            }
+            if (parentalWindow->aZp->board.Kanten[i][j][1]) {
+                if (parentalWindow->aZp->railSet[i][j][1]) {
+                    painter->drawLine(i * sL, j * sL, i * sL, j * sL + sL);
+                }
+            }
+        }
+    }
 }
