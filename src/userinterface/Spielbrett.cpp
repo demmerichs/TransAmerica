@@ -70,7 +70,7 @@ void Spielbrett::paintEvent(QPaintEvent*) {
     QPixmap background("images/bg2.jpg");
     QTransform scale;
     scale.scale(2, 2);
-    painter.setWorldTransform(scale, true);
+//    painter.setWorldTransform(scale, true);
     painter.drawPixmap(0, 0, background);
 
     if (!parentalWindow->simulationp || !parentalWindow->aZp)
@@ -115,38 +115,23 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 			 << "  y = " << parentalWindow->aZp->gameBoard.Stadtliste[i]->place.y << endl;
 			 // << "  Stadt = " << parentalWindow->aZp->gameBoard.Stadtliste[i]->name<< endl;
 			 */
-			painter.drawPixmap(
-					transform.map(
-							QPoint(
-									(parentalWindow->aZp->board.Stadtliste[i]->x)
-											* sL - 12,
-									(parentalWindow->aZp->board.Stadtliste[i]->y)
-											* sL - 8.5)),
-					getPixmap(
-							parentalWindow->aZp->board.Stadtliste[i]->cityColour));
-		}
+            painter.drawPixmap(
+                        transform.map(
+                            QPoint(
+                                (parentalWindow->aZp->board.Stadtliste[i]->x)
+                                * sL - 12,
+                                (parentalWindow->aZp->board.Stadtliste[i]->y)
+                                * sL - 8.5)),
+                        getPixmap(
+                            parentalWindow->aZp->board.Stadtliste[i]->cityColour));
+        }
 	}
-	/* for(int i=0; i<2; i++)
-	 {
-	 for (int j=0; j<5; j++){
-	 if (parentalWindow->simulationp->KIliste[i].hand[j]!=NULL)
-	 {
-	 painter.drawPixmap(transform.map(QPoint((parentalWindow->simulationp->KIliste[i].hand[j]->place.x)*sL-12,
-	 (parentalWindow->simulationp->KIliste[i].hand[j]->place.y)*sL-8.5)),
-	 QPixmap(getColor(parentalWindow->simulationp->KIliste[i].hand[j]->cityColour, stadtfarbe).s));
-	 }
-	 }
-	 }*/
+    drawPawns(&painter);
+
 
 	//draws the poeppel
     /**
-    for (int k = 0; k < parentalWindow->aZp->numberPawns; k++) {
-		Pawn* i = parentalWindow->aZp->unsortedPawns[k];
-		QBrush brush(getQColor(i->spielerfarbe));
-		painter.setBrush(brush);
-		QPoint point = transform.map(QPoint(i->x * sL - 18, i->y * sL - 25));
-		painter.drawRoundedRect(point.x(), point.y(), 10, 25, 2, 2);
-	}
+
     */
 }
 
@@ -221,5 +206,18 @@ void Spielbrett::drawRailway(QPainter *painter)
                 }
             }
         }
+    }
+}
+
+void Spielbrett::drawPawns(QPainter *painter)
+{
+    std::cout << "function Spielbrett::drawPawns has been called \n"
+              << "numberPawns: " << parentalWindow->aZp->numberPawns << endl;
+    for (int k = 0; k < parentalWindow->aZp->numberPawns; k++) {
+        Pawn* i = parentalWindow->aZp->unsortedPawns[k];
+        QBrush brush(getQColor(i->spielerfarbe));
+        painter->setBrush(brush);
+        QPoint point = transform.map(QPoint(i->x * sL - 18, i->y * sL - 25));
+        painter->drawRoundedRect(point.x(), point.y(), 10, 25, 2, 2);
     }
 }
