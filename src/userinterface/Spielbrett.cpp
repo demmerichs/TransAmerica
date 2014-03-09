@@ -58,6 +58,11 @@ Spielbrett::Spielbrett(Window* parentalWindow) :
 	setBackgroundRole(QPalette::Base);
 	setAutoFillBackground(true);
 	setMouseTracking(true);
+
+    transform.translate(110.5, 40.5);
+    transform.scale(1, sqrt(3) / 2.);
+    transform.shear(-0.5, 0);
+
 }
 void Spielbrett::paintEvent(QPaintEvent*) {
 	QPainter painter(this);
@@ -75,13 +80,7 @@ void Spielbrett::paintEvent(QPaintEvent*) {
     }
 
 
-	QTransform transform;
-	transform.translate(110.5, 40.5);
-	transform.scale(1, sqrt(3) / 2.);
-	transform.shear(-0.5, 0);
-
-	QTransform inverseTransform = transform.inverted();
-	painter.setWorldTransform(transform, true);
+    //QTransform inverseTransform = transform.inverted();
 
     painter.setRenderHints(QPainter::Antialiasing, true);
 
@@ -95,7 +94,6 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	 draws the names of the citys
 	 */
 
-	painter.setWorldTransform(inverseTransform, true);
 	if (drawCity) {
 		painter.drawText(transform.map(QPoint(0 + 5, 1 * sL)), tr("Portland"));
 		painter.drawText(transform.map(QPoint(2 * sL + 5, 5 * sL)),
@@ -141,13 +139,15 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	 }*/
 
 	//draws the poeppel
-	for (int k = 0; k < parentalWindow->aZp->numberPawns; k++) {
+    /**
+    for (int k = 0; k < parentalWindow->aZp->numberPawns; k++) {
 		Pawn* i = parentalWindow->aZp->unsortedPawns[k];
 		QBrush brush(getQColor(i->spielerfarbe));
 		painter.setBrush(brush);
 		QPoint point = transform.map(QPoint(i->x * sL - 18, i->y * sL - 25));
 		painter.drawRoundedRect(point.x(), point.y(), 10, 25, 2, 2);
 	}
+    */
 }
 
 void Spielbrett::zustandChanged(int counter) {
@@ -168,21 +168,27 @@ void Spielbrett::drawGrid(QPainter* painter)
                     painter->setPen(thinRedPen);
                 } else
                     painter->setPen(thinPen);
-                painter->drawLine(i * sL, j * sL, i * sL + sL, j * sL);
+                painter->drawLine(
+                            transform.map(QPoint(i * sL, j * sL)),
+                            transform.map(QPoint(i * sL + sL, j * sL)));
             }
             if (parentalWindow->aZp->board.Kanten[i][j][2]) {
                 if (parentalWindow->aZp->board.Kanten[i][j][2]->hindernis) {
                     painter->setPen(thinRedPen);
                 } else
                     painter->setPen(thinPen);
-                painter->drawLine(i * sL, j * sL, i * sL + sL, j * sL + sL);
+                painter->drawLine(
+                            transform.map(QPoint(i * sL, j * sL)),
+                            transform.map(QPoint(i * sL + sL, j * sL + sL)));
             }
             if (parentalWindow->aZp->board.Kanten[i][j][1]) {
                 if ((parentalWindow->aZp->board.Kanten[i][j][1])->hindernis) {
                     painter->setPen(thinRedPen);
                 } else
                     painter->setPen(thinPen);
-                painter->drawLine(i * sL, j * sL, i * sL, j * sL + sL);
+                painter->drawLine(
+                            transform.map(QPoint(i * sL, j * sL)),
+                            transform.map(QPoint(i * sL, j * sL + sL)));
             }
         }
     }
@@ -195,17 +201,23 @@ void Spielbrett::drawRailway(QPainter *painter)
         for (int j = 0; j < MAX_Y; j++) {
             if (parentalWindow->aZp->board.Kanten[i][j][0]) {
                 if (parentalWindow->aZp->railSet[i][j][0]) {
-                    painter->drawLine(i * sL, j * sL, i * sL + sL, j * sL);
+                    painter->drawLine(
+                                transform.map(QPoint(i * sL, j * sL)),
+                                transform.map(QPoint(i * sL + sL, j * sL)));
                 }
             }
             if (parentalWindow->aZp->board.Kanten[i][j][2]) {
                 if (parentalWindow->aZp->railSet[i][j][2]) {
-                    painter->drawLine(i * sL, j * sL, i * sL + sL, j * sL + sL);
+                    painter->drawLine(
+                                transform.map(QPoint(i * sL, j * sL)),
+                                transform.map(QPoint(i * sL + sL, j * sL+ sL)));
                 }
             }
             if (parentalWindow->aZp->board.Kanten[i][j][1]) {
                 if (parentalWindow->aZp->railSet[i][j][1]) {
-                    painter->drawLine(i * sL, j * sL, i * sL, j * sL + sL);
+                    painter->drawLine(
+                                transform.map(QPoint(i * sL, j * sL)),
+                                transform.map(QPoint(i * sL, j * sL + sL)));
                 }
             }
         }

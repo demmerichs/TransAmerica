@@ -22,6 +22,7 @@ public:
 	UIEXEC();
 	Window* wp;
 	Board* board;
+    vector<AI*> *players;
 	SimulationLogger* simulationLogger;
 	Simulation* simulation;
 	void simulateSimulation(int games = 1);

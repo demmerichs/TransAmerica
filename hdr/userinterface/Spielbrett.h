@@ -31,10 +31,12 @@ protected:
 
 private:
 	bool drawCity;
+    QTransform transform;
 	Window* parentalWindow;
     void drawGrid(QPainter* painter);
     void drawRailway(QPainter* painter);
     void drawPawns(QPainter* painter);
+
 };
 
 #endif // SPIELBRETT_H
