@@ -28,6 +28,7 @@ public slots:
 
 protected:
 	void paintEvent(QPaintEvent* event);
+    void mouseReleaseEvent(QMouseEvent* event);
 
 private:
 	bool drawCity;

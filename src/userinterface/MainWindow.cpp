@@ -29,8 +29,8 @@ void MainWindow::openInit() {
 }
 
 void MainWindow::mouseReleaseEvent(QMouseEvent* event) {
-	QPoint clickPoint = event->pos();
-	cout << "Mouse Click:" << "\t X:" << clickPoint.x() << "\t Y:"
-			<< clickPoint.y() << endl;
+//	QPoint clickPoint = event->pos();
+//	cout << "Mouse Click:" << "\t X:" << clickPoint.x() << "\t Y:"
+//			<< clickPoint.y() << endl;
 
 }

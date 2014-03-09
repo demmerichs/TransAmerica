@@ -70,7 +70,7 @@ void Spielbrett::paintEvent(QPaintEvent*) {
     QPixmap background("images/bg2.jpg");
     QTransform scale;
     scale.scale(2, 2);
-//    painter.setWorldTransform(scale, true);
+    painter.setWorldTransform(scale, true);
     painter.drawPixmap(0, 0, background);
 
     if (!parentalWindow->simulationp || !parentalWindow->aZp)
@@ -142,6 +142,13 @@ void Spielbrett::zustandChanged(int counter) {
 void Spielbrett::drawCityChanged(bool enable) {
 	drawCity = enable;
 	update();
+}
+void Spielbrett::mouseReleaseEvent(QMouseEvent* event)
+{
+    QPoint clickPoint = event->pos();
+    cout << "Mouse Click:" << "\t X:" << clickPoint.x() << "\t Y:"
+            << clickPoint.y() << endl;
+
 }
 
 void Spielbrett::drawGrid(QPainter* painter)
