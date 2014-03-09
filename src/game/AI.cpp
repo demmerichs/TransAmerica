@@ -19,7 +19,7 @@ AI::AI(PLAYERCOLOR farb) :
 		playercolor(farb) {
 	if (AI::participatingPlayerColours.count(farb) >= 1) {
 		cout << "Two players have the same colour!" << endl;
-        std::exit(0);
+		std::exit(0);
 	}
 	AI::participatingPlayerColours.insert(farb);
 	hand = new const City*[NUMBER_CITYCOLOURS];
@@ -29,4 +29,5 @@ AI::AI(PLAYERCOLOR farb) :
 
 AI::~AI() {
 	delete[] hand;
+	AI::participatingPlayerColours.erase(playercolor);
 }
