@@ -57,7 +57,6 @@ public:
 	short getRailwayNumber(const Vector &koo) const;
 	void setRailwayNumber(const Coordinate &koo, const short nr);
 	void setRail(const Connection &);
-	static short DirectionValueOfVector(const Vector&);
 	void resetRailwayNr_ToNr_(const short, const short);
 	const Connection* getConnection(Vector a, Vector b) const;
 	void addPawn(Pawn insert);

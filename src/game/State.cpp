@@ -107,22 +107,6 @@ void State::setRailwayNumber(const Coordinate &koo, const short nr) {
 	railwayNumber[koo.x][koo.y] = nr;
 }
 
-short State::DirectionValueOfVector(const Vector & richtung) {
-//zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. DirectionValueOfVector
-	short summe = richtung.x * 2 + richtung.y;
-	switch (summe) {
-	case 1:
-		return 1;
-	case 2:
-		return 0;
-	case 3:
-		return 2;
-	default:
-		cout << "RichtungsWert hat keine Richtung uebergeben bekommen" << endl;
-		return -1;
-	}
-}
-
 void State::resetRailwayNr_ToNr_(const short von, const short zu) {
 	for (unsigned i = 0; i < unsortedPawns.size(); i++)
 		if (this->unsortedPawns[i]->schienennetznummer == von)
@@ -134,8 +118,8 @@ void State::resetRailwayNr_ToNr_(const short von, const short zu) {
 }
 
 void State::setRail(const Connection &sollGelegt) {
-	railSet[sollGelegt.first.x][sollGelegt.first.y][DirectionValueOfVector(
-			sollGelegt.richtung)] = true;
+	railSet[sollGelegt.first.x][sollGelegt.first.y][sollGelegt.direction] =
+			true;
 	short nummerFirst = getRailwayNumber(sollGelegt.first);
 	short nummerSecond = getRailwayNumber(sollGelegt.second);
 	if (nummerFirst == NORAILS) {
@@ -168,9 +152,7 @@ const Connection* State::getConnection(Vector a, Vector b) const {
 	if (eins.x >= 0 && eins.y >= 0 && zwei.x >= 0 && zwei.y >= 0
 			&& eins.x < MAX_X && eins.y < MAX_Y && zwei.x < MAX_X
 			&& zwei.y < MAX_Y)
-		ruckgabe =
-				this->board.edges[eins.x][eins.y][this->DirectionValueOfVector(
-						zwei - eins)];
+		ruckgabe = this->board.edges[eins.x][eins.y][(zwei - eins).direction()];
 	return ruckgabe;
 }
 
@@ -260,8 +242,7 @@ unsigned short State::find_min(Vector actual, unsigned short ** &index) const {
 					index[(actual + richtungsvektoren[i]).x][(actual
 							+ richtungsvektoren[i]).y];
 // what kind of connection is it?
-			if (!this->railSet[connection->first.x][connection->first.y][this->DirectionValueOfVector(
-					connection->richtung)]) {
+			if (!this->railSet[connection->first.x][connection->first.y][connection->direction]) {
 				if (connection->hindernis)
 					value += 2;
 				else

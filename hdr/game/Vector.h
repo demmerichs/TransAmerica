@@ -18,6 +18,8 @@
 
 using std::cout;
 using std::endl;
+
+#include "Constants.h"
 //==============================
 // the actual class
 /**
@@ -37,6 +39,7 @@ public:
 	short distance() const; /**< Determines a non-negative integer,
 	 that represents the distance on the board in terms of steps. @Important: This distance doesn't represent
 	 the number of steps, because it doesn't take care of bridges/tunnels!*/
+	DIRECTION direction() const;
 
 	void dump() const {
 		cout << x << " " << y << endl;

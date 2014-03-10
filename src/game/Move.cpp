@@ -138,7 +138,7 @@ void Move::dump() const {
 	cout << "First" << endl;
 	cout << (*Belegt[0]).first.x << " " << (*Belegt[0]).first.y << endl;
 	cout << "Richtung" << endl;
-	cout << (*Belegt[0]).richtung.x << " " << (*Belegt[0]).richtung.y << endl;
+	cout << (*Belegt[0]).direction<< endl;
 }
 
 PLAYERCOLOR Move::getSpielerfarbe() const {

@@ -36,3 +36,19 @@ short Vector::distance() const {
 		Ruckgabe = abs(x - y);
 	return Ruckgabe;
 }
+
+DIRECTION Vector::direction() const {
+//zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. DirectionValueOfVector
+	short summe = x * 2 + y;
+	switch (summe) {
+	case 1:
+		return SOUTH_WEST;
+	case 2:
+		return EAST;
+	case 3:
+		return SOUTH_EAST;
+	default:
+		cout << "RichtungsWert hat keine Richtung uebergeben bekommen" << endl;
+		return UNDEFINED;
+	}
+}

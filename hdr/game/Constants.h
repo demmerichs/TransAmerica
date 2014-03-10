@@ -15,7 +15,9 @@
 #include "boardSettings/standard/standardConstants.h"
 
 enum DIRECTION {
-	EAST, SOUTH_WEST, SOUTH_EAST
+	EAST, SOUTH_WEST, SOUTH_EAST, UNDEFINED
 };
+
+std::ostream& operator<<(std::ostream& lhs, DIRECTION direction);
 
 #endif /* CONSTANTS_H_ */

@@ -10,8 +10,8 @@
 Connection::Connection(const Coordinate &first, const Coordinate &second,
 		bool hindernis) :
 		first((first.x + first.y <= second.x + second.y) ? first : second), second(
-				(first.x + first.y <= second.x + second.y) ? second : first), richtung(
-				second - first), hindernis(hindernis) {
+				(first.x + first.y <= second.x + second.y) ? second : first), direction(
+				(second - first).direction()), hindernis(hindernis) {
 }
 
 Connection::~Connection() {

@@ -78,6 +78,11 @@ DynamicState SimulationLogger::calculateDynamicState(int game, int round,
 	return retValue;
 }
 
+const City** SimulationLogger::getHandOfPlayer(PLAYERCOLOR playerColor,
+		int game, int round) const {
+	return gameList[game]->getRoundList()[round]->getPlayingCards()[playerColor];
+}
+
 const Board& SimulationLogger::getBoard() const {
 	return board;
 }
