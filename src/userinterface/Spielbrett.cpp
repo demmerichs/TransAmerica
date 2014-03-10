@@ -62,14 +62,13 @@ Spielbrett::Spielbrett(Window* parentalWindow) :
     transform.translate(110.5, 40.5);
     transform.scale(1, sqrt(3) / 2.);
     transform.shear(-0.5, 0);
-
+    invertedTransform = transform.inverted();
+    scale.scale(2,2);
 }
 void Spielbrett::paintEvent(QPaintEvent*) {
 	QPainter painter(this);
 
     QPixmap background("images/bg2.jpg");
-    QTransform scale;
-    scale.scale(2, 2);
     painter.setWorldTransform(scale, true);
     painter.drawPixmap(0, 0, background);
 
@@ -110,7 +109,7 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	 */
 
 	for (int i = 0; i < 35; i++) {
-		if (parentalWindow->aZp->board.Stadtliste[i] != NULL) {
+        if (parentalWindow->aZp->board.Stadtliste[i]) {
 			/*cout << "i = " << i << "  x = " <<parentalWindow->aZp->gameBoard.Stadtliste[i]->place.x
 			 << "  y = " << parentalWindow->aZp->gameBoard.Stadtliste[i]->place.y << endl;
 			 // << "  Stadt = " << parentalWindow->aZp->gameBoard.Stadtliste[i]->name<< endl;
@@ -146,8 +145,12 @@ void Spielbrett::drawCityChanged(bool enable) {
 void Spielbrett::mouseReleaseEvent(QMouseEvent* event)
 {
     QPoint clickPoint = event->pos();
+    clickPoint= scale.inverted().map(clickPoint);
+    clickPoint= invertedTransform.map(clickPoint);
+   // clickPoint=
     cout << "Mouse Click:" << "\t X:" << clickPoint.x() << "\t Y:"
             << clickPoint.y() << endl;
+
 
 }
 
