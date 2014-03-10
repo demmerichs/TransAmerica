@@ -10,6 +10,7 @@ class Window;
 #include <QWidget>
 #include <QColor>
 #include <QPen>
+#include <QPixmap>
 
 #include "../game/Constants.h"
 #include "../game/State.h"
@@ -36,9 +37,14 @@ private:
     QTransform invertedTransform;
     QTransform scale;
 	Window* parentalWindow;
+    QPixmap* background;
+
     void drawGrid(QPainter* painter);
     void drawRailway(QPainter* painter);
     void drawPawns(QPainter* painter);
+    void drawCitys(QPainter* painter);
+    void drawCityNames(QPainter* painter);
+
 
 };
 

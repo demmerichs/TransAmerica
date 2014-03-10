@@ -11,6 +11,7 @@
 #include <cmath>
 #include <string>
 using std::string;
+using std::abs;
 
 #include "../../hdr/game/Constants.h"
 #include "../../hdr/game/City.h"

@@ -7,6 +7,7 @@
 
 #include "../../hdr/game/Vector.h"
 #include <cmath>
+using std::abs;
 
 Vector::Vector(short x, short y) :
 		x(x), y(y) {

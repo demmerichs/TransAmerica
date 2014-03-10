@@ -44,18 +44,18 @@ private:
 	 diverse Labels
 	 diverse Combo-/Spin-boxen
 	 */
-	QLabel* town1;
-	QLabel* town2;
-	QLabel* town3;
-	QLabel* town4;
-	QLabel* town5;
-	QLabel* town6;
-	QLabel* player1;
-	QLabel* player2;
-	QLabel* player3;
-	QLabel* player4;
-	QLabel* player5;
-	QLabel* player6;
+//	QLabel* town1;
+//	QLabel* town2;
+//	QLabel* town3;
+//	QLabel* town4;
+//	QLabel* town5;
+//	QLabel* town6;
+//	QLabel* player1;
+//	QLabel* player2;
+//	QLabel* player3;
+//	QLabel* player4;
+//	QLabel* player5;
+//	QLabel* player6;
 	QLabel* toolBoxLabel;
 	QPushButton* newGameButton;
 	QPushButton* enterMove; //TODO new window
@@ -63,7 +63,7 @@ private:
 	QSpinBox* roundSpinBox;
 	QSpinBox* gameSpinBox;
 	QCheckBox* showTownsCheckBox;
-	QLCDNumber* counterLCD;
+//	QLCDNumber* counterLCD;
 	//void playAutomatically
 	void setZp();
 	void updateSpinBoxes();
