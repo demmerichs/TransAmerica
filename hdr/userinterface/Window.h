@@ -10,6 +10,7 @@ class QCheckBox;
 class QLCDNumber;
 class DynamicState;
 class SimulationLogger;
+class Move;
 //==============================
 // included dependencies
 #include <QWidget>
@@ -27,6 +28,7 @@ Q_OBJECT
 	friend class Spielbrett;
 	friend class UIEXEC;
 	friend class MainWindow;
+	friend class Human;
 public:
 	Window(SimulationLogger* game = 0);
 	~Window();
@@ -56,6 +58,7 @@ private:
 	QLabel* player6;
 	QLabel* toolBoxLabel;
 	QPushButton* newGameButton;
+	QPushButton* enterMove; //TODO new window
 	QSpinBox* moveSpinBox;
 	QSpinBox* roundSpinBox;
 	QSpinBox* gameSpinBox;
@@ -67,6 +70,7 @@ private:
 	bool setGameCounter(int i);
 	bool setRoundCounter(int i);
 	bool setMoveCounter(int i);
+	Move getMoveFromUser(vector<Move*> moveList);
 private slots:
 	void gameSpinChanged(int i);
 	void roundSpinChanged(int i);

@@ -31,6 +31,7 @@ Window::Window(SimulationLogger *game) :
 	moveSpinBox = new QSpinBox;
 	showTownsCheckBox = new QCheckBox;
 	newGameButton = new QPushButton(tr("New Game"));
+	enterMove = new QPushButton(tr("Enter Move!")); //TODO new window
 	//gameSpinBox->setRange(1, simulationp->gameList.size());
 	gameSpinBox->setWrapping(false);
 	gameSpinBox->setSuffix(tr(". Spiel"));
@@ -72,6 +73,7 @@ Window::Window(SimulationLogger *game) :
 	toolLayout->addRow(tr("Geladener Zug:  "), moveSpinBox);
 	toolLayout->addRow(tr("Zeige Staedte:"), showTownsCheckBox);
 	toolLayout->addRow(newGameButton);
+	toolLayout->addRow(enterMove);	//TODO own window
 	pointsLayout->addRow(tr("KI 1:"), player1);
 	pointsLayout->addRow(tr("KI 2:"), player2);
 	setLayout(mainLayout);
@@ -237,4 +239,19 @@ void Window::updateSpinBoxes() {
 	gameSpinBox->blockSignals(false);
 	roundSpinBox->blockSignals(false);
 	moveSpinBox->blockSignals(false);
+}
+
+Move Window::getMoveFromUser(vector<Move*> moveList) {
+	//TODO own window for user input
+	gameCounter = roundCounter = 0;
+	aZp = new DynamicState(this->simulationp->calculateDynamicState(0, 0, 0));
+	for (int i = 0; i < moveList.size(); i++)
+		moveList[i]->execute(*aZp);
+	if (moveList.size() > 0)
+		aZp->lastMove = moveList[moveList.size() - 1];
+	this->spielbrett->update();
+	QEventLoop* pause = new QEventLoop;
+	connect(enterMove, SIGNAL(clicked(bool)), pause, SLOT(quit()));
+	cout << "hit" << endl;
+	return Move(P_YELLOW, 0, 0);
 }
