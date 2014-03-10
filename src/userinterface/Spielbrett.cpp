@@ -162,7 +162,7 @@ void Spielbrett::mouseReleaseEvent(QMouseEvent* event) {
 	int resultDirection;
 	xDev = fmod(x, 1.0) - 0.5;
 	yDev = fmod(y, 1.0) - 0.5;
-	zDev = fmod(z, 1.0) - 0.5;
+	zDev = ((fmod(z, 1.0) >= 0) ? fmod(z, 1.0) : 1.0 + fmod(z, 1.0)) - 0.5;
 	if (abs(xDev) >= abs(yDev) && abs(xDev) >= abs(zDev)) {
 		resultDirection = SOUTH_WEST;
 		if (xDev > 0)

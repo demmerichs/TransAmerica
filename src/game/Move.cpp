@@ -34,6 +34,14 @@ Move::Move(PLAYERCOLOR spielerfarbe, const Connection* belegt1,
 		anzahlSchienen--;
 }
 
+Move::Move(const Move& copy) :
+		gueltigkeit(copy.gueltigkeit), gueltigkeitUEberprueft(
+				copy.gueltigkeitUEberprueft), richtigBelegt(copy.richtigBelegt), spielerfarbe(
+				copy.spielerfarbe), anzahlSchienen(copy.anzahlSchienen) {
+	Belegt[0] = copy.Belegt[0];
+	Belegt[1] = copy.Belegt[1];
+}
+
 Move::~Move() {
 }
 

@@ -244,14 +244,28 @@ void Window::updateSpinBoxes() {
 Move Window::getMoveFromUser(vector<Move*> moveList) {
 	//TODO own window for user input
 	gameCounter = roundCounter = 0;
-	aZp = new DynamicState(this->simulationp->calculateDynamicState(0, 0, 0));
+	aZp = new DynamicState(this->simulationp->getBoard());
 	for (int i = 0; i < moveList.size(); i++)
 		moveList[i]->execute(*aZp);
 	if (moveList.size() > 0)
 		aZp->lastMove = moveList[moveList.size() - 1];
 	this->spielbrett->update();
+	this->update();
+	this->show();
 	QEventLoop* pause = new QEventLoop;
 	connect(enterMove, SIGNAL(clicked(bool)), pause, SLOT(quit()));
-	cout << "hit" << endl;
-	return Move(P_YELLOW, 0, 0);
+	pause->exec();
+	const Connection* one = 0, *two = 0;
+	int counter = 0;
+	for (int i = 0; i < MAX_X; i++)
+		for (int j = 0; j < MAX_Y; j++)
+			for (int k = 0; k < 3; k++)
+				if (aZp->fromUserSelectedRails[i][j][k]) {
+					counter++;
+					if (counter == 1)
+						one = aZp->board.edges[i][j][k];
+					else
+						two = aZp->board.edges[i][j][k];
+				}
+	return Move(P_YELLOW, one, two);
 }

@@ -10,9 +10,9 @@ MainWindow::MainWindow() {
 }
 
 void MainWindow::startSimulation(int games) {
-	myGameExe = new UIEXEC;
-	myGameExe->simulateSimulation(games);
+	myGameExe = new UIEXEC(wp, games);
 	wp->simulationp = myGameExe->simulationLogger;
+	myGameExe->simulateSimulation();
 	wp->updateSpinBoxes();
 	wp->setZp();
 	wp->update();

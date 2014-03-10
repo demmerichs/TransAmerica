@@ -24,6 +24,7 @@ private:
 public:
 	Move(PLAYERCOLOR spielerfarbe, const Connection* belegt1,
 			const Connection* belegt2);
+	Move(const Move& copy);
 	virtual ~Move();
 
 	bool valid(State, PLAYERCOLOR);

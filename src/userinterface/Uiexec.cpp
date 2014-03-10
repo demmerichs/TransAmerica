@@ -1,20 +1,22 @@
 #include "../../hdr/userinterface/Uiexec.h"
 #include "../../hdr/game/Human.h"
 
-UIEXEC::UIEXEC() {
-}
-
-void UIEXEC::simulateSimulation(int games) {
-	/**
-	 window implementation
-	 */
+UIEXEC::UIEXEC(Window* wp, int games) :
+		wp(wp) {
 	board = new Board;
 	players = new vector<AI*>;
 	players->push_back(new testKI(P_BLUE));
 	players->push_back(new testKI(P_ORANGE));
-	players->push_back(new testKI(P_YELLOW));
+	players->push_back(new Human(P_YELLOW, this));
 
 	simulationLogger = new SimulationLogger(*players, *board, games);
+}
+
+void UIEXEC::simulateSimulation() {
+	/**
+	 window implementation
+	 */
+
 	simulation = new Simulation(simulationLogger);
 	simulation->run();
 
