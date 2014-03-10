@@ -8,6 +8,7 @@
 #include "../../hdr/game/Round.h"
 
 #include <vector>
+#include <cstdlib>
 
 #include "../../hdr/game/Constants.h"
 #include "../../hdr/game/Board.h"

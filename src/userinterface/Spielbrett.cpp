@@ -94,50 +94,12 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	 draws the Railway-System
 	 */
 	drawGrid(&painter);
-	drawRailway(&painter);
+    drawRailway(&painter);
 
-	/**
-	 draws the names of the citys
-	 */
 
-	if (drawCity) {
-		painter.drawText(transform.map(QPoint(0 + 5, 1 * sL)), tr("Portland"));
-		painter.drawText(transform.map(QPoint(2 * sL + 5, 5 * sL)),
-				tr("Sacramento"));
-		painter.drawText(transform.map(QPoint(6 * sL + 5, 10 * sL)),
-				tr("San Diego"));
-		painter.drawText(transform.map(QPoint(19 * sL + 5, 12 * sL)),
-				tr("Jacksonville"));
-		painter.drawText(transform.map(QPoint(10 * sL + 5, 11 * sL)),
-				tr("El Paso"));
-	}
-	/**
-	 draw the city.gifs
-	 */
-
-	for (int i = 0; i < 35; i++) {
-		if (parentalWindow->aZp->board.cityList[i] != NULL) {
-			/*cout << "i = " << i << "  x = " <<parentalWindow->aZp->gameBoard.cityList[i]->place.x
-			 << "  y = " << parentalWindow->aZp->gameBoard.cityList[i]->place.y << endl;
-			 // << "  Stadt = " << parentalWindow->aZp->gameBoard.cityList[i]->name<< endl;
-			 */
-			painter.drawPixmap(
-					transform.map(
-							QPoint(
-									(parentalWindow->aZp->board.cityList[i]->x)
-											* sL - 12,
-									(parentalWindow->aZp->board.cityList[i]->y)
-											* sL - 8.5)),
-					getPixmap(
-							parentalWindow->aZp->board.cityList[i]->cityColor));
-		}
-	}
+    drawCitys(&painter);
+    if (drawCity) drawCityNames(&painter);
 	drawPawns(&painter);
-
-	//draws the poeppel
-	/**
-
-	 */
 }
 
 void Spielbrett::zustandChanged(int counter) {
@@ -293,4 +255,38 @@ void Spielbrett::drawPawns(QPainter *painter) {
 		QPoint point = transform.map(QPoint(i->x * sL - 18, i->y * sL - 25));
 		painter->drawRoundedRect(point.x(), point.y(), 10, 25, 2, 2);
 	}
+}
+
+void Spielbrett::drawCitys(QPainter *painter)
+{
+    for (int i = 0; i < 35; i++) {
+        if (parentalWindow->aZp->board.cityList[i] != NULL) {
+            /*cout << "i = " << i << "  x = " <<parentalWindow->aZp->gameBoard.cityList[i]->place.x
+             << "  y = " << parentalWindow->aZp->gameBoard.cityList[i]->place.y << endl;
+             // << "  Stadt = " << parentalWindow->aZp->gameBoard.cityList[i]->name<< endl;
+             */
+            painter->drawPixmap(
+                    transform.map(
+                            QPoint(
+                                    (parentalWindow->aZp->board.cityList[i]->x)
+                                            * sL - 12,
+                                    (parentalWindow->aZp->board.cityList[i]->y)
+                                            * sL - 8.5)),
+                    getPixmap(
+                            parentalWindow->aZp->board.cityList[i]->cityColor));
+        }
+    }
+}
+
+void Spielbrett::drawCityNames(QPainter* painter)
+{
+    City* const* const townList = parentalWindow->aZp->board.cityList;
+    painter->setPen(fatPen);
+    painter->setFont(QFont("Times", 7, QFont::Bold));
+    for (int i=0; i<parentalWindow->aZp->board.numberCities; i++)
+    {
+        painter->drawText(
+                    transform.map(QPoint(townList[i]->x * sL + 10, townList[i]->y *sL +10)),
+                    QString::fromStdString(townList[i]->name));
+    }
 }

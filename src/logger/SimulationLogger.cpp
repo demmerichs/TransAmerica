@@ -9,6 +9,7 @@
 #include "../../hdr/logger/GameLogger.h"
 #include "../../hdr/logger/RoundLogger.h"
 #include "../../hdr/userinterface/DynamicState.h"
+#include <cstdlib>
 
 SimulationLogger::SimulationLogger(vector<AI*> playerList, Board& board,
 		int numberOfGames, unsigned int seed) :

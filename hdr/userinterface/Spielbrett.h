@@ -39,6 +39,8 @@ private:
     void drawGrid(QPainter* painter);
     void drawRailway(QPainter* painter);
     void drawPawns(QPainter* painter);
+    void drawCitys(QPainter* painter);
+    void drawCityNames(QPainter* painter);
 
 };
 
