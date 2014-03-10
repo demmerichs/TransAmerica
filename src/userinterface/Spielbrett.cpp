@@ -59,19 +59,18 @@ Spielbrett::Spielbrett(Window* parentalWindow) :
 	setAutoFillBackground(true);
 	setMouseTracking(true);
 
-	transform.translate(110.5, 40.5);
-	transform.scale(1, sqrt(3) / 2.);
-	transform.shear(-0.5, 0);
-
+    transform.translate(110.5, 40.5);
+    transform.scale(1, sqrt(3) / 2.);
+    transform.shear(-0.5, 0);
+    invertedTransform = transform.inverted();
+    scale.scale(2,2);
 }
 void Spielbrett::paintEvent(QPaintEvent*) {
 	QPainter painter(this);
-
-	QPixmap background("images/bg2.jpg");
-	QTransform scale;
-	scale.scale(2, 2);
-	painter.setWorldTransform(scale, true);
-	painter.drawPixmap(0, 0, background);
+	
+    QPixmap background("images/bg2.jpg");
+    painter.setWorldTransform(scale, true);
+    painter.drawPixmap(0, 0, background);
 
 	if (!parentalWindow->simulationp || !parentalWindow->aZp) {
 		painter.drawText(this->width() / 2, this->height() / 2,
@@ -141,12 +140,15 @@ void Spielbrett::drawCityChanged(bool enable) {
 	drawCity = enable;
 	update();
 }
-void Spielbrett::mouseReleaseEvent(QMouseEvent* event) {
-	QPoint clickPoint = event->pos();
-	clickPoint = transform.inverted().map(clickPoint);
-	cout << "Mouse Click:" << "\t X:" << clickPoint.x() << "\t Y:"
-			<< clickPoint.y() << endl;
 
+void Spielbrett::mouseReleaseEvent(QMouseEvent* event)
+{
+    QPoint clickPoint = event->pos();
+    clickPoint= scale.inverted().map(clickPoint);
+    clickPoint= invertedTransform.map(clickPoint);
+   // clickPoint=
+    cout << "Mouse Click:" << "\t X:" << clickPoint.x() << "\t Y:"
+            << clickPoint.y() << endl;
 }
 
 void Spielbrett::drawGrid(QPainter* painter) {

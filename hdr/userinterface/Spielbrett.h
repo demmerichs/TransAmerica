@@ -33,6 +33,8 @@ protected:
 private:
 	bool drawCity;
     QTransform transform;
+    QTransform invertedTransform;
+    QTransform scale;
 	Window* parentalWindow;
     void drawGrid(QPainter* painter);
     void drawRailway(QPainter* painter);
