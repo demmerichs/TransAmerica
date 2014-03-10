@@ -21,10 +21,10 @@ PlayingOrder::~PlayingOrder() {
 	// TODO Auto-generated destructor stub
 }
 
-PlayingOrder::iterator PlayingOrder::begin(AI* player) const {
+PlayingOrder::iterator PlayingOrder::begin(const AI* player) const {
 	iterator retValue = iterator(this->list[0]);
 	while (true) {
-		if (retValue->playercolor == player->playercolor)
+		if (retValue->playerColor == player->playerColor)
 			return retValue;
 		++retValue;
 	}

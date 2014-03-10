@@ -1,6 +1,8 @@
 #include "../../hdr/userinterface/Window.h"
+#include "../../hdr/userinterface/DynamicState.h"
 #include "../../hdr/logger/SimulationLogger.h"
 #include "../../hdr/logger/GameLogger.h"
+#include "../../hdr/logger/RoundLogger.h"
 
 Window::Window(SimulationLogger *game) :
 		simulationp(game) {
@@ -125,16 +127,9 @@ void Window::setZp() {
 	if (simulationp != 0) {
 		if (aZp != 0)
 			delete aZp;
-		aZp = new State(simulationp->board);
-		for (int i = 0; i < moveCounter; i++)
-			simulationp->gameList[gameCounter - 1]->roundList[roundCounter - 1]->moveList[i]->execute(
-					*aZp);
-		for (int i = 0; i < MAX_PLAYER; i++)
-			if (simulationp->gameList[gameCounter - 1]->roundList[roundCounter
-					- 1]->pawnList[i])
-				aZp->addPawn(
-						*simulationp->gameList[gameCounter - 1]->roundList[roundCounter
-								- 1]->pawnList[i]);
+		aZp = new DynamicState(
+				simulationp->calculateDynamicState(gameCounter - 1,
+						roundCounter - 1, moveCounter));
 	}
 	spielbrett->update();
 }
@@ -223,16 +218,18 @@ void Window::updateSpinBoxes() {
 	gameSpinBox->blockSignals(true);
 	roundSpinBox->blockSignals(true);
 	moveSpinBox->blockSignals(true);
-	gameSpinBox->setRange(0, simulationp->gameList.size() + 1);
-	if (1 <= gameCounter && gameCounter <= (int) simulationp->gameList.size()) {
+	gameSpinBox->setRange(0, simulationp->getGameList().size() + 1);
+	if (1 <= gameCounter
+			&& gameCounter <= (int) simulationp->getGameList().size()) {
 		roundSpinBox->setRange(0,
-				simulationp->gameList[gameCounter - 1]->roundList.size() + 1);
+				simulationp->getGameList()[gameCounter - 1]->getRoundList().size()
+						+ 1);
 		if (1 <= roundCounter
 				&& roundCounter
-						<= (int) simulationp->gameList[gameCounter - 1]->roundList.size())
+						<= (int) simulationp->getGameList()[gameCounter - 1]->getRoundList().size())
 			moveSpinBox->setRange(-1,
-					simulationp->gameList[gameCounter - 1]->roundList[roundCounter
-							- 1]->moveList.size() + 1);
+					simulationp->getGameList()[gameCounter - 1]->getRoundList()[roundCounter
+							- 1]->getMoveList().size() + 1);
 	}
 	gameSpinBox->setValue(gameCounter);
 	roundSpinBox->setValue(roundCounter);

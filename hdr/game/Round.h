@@ -15,7 +15,6 @@ class Board;
 //==============================
 // included dependencies
 #include <cassert>
-#include <cstdlib>
 
 #include "PlayingOrder.h"
 #include "../logger/RoundLogger.h"

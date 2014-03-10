@@ -7,19 +7,46 @@
 
 #include "../../hdr/logger/GameLogger.h"
 
-GameLogger::GameLogger(vector<AI*> playerList, Board& board,
-		PlayingOrder playingOrder, AI* gameStartingPlayer) :
-		gameStartingPlayer(gameStartingPlayer), playerList(playerList), board(
-				board), playingOrder(playingOrder), deadLine(0) {
-	PlayingOrder::iterator playerIterator = playingOrder.begin(
-			gameStartingPlayer);
-	do {
-		points.add(*playerIterator, 13);
-		++playerIterator;
-	} while (*playerIterator != gameStartingPlayer);
+GameLogger::GameLogger(const SimulationLogger* simulationLogger,
+		const PlayingOrder playingOrder, const AI* gameStartingPlayer) :
+		gameStartingPlayer(gameStartingPlayer), playerList(
+				simulationLogger->getPlayerList()), board(
+				simulationLogger->getBoard()), playingOrder(playingOrder), deadLine(
+				0), points(13), gameWon(0) {
 }
 
 GameLogger::~GameLogger() {
 	// TODO Auto-generated destructor stub
 }
 
+const Board& GameLogger::getBoard() const {
+	return board;
+}
+
+int GameLogger::getDeadLine() const {
+	return deadLine;
+}
+
+const AI* GameLogger::getGameStartingPlayer() const {
+	return gameStartingPlayer;
+}
+
+const vector<AI*>& GameLogger::getPlayerList() const {
+	return playerList;
+}
+
+const PlayingOrder& GameLogger::getPlayingOrder() const {
+	return playingOrder;
+}
+
+const Counter& GameLogger::getPoints() const {
+	return points;
+}
+
+const vector<RoundLogger*>& GameLogger::getRoundList() const {
+	return roundList;
+}
+
+const Counter& GameLogger::getGameWon() const {
+	return gameWon;
+}

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['round',['Round',['../class_round.html',1,'']]],
-  ['roundlogger',['RoundLogger',['../class_round_logger.html',1,'']]]
+  ['pawn',['Pawn',['../class_pawn.html',1,'']]],
+  ['playingorder',['PlayingOrder',['../class_playing_order.html',1,'']]]
 ];

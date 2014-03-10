@@ -22,7 +22,8 @@ private:
 	const Connection* Belegt[2];
 
 public:
-	Move(PLAYERCOLOR spielerfarbe, const Connection* belegt1, const Connection* belegt2);
+	Move(PLAYERCOLOR spielerfarbe, const Connection* belegt1,
+			const Connection* belegt2);
 	virtual ~Move();
 
 	bool valid(State, PLAYERCOLOR);
@@ -32,12 +33,15 @@ public:
 	Move& operator=(const Move& zuweisung) {
 		this->spielerfarbe = zuweisung.spielerfarbe;
 		this->anzahlSchienen = zuweisung.anzahlSchienen;
-		this->gueltigkeitUEberprueft=zuweisung.gueltigkeitUEberprueft;
-		this->richtigBelegt=zuweisung.richtigBelegt;
-		for(int i=0;i<anzahlSchienen;i++)
-			Belegt[i]=zuweisung.Belegt[i];
+		this->gueltigkeitUEberprueft = zuweisung.gueltigkeitUEberprueft;
+		this->richtigBelegt = zuweisung.richtigBelegt;
+		for (int i = 0; i < anzahlSchienen; i++)
+			Belegt[i] = zuweisung.Belegt[i];
 		return *this;
 	}
+
+	const Connection* const * getBelegt() const;
+	PLAYERCOLOR getSpielerfarbe() const;
 };
 
 #endif /* MOVE_H_ */

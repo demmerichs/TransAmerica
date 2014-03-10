@@ -13,12 +13,12 @@ Inheritance diagram for A\-I\-:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bf A\-I} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R {\bf playercolor})
+{\bf A\-I} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R {\bf player\-Color})
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-const P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R {\bf playercolor}
+const P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R {\bf player\-Color}
 \item 
 string {\bf owner}
 \item 
@@ -27,7 +27,7 @@ string {\bf A\-Iname}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-virtual {\bf Move} {\bf do\-Move} ({\bf State} \&aktuell)=0
+virtual {\bf Move} {\bf do\-Move} ({\bf State} \&aktuell, vector$<$ {\bf Move} $\ast$ $>$ move\-List)=0
 \item 
 virtual {\bf Vector} {\bf set\-Pawn} ({\bf State} \&aktuell)=0
 \item 
@@ -59,9 +59,9 @@ If you want to create your own \doxyref{A\-I}{p.}{class_a_i}, you have to implem
 \index{A\-I@{A\-I}!AI@{A\-I}}
 \subsubsection[{A\-I}]{\setlength{\rightskip}{0pt plus 5cm}A\-I\-::\-A\-I (
 \begin{DoxyParamCaption}
-\item[{P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R}]{playercolor}
+\item[{P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R}]{player\-Color}
 \end{DoxyParamCaption}
-)}\label{class_a_i_a9bb746461aa9b9cbb169ce5c09906956}
+)}\label{class_a_i_af4f94640ca8c67c79c085a4cd81a2f51}
 A constructor where you can set the name of your \doxyref{A\-I}{p.}{class_a_i} and your name, but not much more ;) 
 
 \subsection{Member Function Documentation}
@@ -81,12 +81,13 @@ Implemented in {\bf test\-K\-I} \doxyref{}{p.}{classtest_k_i_a69c6849cb0674fada5
 \index{do\-Move@{do\-Move}!AI@{A\-I}}
 \subsubsection[{do\-Move}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Move} A\-I\-::do\-Move (
 \begin{DoxyParamCaption}
-\item[{{\bf State} \&}]{aktuell}
+\item[{{\bf State} \&}]{aktuell, }
+\item[{vector$<$ {\bf Move} $\ast$ $>$}]{move\-List}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{class_a_i_a79bb57422a56d4e941c538f2c7491953}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{class_a_i_ade352ac8d216d67feca731a127b50e6f}
 Inside this methode you calculate your next move in the game. 
 
-Implemented in {\bf test\-K\-I} \doxyref{}{p.}{classtest_k_i_ad7de22d69a58dca460270955eff84e76}.
+Implemented in {\bf test\-K\-I} \doxyref{}{p.}{classtest_k_i_a769bbe6571e1b9876cec4ac44203f8cb}.
 
 \index{A\-I@{A\-I}!gather\-Information\-End\-Of\-Round@{gather\-Information\-End\-Of\-Round}}
 \index{gather\-Information\-End\-Of\-Round@{gather\-Information\-End\-Of\-Round}!AI@{A\-I}}
@@ -122,9 +123,9 @@ Possibly the name of your \doxyref{A\-I}{p.}{class_a_i}. \index{A\-I@{A\-I}!hand
 This is just an array of City-\/\-Pointers, that represents your hand. \index{A\-I@{A\-I}!owner@{owner}}
 \index{owner@{owner}!AI@{A\-I}}
 \subsubsection[{owner}]{\setlength{\rightskip}{0pt plus 5cm}string A\-I\-::owner}\label{class_a_i_aaaf79ce0ba28ff418449f2b7ec0b5090}
-Possibly your name. \index{A\-I@{A\-I}!playercolor@{playercolor}}
-\index{playercolor@{playercolor}!AI@{A\-I}}
-\subsubsection[{playercolor}]{\setlength{\rightskip}{0pt plus 5cm}const P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R A\-I\-::playercolor}\label{class_a_i_aab65beaa8eef87d743a9f62c49acaa17}
+Possibly your name. \index{A\-I@{A\-I}!player\-Color@{player\-Color}}
+\index{player\-Color@{player\-Color}!AI@{A\-I}}
+\subsubsection[{player\-Color}]{\setlength{\rightskip}{0pt plus 5cm}const P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R A\-I\-::player\-Color}\label{class_a_i_a6fb1d4fd29373df36e0263b22e81cee2}
 This represents your color during the game. You can try to change it, but hopefully you shouldn't be able. 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}

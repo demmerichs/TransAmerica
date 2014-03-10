@@ -40,7 +40,7 @@ class State {
 	short turn;
 	PLAYERCOLOR playersTurn;
 public:
-	State(Board &Spielbrett); //Startzustand
+	State(const Board &Spielbrett); //Startzustand
 	State(const State&);
 	virtual ~State();
 	//State &operator=(const State&) const;

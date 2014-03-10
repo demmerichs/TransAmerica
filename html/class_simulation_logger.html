@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_simulation_logger-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">SimulationLogger Class Reference</div>  </div>
@@ -93,30 +93,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a52dad1acd4474959f97b61d7d6c5f7aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52dad1acd4474959f97b61d7d6c5f7aa"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>SimulationLogger</b> (vector&lt; <a class="el" href="class_a_i.html">AI</a> * &gt; playerList, <a class="el" href="class_board.html">Board</a> &amp;board, int numberOfPlayers, unsigned int seed=(unsigned) time(0))</td></tr>
-<tr class="separator:a52dad1acd4474959f97b61d7d6c5f7aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adaca37b7ece3ffee3d7750806ff9a02d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adaca37b7ece3ffee3d7750806ff9a02d"></a>
-vector&lt; <a class="el" href="class_a_i.html">AI</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getPlayingOrder</b> (int simulationNumber)</td></tr>
-<tr class="separator:adaca37b7ece3ffee3d7750806ff9a02d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bd6ad9e03211cee83757c567c14195b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1bd6ad9e03211cee83757c567c14195b"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>SimulationLogger</b> (vector&lt; <a class="el" href="class_a_i.html">AI</a> * &gt; playerList, <a class="el" href="class_board.html">Board</a> &amp;board, int numberOfGames, unsigned int seed=(unsigned) time(0))</td></tr>
+<tr class="separator:a1bd6ad9e03211cee83757c567c14195b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ed89aaa870ff9323be5f8f82da95f4a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ed89aaa870ff9323be5f8f82da95f4a"></a>
+const <a class="el" href="class_board.html">Board</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getBoard</b> () const </td></tr>
+<tr class="separator:a5ed89aaa870ff9323be5f8f82da95f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af92f6d16f918a385ccfa0d9b6a8823b3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af92f6d16f918a385ccfa0d9b6a8823b3"></a>
+const vector&lt; <a class="el" href="class_game_logger.html">GameLogger</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getGameList</b> () const </td></tr>
+<tr class="separator:af92f6d16f918a385ccfa0d9b6a8823b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a8d238597cef51d85bef2cd397bfb4d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1a8d238597cef51d85bef2cd397bfb4d"></a>
+const <a class="el" href="class_counter.html">Counter</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getGamesWon</b> () const </td></tr>
+<tr class="separator:a1a8d238597cef51d85bef2cd397bfb4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac089019f8358d4bb5bb5d92504e40ca4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac089019f8358d4bb5bb5d92504e40ca4"></a>
+const vector&lt; <a class="el" href="class_a_i.html">AI</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPlayerList</b> () const </td></tr>
+<tr class="separator:ac089019f8358d4bb5bb5d92504e40ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac9f1225d9d932eb90ccdde1c4149d212"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac9f1225d9d932eb90ccdde1c4149d212"></a>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getSeed</b> () const </td></tr>
+<tr class="separator:ac9f1225d9d932eb90ccdde1c4149d212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af90bd066ae1f1012384f87662f19eb8f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af90bd066ae1f1012384f87662f19eb8f"></a>
+const unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>getWinnerPoints</b> () const </td></tr>
+<tr class="separator:af90bd066ae1f1012384f87662f19eb8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1929c74a77d05af475b262b65acc4258"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1929c74a77d05af475b262b65acc4258"></a>
+<a class="el" href="class_dynamic_state.html">DynamicState</a>&#160;</td><td class="memItemRight" valign="bottom"><b>calculateDynamicState</b> (int game, int round, int move) const </td></tr>
+<tr class="separator:a1929c74a77d05af475b262b65acc4258"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a8c7f870f1f2a77c9be4ec64b1e514d8e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8c7f870f1f2a77c9be4ec64b1e514d8e"></a>
-vector&lt; <a class="el" href="class_a_i.html">AI</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>playerList</b></td></tr>
-<tr class="separator:a8c7f870f1f2a77c9be4ec64b1e514d8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3ee79eb79f0c07d42ebebebf057587b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab3ee79eb79f0c07d42ebebebf057587b"></a>
-<a class="el" href="class_counter.html">Counter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>gamesWon</b></td></tr>
-<tr class="separator:ab3ee79eb79f0c07d42ebebebf057587b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a888c6db0861aa00e12f0a2674b4cd802"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a888c6db0861aa00e12f0a2674b4cd802"></a>
-vector&lt; <a class="el" href="class_game_logger.html">GameLogger</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>gameList</b></td></tr>
-<tr class="separator:a888c6db0861aa00e12f0a2674b4cd802"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a224021a57c2a155d5bec0548d6368fe1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a224021a57c2a155d5bec0548d6368fe1"></a>
-<a class="el" href="class_board.html">Board</a>&#160;</td><td class="memItemRight" valign="bottom"><b>board</b></td></tr>
-<tr class="separator:a224021a57c2a155d5bec0548d6368fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9af9361d2d81c2e0fd47a5fb26285761"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9af9361d2d81c2e0fd47a5fb26285761"></a>
-unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>seed</b></td></tr>
-<tr class="separator:a9af9361d2d81c2e0fd47a5fb26285761"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:aeb51e0a4c44d4192cfbdb79598859172"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aeb51e0a4c44d4192cfbdb79598859172"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>Simulation</b></td></tr>
+<tr class="separator:aeb51e0a4c44d4192cfbdb79598859172"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>hdr/logger/<a class="el" href="_simulation_logger_8h_source.html">SimulationLogger.h</a></li>
@@ -125,7 +131,7 @@ unsigned int&#160;</td><td class="memItemRight" valign="bottom"><b>seed</b></td>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 10 2014 01:30:37 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 10 2014 18:56:00 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

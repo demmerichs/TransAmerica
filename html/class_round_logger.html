@@ -84,7 +84,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_round_logger-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">RoundLogger Class Reference</div>  </div>
@@ -93,36 +93,39 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a972ed6c65096d153c4777dc8de7dbd4f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a972ed6c65096d153c4777dc8de7dbd4f"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>RoundLogger</b> (<a class="el" href="class_playing_order.html">PlayingOrder</a> &amp;playingOrder, vector&lt; <a class="el" href="class_a_i.html">AI</a> * &gt; playerList, <a class="el" href="class_board.html">Board</a> &amp;board, <a class="el" href="class_a_i.html">AI</a> *roundStartingPlayer)</td></tr>
-<tr class="separator:a972ed6c65096d153c4777dc8de7dbd4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52c7dc98a3b5ae1f2cc8aae99345b8d0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a52c7dc98a3b5ae1f2cc8aae99345b8d0"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>RoundLogger</b> (const <a class="el" href="class_playing_order.html">PlayingOrder</a> &amp;playingOrder, const vector&lt; <a class="el" href="class_a_i.html">AI</a> * &gt; playerList, const <a class="el" href="class_board.html">Board</a> &amp;board, const <a class="el" href="class_a_i.html">AI</a> *roundStartingPlayer)</td></tr>
+<tr class="separator:a52c7dc98a3b5ae1f2cc8aae99345b8d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08f46631894e71a41826816ef0b0cde0"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08f46631894e71a41826816ef0b0cde0"></a>
+const <a class="el" href="class_board.html">Board</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getBoard</b> () const </td></tr>
+<tr class="separator:a08f46631894e71a41826816ef0b0cde0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa8b49bb49b3ffa35df429e1b9f6cfa3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa8b49bb49b3ffa35df429e1b9f6cfa3"></a>
+const <a class="el" href="class_counter.html">Counter</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getLostPoints</b> () const </td></tr>
+<tr class="separator:aaa8b49bb49b3ffa35df429e1b9f6cfa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9abd61dd5ecf5f267ec97305dc313b40"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9abd61dd5ecf5f267ec97305dc313b40"></a>
+const vector&lt; <a class="el" href="class_move.html">Move</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getMoveList</b> () const </td></tr>
+<tr class="separator:a9abd61dd5ecf5f267ec97305dc313b40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d0b4176229e86c7f7208df3e4e8e0fd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2d0b4176229e86c7f7208df3e4e8e0fd"></a>
+const <a class="el" href="class_pawn.html">Pawn</a> **&#160;</td><td class="memItemRight" valign="bottom"><b>getPawnList</b> () const </td></tr>
+<tr class="separator:a2d0b4176229e86c7f7208df3e4e8e0fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae772e7fb8c0170c81e3fa6b5b7f28202"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae772e7fb8c0170c81e3fa6b5b7f28202"></a>
+const vector&lt; <a class="el" href="class_a_i.html">AI</a> * &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPlayerList</b> () const </td></tr>
+<tr class="separator:ae772e7fb8c0170c81e3fa6b5b7f28202"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a517bee0efad4e4c75590669bb2857046"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a517bee0efad4e4c75590669bb2857046"></a>
+const <a class="el" href="class_city.html">City</a> ***&#160;</td><td class="memItemRight" valign="bottom"><b>getPlayingCards</b> () const </td></tr>
+<tr class="separator:a517bee0efad4e4c75590669bb2857046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a730043ba9a6d5fb559f4237a77c34ec3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a730043ba9a6d5fb559f4237a77c34ec3"></a>
+const <a class="el" href="class_playing_order.html">PlayingOrder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPlayingOrder</b> () const </td></tr>
+<tr class="separator:a730043ba9a6d5fb559f4237a77c34ec3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8cdd6d2cdd56c9d5ba3281d3f33f5b9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa8cdd6d2cdd56c9d5ba3281d3f33f5b9"></a>
+const <a class="el" href="class_a_i.html">AI</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getRoundStartingPlayer</b> () const </td></tr>
+<tr class="separator:aa8cdd6d2cdd56c9d5ba3281d3f33f5b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
-Public Attributes</h2></td></tr>
-<tr class="memitem:a7fd0f9fd826753aa3715ba85e863ab3f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7fd0f9fd826753aa3715ba85e863ab3f"></a>
-<a class="el" href="class_playing_order.html">PlayingOrder</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>playingOrder</b></td></tr>
-<tr class="separator:a7fd0f9fd826753aa3715ba85e863ab3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fe62f7b37b012bcde14640da24ea485"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9fe62f7b37b012bcde14640da24ea485"></a>
-vector&lt; <a class="el" href="class_a_i.html">AI</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>playerList</b></td></tr>
-<tr class="separator:a9fe62f7b37b012bcde14640da24ea485"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a256a2d63cc85c71f8a57268b1829e6df"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a256a2d63cc85c71f8a57268b1829e6df"></a>
-<a class="el" href="class_board.html">Board</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>board</b></td></tr>
-<tr class="separator:a256a2d63cc85c71f8a57268b1829e6df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adfb669d859b3e9e1bd18a8ae1a31cf6b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adfb669d859b3e9e1bd18a8ae1a31cf6b"></a>
-<a class="el" href="class_a_i.html">AI</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>roundStartingPlayer</b></td></tr>
-<tr class="separator:adfb669d859b3e9e1bd18a8ae1a31cf6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e30b0c6cf75d64dd8c3af86e240e188"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4e30b0c6cf75d64dd8c3af86e240e188"></a>
-<a class="el" href="class_city.html">City</a> **&#160;</td><td class="memItemRight" valign="bottom"><b>playingCards</b></td></tr>
-<tr class="separator:a4e30b0c6cf75d64dd8c3af86e240e188"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48257ec06504aa78fc89fe943d06aca8"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a48257ec06504aa78fc89fe943d06aca8"></a>
-<a class="el" href="class_counter.html">Counter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>lostPoints</b></td></tr>
-<tr class="separator:a48257ec06504aa78fc89fe943d06aca8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ba92d778f19c90572cfa6d7df0dcd5f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3ba92d778f19c90572cfa6d7df0dcd5f"></a>
-<a class="el" href="class_pawn.html">Pawn</a> **&#160;</td><td class="memItemRight" valign="bottom"><b>pawnList</b></td></tr>
-<tr class="separator:a3ba92d778f19c90572cfa6d7df0dcd5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dd45e93684f28897866e57303f7824b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2dd45e93684f28897866e57303f7824b"></a>
-vector&lt; <a class="el" href="class_move.html">Move</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>moveList</b></td></tr>
-<tr class="separator:a2dd45e93684f28897866e57303f7824b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:aae72f8e1249fbf187032c257b544873d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aae72f8e1249fbf187032c257b544873d"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>Round</b></td></tr>
+<tr class="separator:aae72f8e1249fbf187032c257b544873d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>hdr/logger/<a class="el" href="_round_logger_8h_source.html">RoundLogger.h</a></li>
@@ -131,7 +134,7 @@ vector&lt; <a class="el" href="class_move.html">Move</a> * &gt;&#160;</td><td cl
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 10 2014 01:30:37 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 10 2014 18:56:00 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

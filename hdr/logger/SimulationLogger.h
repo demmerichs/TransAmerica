@@ -13,10 +13,10 @@
 // forward declared dependencies
 class AI;
 class GameLogger;
+class DynamicState;
 //==============================
 // included dependencies
 #include<vector>
-#include<cstdlib>
 #include<ctime>
 
 #include "../game/Counter.h"
@@ -24,21 +24,27 @@ class GameLogger;
 //==============================
 // the actual class
 class SimulationLogger {
-public:
-	SimulationLogger(vector<AI*> playerList, Board& board,
-			int numberOfPlayers, unsigned int seed = (unsigned) time(0));
-	virtual ~SimulationLogger();
-
-	vector<AI*> playerList;
+	const vector<AI*> playerList;
 	Counter gamesWon;
-
 	vector<GameLogger*> gameList;
+	const Board board;
+	const unsigned int seed;
+	const unsigned int winnerPoints;
+	unsigned int calculateWinnerPoints();
+public:
+	SimulationLogger(vector<AI*> playerList, Board& board, int numberOfGames,
+			unsigned int seed = (unsigned) time(0));
+	virtual ~SimulationLogger();
+	const Board& getBoard() const;
+	const vector<GameLogger*>& getGameList() const;
+	const Counter& getGamesWon() const;
+	const vector<AI*>& getPlayerList() const;
+	const unsigned int getSeed() const;
+	const unsigned int getWinnerPoints() const;
 
-	Board board;
+	DynamicState calculateDynamicState(int game, int round, int move) const;
 
-	unsigned int seed;
-
-	vector<AI*> getPlayingOrder(int simulationNumber);
+	friend class Simulation;
 };
 
 #endif /* SIMULATIONLOGGER_H_ */

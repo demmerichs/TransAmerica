@@ -17,23 +17,27 @@ Simulation::~Simulation() {
 void Simulation::run() {
 	assert(!ran);
 	for (int i = 0; i < (int) simulationLogger->gameList.size(); i++) {
-		vector<AI*> order = simulationLogger->getPlayingOrder(i);
+		vector<AI*> order = getPlayingOrder(i);
 		PlayingOrder playingOrder(order);
-		GameLogger* currentGameLogger = new GameLogger(
-				simulationLogger->playerList, simulationLogger->board,
+		GameLogger* currentGameLogger = new GameLogger(simulationLogger,
 				playingOrder, order[0]);
 		Game currentGame(currentGameLogger);
 		currentGame.play();
-		simulationLogger->gamesWon += currentGameLogger->winnerPoints;
+		simulationLogger->gamesWon += currentGameLogger->getGameWon();
 		simulationLogger->gameList[i] = currentGameLogger;
 	}
 	//TODO ausgabe punkte
 	for (int i = 0; i < (int) simulationLogger->playerList.size(); i++)
-		cout << "Player " << simulationLogger->playerList[i]->playercolor
+		cout << "Player " << simulationLogger->playerList[i]->playerColor
 				<< " has won "
 				<< simulationLogger->gamesWon.get(
 						simulationLogger->playerList[i]) / (double) 6.
 				<< " game(s)." << endl;
 	//TODO end
 	ran = true;
+}
+
+vector<AI*> Simulation::getPlayingOrder(int simulationRound) const {
+	//TODO
+	return this->simulationLogger->playerList;
 }

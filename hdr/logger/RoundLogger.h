@@ -25,22 +25,31 @@ class Pawn;
 //==============================
 // the actual class
 class RoundLogger {
-public:
-	RoundLogger(PlayingOrder& playingOrder, vector<AI*> playerList,
-			Board& board, AI* roundStartingPlayer);
-	virtual ~RoundLogger();
+	const PlayingOrder &playingOrder;
+	const vector<AI*> playerList;
+	const Board &board;
 
-	PlayingOrder &playingOrder;
-	vector<AI*> playerList;
-	Board &board;
-
-	AI* roundStartingPlayer;
-	City** playingCards;
+	const AI* roundStartingPlayer;
+	const City*** playingCards;
 	Counter lostPoints;
 
-	Pawn** pawnList;
+	const Pawn** pawnList;
 
 	vector<Move*> moveList;
+public:
+	RoundLogger(const PlayingOrder& playingOrder, const vector<AI*> playerList,
+			const Board& board, const AI* roundStartingPlayer);
+	virtual ~RoundLogger();
+	const Board& getBoard() const;
+	const Counter& getLostPoints() const;
+	const vector<Move*>& getMoveList() const;
+	const Pawn** getPawnList() const;
+	const vector<AI*>& getPlayerList() const;
+	const City*** getPlayingCards() const;
+	const PlayingOrder& getPlayingOrder() const;
+	const AI* getRoundStartingPlayer() const;
+
+	friend class Round;
 };
 
 #endif /* ROUNDLOGGER_H_ */

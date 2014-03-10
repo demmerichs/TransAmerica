@@ -9,7 +9,6 @@
 
 //#include <qtextstream.h>
 #include <cmath>
-#include <cstdlib>
 #include <string>
 using std::string;
 
@@ -26,7 +25,7 @@ testKI::testKI(PLAYERCOLOR farb) :
 testKI::~testKI() {
 }
 
-Move testKI::doMove(State &aktuell) {
+Move testKI::doMove(State &aktuell, vector<Move*> moveList) {
 	const State sicherkopie(aktuell);
 	const Connection* firsty = 0;
 	const Connection* secondary = 0;
@@ -60,14 +59,14 @@ Move testKI::doMove(State &aktuell) {
 				secondary = aktuell.getConnection(a + first,
 						a + first + second);
 			}
-			Move ruckgabe(this->playercolor, firsty, secondary);
-			if (ruckgabe.valid(sicherkopie, this->playercolor))
-				return Move(this->playercolor, firsty, secondary);
+			Move ruckgabe(this->playerColor, firsty, secondary);
+			if (ruckgabe.valid(sicherkopie, this->playerColor))
+				return Move(this->playerColor, firsty, secondary);
 			else
-				return Move(this->playercolor, firsty, 0);
+				return Move(this->playerColor, firsty, 0);
 		}
 	}
-	return Move(this->playercolor, 0, 0);
+	return Move(this->playerColor, 0, 0);
 }
 
 short testKI::sign(short a) {
@@ -81,7 +80,7 @@ short testKI::sign(short a) {
 
 Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 	Vector ruckgabe(0, 0);
-	short aktSchienennummer = akt.getPawn(this->playercolor).schienennetznummer;
+	short aktSchienennummer = akt.getPawn(this->playerColor).schienennetznummer;
 	short minAbstand = MAX_X + MAX_Y;
 	for (int x = 0; x < MAX_X; x++) {
 		for (int y = 0; y < MAX_Y; y++) {

@@ -1,5 +1,8 @@
 //==============================
 // included dependencies
+#include <cmath>
+using std::abs;
+
 #include "../../hdr/userinterface/Spielbrett.h"
 
 #include "../../hdr/game/Constants.h"
@@ -8,10 +11,15 @@
 #include "../../hdr/game/Connection.h"
 #include "../../hdr/game/Pawn.h"
 #include "../../hdr/userinterface/Window.h"
+#include "../../hdr/userinterface/DynamicState.h"
+#include "../../hdr/game/Move.h"
 //==============================
 const QPen thinPen(Qt::darkGray, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
 const QPen thinRedPen(Qt::red, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
 const QPen fatPen(Qt::black, 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+const QPen fatGreyPen(Qt::lightGray, 4, Qt::SolidLine, Qt::RoundCap,
+		Qt::RoundJoin);
+const QPen fatRedPen(Qt::red, 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin); //TODO light red
 const double sL = 30.2;
 
 enum Farbart {
@@ -59,18 +67,18 @@ Spielbrett::Spielbrett(Window* parentalWindow) :
 	setAutoFillBackground(true);
 	setMouseTracking(true);
 
-    transform.translate(110.5, 40.5);
-    transform.scale(1, sqrt(3) / 2.);
-    transform.shear(-0.5, 0);
-    invertedTransform = transform.inverted();
-    scale.scale(2,2);
+	transform.translate(110.5, 40.5);
+	transform.scale(1, sqrt(3) / 2.);
+	transform.shear(-0.5, 0);
+	invertedTransform = transform.inverted();
+	scale.scale(2, 2);
 }
 void Spielbrett::paintEvent(QPaintEvent*) {
 	QPainter painter(this);
-	
-    QPixmap background("images/bg2.jpg");
-    painter.setWorldTransform(scale, true);
-    painter.drawPixmap(0, 0, background);
+
+	QPixmap background("images/bg2.jpg");
+	painter.setWorldTransform(scale, true);
+	painter.drawPixmap(0, 0, background);
 
 	if (!parentalWindow->simulationp || !parentalWindow->aZp) {
 		painter.drawText(this->width() / 2, this->height() / 2,
@@ -141,14 +149,43 @@ void Spielbrett::drawCityChanged(bool enable) {
 	update();
 }
 
-void Spielbrett::mouseReleaseEvent(QMouseEvent* event)
-{
-    QPoint clickPoint = event->pos();
-    clickPoint= scale.inverted().map(clickPoint);
-    clickPoint= invertedTransform.map(clickPoint);
-   // clickPoint=
-    cout << "Mouse Click:" << "\t X:" << clickPoint.x() << "\t Y:"
-            << clickPoint.y() << endl;
+void Spielbrett::mouseReleaseEvent(QMouseEvent* event) {
+	QPoint clickPoint = event->pos();
+	clickPoint = scale.inverted().map(clickPoint);
+	clickPoint = invertedTransform.map(clickPoint);
+	double x, y, z;
+	x = clickPoint.x() / sL;
+	y = clickPoint.y() / sL;
+	z = x - y;
+	double xDev, yDev, zDev;
+	int resultX, resultY;
+	int resultDirection;
+	xDev = fmod(x, 1.0) - 0.5;
+	yDev = fmod(y, 1.0) - 0.5;
+	zDev = fmod(z, 1.0) - 0.5;
+	if (abs(xDev) >= abs(yDev) && abs(xDev) >= abs(zDev)) {
+		resultDirection = SOUTH_WEST;
+		if (xDev > 0)
+			resultX = ceil(x);
+		else
+			resultX = floor(x);
+		resultY = floor(y);
+	} else if (abs(yDev) >= abs(xDev) && abs(yDev) >= abs(zDev)) {
+		resultDirection = EAST;
+		resultX = floor(x);
+		if (yDev > 0)
+			resultY = ceil(y);
+		else
+			resultY = floor(y);
+	} else if (abs(zDev) >= abs(xDev) && abs(zDev) >= abs(yDev)) {
+		resultDirection = SOUTH_EAST;
+		resultX = floor(x);
+		resultY = floor(y);
+	} else
+		assert(false);
+	parentalWindow->aZp->fromUserSelectedRails[resultX][resultY][resultDirection] =
+			!parentalWindow->aZp->fromUserSelectedRails[resultX][resultY][resultDirection];
+	update();
 }
 
 void Spielbrett::drawGrid(QPainter* painter) {
@@ -206,11 +243,49 @@ void Spielbrett::drawRailway(QPainter *painter) {
 			}
 		}
 	}
+	if (parentalWindow->aZp->lastMove) {
+		painter->setPen(
+				QPen(
+						getQColor(
+								parentalWindow->aZp->lastMove->getSpielerfarbe()),
+						4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin));
+		const Connection* const * lastMove =
+				parentalWindow->aZp->lastMove->getBelegt();
+		for (int i = 0; i < 2; i++)
+			if (lastMove[i])
+				painter->drawLine(
+						transform.map(
+								QPoint(lastMove[i]->first.x * sL,
+										lastMove[i]->first.y * sL)),
+						transform.map(
+								QPoint(lastMove[i]->second.x * sL,
+										lastMove[i]->second.y * sL)));
+	}
+	for (int i = 0; i < MAX_X; i++)
+		for (int j = 0; j < MAX_Y; j++)
+			for (int k = 0; k < 3; k++)
+				if (parentalWindow->aZp->board.edges[i][j][k]) {
+					if (!parentalWindow->aZp->railSet[i][j][k]
+							&& parentalWindow->aZp->fromUserSelectedRails[i][j][k]) {
+						const Connection* const current =
+								parentalWindow->aZp->board.edges[i][j][k];
+						if (current->hindernis)
+							painter->setPen(fatRedPen);
+						else
+							painter->setPen(fatGreyPen);
+						painter->drawLine(
+								transform.map(
+										QPoint(current->first.x * sL,
+												current->first.y * sL)),
+								transform.map(
+										QPoint(current->second.x * sL,
+												current->second.y * sL)));
+					}
+				}
 }
 
 void Spielbrett::drawPawns(QPainter *painter) {
-	std::cout << "function Spielbrett::drawPawns has been called \n"
-			<< "numberPawns: " << parentalWindow->aZp->numberPawns << endl;
+	painter->setPen(thinPen);
 	for (int k = 0; k < parentalWindow->aZp->numberPawns; k++) {
 		Pawn* i = parentalWindow->aZp->unsortedPawns[k];
 		QBrush brush(getQColor(i->spielerfarbe));

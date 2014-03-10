@@ -3,28 +3,34 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Simulation\-Logger} (vector$<$ {\bf A\-I} $\ast$ $>$ player\-List, {\bf Board} \&board, int number\-Of\-Players, unsigned int seed=(unsigned) time(0))\label{class_simulation_logger_a52dad1acd4474959f97b61d7d6c5f7aa}
+{\bfseries Simulation\-Logger} (vector$<$ {\bf A\-I} $\ast$ $>$ player\-List, {\bf Board} \&board, int number\-Of\-Games, unsigned int seed=(unsigned) time(0))\label{class_simulation_logger_a1bd6ad9e03211cee83757c567c14195b}
 
 \item 
-vector$<$ {\bf A\-I} $\ast$ $>$ {\bfseries get\-Playing\-Order} (int simulation\-Number)\label{class_simulation_logger_adaca37b7ece3ffee3d7750806ff9a02d}
+const {\bf Board} \& {\bfseries get\-Board} () const \label{class_simulation_logger_a5ed89aaa870ff9323be5f8f82da95f4a}
+
+\item 
+const vector$<$ {\bf Game\-Logger} $\ast$ $>$ \& {\bfseries get\-Game\-List} () const \label{class_simulation_logger_af92f6d16f918a385ccfa0d9b6a8823b3}
+
+\item 
+const {\bf Counter} \& {\bfseries get\-Games\-Won} () const \label{class_simulation_logger_a1a8d238597cef51d85bef2cd397bfb4d}
+
+\item 
+const vector$<$ {\bf A\-I} $\ast$ $>$ \& {\bfseries get\-Player\-List} () const \label{class_simulation_logger_ac089019f8358d4bb5bb5d92504e40ca4}
+
+\item 
+const unsigned int {\bfseries get\-Seed} () const \label{class_simulation_logger_ac9f1225d9d932eb90ccdde1c4149d212}
+
+\item 
+const unsigned int {\bfseries get\-Winner\-Points} () const \label{class_simulation_logger_af90bd066ae1f1012384f87662f19eb8f}
+
+\item 
+{\bf Dynamic\-State} {\bfseries calculate\-Dynamic\-State} (int game, int round, int move) const \label{class_simulation_logger_a1929c74a77d05af475b262b65acc4258}
 
 \end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-vector$<$ {\bf A\-I} $\ast$ $>$ {\bfseries player\-List}\label{class_simulation_logger_a8c7f870f1f2a77c9be4ec64b1e514d8e}
-
-\item 
-{\bf Counter} {\bfseries games\-Won}\label{class_simulation_logger_ab3ee79eb79f0c07d42ebebebf057587b}
-
-\item 
-vector$<$ {\bf Game\-Logger} $\ast$ $>$ {\bfseries game\-List}\label{class_simulation_logger_a888c6db0861aa00e12f0a2674b4cd802}
-
-\item 
-{\bf Board} {\bfseries board}\label{class_simulation_logger_a224021a57c2a155d5bec0548d6368fe1}
-
-\item 
-unsigned int {\bfseries seed}\label{class_simulation_logger_a9af9361d2d81c2e0fd47a5fb26285761}
+class {\bfseries Simulation}\label{class_simulation_logger_aeb51e0a4c44d4192cfbdb79598859172}
 
 \end{DoxyCompactItemize}
 

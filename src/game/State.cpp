@@ -16,7 +16,7 @@ using std::numeric_limits;
 #include "../../hdr/game/City.h"
 #include "../../hdr/game/Connection.h"
 
-State::State(Board &board) :
+State::State(const Board &board) :
 		numberPawns(0), board(board) {
 	sortedPawns = new Pawn*[MAX_PLAYER];
 	for (int i = 0; i < MAX_PLAYER; i++)

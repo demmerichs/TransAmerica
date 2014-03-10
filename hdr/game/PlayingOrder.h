@@ -25,7 +25,7 @@ public:
 	PlayingOrder(vector<AI*> order);
 	virtual ~PlayingOrder();
 
-	class iterator{
+	class iterator {
 	public:
 		iterator(PlayingOrderElement* cursor);
 		virtual ~iterator();
@@ -41,7 +41,7 @@ public:
 		bool operator!=(const PlayingOrder::iterator &rhs) const;
 	};
 
-	PlayingOrder::iterator begin(AI *player) const;
+	PlayingOrder::iterator begin(const AI *player) const;
 };
 
 #endif /* PLAYINGORDER_H_ */

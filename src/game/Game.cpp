@@ -25,13 +25,14 @@ void Game::play() {
 		Round currentRound(currentRoundLogger);
 		currentRound.play();
 		gameLogger->points = gameLogger->points
-				- currentRoundLogger->lostPoints;
+				- currentRoundLogger->getLostPoints();
 		gameLogger->roundList.push_back(currentRoundLogger);
-		for(int i=0;i<(int)gameLogger->playerList.size();i++)
-			gameLogger->playerList[i]->gatherInformationEndOfRound(currentRoundLogger);
+		for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
+			gameLogger->playerList[i]->gatherInformationEndOfRound(
+					currentRoundLogger);
 		cout << "Round ended" << endl;
 		for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
-			cout << "Player " << gameLogger->playerList[i]->playercolor
+			cout << "Player " << gameLogger->playerList[i]->playerColor
 					<< " has "
 					<< gameLogger->points.get(gameLogger->playerList[i])
 					<< " points!" << endl;
@@ -45,11 +46,11 @@ void Game::play() {
 		Round currentRound(currentRoundLogger);
 		currentRound.play();
 		gameLogger->points = gameLogger->points
-				- currentRoundLogger->lostPoints;
+				- currentRoundLogger->getLostPoints();
 		gameLogger->roundList.push_back(currentRoundLogger);
 		cout << "Round ended" << endl;
 		for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
-			cout << "Player " << gameLogger->playerList[i]->playercolor
+			cout << "Player " << gameLogger->playerList[i]->playerColor
 					<< " has "
 					<< gameLogger->points.get(gameLogger->playerList[i])
 					<< " points!" << endl;
@@ -67,7 +68,7 @@ void Game::play() {
 			numberWinners++;
 	for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
 		if (maxpoints == gameLogger->points.get(gameLogger->playerList[i]))
-			gameLogger->winnerPoints.add(gameLogger->playerList[i],
+			gameLogger->gameWon.add(gameLogger->playerList[i],
 					6 / numberWinners);
 	//TODO end
 	played = true;

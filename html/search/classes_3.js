@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['game',['Game',['../class_game.html',1,'']]],
-  ['gamelogger',['GameLogger',['../class_game_logger.html',1,'']]]
+  ['dynamicstate',['DynamicState',['../class_dynamic_state.html',1,'']]]
 ];

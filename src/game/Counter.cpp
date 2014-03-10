@@ -7,10 +7,10 @@
 
 #include "../../hdr/game/Counter.h"
 
-Counter::Counter() {
+Counter::Counter(int startValue) {
 	counter = new int[MAX_PLAYER];
 	for (int i = 0; i < MAX_PLAYER; i++)
-		counter[i] = 0;
+		counter[i] = startValue;
 }
 
 Counter::Counter(const Counter& copy) {
@@ -24,23 +24,23 @@ Counter::~Counter() {
 }
 
 int Counter::add(AI* player, int counter) {
-	this->counter[player->playercolor] += counter;
-	return this->counter[player->playercolor];
+	this->counter[player->playerColor] += counter;
+	return this->counter[player->playerColor];
 }
 
 int Counter::get(AI* player) const {
-	return counter[player->playercolor];
+	return counter[player->playerColor];
 }
 
 Counter Counter::operator+(const Counter& rhs) const {
-	Counter retValue;
+	Counter retValue(0);
 	for (int i = 0; i < MAX_PLAYER; i++)
 		retValue.counter[i] = counter[i] + rhs.counter[i];
 	return retValue;
 }
 
 Counter Counter::operator-(const Counter& rhs) const {
-	Counter retValue;
+	Counter retValue(0);
 	for (int i = 0; i < MAX_PLAYER; i++)
 		retValue.counter[i] = counter[i] - rhs.counter[i];
 	return retValue;

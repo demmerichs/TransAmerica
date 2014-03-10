@@ -8,7 +8,7 @@ class QLabel;
 class QSpinBox;
 class QCheckBox;
 class QLCDNumber;
-class State;
+class DynamicState;
 class SimulationLogger;
 //==============================
 // included dependencies
@@ -32,7 +32,7 @@ public:
 	~Window();
 	void setsimulationp(SimulationLogger* game);
 private:
-	State* aZp;
+	DynamicState* aZp;
 	SimulationLogger* simulationp;
 	Spielbrett* spielbrett;
 	int gameCounter;

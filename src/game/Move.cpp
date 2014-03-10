@@ -7,14 +7,14 @@
 
 #include "../../hdr/game/Move.h"
 
-/*Zug::Zug(short playercolor) :
- gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), playercolor(
- playercolor), anzahlSchienen(0) {
+/*Zug::Zug(short playerColor) :
+ gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), playerColor(
+ playerColor), anzahlSchienen(0) {
  }
 
- Zug::Zug(short playercolor, const Connection &belegt) :
- gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), playercolor(
- playercolor), anzahlSchienen(1) {
+ Zug::Zug(short playerColor, const Connection &belegt) :
+ gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), playerColor(
+ playerColor), anzahlSchienen(1) {
  Belegt[0] = &belegt;
  Belegt[1] = 0;
  }*/
@@ -131,4 +131,12 @@ void Move::dump() const {
 	cout << (*Belegt[0]).first.x << " " << (*Belegt[0]).first.y << endl;
 	cout << "Richtung" << endl;
 	cout << (*Belegt[0]).richtung.x << " " << (*Belegt[0]).richtung.y << endl;
+}
+
+PLAYERCOLOR Move::getSpielerfarbe() const {
+	return spielerfarbe;
+}
+
+const Connection* const * Move::getBelegt() const {
+	return Belegt;
 }

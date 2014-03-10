@@ -13,7 +13,7 @@
 class Counter {
 	int* counter;
 public:
-	Counter();
+	Counter(int startValue);
 	Counter(const Counter& copy);
 	virtual ~Counter();
 

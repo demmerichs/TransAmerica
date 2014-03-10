@@ -33,9 +33,8 @@ using std::set;
  * You have to implement every abstract method.
  */
 class AI {
-	static set<PLAYERCOLOR> participatingPlayerColours;
 protected:
-	virtual Move doMove(State &aktuell) =0; /**<Inside this methode you calculate your next move in the game.*/
+	virtual Move doMove(State &aktuell, vector<Move*> moveList) =0; /**<Inside this methode you calculate your next move in the game.*/
 	virtual Vector setPawn(State &aktuell) =0; /**<At the beginning of each round you have to define your starting position of your pawn.*/
 	virtual bool countPoints(State &currentState,
 			vector<Connection*> path) =0;
@@ -51,9 +50,9 @@ protected:
 	 */
 	const City** hand; /**<This is just an array of City-Pointers, that represents your hand.*/
 public:
-	AI(PLAYERCOLOR playercolor); /**<A constructor where you can set the name of your AI and your name, but not much more ;) */
+	AI(PLAYERCOLOR playerColor); /**<A constructor where you can set the name of your AI and your name, but not much more ;) */
 	virtual ~AI();
-	const PLAYERCOLOR playercolor; /**< This represents your color during the game. You can try to change it, but hopefully you shouldn't be able.*/
+	const PLAYERCOLOR playerColor; /**< This represents your color during the game. You can try to change it, but hopefully you shouldn't be able.*/
 	string owner; /**<Possibly your name.*/
 	string AIname; /**<Possibly the name of your AI.*/
 

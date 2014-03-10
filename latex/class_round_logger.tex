@@ -3,34 +3,37 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Round\-Logger} ({\bf Playing\-Order} \&playing\-Order, vector$<$ {\bf A\-I} $\ast$ $>$ player\-List, {\bf Board} \&board, {\bf A\-I} $\ast$round\-Starting\-Player)\label{class_round_logger_a972ed6c65096d153c4777dc8de7dbd4f}
+{\bfseries Round\-Logger} (const {\bf Playing\-Order} \&playing\-Order, const vector$<$ {\bf A\-I} $\ast$ $>$ player\-List, const {\bf Board} \&board, const {\bf A\-I} $\ast$round\-Starting\-Player)\label{class_round_logger_a52c7dc98a3b5ae1f2cc8aae99345b8d0}
+
+\item 
+const {\bf Board} \& {\bfseries get\-Board} () const \label{class_round_logger_a08f46631894e71a41826816ef0b0cde0}
+
+\item 
+const {\bf Counter} \& {\bfseries get\-Lost\-Points} () const \label{class_round_logger_aaa8b49bb49b3ffa35df429e1b9f6cfa3}
+
+\item 
+const vector$<$ {\bf Move} $\ast$ $>$ \& {\bfseries get\-Move\-List} () const \label{class_round_logger_a9abd61dd5ecf5f267ec97305dc313b40}
+
+\item 
+const {\bf Pawn} $\ast$$\ast$ {\bfseries get\-Pawn\-List} () const \label{class_round_logger_a2d0b4176229e86c7f7208df3e4e8e0fd}
+
+\item 
+const vector$<$ {\bf A\-I} $\ast$ $>$ \& {\bfseries get\-Player\-List} () const \label{class_round_logger_ae772e7fb8c0170c81e3fa6b5b7f28202}
+
+\item 
+const {\bf City} $\ast$$\ast$$\ast$ {\bfseries get\-Playing\-Cards} () const \label{class_round_logger_a517bee0efad4e4c75590669bb2857046}
+
+\item 
+const {\bf Playing\-Order} \& {\bfseries get\-Playing\-Order} () const \label{class_round_logger_a730043ba9a6d5fb559f4237a77c34ec3}
+
+\item 
+const {\bf A\-I} $\ast$ {\bfseries get\-Round\-Starting\-Player} () const \label{class_round_logger_aa8cdd6d2cdd56c9d5ba3281d3f33f5b9}
 
 \end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-{\bf Playing\-Order} \& {\bfseries playing\-Order}\label{class_round_logger_a7fd0f9fd826753aa3715ba85e863ab3f}
-
-\item 
-vector$<$ {\bf A\-I} $\ast$ $>$ {\bfseries player\-List}\label{class_round_logger_a9fe62f7b37b012bcde14640da24ea485}
-
-\item 
-{\bf Board} \& {\bfseries board}\label{class_round_logger_a256a2d63cc85c71f8a57268b1829e6df}
-
-\item 
-{\bf A\-I} $\ast$ {\bfseries round\-Starting\-Player}\label{class_round_logger_adfb669d859b3e9e1bd18a8ae1a31cf6b}
-
-\item 
-{\bf City} $\ast$$\ast$ {\bfseries playing\-Cards}\label{class_round_logger_a4e30b0c6cf75d64dd8c3af86e240e188}
-
-\item 
-{\bf Counter} {\bfseries lost\-Points}\label{class_round_logger_a48257ec06504aa78fc89fe943d06aca8}
-
-\item 
-{\bf Pawn} $\ast$$\ast$ {\bfseries pawn\-List}\label{class_round_logger_a3ba92d778f19c90572cfa6d7df0dcd5f}
-
-\item 
-vector$<$ {\bf Move} $\ast$ $>$ {\bfseries move\-List}\label{class_round_logger_a2dd45e93684f28897866e57303f7824b}
+class {\bfseries Round}\label{class_round_logger_aae72f8e1249fbf187032c257b544873d}
 
 \end{DoxyCompactItemize}
 

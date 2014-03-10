@@ -28,7 +28,7 @@ class testKI: public AI {
 public:
 	testKI(PLAYERCOLOR farbe);
 	virtual ~testKI();
-	Move doMove(State &aktuell);
+	Move doMove(State &aktuell, vector<Move*> moveList);
 	Vector setPawn(State &aktuell);
 	bool countPoints(State&, vector<Connection*>) {
 		return false;
