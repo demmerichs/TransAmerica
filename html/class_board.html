@@ -90,45 +90,199 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">Board Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p><code>#include &lt;<a class="el" href="_board_8h_source.html">Board.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a4dc36c54ace7643e944d7a1c22489290"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4dc36c54ace7643e944d7a1c22489290"></a>
-<a class="el" href="class_coordinate.html">Coordinate</a> ***&#160;</td><td class="memItemRight" valign="bottom"><b>gitterAnlegen</b> () const </td></tr>
-<tr class="separator:a4dc36c54ace7643e944d7a1c22489290"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a673546f9b873b889391d4f5f00c8e11e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a673546f9b873b889391d4f5f00c8e11e"></a>
-<a class="el" href="class_city.html">City</a> **&#160;</td><td class="memItemRight" valign="bottom"><b>stadtlisteAnlegen</b> () const </td></tr>
-<tr class="separator:a673546f9b873b889391d4f5f00c8e11e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad183860652e0761149da102dde1ed9d3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad183860652e0761149da102dde1ed9d3"></a>
-<a class="el" href="class_connection.html">Connection</a> ****&#160;</td><td class="memItemRight" valign="bottom"><b>kantenAnlegen</b> () const </td></tr>
-<tr class="separator:ad183860652e0761149da102dde1ed9d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a027a9e9004d0d813a462deac6fc43762"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a027a9e9004d0d813a462deac6fc43762"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Ausgabe</b> () const </td></tr>
-<tr class="separator:a027a9e9004d0d813a462deac6fc43762"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3050c3b7275b6c71e0d03566d4e05d46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a3050c3b7275b6c71e0d03566d4e05d46"></a>
-<a class="el" href="class_city.html">City</a> *const&#160;</td><td class="memItemRight" valign="bottom"><b>durchsucheListe</b> (short xkoo, short ykoo) const </td></tr>
-<tr class="separator:a3050c3b7275b6c71e0d03566d4e05d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a503bfdd2977525b7e660681bd5103900"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a503bfdd2977525b7e660681bd5103900"></a>
-<a class="el" href="class_city.html">City</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getStadt</b> (short farbe, short nr) const </td></tr>
-<tr class="separator:a503bfdd2977525b7e660681bd5103900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2eea85780d8edb14a2aa0697600bd60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_coordinate.html">Coordinate</a> ***&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#ae2eea85780d8edb14a2aa0697600bd60">constructGrid</a> () const </td></tr>
+<tr class="separator:ae2eea85780d8edb14a2aa0697600bd60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ec7049e0f1c7313417275106f2f02e9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_city.html">City</a> **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a7ec7049e0f1c7313417275106f2f02e9">constructCities</a> () const </td></tr>
+<tr class="separator:a7ec7049e0f1c7313417275106f2f02e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8235b5e3e7f30c370da7d7defffdade4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_connection.html">Connection</a> ****&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a8235b5e3e7f30c370da7d7defffdade4">constructEdges</a> () const </td></tr>
+<tr class="separator:a8235b5e3e7f30c370da7d7defffdade4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b3cd1e79ce4b94cdeeea22843941123"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a2b3cd1e79ce4b94cdeeea22843941123">dump</a> () const </td></tr>
+<tr class="separator:a2b3cd1e79ce4b94cdeeea22843941123"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d1b238232d07ee935416c1801383496"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_city.html">City</a> *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a9d1b238232d07ee935416c1801383496">lookForCity</a> (short xkoo, short ykoo) const </td></tr>
+<tr class="separator:a9d1b238232d07ee935416c1801383496"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac16f00b496f4eb32db6fe1c7ba417eee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_city.html">City</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#ac16f00b496f4eb32db6fe1c7ba417eee">getCity</a> (CITYCOLOR color, short number) const </td></tr>
+<tr class="separator:ac16f00b496f4eb32db6fe1c7ba417eee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:af2f4b0e66fc22947fffc5d35557562bf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af2f4b0e66fc22947fffc5d35557562bf"></a>
-const short&#160;</td><td class="memItemRight" valign="bottom"><b>anzahlStaedte</b></td></tr>
-<tr class="separator:af2f4b0e66fc22947fffc5d35557562bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2dbb7565fffccb8319092b9f07c24db9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a2dbb7565fffccb8319092b9f07c24db9"></a>
-<a class="el" href="class_city.html">City</a> *const *const&#160;</td><td class="memItemRight" valign="bottom"><b>Stadtliste</b></td></tr>
-<tr class="separator:a2dbb7565fffccb8319092b9f07c24db9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c2e87dffb506647f972d8104b6051cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4c2e87dffb506647f972d8104b6051cb"></a>
-const <a class="el" href="class_coordinate.html">Coordinate</a> *const *const <br class="typebreak"/>
-*const&#160;</td><td class="memItemRight" valign="bottom"><b>Gitter</b></td></tr>
-<tr class="separator:a4c2e87dffb506647f972d8104b6051cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a648708bed67ceae1eaa438aa9dd48efb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a648708bed67ceae1eaa438aa9dd48efb"></a>
-const <a class="el" href="class_connection.html">Connection</a> *const *const <br class="typebreak"/>
-*const *const&#160;</td><td class="memItemRight" valign="bottom"><b>Kanten</b></td></tr>
-<tr class="separator:a648708bed67ceae1eaa438aa9dd48efb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6869c6319c27411982843c0e3aa101fe"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6869c6319c27411982843c0e3aa101fe"></a>
+const short&#160;</td><td class="memItemRight" valign="bottom"><b>numberCities</b></td></tr>
+<tr class="separator:a6869c6319c27411982843c0e3aa101fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afac43a25bd5e29c0ec95b6a5744df041"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_city.html">City</a> *const *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#afac43a25bd5e29c0ec95b6a5744df041">cityList</a></td></tr>
+<tr class="separator:afac43a25bd5e29c0ec95b6a5744df041"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aae9536dd128ba63f9c7f0a665ae92ea6"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_coordinate.html">Coordinate</a> *const *const <br class="typebreak"/>
+*const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#aae9536dd128ba63f9c7f0a665ae92ea6">grid</a></td></tr>
+<tr class="separator:aae9536dd128ba63f9c7f0a665ae92ea6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60585dc155394a04bcad3b7e40965ee3"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_connection.html">Connection</a> *const *const <br class="typebreak"/>
+*const *const&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_board.html#a60585dc155394a04bcad3b7e40965ee3">edges</a></td></tr>
+<tr class="separator:a60585dc155394a04bcad3b7e40965ee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>This class provides the game board, which is of course constant and you shouldn't be able to modify anything here with operations out of your AI-class. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a7ec7049e0f1c7313417275106f2f02e9"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_city.html">City</a> ** Board::constructCities </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; Constructs the grid. </p>
+
+</div>
+</div>
+<a class="anchor" id="a8235b5e3e7f30c370da7d7defffdade4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_connection.html">Connection</a> **** Board::constructEdges </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; Constructs the cityList. </p>
+
+</div>
+</div>
+<a class="anchor" id="ae2eea85780d8edb14a2aa0697600bd60"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_coordinate.html">Coordinate</a> *** Board::constructGrid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; These are the connection(-pointers) between two coordinates. If you get edges[x][y][z], you get the connection starting in (x,y) and going in directin z (see also DIRECTION in <a class="el" href="_constants_8h_source.html">Constants.h</a>) </p>
+
+</div>
+</div>
+<a class="anchor" id="a2b3cd1e79ce4b94cdeeea22843941123"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Board::dump </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; Constructs the edges. </p>
+
+</div>
+</div>
+<a class="anchor" id="ac16f00b496f4eb32db6fe1c7ba417eee"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_city.html">City</a> * Board::getCity </td>
+          <td>(</td>
+          <td class="paramtype">CITYCOLOR&#160;</td>
+          <td class="paramname"><em>color</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">short&#160;</td>
+          <td class="paramname"><em>number</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; Finds the city, if it exists in the list. </p>
+
+</div>
+</div>
+<a class="anchor" id="a9d1b238232d07ee935416c1801383496"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_city.html">City</a> *const Board::lookForCity </td>
+          <td>(</td>
+          <td class="paramtype">short&#160;</td>
+          <td class="paramname"><em>xkoo</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">short&#160;</td>
+          <td class="paramname"><em>ykoo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; Dumps the board on the standard output stream. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="afac43a25bd5e29c0ec95b6a5744df041"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_city.html">City</a>* const* const Board::cityList</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; This is the number of cities on the game board. </p>
+
+</div>
+</div>
+<a class="anchor" id="a60585dc155394a04bcad3b7e40965ee3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_connection.html">Connection</a>* const* const* const* const Board::edges</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; This is the grid on the game board (2-dimensional array of coordinate-pointers). It is starting with (0,0) in the upper left corner. </p>
+
+</div>
+</div>
+<a class="anchor" id="aae9536dd128ba63f9c7f0a665ae92ea6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="class_coordinate.html">Coordinate</a>* const* const* const Board::grid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>&lt; This is the list of city-pointers, pointing to the cities, existing in the game. </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>hdr/game/<a class="el" href="_board_8h_source.html">Board.h</a></li>
 <li>src/game/Board.cpp</li>
@@ -136,7 +290,7 @@ const <a class="el" href="class_connection.html">Connection</a> *const *const <b
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 19:58:11 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 10 2014 01:30:37 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

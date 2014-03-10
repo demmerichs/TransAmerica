@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['owner',['owner',['../class_a_i.html#aaaf79ce0ba28ff418449f2b7ec0b5090',1,'AI']]]
+  ['edges',['edges',['../class_board.html#a60585dc155394a04bcad3b7e40965ee3',1,'Board']]]
 ];

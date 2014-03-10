@@ -22,7 +22,7 @@ AI::AI(PLAYERCOLOR farb) :
 		std::exit(0);
 	}
 	AI::participatingPlayerColours.insert(farb);
-	hand = new const City*[NUMBER_CITYCOLOURS];
+	hand = new const City*[NUMBER_CITYCOLORS];
 	owner = "";
 	AIname = "";
 }

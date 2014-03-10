@@ -7,9 +7,8 @@
 
 #include "../../hdr/game/City.h"
 
-City::City(string name, CITYCOLOUR cityColour, short number,
-		Vector place) :
-		Coordinate(place, this), name(name), cityColour(cityColour), number(
+City::City(string name, CITYCOLOR cityColor, short number, Vector place) :
+		Coordinate(place, this), name(name), cityColor(cityColor), number(
 				number) {
 }
 

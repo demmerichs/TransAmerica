@@ -22,12 +22,12 @@ using std::string;
 // the actual class
 class City: public Coordinate {
 public:
-	City(string name, CITYCOLOUR cityColour, short number, Vector place);
+	City(string name, CITYCOLOR cityColor, short number, Vector place);
 	virtual ~City();
 
 	//TODO mehr const setzen
 	string name;
-	CITYCOLOUR cityColour;
+	CITYCOLOR cityColor;
 	short number; //Staedte kriegen einfache Kennnummern
 };
 

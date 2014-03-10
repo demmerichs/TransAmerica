@@ -17,8 +17,6 @@
 #include "../../hdr/game/Move.h"
 #include "../../hdr/game/Pawn.h"
 
-
-
 Round::Round(RoundLogger* roundLogger) :
 		roundLogger(roundLogger), played(false), currentState(
 				State(roundLogger->board)) {
@@ -64,7 +62,8 @@ void Round::setPawns() {
 	do {
 		Vector setPosition = playerIterator->setPawn(currentState);
 		Pawn currentSet(playerIterator->playercolor, setPosition);
-		currentState.addPawn(currentSet);
+		currentState.addPawn(currentSet); //TODO check if valid
+		roundLogger->pawnList[currentSet.spielerfarbe] = new Pawn(currentSet);
 		++playerIterator;
 	} while (playerIterator
 			!= roundLogger->playingOrder.begin(roundLogger->roundStartingPlayer));
@@ -112,7 +111,7 @@ bool Round::isRoundWinner(AI* player) const {
 
 bool Round::isPlayerConnectedToHisCities(AI* player, const State& state) const {
 	short schienennr = state.getPawn(player->playercolor).schienennetznummer;
-	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {
+	for (int i = 0; i < NUMBER_CITYCOLORS; i++) {
 		if (schienennr != state.getRailwayNumber(*(player->hand[i])))
 			return false;
 	}
@@ -124,7 +123,7 @@ void Round::dealCards() {
 	if ((int) this->roundLogger->playerList.size() < SPIELER_GRENZE)
 		maxNr = STADTNR_GRENZE;
 
-	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {
+	for (int i = 0; i < NUMBER_CITYCOLORS; i++) {
 		short kartenzahl = maxNr;
 		vector<short> rest;
 		for (int j = 0; j < kartenzahl; j++)
@@ -140,8 +139,8 @@ void Round::dealCards() {
 		}
 		for (int spielernr = 0;
 				spielernr < (int) roundLogger->playerList.size(); spielernr++) {
-			roundLogger->playerList[spielernr]->hand[CITYCOLOUR_LIST[i]] =
-					roundLogger->board.getStadt(CITYCOLOUR_LIST[i],
+			roundLogger->playerList[spielernr]->hand[CITYCOLOR_LIST[i]] =
+					roundLogger->board.getCity(CITYCOLOR_LIST[i],
 							stapel[spielernr]);
 		}
 	}
@@ -149,7 +148,7 @@ void Round::dealCards() {
 	cout << "Handkarten:" << endl;
 	for (int i = 0; i < (int) roundLogger->playerList.size(); i++) {
 		cout << "Spieler " << (i + 1) << endl;
-		for (int j = 0; j < NUMBER_CITYCOLOURS; j++)
+		for (int j = 0; j < NUMBER_CITYCOLORS; j++)
 			cout << roundLogger->playerList[i]->hand[j]->name << endl;
 	}
 }

@@ -129,6 +129,12 @@ void Window::setZp() {
 		for (int i = 0; i < moveCounter; i++)
 			simulationp->gameList[gameCounter - 1]->roundList[roundCounter - 1]->moveList[i]->execute(
 					*aZp);
+		for (int i = 0; i < MAX_PLAYER; i++)
+			if (simulationp->gameList[gameCounter - 1]->roundList[roundCounter
+					- 1]->pawnList[i])
+				aZp->addPawn(
+						*simulationp->gameList[gameCounter - 1]->roundList[roundCounter
+								- 1]->pawnList[i]);
 	}
 	spielbrett->update();
 }

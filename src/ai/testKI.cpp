@@ -99,8 +99,8 @@ Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 }
 
 Vector testKI::setPawn(State &currentState) {
-	for (int i = 0; i < NUMBER_CITYCOLOURS; i++) {
-		if (hand[i]->cityColour == C_YELLOW)
+	for (int i = 0; i < NUMBER_CITYCOLORS; i++) {
+		if (hand[i]->cityColor == C_YELLOW)
 			return *hand[i];
 	}
 	cout << "Gelbe Stadt nicht gefunden in Handkarten!" << endl;

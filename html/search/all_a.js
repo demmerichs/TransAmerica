@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['round',['Round',['../class_round.html',1,'']]],
-  ['roundlogger',['RoundLogger',['../class_round_logger.html',1,'']]]
+  ['owner',['owner',['../class_a_i.html#aaaf79ce0ba28ff418449f2b7ec0b5090',1,'AI']]]
 ];

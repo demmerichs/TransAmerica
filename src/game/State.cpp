@@ -169,7 +169,7 @@ const Connection* State::getConnection(Vector a, Vector b) const {
 			&& eins.x < MAX_X && eins.y < MAX_Y && zwei.x < MAX_X
 			&& zwei.y < MAX_Y)
 		ruckgabe =
-				this->board.Kanten[eins.x][eins.y][this->DirectionValueOfVector(
+				this->board.edges[eins.x][eins.y][this->DirectionValueOfVector(
 						zwei - eins)];
 	return ruckgabe;
 }
@@ -306,19 +306,19 @@ void State::dump() const {
 			cout << " ";
 		for (int x = 0; x < 2 * MAX_X - 1; x++) {
 			if (x % 2 == 0 && y % 2 == 0) {
-				if (board.Gitter[x / 2][y / 2] == 0)
+				if (board.grid[x / 2][y / 2] == 0)
 					cout << " ";
-				else if (board.Gitter[x / 2][y / 2]->vorOrt == 0)
+				else if (board.grid[x / 2][y / 2]->vorOrt == 0)
 					cout << "X";
 				else
-					cout << board.Gitter[x / 2][y / 2]->vorOrt->name[0];
-				if (board.Kanten[x / 2][y / 2][0] != 0
+					cout << board.grid[x / 2][y / 2]->vorOrt->name[0];
+				if (board.edges[x / 2][y / 2][0] != 0
 						&& this->railSet[x / 2][y / 2][0])
 					cout << "-";
 				else
 					cout << " ";
 			} else if (x % 2 == 0 && y % 2 == 1) {
-				if (board.Kanten[x / 2][(y - 1) / 2][1] != 0)
+				if (board.edges[x / 2][(y - 1) / 2][1] != 0)
 					if (railSet[x / 2][(y - 1) / 2][1])
 						cout << "/ ";
 					else
@@ -326,7 +326,7 @@ void State::dump() const {
 				else
 					cout << "  ";
 			} else if (x % 2 == 1 && y % 2 == 0) {
-				if (board.Kanten[(x - 1) / 2][y / 2][0] != 0)
+				if (board.edges[(x - 1) / 2][y / 2][0] != 0)
 					if (railSet[(x - 1) / 2][y / 2][0])
 						cout << "--";
 					else
@@ -334,7 +334,7 @@ void State::dump() const {
 				else
 					cout << "  ";
 			} else {
-				if (board.Kanten[(x - 1) / 2][(y - 1) / 2][2] != 0)
+				if (board.edges[(x - 1) / 2][(y - 1) / 2][2] != 0)
 					if (railSet[(x - 1) / 2][(y - 1) / 2][2])
 						cout << "\\ ";
 					else

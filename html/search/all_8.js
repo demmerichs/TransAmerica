@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['owner',['owner',['../class_a_i.html#aaaf79ce0ba28ff418449f2b7ec0b5090',1,'AI']]]
+  ['lookforcity',['lookForCity',['../class_board.html#a9d1b238232d07ee935416c1801383496',1,'Board']]]
 ];

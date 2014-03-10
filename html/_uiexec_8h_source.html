@@ -103,7 +103,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;../game/Board.h&quot;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;../logger/SimulationLogger.h&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;../game/Simulation.h&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;../ai/AILIst.h&quot;</span>   <span class="comment">//TODO remove list to somewhere more central</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;../ai/AIList.h&quot;</span>   <span class="comment">//TODO remove list to somewhere more central</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">//==============================</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="comment">// the actual class</span></div>
 <div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="class_u_i_e_x_e_c.html">   20</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_u_i_e_x_e_c.html">UIEXEC</a> {</div>
@@ -111,23 +111,24 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_u_i_e_x_e_c.html">UIEXEC</a>();</div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_window.html">Window</a>* wp;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_board.html">Board</a>* board;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_simulation_logger.html">SimulationLogger</a>* simulationLogger;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_simulation.html">Simulation</a>* simulation;</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_u_i_e_x_e_c.html#a0253650bd333a3e0b4c4ce93a2ad94a3">simulateSimulation</a>(<span class="keywordtype">int</span> games = 1);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#endif // UIEXEC_H</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    vector&lt;AI*&gt; *players;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_simulation_logger.html">SimulationLogger</a>* simulationLogger;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="class_simulation.html">Simulation</a>* simulation;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_u_i_e_x_e_c.html#a0253650bd333a3e0b4c4ce93a2ad94a3">simulateSimulation</a>(<span class="keywordtype">int</span> games = 1);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;};</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#endif // UIEXEC_H</span></div>
 <div class="ttc" id="class_window_html"><div class="ttname"><a href="class_window.html">Window</a></div><div class="ttdef"><b>Definition:</b> Window.h:24</div></div>
 <div class="ttc" id="class_a_i_html"><div class="ttname"><a href="class_a_i.html">AI</a></div><div class="ttdef"><b>Definition:</b> AI.h:35</div></div>
 <div class="ttc" id="class_u_i_e_x_e_c_html"><div class="ttname"><a href="class_u_i_e_x_e_c.html">UIEXEC</a></div><div class="ttdef"><b>Definition:</b> Uiexec.h:20</div></div>
-<div class="ttc" id="class_board_html"><div class="ttname"><a href="class_board.html">Board</a></div><div class="ttdef"><b>Definition:</b> Board.h:30</div></div>
+<div class="ttc" id="class_board_html"><div class="ttname"><a href="class_board.html">Board</a></div><div class="ttdef"><b>Definition:</b> Board.h:34</div></div>
 <div class="ttc" id="class_u_i_e_x_e_c_html_a0253650bd333a3e0b4c4ce93a2ad94a3"><div class="ttname"><a href="class_u_i_e_x_e_c.html#a0253650bd333a3e0b4c4ce93a2ad94a3">UIEXEC::simulateSimulation</a></div><div class="ttdeci">void simulateSimulation(int games=1)</div><div class="ttdef"><b>Definition:</b> Uiexec.cpp:6</div></div>
 <div class="ttc" id="class_simulation_html"><div class="ttname"><a href="class_simulation.html">Simulation</a></div><div class="ttdef"><b>Definition:</b> Simulation.h:22</div></div>
 <div class="ttc" id="class_simulation_logger_html"><div class="ttname"><a href="class_simulation_logger.html">SimulationLogger</a></div><div class="ttdef"><b>Definition:</b> SimulationLogger.h:26</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 8 2014 19:58:11 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 10 2014 01:30:37 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -27,14 +27,14 @@ const short MAX_X = 20; /**< The maximum possible x-value on the board.*/
 const short MAX_Y = 13;
 
 //stadtfarben
-//positiv von 1 bis n, mit n=NUMBER_CITYCOLOURS Anzahl der Farben
-const short NUMBER_CITYCOLOURS = 5;
-enum CITYCOLOUR {
-	C_BLUE, C_GREEN, C_ORANGE, C_RED, C_YELLOW, C_NULLCOLOUR
+//positiv von 1 bis n, mit n=NUMBER_CITYCOLORS Anzahl der Farben
+const short NUMBER_CITYCOLORS = 5;
+enum CITYCOLOR {
+	C_BLUE, C_GREEN, C_ORANGE, C_RED, C_YELLOW, C_NULLCOLOR
 };
-const CITYCOLOUR CITYCOLOUR_LIST[] = { C_BLUE, C_GREEN, C_ORANGE, C_RED,
-		C_YELLOW };
-CITYCOLOUR operator>>(ifstream &infile, CITYCOLOUR &citycolour);
+const CITYCOLOR CITYCOLOR_LIST[] =
+		{ C_BLUE, C_GREEN, C_ORANGE, C_RED, C_YELLOW };
+CITYCOLOR operator>>(ifstream &infile, CITYCOLOR &citycolor);
 
 //stadtnummern
 //von 1 bis k, mit k=MAX_STADTNR
@@ -48,7 +48,7 @@ const short STADTNR_GRENZE = 5;
 enum PLAYERCOLOR {
 	P_BLUE, P_GREEN, P_ORANGE, P_VIOLET, P_WHITE, P_YELLOW, NORAILS
 };
-const PLAYERCOLOR PLAYERCOLOUR_LIST[] = { P_BLUE, P_GREEN, P_ORANGE, P_VIOLET,
+const PLAYERCOLOR PLAYERCOLOR_LIST[] = { P_BLUE, P_GREEN, P_ORANGE, P_VIOLET,
 		P_WHITE, P_YELLOW };
 const short MAX_PLAYER = 6;
 
