@@ -44,6 +44,12 @@ private:
     void drawPawns(QPainter* painter);
     void drawCitys(QPainter* painter);
     void drawCityNames(QPainter* painter);
+    /**
+      some functions to get along with proper drawings
+    */
+    void resizeEvent(QResizeEvent* event);
+    QSize sizeHint();
+    QSize minimumSizeHint();
 
 
 };
