@@ -4,7 +4,7 @@ MainWindow::MainWindow() {
 
 	wp = new Window();
 	setCentralWidget(wp);
-	show();
+    showMaximized();
 	connect(wp->newGameButton, SIGNAL(released()), this, SLOT(openInit()));
 	openInit();
 }
@@ -16,7 +16,7 @@ void MainWindow::startSimulation(int games) {
 	wp->updateSpinBoxes();
 	wp->setZp();
 	wp->update();
-	wp->show();
+    wp->showMaximized();
 }
 
 void MainWindow::openInit() {

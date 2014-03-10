@@ -62,23 +62,24 @@ Spielbrett::Spielbrett(Window* parentalWindow) :
 		parentalWindow(parentalWindow) {
 
 	drawCity = false;
-	setFixedSize(1220, 784);
 	setBackgroundRole(QPalette::Base);
 	setAutoFillBackground(true);
 	setMouseTracking(true);
+
+    background = new QPixmap("images/bg2.jpg");
 
 	transform.translate(110.5, 40.5);
 	transform.scale(1, sqrt(3) / 2.);
 	transform.shear(-0.5, 0);
 	invertedTransform = transform.inverted();
-	scale.scale(2, 2);
 }
 void Spielbrett::paintEvent(QPaintEvent*) {
 	QPainter painter(this);
-
-	QPixmap background("images/bg2.jpg");
-	painter.setWorldTransform(scale, true);
-	painter.drawPixmap(0, 0, background);
+    scale = QTransform::fromScale(
+                height()/background->height(),
+                height()/background->height());
+    painter.setWorldTransform(scale, true);
+    painter.drawPixmap(0, 0, *background);
 
 	if (!parentalWindow->simulationp || !parentalWindow->aZp) {
 		painter.drawText(this->width() / 2, this->height() / 2,
@@ -86,7 +87,6 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 		return;
 	}
 
-	//QTransform inverseTransform = transform.inverted();
 
 	painter.setRenderHints(QPainter::Antialiasing, true);
 
@@ -100,6 +100,7 @@ void Spielbrett::paintEvent(QPaintEvent*) {
     drawCitys(&painter);
     if (drawCity) drawCityNames(&painter);
 	drawPawns(&painter);
+    painter.setWorldTransform(scale.inverted(),true);
 }
 
 void Spielbrett::zustandChanged(int counter) {

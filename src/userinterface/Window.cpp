@@ -9,15 +9,15 @@ Window::Window(SimulationLogger *game) :
 	/**
 	 Aukommentiert um Zusulassen, dass game = NULL
 	 */
-	town1 = new QLabel(tr("Portland"));
-	town2 = new QLabel(tr("Sacramento"));
-	town3 = new QLabel(tr("San Diego"));
-	town4 = new QLabel(tr("El Paso"));
-	town5 = new QLabel(tr("Jacksonville"));
-	town6 = new QLabel(tr(""));
+//	town1 = new QLabel(tr("Portland"));
+//	town2 = new QLabel(tr("Sacramento"));
+//	town3 = new QLabel(tr("San Diego"));
+//	town4 = new QLabel(tr("El Paso"));
+//	town5 = new QLabel(tr("Jacksonville"));
+//	town6 = new QLabel(tr(""));
 
-	player1 = new QLabel(tr("0"));
-	player2 = new QLabel(tr("0"));
+//	player1 = new QLabel(tr("0"));
+//	player2 = new QLabel(tr("0"));
 
 	toolBoxLabel = new QLabel(tr("ToolBox"));
 	QFont font = toolBoxLabel->font();
@@ -46,26 +46,26 @@ Window::Window(SimulationLogger *game) :
 	//        simulationp->gameList[0]->roundList[0]->moveList.size());
 	moveSpinBox->setWrapping(false);
 	moveSpinBox->setSuffix(tr(". Zug"));
-	counterLCD = new QLCDNumber;
-	counterLCD->setDigitCount(2);
-	counterLCD->display(99);
+//	counterLCD = new QLCDNumber;
+//	counterLCD->setDigitCount(2);
+//	counterLCD->display(99);
 	spielbrett = new Spielbrett(this);
 	/**
 	 Layout-Design
 	 */
 	QGridLayout* mainLayout = new QGridLayout;
 	QFormLayout* toolLayout = new QFormLayout;
-	QFormLayout* pointsLayout = new QFormLayout;
-	mainLayout->setGeometry(QRect(0, 0, 1380, 784));
+//	QFormLayout* pointsLayout = new QFormLayout;
+//	mainLayout->setGeometry(QRect(0, 0, 1380, 784));
 	mainLayout->addWidget(spielbrett, 0, 0, 12, 8);
-	mainLayout->addWidget(town1, 11, 0, Qt::AlignBottom);
-	mainLayout->addWidget(town2, 11, 1, Qt::AlignBottom);
-	mainLayout->addWidget(town3, 11, 2, Qt::AlignBottom);
-	mainLayout->addWidget(town4, 11, 3, Qt::AlignBottom);
-	mainLayout->addWidget(town5, 11, 4, Qt::AlignBottom);
-	mainLayout->addWidget(town6, 11, 5, Qt::AlignBottom);
-	mainLayout->addWidget(counterLCD, 9, 0, Qt::AlignHCenter);
-	mainLayout->addLayout(pointsLayout, 10, 0, 2, 1);
+//	mainLayout->addWidget(town1, 11, 0, Qt::AlignBottom);
+//	mainLayout->addWidget(town2, 11, 1, Qt::AlignBottom);
+//	mainLayout->addWidget(town3, 11, 2, Qt::AlignBottom);
+//	mainLayout->addWidget(town4, 11, 3, Qt::AlignBottom);
+//	mainLayout->addWidget(town5, 11, 4, Qt::AlignBottom);
+//	mainLayout->addWidget(town6, 11, 5, Qt::AlignBottom);
+//	mainLayout->addWidget(counterLCD, 9, 0, Qt::AlignHCenter);
+//	mainLayout->addLayout(pointsLayout, 10, 0, 2, 1);
 	mainLayout->addLayout(toolLayout, 0, 9, 8, 1);
 	toolLayout->addRow(toolBoxLabel);
 	toolLayout->addRow(tr("Geladenes Spiel:"), gameSpinBox);
@@ -74,8 +74,8 @@ Window::Window(SimulationLogger *game) :
 	toolLayout->addRow(tr("Zeige Staedte:"), showTownsCheckBox);
 	toolLayout->addRow(newGameButton);
 	toolLayout->addRow(enterMove);	//TODO own window
-	pointsLayout->addRow(tr("KI 1:"), player1);
-	pointsLayout->addRow(tr("KI 2:"), player2);
+//	pointsLayout->addRow(tr("KI 1:"), player1);
+//	pointsLayout->addRow(tr("KI 2:"), player2);
 	setLayout(mainLayout);
 
 	/**
@@ -106,21 +106,21 @@ Window::~Window() {
 	delete spielbrett;
 	delete simulationp;
 	delete aZp;
-	delete town1;
-	delete town2;
-	delete town3;
-	delete town4;
-	delete town5;
-	delete town6;
-	delete player1;
-	delete player2;
+//	delete town1;
+//	delete town2;
+//	delete town3;
+//	delete town4;
+//	delete town5;
+//	delete town6;
+//	delete player1;
+//	delete player2;
 	delete toolBoxLabel;
 	delete newGameButton;
 	delete moveSpinBox;
 	delete roundSpinBox;
 	delete gameSpinBox;
 	delete showTownsCheckBox;
-	delete counterLCD;
+//	delete counterLCD;
 }
 /**
  Slot-Implementationen
