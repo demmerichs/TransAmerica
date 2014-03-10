@@ -13,6 +13,7 @@ using std::abs;
 #include "../../hdr/userinterface/Window.h"
 #include "../../hdr/userinterface/DynamicState.h"
 #include "../../hdr/game/Move.h"
+
 //==============================
 const QPen thinPen(Qt::darkGray, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
 const QPen thinRedPen(Qt::red, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
@@ -63,7 +64,7 @@ Spielbrett::Spielbrett(Window* parentalWindow) :
 
 	drawCity = false;
 	setBackgroundRole(QPalette::Base);
-	setAutoFillBackground(true);
+    setAutoFillBackground(false);
 	setMouseTracking(true);
 
     background = new QPixmap("images/bg2.jpg");
@@ -75,9 +76,6 @@ Spielbrett::Spielbrett(Window* parentalWindow) :
 }
 void Spielbrett::paintEvent(QPaintEvent*) {
 	QPainter painter(this);
-    scale = QTransform::fromScale(
-                height()/background->height(),
-                height()/background->height());
     painter.setWorldTransform(scale, true);
     painter.drawPixmap(0, 0, *background);
 
@@ -290,4 +288,25 @@ void Spielbrett::drawCityNames(QPainter* painter)
                     transform.map(QPoint(townList[i]->x * sL + 10, townList[i]->y *sL +10)),
                     QString::fromStdString(townList[i]->name));
     }
+}
+
+void Spielbrett::resizeEvent(QResizeEvent *event)
+{
+    QSize size = event->size();
+    double Width = size.rwidth();
+    double Height = size.rheight();
+    double ImageWidth = background->width();
+    double ImageHeight = background->height();
+    double scaleFactor;
+    if (Width/ImageWidth<=Height/ImageHeight) scaleFactor = Width/ImageWidth;
+    else scaleFactor = Height/ImageHeight;
+    scale = QTransform::fromScale(scaleFactor, scaleFactor);
+}
+QSize Spielbrett::minimumSizeHint()
+{
+    return background->size();
+}
+QSize Spielbrett::sizeHint()
+{
+    return background->size()*2;
 }
