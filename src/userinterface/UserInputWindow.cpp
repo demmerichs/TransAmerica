@@ -8,6 +8,7 @@
 #include "UserInputWindow.h"
 #include "../../hdr/game/Move.h"
 #include "../../hdr/userinterface/DynamicState.h"
+#include "../../hdr/userinterface/Spielbrett.h"
 #include "../../hdr/game/Board.h"
 
 UserInputWindow::UserInputWindow(const Board& board) :

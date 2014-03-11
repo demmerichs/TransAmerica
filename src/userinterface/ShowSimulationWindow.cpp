@@ -10,6 +10,7 @@
 #include "../../hdr/logger/GameLogger.h"
 #include "../../hdr/logger/RoundLogger.h"
 #include "../../hdr/userinterface/DynamicState.h"
+#include "../../hdr/userinterface/Spielbrett.h"
 
 ShowSimulationWindow::ShowSimulationWindow(SimulationLogger* simulationp) :
 		Window(simulationp->getBoard()), simulationp(simulationp) {
@@ -44,9 +45,10 @@ ShowSimulationWindow::~ShowSimulationWindow() {
 }
 
 void ShowSimulationWindow::setZp() {
-    if (simulationp) {
-        if (aZp) delete aZp;
-        aZp = new DynamicState(
+	if (simulationp) {
+		if (aZp)
+			delete aZp;
+		aZp = new DynamicState(
 				simulationp->calculateDynamicState(gameCounter - 1,
 						roundCounter - 1, moveCounter));
 	}

@@ -14,6 +14,9 @@
 class QPushButton;
 //==============================
 // included dependencies
+#include <vector>
+using std::vector;
+
 #include "Window.h"
 
 //==============================

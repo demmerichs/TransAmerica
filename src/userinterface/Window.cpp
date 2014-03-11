@@ -1,5 +1,6 @@
 #include "../../hdr/userinterface/Window.h"
 #include "../../hdr/userinterface/DynamicState.h"
+#include "../../hdr/userinterface/Spielbrett.h"
 #include "../../hdr/logger/SimulationLogger.h"
 #include "../../hdr/logger/GameLogger.h"
 #include "../../hdr/logger/RoundLogger.h"

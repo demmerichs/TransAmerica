@@ -5,6 +5,7 @@
 //==============================
 // forward declared dependencies
 class Window;
+class City;
 //==============================
 // included dependencies
 #include <QWidget>
@@ -35,30 +36,29 @@ public slots:
 
 protected:
 	void paintEvent(QPaintEvent* event);
-    void mouseReleaseEvent(QMouseEvent* event);
+	void mouseReleaseEvent(QMouseEvent* event);
 
 private:
-    bool drawCity;
-    QTransform transform;
-    QTransform invertedTransform;
-    QTransform scale;
+	bool drawCity;
+	QTransform transform;
+	QTransform invertedTransform;
+	QTransform scale;
 	Window* parentalWindow;
-    QPixmap* background;
-    City*const *const hand;
+	QPixmap* background;
+	const City** hand;
 
-    void drawGrid(QPainter* painter);
-    void drawRailway(QPainter* painter);
-    void drawPawns(QPainter* painter);
-    void drawCitys(QPainter* painter);
-    void drawCityNames(QPainter* painter);
-    void drawHand(QPainter* painter);
-    /**
-      some functions to get along with proper drawings
-    */
-    void resizeEvent(QResizeEvent* event);
-    QSize sizeHint();
-    QSize minimumSizeHint();
-
+	void drawGrid(QPainter* painter);
+	void drawRailway(QPainter* painter);
+	void drawPawns(QPainter* painter);
+	void drawCitys(QPainter* painter);
+	void drawCityNames(QPainter* painter);
+	void drawHand(QPainter* painter);
+	/**
+	 some functions to get along with proper drawings
+	 */
+	void resizeEvent(QResizeEvent* event);
+	QSize sizeHint();
+	QSize minimumSizeHint();
 
 };
 

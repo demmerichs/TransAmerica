@@ -11,13 +11,14 @@ class QLCDNumber;
 class DynamicState;
 class SimulationLogger;
 class Move;
+class Spielbrett;
+class Board;
 //==============================
 // included dependencies
 #include <QWidget>
 #include <iostream>
 #include <QtGui>
 
-#include "Spielbrett.h"
 //#include "../../game/header/State.h"
 //#include "../../logger/header/SimulationLogger.h"
 //==============================
