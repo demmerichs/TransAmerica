@@ -52,6 +52,7 @@ void ShowSimulationWindow::setZp() {
 				simulationp->calculateDynamicState(gameCounter - 1,
 						roundCounter - 1, moveCounter));
 	}
+	spielbrett->dynamicState = aZp;
 	spielbrett->update();
 }
 
