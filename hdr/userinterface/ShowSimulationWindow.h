@@ -11,9 +11,10 @@
 #define SHOWSIMULATIONWINDOW_H_
 //==============================
 // forward declared dependencies
+class QSPinBox;
 //==============================
 // included dependencies
-#include "hdr/userinterface/Window.h"
+#include "../../hdr/userinterface/Window.h"
 
 //==============================
 // the actual class
