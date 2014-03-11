@@ -44,10 +44,9 @@ ShowSimulationWindow::~ShowSimulationWindow() {
 }
 
 void ShowSimulationWindow::setZp() {
-	if (simulationp != 0) {
-		if (aZp != 0)
-			delete aZp;
-		aZp = new DynamicState(
+    if (simulationp) {
+        if (aZp) delete aZp;
+        aZp = new DynamicState(
 				simulationp->calculateDynamicState(gameCounter - 1,
 						roundCounter - 1, moveCounter));
 	}
