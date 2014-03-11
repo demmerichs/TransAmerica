@@ -83,6 +83,13 @@ const City** SimulationLogger::getHandOfPlayer(PLAYERCOLOR playerColor,
 	return gameList[game]->getRoundList()[round]->getPlayingCards()[playerColor];
 }
 
+Counter SimulationLogger::getPointsEndOfRound(int game, int round) const {
+	Counter retValue(13);
+	for (int i = 0; i <= round; i++)
+		retValue -= gameList[game]->getRoundList()[i]->getLostPoints();
+	return retValue;
+}
+
 const Board& SimulationLogger::getBoard() const {
 	return board;
 }

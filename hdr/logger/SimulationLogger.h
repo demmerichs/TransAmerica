@@ -44,6 +44,7 @@ public:
 
 	DynamicState calculateDynamicState(int game, int round, int move) const;
 	const City** getHandOfPlayer(PLAYERCOLOR playerColor, int game, int round) const;
+	Counter getPointsEndOfRound(int game, int round) const;
 
 	friend class Simulation;
 };
