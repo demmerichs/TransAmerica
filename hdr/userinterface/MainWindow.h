@@ -10,7 +10,7 @@ class QToolBar;
 #include <QMainWindow>
 #include <QMouseEvent>
 #include "Uiexec.h"
-#include "../../ShowSimulationWindow.h"
+#include "ShowSimulationWindow.h"
 #include "Initialize.h"
 //==============================
 // the actual class

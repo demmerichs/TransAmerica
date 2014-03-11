@@ -13,12 +13,13 @@
 // forward declared dependencies
 //==============================
 // included dependencies
-#include "hdr/userinterface/Window.h"
+#include "Window.h"
 
 //==============================
 // the actual class
 
 class ShowSimulationWindow: public Window {
+    Q_OBJECT
 	friend class Spielbrett;
 	friend class UIEXEC;
 	friend class MainWindow;

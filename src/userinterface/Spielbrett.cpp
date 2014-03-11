@@ -5,14 +5,7 @@ using std::abs;
 
 #include "../../hdr/userinterface/Spielbrett.h"
 
-#include "../../hdr/game/Constants.h"
-#include "../../hdr/game/Board.h"
-#include "../../hdr/game/City.h"
-#include "../../hdr/game/Connection.h"
-#include "../../hdr/game/Pawn.h"
-#include "../../hdr/userinterface/Window.h"
-#include "../../hdr/userinterface/DynamicState.h"
-#include "../../hdr/game/Move.h"
+
 
 //==============================
 const QPen thinPen(Qt::darkGray, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
@@ -20,44 +13,13 @@ const QPen thinRedPen(Qt::red, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
 const QPen fatPen(Qt::black, 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
 const QPen fatGreyPen(Qt::lightGray, 4, Qt::SolidLine, Qt::RoundCap,
 		Qt::RoundJoin);
-const QPen fatRedPen(Qt::red, 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin); //TODO light red
+const QPen fatRedPen(QColor("#ff7070"), 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin); //TODO light red
 const double sL = 30.2;
 
 enum Farbart {
 	spielerfarbe, stadtfarbe
 };
 
-QColor getQColor(PLAYERCOLOR i) {
-	if (i == P_BLUE)
-		return QColor(Qt::blue);
-	else if (i == P_YELLOW)
-		return QColor(Qt::yellow);
-	else if (i == P_GREEN)
-		return QColor(Qt::green);
-	else if (i == P_VIOLET)
-		return QColor(Qt::magenta);
-	else if (i == P_ORANGE)
-		return QColor("#ffa500");
-	else if (i == P_WHITE)
-		return QColor(Qt::white);
-	else
-		return QColor(Qt::black);
-}
-
-QPixmap getPixmap(CITYCOLOR i) {
-	if (i == 0)
-		return QPixmap("images/blau.gif");
-	else if (i == 4)
-		return QPixmap("images/gelb.gif");
-	else if (i == 1)
-		return QPixmap("images/gruen.gif");
-	else if (i == 2)
-		return QPixmap("images/orange.gif");
-	else if (i == 3)
-		return QPixmap("images/rot.gif");
-	else
-		return QPixmap(" ");
-}
 
 Spielbrett::Spielbrett(Window* parentalWindow, const Board& board) :
 		board(board), parentalWindow(parentalWindow) {
@@ -266,7 +228,7 @@ void Spielbrett::drawCitys(QPainter *painter) {
 					transform.map(
 							QPoint(
 									(parentalWindow->aZp->board.cityList[i]->x)
-											* sL - 12,
+                                            * sL - 13,
 									(parentalWindow->aZp->board.cityList[i]->y)
 											* sL - 8.5)),
 					getPixmap(
@@ -288,6 +250,11 @@ void Spielbrett::drawCityNames(QPainter* painter) {
 	}
 }
 
+void Spielbrett::drawHand(QPainter* painter)
+{
+
+}
+
 void Spielbrett::resizeEvent(QResizeEvent *event) {
 	QSize size = event->size();
 	double Width = size.rwidth();
@@ -302,8 +269,8 @@ void Spielbrett::resizeEvent(QResizeEvent *event) {
 	scale = QTransform::fromScale(scaleFactor, scaleFactor);
 }
 QSize Spielbrett::minimumSizeHint() {
-	return background->size();
+    return QSize(610,392);
 }
 QSize Spielbrett::sizeHint() {
-	return background->size() * 2;
+    return QSize(1220,784);
 }

@@ -13,7 +13,7 @@
 // forward declared dependencies
 //==============================
 // included dependencies
-#include "hdr/userinterface/Window.h"
+#include "Window.h"
 
 //==============================
 // the actual class
