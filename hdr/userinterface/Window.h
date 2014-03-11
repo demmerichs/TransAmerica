@@ -24,57 +24,21 @@ class Move;
 // the actual class
 class Window: public QWidget {
 Q_OBJECT
-
 	friend class Spielbrett;
-	friend class UIEXEC;
-	friend class MainWindow;
-	friend class Human;
 public:
-	Window(SimulationLogger* game = 0);
+	Window(const Board& board);
 	~Window();
-	void setsimulationp(SimulationLogger* game);
-private:
+protected:
 	DynamicState* aZp;
-	SimulationLogger* simulationp;
 	Spielbrett* spielbrett;
-	int gameCounter;
-	int roundCounter;
-	int moveCounter;
+	QFormLayout* toolLayout;
 	/**
 	 diverse Labels
 	 diverse Combo-/Spin-boxen
 	 */
-//	QLabel* town1;
-//	QLabel* town2;
-//	QLabel* town3;
-//	QLabel* town4;
-//	QLabel* town5;
-//	QLabel* town6;
-//	QLabel* player1;
-//	QLabel* player2;
-//	QLabel* player3;
-//	QLabel* player4;
-//	QLabel* player5;
-//	QLabel* player6;
 	QLabel* toolBoxLabel;
 	QPushButton* newGameButton;
-	QPushButton* enterMove; //TODO new window
-	QSpinBox* moveSpinBox;
-	QSpinBox* roundSpinBox;
-	QSpinBox* gameSpinBox;
 	QCheckBox* showTownsCheckBox;
-//	QLCDNumber* counterLCD;
-	//void playAutomatically
-	void setZp();
-	void updateSpinBoxes();
-	bool setGameCounter(int i);
-	bool setRoundCounter(int i);
-	bool setMoveCounter(int i);
-	Move getMoveFromUser(vector<Move*> moveList);
-private slots:
-	void gameSpinChanged(int i);
-	void roundSpinChanged(int i);
-	void moveSpinChanged(int i);
 };
 
 #endif // WINDOW_H

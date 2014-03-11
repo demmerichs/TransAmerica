@@ -19,10 +19,8 @@ class Window;
 class Spielbrett: public QWidget {
 Q_OBJECT
 public:
-	Spielbrett(Window* parentalWindow);
-	//QSize minimumSizeHint ()const;
-	//QSize sizeHint ()const;
-
+	const Board& board;
+	Spielbrett(Window* parentalWindow, const Board& board);
 public slots:
 	void zustandChanged(int);
 	void drawCityChanged(bool);

@@ -59,15 +59,15 @@ QPixmap getPixmap(CITYCOLOR i) {
 		return QPixmap(" ");
 }
 
-Spielbrett::Spielbrett(Window* parentalWindow) :
-		parentalWindow(parentalWindow) {
+Spielbrett::Spielbrett(Window* parentalWindow, const Board& board) :
+		board(board), parentalWindow(parentalWindow) {
 
 	drawCity = false;
 	setBackgroundRole(QPalette::Base);
-    setAutoFillBackground(false);
+	setAutoFillBackground(false);
 	setMouseTracking(true);
 
-    background = new QPixmap("images/bg2.jpg");
+	background = new QPixmap("images/bg2.jpg");
 
 	transform.translate(110.5, 40.5);
 	transform.scale(1, sqrt(3) / 2.);
@@ -76,15 +76,14 @@ Spielbrett::Spielbrett(Window* parentalWindow) :
 }
 void Spielbrett::paintEvent(QPaintEvent*) {
 	QPainter painter(this);
-    painter.setWorldTransform(scale, true);
-    painter.drawPixmap(0, 0, *background);
+	painter.setWorldTransform(scale, true);
+	painter.drawPixmap(0, 0, *background);
 
-	if (!parentalWindow->simulationp || !parentalWindow->aZp) {
+	if (!parentalWindow->aZp) {
 		painter.drawText(this->width() / 2, this->height() / 2,
 				"NO VALID SIMULATION LOADED");
 		return;
 	}
-
 
 	painter.setRenderHints(QPainter::Antialiasing, true);
 
@@ -92,13 +91,13 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	 draws the Railway-System
 	 */
 	drawGrid(&painter);
-    drawRailway(&painter);
+	drawRailway(&painter);
 
-
-    drawCitys(&painter);
-    if (drawCity) drawCityNames(&painter);
+	drawCitys(&painter);
+	if (drawCity)
+		drawCityNames(&painter);
 	drawPawns(&painter);
-    painter.setWorldTransform(scale.inverted(),true);
+	painter.setWorldTransform(scale.inverted(), true);
 }
 
 void Spielbrett::zustandChanged(int counter) {
@@ -256,57 +255,55 @@ void Spielbrett::drawPawns(QPainter *painter) {
 	}
 }
 
-void Spielbrett::drawCitys(QPainter *painter)
-{
-    for (int i = 0; i < 35; i++) {
-        if (parentalWindow->aZp->board.cityList[i] != NULL) {
-            /*cout << "i = " << i << "  x = " <<parentalWindow->aZp->gameBoard.cityList[i]->place.x
-             << "  y = " << parentalWindow->aZp->gameBoard.cityList[i]->place.y << endl;
-             // << "  Stadt = " << parentalWindow->aZp->gameBoard.cityList[i]->name<< endl;
-             */
-            painter->drawPixmap(
-                    transform.map(
-                            QPoint(
-                                    (parentalWindow->aZp->board.cityList[i]->x)
-                                            * sL - 12,
-                                    (parentalWindow->aZp->board.cityList[i]->y)
-                                            * sL - 8.5)),
-                    getPixmap(
-                            parentalWindow->aZp->board.cityList[i]->cityColor));
-        }
-    }
+void Spielbrett::drawCitys(QPainter *painter) {
+	for (int i = 0; i < 35; i++) {
+		if (parentalWindow->aZp->board.cityList[i] != NULL) {
+			/*cout << "i = " << i << "  x = " <<parentalWindow->aZp->gameBoard.cityList[i]->place.x
+			 << "  y = " << parentalWindow->aZp->gameBoard.cityList[i]->place.y << endl;
+			 // << "  Stadt = " << parentalWindow->aZp->gameBoard.cityList[i]->name<< endl;
+			 */
+			painter->drawPixmap(
+					transform.map(
+							QPoint(
+									(parentalWindow->aZp->board.cityList[i]->x)
+											* sL - 12,
+									(parentalWindow->aZp->board.cityList[i]->y)
+											* sL - 8.5)),
+					getPixmap(
+							parentalWindow->aZp->board.cityList[i]->cityColor));
+		}
+	}
 }
 
-void Spielbrett::drawCityNames(QPainter* painter)
-{
-    City* const* const townList = parentalWindow->aZp->board.cityList;
-    painter->setPen(fatPen);
-    painter->setFont(QFont("Times", 7, QFont::Bold));
-    for (int i=0; i<parentalWindow->aZp->board.numberCities; i++)
-    {
-        painter->drawText(
-                    transform.map(QPoint(townList[i]->x * sL + 10, townList[i]->y *sL +10)),
-                    QString::fromStdString(townList[i]->name));
-    }
+void Spielbrett::drawCityNames(QPainter* painter) {
+	City* const * const townList = parentalWindow->aZp->board.cityList;
+	painter->setPen(fatPen);
+	painter->setFont(QFont("Times", 7, QFont::Bold));
+	for (int i = 0; i < parentalWindow->aZp->board.numberCities; i++) {
+		painter->drawText(
+				transform.map(
+						QPoint(townList[i]->x * sL + 10,
+								townList[i]->y * sL + 10)),
+				QString::fromStdString(townList[i]->name));
+	}
 }
 
-void Spielbrett::resizeEvent(QResizeEvent *event)
-{
-    QSize size = event->size();
-    double Width = size.rwidth();
-    double Height = size.rheight();
-    double ImageWidth = background->width();
-    double ImageHeight = background->height();
-    double scaleFactor;
-    if (Width/ImageWidth<=Height/ImageHeight) scaleFactor = Width/ImageWidth;
-    else scaleFactor = Height/ImageHeight;
-    scale = QTransform::fromScale(scaleFactor, scaleFactor);
+void Spielbrett::resizeEvent(QResizeEvent *event) {
+	QSize size = event->size();
+	double Width = size.rwidth();
+	double Height = size.rheight();
+	double ImageWidth = background->width();
+	double ImageHeight = background->height();
+	double scaleFactor;
+	if (Width / ImageWidth <= Height / ImageHeight)
+		scaleFactor = Width / ImageWidth;
+	else
+		scaleFactor = Height / ImageHeight;
+	scale = QTransform::fromScale(scaleFactor, scaleFactor);
 }
-QSize Spielbrett::minimumSizeHint()
-{
-    return background->size();
+QSize Spielbrett::minimumSizeHint() {
+	return background->size();
 }
-QSize Spielbrett::sizeHint()
-{
-    return background->size()*2;
+QSize Spielbrett::sizeHint() {
+	return background->size() * 2;
 }

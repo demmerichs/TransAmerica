@@ -7,7 +7,7 @@ UIEXEC::UIEXEC(Window* wp, int games) :
 	players = new vector<AI*>;
 	players->push_back(new testKI(P_BLUE));
 	players->push_back(new testKI(P_ORANGE));
-	players->push_back(new Human(P_YELLOW, this));
+	players->push_back(new testKI(P_YELLOW));
 
 	simulationLogger = new SimulationLogger(*players, *board, games);
 }

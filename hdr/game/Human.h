@@ -11,7 +11,7 @@
 #define HUMAN_H_
 //==============================
 // forward declared dependencies
-class UIEXEC;
+class UserInputWindow;
 //==============================
 // included dependencies
 #include "../../hdr/game/AI.h"
@@ -20,9 +20,9 @@ class UIEXEC;
 // the actual class
 
 class Human: public AI {
-	UIEXEC* uiexec;
+	UserInputWindow* userInput;
 public:
-	Human(PLAYERCOLOR playerColor, UIEXEC* uiexec);
+	Human(PLAYERCOLOR playerColor, UserInputWindow* uiexec);
 	virtual ~Human();
 
 	Move doMove(State&, vector<Move*>);

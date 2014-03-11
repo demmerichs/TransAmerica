@@ -10,7 +10,7 @@ class QToolBar;
 #include <QMainWindow>
 #include <QMouseEvent>
 #include "Uiexec.h"
-#include "Window.h"
+#include "../../ShowSimulationWindow.h"
 #include "Initialize.h"
 //==============================
 // the actual class
@@ -20,7 +20,7 @@ public:
 	MainWindow();
 private:
 	UIEXEC* myGameExe;
-	Window* wp;
+	ShowSimulationWindow* wp;
 	QToolBar* myToolBar;
 	QAction* newSimulation;
 private slots:

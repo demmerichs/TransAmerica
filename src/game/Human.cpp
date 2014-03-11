@@ -6,11 +6,11 @@
  */
 
 #include "../../hdr/game/Human.h"
-#include "../../hdr/userinterface/Uiexec.h"
-#include "../../hdr/userinterface/Window.h"
+#include "../../hdr/game/City.h"
+#include "UserInputWindow.h"
 
-Human::Human(PLAYERCOLOR playerColor, UIEXEC* uiexec) :
-		AI(playerColor), uiexec(uiexec) {
+Human::Human(PLAYERCOLOR playerColor, UserInputWindow* userInput) :
+		AI(playerColor), userInput(userInput) {
 	// TODO Auto-generated constructor stub
 }
 
@@ -19,7 +19,7 @@ Human::~Human() {
 }
 
 Move Human::doMove(State& currentState, vector<Move*> moveList) {
-	return uiexec->wp->getMoveFromUser(moveList);
+	return userInput->getMoveFromUser(moveList);
 }
 
 Vector Human::setPawn(State&) {
