@@ -1,7 +1,7 @@
-#include "../../hdr/userinterface/Uiexec.h"
+#include "../../hdr/userinterface/GameExec.h"
 #include "../../hdr/game/Human.h"
 
-UIEXEC::UIEXEC(Window* wp, int games) :
+GameExec::GameExec(Window* wp, int games) :
 		wp(wp) {
 	board = new Board;
 	players = new vector<AI*>;
@@ -12,7 +12,7 @@ UIEXEC::UIEXEC(Window* wp, int games) :
 	simulationLogger = new SimulationLogger(*players, *board, games);
 }
 
-void UIEXEC::simulateSimulation() {
+void GameExec::simulateSimulation() {
 	/**
 	 window implementation
 	 */

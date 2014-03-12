@@ -1,7 +1,7 @@
 //==============================
 // include guards
-#ifndef UIEXEC_H
-#define UIEXEC_H
+#ifndef GAMEEXEC_H
+#define GAMEEXEC_H
 //==============================
 // forward declared dependencies
 class Window;
@@ -17,9 +17,9 @@ class AI;
 #include "../ai/AIList.h"	//TODO remove list to somewhere more central
 //==============================
 // the actual class
-class UIEXEC {
+class GameExec {
 public:
-	UIEXEC(Window* wp, int games = 1);
+    GameExec(Window* wp, int games = 1);
 	Window* wp;
 	Board* board;
 	vector<AI*> *players;
@@ -28,4 +28,4 @@ public:
 	void simulateSimulation();
 };
 
-#endif // UIEXEC_H
+#endif // GAMEEXEC_H

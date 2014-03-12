@@ -7,6 +7,11 @@ class QPixmap;
 #include "../../hdr/game/Constants.h"
 
 QColor getQColor(PLAYERCOLOR i);
-QPixmap getPixmap(CITYCOLOR i);
+QPixmap getCityPixmap(CITYCOLOR i);
+QPixmap getCity_hPixmap(CITYCOLOR i);
 
 #endif // QKONSTANTEN_H
+
+
+//Anmerkungen zur Zeichnung
+//bg1.jpg: Auf 585 Pixel(x) befinden sich 16 Schienenzeichnungen

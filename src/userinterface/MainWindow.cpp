@@ -10,7 +10,7 @@ MainWindow::MainWindow() {
 }
 
 void MainWindow::startSimulation(int games) {
-	myGameExe = new UIEXEC(wp, games);
+    myGameExe = new GameExec(wp, games);
 	wp->simulationp = myGameExe->simulationLogger;
 	myGameExe->simulateSimulation();
 	wp->updateSpinBoxes();
@@ -28,9 +28,4 @@ void MainWindow::openInit() {
 	return;
 }
 
-void MainWindow::mouseReleaseEvent(QMouseEvent* event) {
-//	QPoint clickPoint = event->pos();
-//	cout << "Mouse Click:" << "\t X:" << clickPoint.x() << "\t Y:"
-//			<< clickPoint.y() << endl;
 
-}

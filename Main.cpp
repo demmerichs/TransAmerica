@@ -12,7 +12,6 @@
 #include "hdr/ai/testKI.h"
 #include "hdr/game/AI.h"
 #include "hdr/game/Simulation.h"
-#include "hdr/userinterface/Uiexec.h"
 #include "hdr/userinterface/MainWindow.h"
 
 int main(int argc, char* argv[]) {
