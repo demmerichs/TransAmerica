@@ -234,14 +234,27 @@ void Spielbrett::drawCitys(QPainter *painter) {
 }
 
 void Spielbrett::drawCityNames(QPainter* painter) {
-	City* const * const townList = dynamicState->board.cityList;
+	QPixmap* schild = new QPixmap("images/schildkl.gif");
+	const City* const * townList = dynamicState->board.cityList;
 	painter->setPen(fatPen);
 	painter->setFont(QFont("Times", 7, QFont::Bold));
 	for (int i = 0; i < dynamicState->board.numberCities; i++) {
-		painter->drawText(
+		QRect* rect = new QRect(
 				transform.map(
-						QPoint(townList[i]->x * sL + 10,
-								townList[i]->y * sL + 10)),
+						QPoint(townList[i]->x * sL - 200 + 5,
+								townList[i]->y * sL + 10)), QSize(400, 50));
+		QRect* boundingRect = new QRect;
+		painter->drawText(*rect, Qt::AlignHCenter | Qt::AlignTop,
+				QString::fromStdString(townList[i]->name), boundingRect);
+		boundingRect->setWidth(boundingRect->width() + 4);
+		boundingRect->setHeight(boundingRect->height() + 2);
+		boundingRect->setTopLeft(
+				transform.map(QPoint(townList[i]->x * sL, townList[i]->y * sL))
+						+ QPoint(-boundingRect->width() / 2, 8));
+		boundingRect->setTop(boundingRect->top() - 1);
+		painter->drawPixmap(boundingRect->topLeft(),
+				schild->scaled(boundingRect->size()));
+		painter->drawText(*boundingRect, Qt::AlignCenter,
 				QString::fromStdString(townList[i]->name));
 	}
 }

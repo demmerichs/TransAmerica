@@ -6,6 +6,7 @@
 #include "../../hdr/logger/RoundLogger.h"
 
 Window::Window(const Board& board) {
+	aZp = 0;
 	toolBoxLabel = new QLabel(tr("ToolBox"));
 	QFont font = toolBoxLabel->font();
 	font.setBold(true);
@@ -15,7 +16,7 @@ Window::Window(const Board& board) {
 	toolBoxLabel->setFont(font);
 	showTownsCheckBox = new QCheckBox;
 	newGameButton = new QPushButton(tr("New Game"));
-	spielbrett = new Spielbrett(board, this->aZp, Counter(13));
+	spielbrett = new Spielbrett(board, aZp, Counter(13));
 	/**
 	 Layout-Design
 	 */
@@ -33,7 +34,6 @@ Window::Window(const Board& board) {
 	 */
 	connect(showTownsCheckBox, SIGNAL(toggled(bool)), spielbrett,
 			SLOT(drawCityChanged(bool)));
-	aZp = 0;
 }
 
 Window::~Window() {
