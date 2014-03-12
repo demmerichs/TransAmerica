@@ -1,20 +1,20 @@
 /*
- * testKI.h
+ * templateAI.h
  *
- *  Created on: 01.12.2013
+ *  Created on: 12.03.2014
  *      Author: David
  */
 
 //==============================
-// include guards
-#ifndef TESTKI_H_
-#define TESTKI_H_
+// include guards TODO adapt
+#ifndef TEMPLATEAI_H_
+#define TEMPLATEAI_H_
 //==============================
 // forward declared dependencies
 class Move;
 class RoundLogger;
 class State;
-class Connections;
+class Connection;
 //==============================
 // included dependencies
 #include <vector>
@@ -24,17 +24,20 @@ using std::vector;
 #include "../game/Constants.h"
 //==============================
 // the actual class
-class testKI: public AI {
+/**
+ * This is a template for your AI. Everywhere, where TODO adpat appears,
+ * you have to insert your AIname instead of templateAI. For explanation of the methods,
+ * look into the AI-class documentation. Also you have to add this headerfile into the include-list
+ * in the file "hdr/ai/AIList.h".
+ */
+class templateAI: public AI { /*TODO adapt*/
 public:
-	testKI(PLAYERCOLOR playerColor);
-	virtual ~testKI();
+	templateAI(PLAYERCOLOR playerColor)/*TODO adapt*/;
+	virtual ~templateAI()/*TODO adapt*/;
 	Move doMove(State &currentState, vector<Move*> moveList);
 	Vector setPawn(State &currentState);
 	bool countPoints(State& currentState, vector<Connection*>& returnPath);
 	void gatherInformationEndOfRound(const RoundLogger* informationAboutGame);
-	Vector getNaechsterPunktZu(Vector, State) const;
-
-	static short sign(short);
 };
 
-#endif /* TESTKI_H_ */
+#endif /* TEMPLATEAI_H_ */
