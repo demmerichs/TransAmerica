@@ -1,14 +1,14 @@
 /*
- * templateAI.h
+ * debuggerAI.h
  *
  *  Created on: 12.03.2014
  *      Author: David
  */
 
 //==============================
-// include guards /*TODO adapt*/
-#ifndef TEMPLATEAI_H_
-#define TEMPLATEAI_H_
+// include guards
+#ifndef DEBUGGERAI_H_
+#define DEBUGGERAI_H_
 //==============================
 // forward declared dependencies
 class Move;
@@ -25,19 +25,19 @@ using std::vector;
 //==============================
 // the actual class
 /**
- * This is a template for your AI. Everywhere, where TODO adpat appears,
- * you have to insert your AIname instead of templateAI. For explanation of the methods,
- * look into the AI-class documentation. Also you have to add this headerfile into the include-list
- * in the file "hdr/ai/AIList.h".
+ * This is a debbugerAI, where you actually can implement code. It exists for everyone, to enter code,
+ * that should be, by the rules of the game, not possible. If you found a cheat, then please show here,
+ * so that we can try to fix it (for example if it is possible for you, to somehow peak into the hands of
+ * the other players.
  */
-class templateAI: public AI { /*TODO adapt*/
+class debuggerAI: public AI {
 public:
-	templateAI(PLAYERCOLOR playerColor)/*TODO adapt*/;
-	virtual ~templateAI()/*TODO adapt*/;
+	debuggerAI(PLAYERCOLOR playerColor);
+	virtual ~debuggerAI();
 	Move doMove(State &currentState, vector<Move*> moveList);
 	Vector setPawn(State &currentState);
 	bool countPoints(State& currentState, vector<Connection*>& returnPath);
 	void gatherInformationEndOfRound(const RoundLogger* informationAboutGame);
 };
 
-#endif /* TEMPLATEAI_H_ */
+#endif /* DEBUGGERAI_H_ */

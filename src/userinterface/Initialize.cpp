@@ -75,9 +75,12 @@ void Initialize::removeAI(QListWidgetItem* removeItem) {
 void Initialize::setAIAvailable() {
 	ifstream inAI("hdr/ai/AIList.h");
 	while (!inAI.eof()) {
-		string input;
-		inAI >> input; //ignore #input
-		inAI >> input;
+		string input = " ";
+		while (input[0] != '"') {
+			if (inAI.eof())
+				return;
+			inAI >> input; //ignore #input
+		}
 		input = input.substr(1, input.length() - 4); //ignore "(...) and (...).h"
 		aiAvailable << input.data();
 	}
