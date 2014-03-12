@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vector',['Vector',['../class_vector.html',1,'']]]
+  ['userinputwindow',['UserInputWindow',['../class_user_input_window.html',1,'']]]
 ];

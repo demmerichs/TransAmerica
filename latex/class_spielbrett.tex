@@ -18,7 +18,13 @@ void {\bfseries draw\-City\-Changed} (bool)\label{class_spielbrett_a0ecee580d84a
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Spielbrett} ({\bf Window} $\ast$parental\-Window)\label{class_spielbrett_a55ccf1e51754aac00e74b8111e593f15}
+{\bfseries Spielbrett} (const {\bf Board} \&board, {\bf Dynamic\-State} $\ast$dynamic\-State, {\bf Counter} points)\label{class_spielbrett_a747bae1fe4045070d043a92420262585}
+
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const {\bf Board} \& {\bfseries board}\label{class_spielbrett_a1bd23f91936c33f37814711d39124cbd}
 
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
@@ -27,6 +33,15 @@ void {\bfseries draw\-City\-Changed} (bool)\label{class_spielbrett_a0ecee580d84a
 void {\bf paint\-Event} (Q\-Paint\-Event $\ast$event)
 \item 
 void {\bfseries mouse\-Release\-Event} (Q\-Mouse\-Event $\ast$event)\label{class_spielbrett_a17d3ac93220b92cdf404c4f91c0cb1de}
+
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class {\bfseries Window}\label{class_spielbrett_a553f958a25683445088050a69d3de8e9}
+
+\item 
+class {\bfseries Show\-Simulation\-Window}\label{class_spielbrett_a28cc15fe5197d19714eb857c7eaf4e8e}
 
 \end{DoxyCompactItemize}
 
@@ -40,10 +55,6 @@ void {\bfseries mouse\-Release\-Event} (Q\-Mouse\-Event $\ast$event)\label{class
 \end{DoxyParamCaption}
 )\hspace{0.3cm}{\ttfamily [protected]}}\label{class_spielbrett_ad5c421ce5a9364a6e7b696049e93469b}
 draws the Railway-\/\-System
-
-draws the names of the citys
-
-draw the city.\-gifs
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

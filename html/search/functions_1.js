@@ -4,5 +4,5 @@ var searchData=
   ['constructedges',['constructEdges',['../class_board.html#a8235b5e3e7f30c370da7d7defffdade4',1,'Board']]],
   ['constructgrid',['constructGrid',['../class_board.html#ae2eea85780d8edb14a2aa0697600bd60',1,'Board']]],
   ['coordinate',['Coordinate',['../class_coordinate.html#afa539ca7218f25717e25482babf0bfc9',1,'Coordinate::Coordinate(short x, short y)'],['../class_coordinate.html#ad60539c2d440527e34f4ab23a85c8389',1,'Coordinate::Coordinate(short x, short y, const City *const CityOnCoordinate)']]],
-  ['countpoints',['countPoints',['../classtest_k_i.html#a69c6849cb0674fada5c6fff87e0c4390',1,'testKI::countPoints()'],['../class_a_i.html#a8a7ae5d3ea77c112c01abe4bca84bb1e',1,'AI::countPoints()']]]
+  ['countpoints',['countPoints',['../classdebugger_a_i.html#a4eae0a3715a66df1e9773a0bb8851318',1,'debuggerAI::countPoints()'],['../classtemplate_a_i.html#a254a3e1a7a2cd1d16bec816cb9fab075',1,'templateAI::countPoints()'],['../classtest_k_i.html#a76d7f00e5e5464c34bb2ad5e9062abf9',1,'testKI::countPoints()'],['../class_a_i.html#a158672aaf98fab1b1ede48002f83d3ff',1,'AI::countPoints()']]]
 ];

@@ -9,16 +9,16 @@ Inheritance diagram for test\-K\-I\-:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries test\-K\-I} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R farbe)\label{classtest_k_i_ac9ced0085410300732bb3103db6934e9}
+{\bfseries test\-K\-I} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R {\bf player\-Color})\label{classtest_k_i_adc030cad4238e4a44610d9b7152f3e81}
 
 \item 
-{\bf Move} {\bf do\-Move} ({\bf State} \&aktuell, vector$<$ {\bf Move} $\ast$ $>$ move\-List)
+{\bf Move} {\bf do\-Move} ({\bf State} \&current\-State, vector$<$ {\bf Move} $\ast$ $>$ move\-List)
 \item 
-{\bf Vector} {\bf set\-Pawn} ({\bf State} \&aktuell)
+{\bf Vector} {\bf set\-Pawn} ({\bf State} \&current\-State)
 \item 
-bool {\bf count\-Points} ({\bf State} \&, vector$<$ {\bf Connection} $\ast$ $>$)
+bool {\bf count\-Points} ({\bf State} \&current\-State, vector$<$ {\bf Connection} $\ast$ $>$ \&return\-Path)
 \item 
-void {\bf gather\-Information\-End\-Of\-Round} (const {\bf Round\-Logger} $\ast$)
+void {\bf gather\-Information\-End\-Of\-Round} (const {\bf Round\-Logger} $\ast$information\-About\-Game)
 \item 
 {\bf Vector} {\bfseries get\-Naechster\-Punkt\-Zu} ({\bf Vector}, {\bf State}) const \label{classtest_k_i_ae5c4cfdc479bb706a9adb84d41dff707}
 
@@ -38,12 +38,12 @@ static short {\bfseries sign} (short)\label{classtest_k_i_a22f65151709965a8d75c8
 \subsubsection[{count\-Points}]{\setlength{\rightskip}{0pt plus 5cm}bool test\-K\-I\-::count\-Points (
 \begin{DoxyParamCaption}
 \item[{{\bf State} \&}]{current\-State, }
-\item[{vector$<$ {\bf Connection} $\ast$ $>$}]{path}
+\item[{vector$<$ {\bf Connection} $\ast$ $>$ \&}]{return\-Path}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classtest_k_i_a69c6849cb0674fada5c6fff87e0c4390}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_a76d7f00e5e5464c34bb2ad5e9062abf9}
 Here you can count your minus points at the end of each round. If you want to do so, you have to return true. For the beginning it is okay, if you just return false. Then the gamemaster will count the minuspoints. He counts in most cases the minimum of minuspoints you get, however in some cases the algorithm doesn't evaluate the best value. 
 
-Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a8a7ae5d3ea77c112c01abe4bca84bb1e}.
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a158672aaf98fab1b1ede48002f83d3ff}.
 
 \index{test\-K\-I@{test\-K\-I}!do\-Move@{do\-Move}}
 \index{do\-Move@{do\-Move}!testKI@{test\-K\-I}}
@@ -52,7 +52,7 @@ Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a8a7ae5d3ea77c112c01abe4bca84bb1e
 \item[{{\bf State} \&}]{aktuell, }
 \item[{vector$<$ {\bf Move} $\ast$ $>$}]{move\-List}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_a769bbe6571e1b9876cec4ac44203f8cb}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_a195ad45b09daced4e650ce228f4da8f3}
 Inside this methode you calculate your next move in the game. 
 
 Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_ade352ac8d216d67feca731a127b50e6f}.
@@ -63,7 +63,7 @@ Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_ade352ac8d216d67feca731a127b50e6f
 \begin{DoxyParamCaption}
 \item[{const {\bf Round\-Logger} $\ast$}]{current\-Infos}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}\label{classtest_k_i_ad08fbc5e5f7a5686e02698b604feabb8}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_a84b8e65aca959d95d89d80194e241db5}
 At the end of each round you can take a look at the whole game and the playing cards of your opponents. This can be usefull, if you want to figure out there strategy and react to that over a simulation period. 
 
 Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a8565a9ef04ac4f9913913c99f65213b2}.
@@ -74,7 +74,7 @@ Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a8565a9ef04ac4f9913913c99f65213b2
 \begin{DoxyParamCaption}
 \item[{{\bf State} \&}]{aktuell}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_a209548aefee567d45db4bb449321aa55}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_afebbc9eeab8c836490f0191e0bb6627e}
 At the beginning of each round you have to define your starting position of your pawn. 
 
 Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a0fbc5b7d4230575baf80217d0c250cc9}.

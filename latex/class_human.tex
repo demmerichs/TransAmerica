@@ -1,0 +1,67 @@
+\section{Human Class Reference}
+\label{class_human}\index{Human@{Human}}
+Inheritance diagram for Human\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_human}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Human} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R {\bf player\-Color}, {\bf User\-Input\-Window} $\ast$uiexec)\label{class_human_aad9ae63105013786063e50144a46e3db}
+
+\item 
+{\bf Move} {\bf do\-Move} ({\bf State} \&, vector$<$ {\bf Move} $\ast$ $>$)
+\item 
+{\bf Vector} {\bf set\-Pawn} ({\bf State} \&)
+\item 
+bool {\bfseries count\-Points} ({\bf State} \&, vector$<$ {\bf Connection} $\ast$ $>$)\label{class_human_a97378e4328a84ce3b0b0e7695bcdd432}
+
+\item 
+void {\bf gather\-Information\-End\-Of\-Round} (const {\bf Round\-Logger} $\ast$)
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Member Function Documentation}
+\index{Human@{Human}!do\-Move@{do\-Move}}
+\index{do\-Move@{do\-Move}!Human@{Human}}
+\subsubsection[{do\-Move}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Move} Human\-::do\-Move (
+\begin{DoxyParamCaption}
+\item[{{\bf State} \&}]{aktuell, }
+\item[{vector$<$ {\bf Move} $\ast$ $>$}]{move\-List}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_human_a797f11c25934d3e6ebdfa612715f899a}
+Inside this methode you calculate your next move in the game. 
+
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_ade352ac8d216d67feca731a127b50e6f}.
+
+\index{Human@{Human}!gather\-Information\-End\-Of\-Round@{gather\-Information\-End\-Of\-Round}}
+\index{gather\-Information\-End\-Of\-Round@{gather\-Information\-End\-Of\-Round}!Human@{Human}}
+\subsubsection[{gather\-Information\-End\-Of\-Round}]{\setlength{\rightskip}{0pt plus 5cm}void Human\-::gather\-Information\-End\-Of\-Round (
+\begin{DoxyParamCaption}
+\item[{const {\bf Round\-Logger} $\ast$}]{current\-Infos}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_human_af9bb973f12694c98e504766193a4652f}
+At the end of each round you can take a look at the whole game and the playing cards of your opponents. This can be usefull, if you want to figure out there strategy and react to that over a simulation period. 
+
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a8565a9ef04ac4f9913913c99f65213b2}.
+
+\index{Human@{Human}!set\-Pawn@{set\-Pawn}}
+\index{set\-Pawn@{set\-Pawn}!Human@{Human}}
+\subsubsection[{set\-Pawn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector} Human\-::set\-Pawn (
+\begin{DoxyParamCaption}
+\item[{{\bf State} \&}]{aktuell}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_human_a31b9983eba5b8ccd37c7b41b4ecba912}
+At the beginning of each round you have to define your starting position of your pawn. 
+
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a0fbc5b7d4230575baf80217d0c250cc9}.
+
+
+
+The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
+\item 
+hdr/game/Human.\-h\item 
+src/game/Human.\-cpp\end{DoxyCompactItemize}

@@ -85,7 +85,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   <div class="summary">
 <a href="#pub-slots">Public Slots</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#friends">Friends</a> &#124;
 <a href="class_spielbrett-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">Spielbrett Class Reference</div>  </div>
@@ -111,9 +113,15 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>drawCityChanged</b> (
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a55ccf1e51754aac00e74b8111e593f15"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a55ccf1e51754aac00e74b8111e593f15"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Spielbrett</b> (<a class="el" href="class_window.html">Window</a> *parentalWindow)</td></tr>
-<tr class="separator:a55ccf1e51754aac00e74b8111e593f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a747bae1fe4045070d043a92420262585"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a747bae1fe4045070d043a92420262585"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Spielbrett</b> (const <a class="el" href="class_board.html">Board</a> &amp;board, <a class="el" href="class_dynamic_state.html">DynamicState</a> *dynamicState, <a class="el" href="class_counter.html">Counter</a> points)</td></tr>
+<tr class="separator:a747bae1fe4045070d043a92420262585"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a1bd23f91936c33f37814711d39124cbd"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1bd23f91936c33f37814711d39124cbd"></a>
+const <a class="el" href="class_board.html">Board</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>board</b></td></tr>
+<tr class="separator:a1bd23f91936c33f37814711d39124cbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -122,6 +130,15 @@ Protected Member Functions</h2></td></tr>
 <tr class="memitem:a17d3ac93220b92cdf404c4f91c0cb1de"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a17d3ac93220b92cdf404c4f91c0cb1de"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>mouseReleaseEvent</b> (QMouseEvent *event)</td></tr>
 <tr class="separator:a17d3ac93220b92cdf404c4f91c0cb1de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:a553f958a25683445088050a69d3de8e9"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a553f958a25683445088050a69d3de8e9"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>Window</b></td></tr>
+<tr class="separator:a553f958a25683445088050a69d3de8e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28cc15fe5197d19714eb857c7eaf4e8e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a28cc15fe5197d19714eb857c7eaf4e8e"></a>
+class&#160;</td><td class="memItemRight" valign="bottom"><b>ShowSimulationWindow</b></td></tr>
+<tr class="separator:a28cc15fe5197d19714eb857c7eaf4e8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a class="anchor" id="ad5c421ce5a9364a6e7b696049e93469b"></a>
@@ -146,8 +163,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mouseReleaseEvent</b>
 </table>
 </div><div class="memdoc">
 <p>draws the Railway-System</p>
-<p>draws the names of the citys</p>
-<p>draw the city.gifs</p>
 
 </div>
 </div>
@@ -158,7 +173,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>mouseReleaseEvent</b>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 10 2014 18:56:00 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Mar 12 2014 19:32:09 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

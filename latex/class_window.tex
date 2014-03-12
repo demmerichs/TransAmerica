@@ -3,27 +3,38 @@
 Inheritance diagram for Window\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[height=2.000000cm]{class_window}
+\includegraphics[height=3.000000cm]{class_window}
 \end{center}
 \end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bf Window} ({\bf Simulation\-Logger} $\ast$game=0)
+{\bf Window} (const {\bf Board} \&board)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
 \item 
-void {\bfseries setsimulationp} ({\bf Simulation\-Logger} $\ast$game)\label{class_window_ab27338e460402062d3cf3b05fe30728e}
+{\bf Dynamic\-State} $\ast$ {\bfseries a\-Zp}\label{class_window_aaa03b9cfa8a9e80463cdf13971645183}
+
+\item 
+{\bf Spielbrett} $\ast$ {\bfseries spielbrett}\label{class_window_a7159f373a53e01ba489092f2e381c245}
+
+\item 
+Q\-Form\-Layout $\ast$ {\bfseries tool\-Layout}\label{class_window_a7864a9891249e0e918d6ee5741a95a96}
+
+\item 
+Q\-Label $\ast$ {\bf tool\-Box\-Label}
+\item 
+Q\-Push\-Button $\ast$ {\bfseries new\-Game\-Button}\label{class_window_ab85826e5d46ea16c3b9f91b966bec9a2}
+
+\item 
+Q\-Check\-Box $\ast$ {\bfseries show\-Towns\-Check\-Box}\label{class_window_a8412b9181c563862e596c3dd6c7d9cbf}
 
 \end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
 class {\bfseries Spielbrett}\label{class_window_a6c7b6620b9129799f52341ffa94cff69}
-
-\item 
-class {\bfseries U\-I\-E\-X\-E\-C}\label{class_window_a0083fa005f6567d31c419a6197c6fa1c}
-
-\item 
-class {\bfseries Main\-Window}\label{class_window_af9db4b672c4d3104f5541893e08e1809}
 
 \end{DoxyCompactItemize}
 
@@ -33,14 +44,18 @@ class {\bfseries Main\-Window}\label{class_window_af9db4b672c4d3104f5541893e08e1
 \index{Window@{Window}!Window@{Window}}
 \subsubsection[{Window}]{\setlength{\rightskip}{0pt plus 5cm}Window\-::\-Window (
 \begin{DoxyParamCaption}
-\item[{{\bf Simulation\-Logger} $\ast$}]{game = {\ttfamily 0}}
+\item[{const {\bf Board} \&}]{board}
 \end{DoxyParamCaption}
-)}\label{class_window_a63ae0b08a2f270acd7bd919aeb8670cf}
-Aukommentiert um Zusulassen, dass game = N\-U\-L\-L
-
+)}\label{class_window_a6618b9cdce9ce98c7c6c423fa93c4fd5}
 Layout-\/\-Design
 
 Connect-\/\-Implementationen
+
+\subsection{Member Data Documentation}
+\index{Window@{Window}!tool\-Box\-Label@{tool\-Box\-Label}}
+\index{tool\-Box\-Label@{tool\-Box\-Label}!Window@{Window}}
+\subsubsection[{tool\-Box\-Label}]{\setlength{\rightskip}{0pt plus 5cm}Q\-Label$\ast$ Window\-::tool\-Box\-Label\hspace{0.3cm}{\ttfamily [protected]}}\label{class_window_af706f2d75cb1992ceccbd067f7c2979e}
+diverse Labels diverse Combo-\//\-Spin-\/boxen 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
