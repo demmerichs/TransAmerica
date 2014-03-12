@@ -1,5 +1,12 @@
 #include "../../hdr/userinterface/Initialize.h"
 
+#include <fstream>
+#include <string>
+using std::ifstream;
+using std::string;
+
+#include "../../hdr/userinterface/QKonstanten.h"
+
 Initialize::Initialize(const QString &title, QWidget *parent) :
 		QDialog(parent) {
 	nameLabel = new QLabel(tr("Name:"));
@@ -11,9 +18,7 @@ Initialize::Initialize(const QString &title, QWidget *parent) :
 
 	buttonBox = new QDialogButtonBox(
 			QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
-
-	aiAvailable << "KI1" << "KI2" << "KI3" << "Davids gute KI"
-			<< "Niklas perfekte KI" << "Julians KI" << "Standard KI";
+	setAIAvailable();
 	listWidgetA = new QListWidget;
 	listWidgetA->addItems(aiAvailable);
 	listWidgetB = new QListWidget;
@@ -31,6 +36,10 @@ Initialize::Initialize(const QString &title, QWidget *parent) :
 	connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 	connect(listWidgetA, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this,
 			SLOT(addAI(QListWidgetItem*)));
+	connect(listWidgetB, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this,
+			SLOT(removeAI(QListWidgetItem*)));
+	for (int i = 0; i < MAX_PLAYER; i++)
+		notSelected.insert(PLAYERCOLOR_LIST[i]);
 }
 QString Initialize::name() {
 	return nameEdit->text();
@@ -38,13 +47,38 @@ QString Initialize::name() {
 int Initialize::numberOfGames() {
 	return simulationSpin->value();
 }
+
 void Initialize::addAI(QListWidgetItem* add) {
 	if (aiSelected.size() >= 6) {
 		QMessageBox::warning(this, tr("AI Selection"),
 				tr("Maximum has been reached!"), QMessageBox::Ok);
 		return;
 	}
-	aiSelected.push_back(
-			qMakePair(add->text(), PLAYERCOLOR_LIST[aiSelected.size()]));
-	listWidgetB->addItem(add->text());
+	PLAYERCOLOR choosedColor = *notSelected.begin();
+	notSelected.erase(choosedColor);
+	ListElement* added = new ListElement(add->text(), choosedColor);
+	added->setBackgroundColor(getQColor(choosedColor));
+	aiSelected.push_back(added);
+	listWidgetB->addItem(added);
+}
+
+void Initialize::removeAI(QListWidgetItem* removeItem) {
+	ListElement* remove = dynamic_cast<ListElement*>(removeItem);
+	PLAYERCOLOR colorRemoved = remove->color;
+	aiSelected.removeOne(remove);
+	listWidgetB->removeItemWidget(remove);
+	delete remove;
+	notSelected.insert(colorRemoved);
+	listWidgetB->show();
+}
+
+void Initialize::setAIAvailable() {
+	ifstream inAI("hdr/ai/AIList.h");
+	while (!inAI.eof()) {
+		string input;
+		inAI >> input; //ignore #input
+		inAI >> input;
+		input = input.substr(1, input.length() - 4); //ignore "(...) and (...).h"
+		aiAvailable << input.data();
+	}
 }
