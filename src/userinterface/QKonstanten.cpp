@@ -21,7 +21,7 @@ QColor getQColor(PLAYERCOLOR i) {
 		return QColor(Qt::black);
 }
 
-QPixmap getPixmap(CITYCOLOR i) {
+QPixmap getCityPixmap(CITYCOLOR i) {
 	if (i == 0)
 		return QPixmap("images/blau.gif");
 	else if (i == 4)
@@ -34,4 +34,18 @@ QPixmap getPixmap(CITYCOLOR i) {
 		return QPixmap("images/rot.gif");
 	else
 		return QPixmap(" ");
+}
+QPixmap getCity_hPixmap(CITYCOLOR i){
+    if (i == 0)
+        return QPixmap("images/blauh.gif");
+    else if (i == 4)
+        return QPixmap("images/gelbh.gif");
+    else if (i == 1)
+        return QPixmap("images/gruenh.gif");
+    else if (i == 2)
+        return QPixmap("images/orangeh.gif");
+    else if (i == 3)
+        return QPixmap("images/roth.gif");
+    else
+        return QPixmap(" ");
 }

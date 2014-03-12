@@ -77,6 +77,10 @@ public:
 	void setPlayersTurn(PLAYERCOLOR x) {
 		playersTurn = x;
 	}
+    PLAYERCOLOR getPlayersTurn() { //TODO @OEtzi007 is this ok, dynamicState->lastMove->PLAYERCOLOR was buggy
+        return playersTurn;
+    }
+
 };
 
 #endif /* STATE_H_ */

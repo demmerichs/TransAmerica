@@ -51,12 +51,18 @@ private:
 	DynamicState* dynamicState;
 	Counter points;
 
+    void setHand(const City** Hand){
+        hand = Hand;
+    }
+
+
 	void drawGrid(QPainter* painter);
 	void drawRailway(QPainter* painter);
 	void drawPawns(QPainter* painter);
 	void drawCitys(QPainter* painter);
 	void drawCityNames(QPainter* painter);
 	void drawHand(QPainter* painter);
+    void drawRat(QPainter* painter);
 	/**
 	 some functions to get along with proper drawings
 	 */

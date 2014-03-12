@@ -53,7 +53,12 @@ void ShowSimulationWindow::setZp() {
 						roundCounter - 1, moveCounter));
 	}
 	spielbrett->dynamicState = aZp;
-	spielbrett->update();
+    spielbrett->setHand(simulationp->getHandOfPlayer(
+                            aZp->getPlayersTurn(),
+                            gameCounter-1,
+                            roundCounter-1));
+
+    spielbrett->update();
 }
 
 /**

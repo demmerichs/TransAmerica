@@ -21,7 +21,6 @@ class QSPinBox;
 class ShowSimulationWindow: public Window {
 Q_OBJECT
 	friend class Spielbrett;
-	friend class UIEXEC;
 	friend class MainWindow;
 public:
 	ShowSimulationWindow(SimulationLogger* simulationp);

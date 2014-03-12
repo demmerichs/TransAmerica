@@ -8,8 +8,7 @@ class QToolBar;
 //==============================
 // included dependencies
 #include <QMainWindow>
-#include <QMouseEvent>
-#include "Uiexec.h"
+#include "GameExec.h"
 #include "ShowSimulationWindow.h"
 #include "Initialize.h"
 //==============================
@@ -19,15 +18,13 @@ Q_OBJECT
 public:
 	MainWindow();
 private:
-	UIEXEC* myGameExe;
+	GameExec* myGameExe;
 	ShowSimulationWindow* wp;
 	QToolBar* myToolBar;
 	QAction* newSimulation;
 private slots:
 	void openInit();
 	void startSimulation(int games, vector<AI*> aiList);
-protected:
-	void mouseReleaseEvent(QMouseEvent* event);
 };
 
 #endif // MAINWINDOW_H

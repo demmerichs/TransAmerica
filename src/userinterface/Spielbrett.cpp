@@ -27,9 +27,9 @@ Spielbrett::Spielbrett(const Board& board, DynamicState* dynamicState,
 	setAutoFillBackground(false);
 	setMouseTracking(true);
 
-	background = new QPixmap("images/bg2.jpg");
+    background = new QPixmap("images/bg1.png");
 
-	transform.translate(110.5, 40.5);
+    transform.translate(110.5, 57.5);
 	transform.scale(1, sqrt(3) / 2.);
 	transform.shear(-0.5, 0);
 	invertedTransform = transform.inverted();
@@ -54,9 +54,11 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	drawGrid(&painter);
 	drawRailway(&painter);
 
-	drawCitys(&painter);
+
 	if (drawCity)
 		drawCityNames(&painter);
+    drawCitys(&painter);
+    drawHand(&painter);
 	drawPawns(&painter);
 	painter.setWorldTransform(scale.inverted(), true);
 }
@@ -216,7 +218,7 @@ void Spielbrett::drawPawns(QPainter *painter) {
 
 void Spielbrett::drawCitys(QPainter *painter) {
 	for (int i = 0; i < 35; i++) {
-		if (dynamicState->board.cityList[i] != NULL) {
+        if (dynamicState->board.cityList[i]) {
 			/*cout << "i = " << i << "  x = " <<dynamicState->gameBoard.cityList[i]->place.x
 			 << "  y = " << dynamicState->gameBoard.cityList[i]->place.y << endl;
 			 // << "  Stadt = " << dynamicState->gameBoard.cityList[i]->name<< endl;
@@ -228,7 +230,7 @@ void Spielbrett::drawCitys(QPainter *painter) {
 											- 13,
 									(dynamicState->board.cityList[i]->y) * sL
 											- 8.5)),
-					getPixmap(dynamicState->board.cityList[i]->cityColor));
+                    getCityPixmap(dynamicState->board.cityList[i]->cityColor));
 		}
 	}
 }
@@ -237,7 +239,7 @@ void Spielbrett::drawCityNames(QPainter* painter) {
 	QPixmap* schild = new QPixmap("images/schildkl.gif");
 	const City* const * townList = dynamicState->board.cityList;
 	painter->setPen(fatPen);
-	painter->setFont(QFont("Times", 7, QFont::Bold));
+    painter->setFont(QFont("Times", 5, QFont::Bold));
 	for (int i = 0; i < dynamicState->board.numberCities; i++) {
 		QRect* rect = new QRect(
 				transform.map(
@@ -247,7 +249,7 @@ void Spielbrett::drawCityNames(QPainter* painter) {
 		painter->drawText(*rect, Qt::AlignHCenter | Qt::AlignTop,
 				QString::fromStdString(townList[i]->name), boundingRect);
 		boundingRect->setWidth(boundingRect->width() + 4);
-		boundingRect->setHeight(boundingRect->height() + 2);
+        boundingRect->setHeight(boundingRect->height());
 		boundingRect->setTopLeft(
 				transform.map(QPoint(townList[i]->x * sL, townList[i]->y * sL))
 						+ QPoint(-boundingRect->width() / 2, 8));
@@ -259,7 +261,27 @@ void Spielbrett::drawCityNames(QPainter* painter) {
 	}
 }
 
-void Spielbrett::drawHand(QPainter* painter) {
+void Spielbrett::drawHand(QPainter* painter)
+{
+    double size = 101.66;
+    painter->setPen(fatPen);
+    painter->setFont(QFont("Times", 10, QFont::Bold));
+    QRect positionRect (0, background->height() - 20, size , 20);
+    //Higlighted Cities
+    for (int i = 0; i < 5; i++) {
+        if (hand[i]) {
+            painter->drawPixmap(
+                    transform.map(
+                            QPoint(
+                                    (hand[i]->x) * sL
+                                            - 13,
+                                    (hand[i]->y) * sL
+                                            - 8.5)),
+                    getCity_hPixmap(hand[i]->cityColor));
+            positionRect.moveRight(size * (i+2));
+            painter->drawText(positionRect,Qt::AlignCenter, QString::fromStdString(hand[i]->name));
+        }
+    }
 
 }
 
