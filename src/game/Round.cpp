@@ -121,9 +121,9 @@ bool Round::isPlayerConnectedToHisCities(AI* player, const State& state) const {
 }
 
 void Round::dealCards() {
-	short maxNr = MAX_STADTNR;
-	if ((int) this->roundLogger->playerList.size() < SPIELER_GRENZE)
-		maxNr = STADTNR_GRENZE;
+	short maxNr = MAX_CITYNR;
+	if ((int) this->roundLogger->playerList.size() < PLAYER_LIMIT)
+		maxNr = CITYNR_LIMIT;
 	for (int i = 0; i < NUMBER_CITYCOLORS; i++) {
 		short kartenzahl = maxNr;
 		vector<short> rest;

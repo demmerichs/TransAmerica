@@ -58,8 +58,7 @@ void Game::play() {
 		++playerIterator;
 	}
 	//TODO punktevergabe
-	int maxpoints = 0;
-	int numberWinners = 0;
+	int numberWinners = 0, maxpoints = 0;
 	for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
 		if (maxpoints < gameLogger->points.get(gameLogger->playerList[i]))
 			maxpoints = gameLogger->points.get(gameLogger->playerList[i]);
@@ -69,7 +68,7 @@ void Game::play() {
 	for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
 		if (maxpoints == gameLogger->points.get(gameLogger->playerList[i]))
 			gameLogger->gameWon.add(gameLogger->playerList[i],
-					6 / numberWinners);
+					gameLogger->winnerPoints / numberWinners);
 	//TODO end
 	played = true;
 }

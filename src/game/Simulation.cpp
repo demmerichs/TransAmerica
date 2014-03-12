@@ -31,13 +31,13 @@ void Simulation::run() {
 		cout << "Player " << simulationLogger->playerList[i]->playerColor
 				<< " has won "
 				<< simulationLogger->gamesWon.get(
-						simulationLogger->playerList[i]) / (double) 6.
+						simulationLogger->playerList[i]) / simulationLogger->winnerPoints
 				<< " game(s)." << endl;
 	//TODO end
 	ran = true;
 }
 
-vector<AI*> Simulation::getPlayingOrder(int simulationRound) const {
-	//TODO
+vector<AI*> Simulation::getPlayingOrder(int game) const {
+	//TODO determine playingOrder
 	return this->simulationLogger->playerList;
 }

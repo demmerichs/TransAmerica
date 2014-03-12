@@ -33,9 +33,10 @@ using std::string;
  */
 class Board {
 public:
-	Board();
+	Board(bool abovePlayerLimit);
 	virtual ~Board();
 
+	const bool abovePlayerLimit; /** < If the board is constructed for more than PLAYER_LIMIT players, this value is true. */
 	const short numberCities; /** < This is the number of cities on the game board. */
 	City* const * const cityList; /** < This is the list of city-pointers, pointing to the cities, existing in the game. */
 	const Coordinate* const * const * const grid; /** < This is the grid on the game board (2-dimensional array of coordinate-pointers). It is starting with (0,0) in the upper left corner.  */

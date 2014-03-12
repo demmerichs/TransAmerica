@@ -31,7 +31,7 @@ Q_OBJECT
 	friend class Window;
 	friend class ShowSimulationWindow;
 public:
-	const Board& board;
+	const Board* board;
 	Spielbrett(const Board& board, DynamicState* dynamicState, Counter points);
 public slots:
 	void zustandChanged(int);
@@ -51,10 +51,9 @@ private:
 	DynamicState* dynamicState;
 	Counter points;
 
-    void setHand(const City** Hand){
-        hand = Hand;
-    }
-
+	void setHand(const City** Hand) {
+		hand = Hand;
+	}
 
 	void drawGrid(QPainter* painter);
 	void drawRailway(QPainter* painter);
@@ -62,7 +61,7 @@ private:
 	void drawCitys(QPainter* painter);
 	void drawCityNames(QPainter* painter);
 	void drawHand(QPainter* painter);
-    void drawRat(QPainter* painter);
+	void drawRat(QPainter* painter);
 	/**
 	 some functions to get along with proper drawings
 	 */

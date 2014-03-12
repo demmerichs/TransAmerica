@@ -12,7 +12,8 @@ GameLogger::GameLogger(const SimulationLogger* simulationLogger,
 		gameStartingPlayer(gameStartingPlayer), playerList(
 				simulationLogger->getPlayerList()), board(
 				simulationLogger->getBoard()), playingOrder(playingOrder), deadLine(
-				0), points(13), gameWon(0) {
+				0), winnerPoints(simulationLogger->getWinnerPoints()), points(
+				13), gameWon(0) {
 }
 
 GameLogger::~GameLogger() {

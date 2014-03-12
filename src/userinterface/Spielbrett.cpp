@@ -21,7 +21,7 @@ enum Farbart {
 
 Spielbrett::Spielbrett(const Board& board, DynamicState* dynamicState,
 		Counter points) :
-		board(board), dynamicState(dynamicState), points(points), hand(0) {
+		board(&board), dynamicState(dynamicState), points(points), hand(0) {
 	drawCity = false;
 	setBackgroundRole(QPalette::Base);
 	setAutoFillBackground(false);
@@ -215,7 +215,7 @@ void Spielbrett::drawPawns(QPainter *painter) {
 }
 
 void Spielbrett::drawCitys(QPainter *painter) {
-	for (int i = 0; i < 35; i++) {
+	for (int i = 0; i < board->numberCities; i++) {
 		if (dynamicState->board.cityList[i]) {
 			/*cout << "i = " << i << "  x = " <<dynamicState->gameBoard.cityList[i]->place.x
 			 << "  y = " << dynamicState->gameBoard.cityList[i]->place.y << endl;

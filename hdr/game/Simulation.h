@@ -22,7 +22,7 @@
 class Simulation {
 	SimulationLogger* simulationLogger;
 	bool ran;
-	vector<AI*> getPlayingOrder(int simulationRound) const;
+	vector<AI*> getPlayingOrder(int game) const;
 public:
 	Simulation(SimulationLogger* simulationLogger);
 	virtual ~Simulation();

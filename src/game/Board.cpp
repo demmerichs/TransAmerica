@@ -7,8 +7,11 @@
 
 #include "../../hdr/game/Board.h"
 
-Board::Board() :
-		numberCities(35), cityList(constructCities()), grid(constructGrid()), edges(
+Board::Board(bool abovePlayerLimit) :
+		abovePlayerLimit(abovePlayerLimit), numberCities(
+				NUMBER_CITYCOLORS
+						* (abovePlayerLimit ? MAX_CITYNR : CITYNR_LIMIT)), cityList(
+				constructCities()), grid(constructGrid()), edges(
 				constructEdges()) {
 }
 
@@ -121,7 +124,7 @@ Connection**** Board::constructEdges() const {
 				testKanten[i][j][2] = 0;
 		}
 	}
-	ifstream Verbindungsinput((BRETTNAME + "barriers.txt").data());
+	ifstream Verbindungsinput((BOARDNAME + "barriers.txt").data());
 	string input;
 	Vector pos(0, 0);
 	while (true) {
@@ -181,10 +184,10 @@ Connection**** Board::constructEdges() const {
 }
 
 City** Board::constructCities() const {
-	ifstream Stadtinput((BRETTNAME + "cities.txt").data());
-	//ifstream test("./game/boardSettings")
+	ifstream Stadtinput((BOARDNAME + "cities.txt").data());
 	City** testStadtliste = new City*[numberCities];
-	for (int i = 0; i < numberCities; i++) {
+	int fillcounter = 0;
+	for (int i = 0; i < MAX_CITYNR * NUMBER_CITYCOLORS; i++) {
 		string name;
 		short number;
 		CITYCOLOR cityColor;
@@ -194,8 +197,13 @@ City** Board::constructCities() const {
 		Stadtinput >> place.y;
 		Stadtinput >> cityColor;
 		Stadtinput >> number;
-		testStadtliste[i] = new City(name, cityColor, number, place);
+		if (abovePlayerLimit || number <= CITYNR_LIMIT) {
+			testStadtliste[fillcounter] = new City(name, cityColor, number,
+					place);
+			fillcounter++;
+		}
 	}
+	assert(fillcounter == numberCities);
 	return testStadtliste;
 }
 
@@ -204,7 +212,7 @@ Coordinate*** Board::constructGrid() const {
 	for (int i = 0; i < MAX_X; i++) {
 		testGitter[i] = new Coordinate*[MAX_Y];
 	}
-	ifstream Koordinateninput((BRETTNAME + "coordinates.txt").data());
+	ifstream Koordinateninput((BOARDNAME + "coordinates.txt").data());
 	for (int y = 0; y < MAX_Y; y++) {
 		string input;
 		Koordinateninput >> input;
@@ -212,6 +220,11 @@ Coordinate*** Board::constructGrid() const {
 			char inputletter = input[x];
 			if (inputletter == 'c') {
 				testGitter[x][y] = lookForCity(x, y);
+			} else if (inputletter == 'v') { //v for village (only set, if enough players
+				if (abovePlayerLimit)
+					testGitter[x][y] = lookForCity(x, y);
+				else
+					testGitter[x][y] = new Coordinate(x, y);
 			} else if (inputletter == 'x') {
 				testGitter[x][y] = new Coordinate(x, y);
 			} else if (inputletter == '-') {

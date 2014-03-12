@@ -18,8 +18,8 @@ using std::ifstream;
 
 //Board
 //name der Brettdateien
-const string BRETTNAME = "hdr/game/boardSettings/standard/";
-//string BRETTNAME = "FlyEurope";
+const string BOARDNAME = "hdr/game/boardSettings/standard/";
+//string BOARDNAME = "FlyEurope";
 
 //Koordinatenwerte
 const short NULL_COORDINATE_VALUE = -1;
@@ -39,9 +39,9 @@ CITYCOLOR operator>>(ifstream &infile, CITYCOLOR &citycolor);
 //stadtnummern
 //von 1 bis k, mit k=MAX_STADTNR
 //ab SPIELER_GRENZE wird mit allen Staedten gespielt, sonst nur mit den ersten STADTNR_GRENZE
-const short MAX_STADTNR = 7;
-const short SPIELER_GRENZE = 4;
-const short STADTNR_GRENZE = 5;
+const short MAX_CITYNR = 7;
+const short PLAYER_LIMIT = 3;
+const short CITYNR_LIMIT = 5;
 
 //spielerfarben
 //negativ von -1 bis -n mit MAX_PLAYER=n
