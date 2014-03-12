@@ -77,9 +77,12 @@ public:
 	void setPlayersTurn(PLAYERCOLOR x) {
 		playersTurn = x;
 	}
-    PLAYERCOLOR getPlayersTurn() { //TODO @OEtzi007 is this ok, dynamicState->lastMove->PLAYERCOLOR was buggy
-        return playersTurn;
-    }
+	//TODO @OEtzi007 is this ok, dynamicState->lastMove->PLAYERCOLOR was buggy
+	/*TODO @nikbo no it wasn't ;) my function wasn't buggy ;)
+	 * you just needed to check, if(lastMove), if not, there isn't a player for this turn defined
+	 * that makes in the beginning of the game sense, in the first move, you don't want to show random
+	 * someones cards ;)
+	 */
 
 };
 
