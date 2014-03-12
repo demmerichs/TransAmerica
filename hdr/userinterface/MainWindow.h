@@ -25,7 +25,7 @@ private:
 	QAction* newSimulation;
 private slots:
 	void openInit();
-	void startSimulation(int games);
+	void startSimulation(int games, vector<AI*> aiList);
 protected:
 	void mouseReleaseEvent(QMouseEvent* event);
 };

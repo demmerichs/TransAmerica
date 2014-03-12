@@ -4,7 +4,6 @@
 #define INITIALIZE_H
 //==============================
 // forward declared dependencies
-class AI;
 //==============================
 // included dependencies
 #include <QDialog>
@@ -40,11 +39,10 @@ public:
 	Initialize(const QString &title, QWidget* parent);
 	QString name();
 	int numberOfGames();
-	vector<AI*> players;
+	QList<ListElement*> aiSelected;
 private:
 	QStringList aiAvailable;
 	set<PLAYERCOLOR> notSelected;
-	QList<ListElement*> aiSelected;
 	QLabel* nameLabel;
 	QLineEdit* nameEdit;
 	QLabel* simulationLabel;

@@ -40,10 +40,13 @@ Initialize::Initialize(const QString &title, QWidget *parent) :
 			SLOT(removeAI(QListWidgetItem*)));
 	for (int i = 0; i < MAX_PLAYER; i++)
 		notSelected.insert(PLAYERCOLOR_LIST[i]);
+	this->show();
 }
+
 QString Initialize::name() {
 	return nameEdit->text();
 }
+
 int Initialize::numberOfGames() {
 	return simulationSpin->value();
 }

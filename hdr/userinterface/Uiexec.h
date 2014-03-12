@@ -19,7 +19,7 @@ class AI;
 // the actual class
 class UIEXEC {
 public:
-	UIEXEC(Window* wp, int games = 1);
+	UIEXEC(Window* wp, vector<AI*> aiList, int games = 1);
 	Window* wp;
 	Board* board;
 	vector<AI*> *players;

@@ -9,8 +9,8 @@ MainWindow::MainWindow() {
 	openInit();
 }
 
-void MainWindow::startSimulation(int games) {
-	myGameExe = new UIEXEC(wp, games);
+void MainWindow::startSimulation(int games, vector<AI*> aiList) {
+	myGameExe = new UIEXEC(wp, aiList, games);
 	wp->simulationp = myGameExe->simulationLogger;
 	myGameExe->simulateSimulation();
 	wp->updateSpinBoxes();
@@ -23,7 +23,12 @@ void MainWindow::openInit() {
 	Initialize dialog("Initialize Simulation", this);
 	if (dialog.exec() == QDialog::Accepted) {
 		setWindowTitle(dialog.name());
-		startSimulation(dialog.numberOfGames());
+		vector<AI*> aiList;
+		for (int i = 0; i < dialog.aiSelected.size(); i++)
+			aiList.push_back(
+					createAI(dialog.aiSelected[i]->aiName.toStdString(),
+							dialog.aiSelected[i]->color));
+		startSimulation(dialog.numberOfGames(), aiList);
 	}
 	return;
 }

@@ -57,8 +57,6 @@ unsigned int SimulationLogger::calculateWinnerPoints() {
 	unsigned int retValue = 1;
 	for (int i = 2; i <= numberPlayers; i++)
 		retValue = lcm(retValue, i);
-	cout << "For " << numberPlayers << " players, the winnerPoints are "
-			<< retValue << "." << endl;
 	return retValue;
 }
 
