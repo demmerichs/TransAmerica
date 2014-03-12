@@ -10,7 +10,7 @@ MainWindow::MainWindow() {
 }
 
 void MainWindow::startSimulation(int games, vector<AI*> aiList) {
-	myGameExe = new UIEXEC(wp, aiList, games);
+	myGameExe = new GameExec(wp, aiList, games);
 	wp->simulationp = myGameExe->simulationLogger;
 	myGameExe->simulateSimulation();
 	wp->updateSpinBoxes();
@@ -32,5 +32,4 @@ void MainWindow::openInit() {
 	}
 	return;
 }
-
 

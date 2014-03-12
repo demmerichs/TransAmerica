@@ -19,7 +19,7 @@ class AI;
 // the actual class
 class GameExec {
 public:
-    GameExec(Window* wp, int games = 1);
+	GameExec(Window* wp, vector<AI*> aiList, int games = 1);
 	Window* wp;
 	Board* board;
 	vector<AI*> *players;
