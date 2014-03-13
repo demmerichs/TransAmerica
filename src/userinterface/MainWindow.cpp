@@ -1,7 +1,9 @@
 #include "../../hdr/userinterface/MainWindow.h"
+#include "../../hdr/userinterface/styletransamerica.h"
 
 MainWindow::MainWindow() {
 
+    QApplication::setStyle(new StyleTransamerica);
 	wp = new ShowSimulationWindow(0);
 	setCentralWidget(wp);
 	showMaximized();
