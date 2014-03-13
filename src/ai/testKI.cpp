@@ -20,6 +20,7 @@
 #include "../../hdr/game/Board.h"
 //==============================
 // the actual code
+using std::abs;
 testKI::testKI(PLAYERCOLOR playerColor) :
 		AI(playerColor) {
 	owner = "David";

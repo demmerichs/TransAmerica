@@ -34,15 +34,18 @@ private:
 	QSpinBox* moveSpinBox;
 	QSpinBox* roundSpinBox;
 	QSpinBox* gameSpinBox;
+    QProgressBar* simulationProgress;
 	void updateSpinBoxes();
 	bool setGameCounter(int i);
 	bool setRoundCounter(int i);
 	bool setMoveCounter(int i);
 	void setZp();
+    void createProgressBar();
 private slots:
 	void gameSpinChanged(int i);
 	void roundSpinChanged(int i);
 	void moveSpinChanged(int i);
+    void advanceProgressBar();
 };
 
 #endif /* SHOWSIMULATIONWINDOW_H_ */
