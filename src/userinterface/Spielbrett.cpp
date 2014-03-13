@@ -209,18 +209,15 @@ void Spielbrett::drawPawns(QPainter *painter) {
 		QPoint point = transform.map(QPoint(i->x * sL - 18, i->y * sL - 25));
 		painter->setPen(thinPen);
 		painter->drawRoundedRect(point.x(), point.y(), 10, 25, 2, 2);
-		if (dynamicState->lastMove)
-			if (i->spielerfarbe == dynamicState->lastMove->getSpielerfarbe()
-					&& dynamicState->lastMove->getBannedStatus()
-							!= NOT_BANNED) {
-				QString qstring = QString::fromStdString(
-						bannedStatusToString(
-								dynamicState->lastMove->getBannedStatus()));
-				QRect rect(point.x(), point.y(), 10, 25);
-				painter->setPen(fatPen);
-				painter->setFont(QFont("Times", 10, QFont::Bold));
-				painter->drawText(rect, Qt::AlignCenter, qstring);
-			}
+		if (dynamicState->playerStatus[i->spielerfarbe] != NOT_BANNED) {
+			QString qstring = QString::fromStdString(
+					bannedStatusToString(
+							dynamicState->playerStatus[i->spielerfarbe]));
+			QRect rect(point.x(), point.y(), 10, 25);
+			painter->setPen(fatPen);
+			painter->setFont(QFont("Times", 10, QFont::Bold));
+			painter->drawText(rect, Qt::AlignCenter, qstring);
+		}
 	}
 }
 

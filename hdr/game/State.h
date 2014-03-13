@@ -50,6 +50,7 @@ public:
 	short numberPawns;
 	const Board &board;
 	vector<Pawn*> unsortedPawns;
+	BANNED_STATUS* playerStatus;
 
 	Pawn getPawn(const PLAYERCOLOR spielerfarbe) const;
 	bool isRailwayNumberOfConnectionEqualsNumber(const Connection&,

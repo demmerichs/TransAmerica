@@ -17,10 +17,13 @@ using std::numeric_limits;
 #include "../../hdr/game/Connection.h"
 
 State::State(const Board &board) :
-		numberPawns(0), board(board) {
+		numberPawns(0), board(board), playerStatus(0) {
 	sortedPawns = new Pawn*[MAX_PLAYER];
-	for (int i = 0; i < MAX_PLAYER; i++)
+	playerStatus = new BANNED_STATUS[MAX_PLAYER];
+	for (int i = 0; i < MAX_PLAYER; i++) {
 		sortedPawns[i] = 0;
+		playerStatus[i] = NOT_BANNED;
+	}
 	railwayNumber = new short*[MAX_X];
 	railSet = new bool**[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
@@ -41,6 +44,7 @@ State::State(const State &copy) :
 	round = copy.round;
 	playersTurn = copy.playersTurn;
 	sortedPawns = new Pawn*[MAX_PLAYER];
+	playerStatus = new BANNED_STATUS[MAX_PLAYER];
 	railwayNumber = new short*[MAX_X];
 	railSet = new bool**[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
@@ -54,11 +58,13 @@ State::State(const State &copy) :
 		}
 	}
 	numberPawns = copy.numberPawns;
-	for (int i = 0; i < MAX_PLAYER; i++)
+	for (int i = 0; i < MAX_PLAYER; i++) {
 		if (copy.sortedPawns[i])
 			sortedPawns[i] = new Pawn(*copy.sortedPawns[i]);
 		else
 			sortedPawns[i] = 0;
+		playerStatus[i] = copy.playerStatus[i];
+	}
 	for (unsigned i = 0; i < copy.unsortedPawns.size(); i++)
 		unsortedPawns.push_back(copy.unsortedPawns[i]);
 	for (int i = 0; i < MAX_X; i++)

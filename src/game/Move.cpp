@@ -133,6 +133,7 @@ bool Move::valid(State aktZu, PLAYERCOLOR spielerfarb) {
 }
 
 void Move::execute(State& akt) const { //TODO execute je nach Anzahl schienen
+	akt.playerStatus[spielerfarbe] = bannedStatus;
 	if (!gueltigkeitUEberprueft) {
 		cout
 				<< "Zug::ausfuehren:Zug sollte ohne Ueberpruefung ausgefuehrt werden"
