@@ -6,6 +6,7 @@
  */
 
 #include "../../hdr/game/Game.h"
+#include <limits>
 
 Game::Game(GameLogger* gameLogger) :
 		gameLogger(gameLogger), played(false) {
@@ -58,7 +59,7 @@ void Game::play() {
 		++playerIterator;
 	}
 	//TODO punktevergabe
-	int numberWinners = 0, maxpoints = 0;
+	int numberWinners = 0, maxpoints = std::numeric_limits<int>::min();
 	for (int i = 0; i < (int) gameLogger->playerList.size(); i++)
 		if (maxpoints < gameLogger->points.get(gameLogger->playerList[i]))
 			maxpoints = gameLogger->points.get(gameLogger->playerList[i]);

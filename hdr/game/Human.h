@@ -26,7 +26,7 @@ public:
 	virtual ~Human();
 
 	Move doMove(State&, vector<Move*>);
-	Vector setPawn(State&);
+	const Coordinate* setPawn(State&);
 	bool countPoints(State&, vector<Connection*>);
 	void gatherInformationEndOfRound(const RoundLogger*);
 };

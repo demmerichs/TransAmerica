@@ -30,7 +30,7 @@ class Round {
 	void setPawns();
 	void dealCards();
 	int losingPoints(AI* player) const;
-	bool checkRoundWinner() const;
+	bool checkRoundWinnerOrAllBanned() const;
 	bool isRoundWinner(AI*) const;
 	bool isPlayerConnectedToHisCities(AI* player, const State& state) const;
 public:

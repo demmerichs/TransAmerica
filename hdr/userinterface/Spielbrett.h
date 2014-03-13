@@ -34,7 +34,6 @@ public:
 	const Board* board;
 	Spielbrett(const Board& board, DynamicState* dynamicState, Counter points);
 public slots:
-	void zustandChanged(int);
 	void drawCityChanged(bool);
 
 protected:

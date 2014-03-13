@@ -35,12 +35,23 @@ void Round::play() {
 	setPawns();
 	PlayingOrder::iterator currentPlayer = roundLogger->playingOrder.begin(
 			roundLogger->roundStartingPlayer);
-	while (checkRoundWinner()) {
-		State copy(currentState);
-		Move* currentMove = new Move(
-				currentPlayer->doMove(copy, roundLogger->getMoveList()));
-		if (currentMove->valid(currentState, currentPlayer->playerColor)) {
-			currentMove->execute(currentState);
+	while (checkRoundWinnerOrAllBanned()) {
+		if (roundLogger->playerStatus[currentPlayer->playerColor]
+				== NOT_BANNED) {
+			State copy(currentState);
+			Move* currentMove = new Move(
+					currentPlayer->doMove(copy, roundLogger->getMoveList()));
+			if (currentMove->valid(currentState, currentPlayer->playerColor)) { //TODO update BANNED_STATUS
+				currentMove->execute(currentState);
+			} else
+				roundLogger->playerStatus[currentPlayer->playerColor] =
+						currentMove->bannedStatus;
+			currentMove->spielerfarbe = currentPlayer->playerColor;
+			roundLogger->moveList.push_back(currentMove);
+		} else {
+			Move* currentMove = new Move(currentPlayer->playerColor, 0, 0);
+			currentMove->bannedStatus =
+					roundLogger->playerStatus[currentPlayer->playerColor];
 			roundLogger->moveList.push_back(currentMove);
 		}
 		++currentPlayer;
@@ -62,9 +73,10 @@ void Round::setPawns() {
 	PlayingOrder::iterator playerIterator = roundLogger->playingOrder.begin(
 			roundLogger->roundStartingPlayer);
 	do {
-		Vector setPosition = playerIterator->setPawn(currentState);
+		const Coordinate* setPosition = playerIterator->setPawn(currentState);
 		Pawn currentSet(playerIterator->playerColor, setPosition);
-		currentState.addPawn(currentSet); //TODO check if valid
+		roundLogger->playerStatus[playerIterator->playerColor] =
+				currentState.addPawn(currentSet);
 		roundLogger->pawnList[currentSet.spielerfarbe] = new Pawn(currentSet);
 		++playerIterator;
 	} while (playerIterator
@@ -95,15 +107,22 @@ int Round::losingPoints(AI* player) const {
 	return minuspoints;
 }
 
-bool Round::checkRoundWinner() const {
+bool Round::checkRoundWinnerOrAllBanned() const {
+	bool allBanned = true;
 	PlayingOrder::iterator playerIterator = roundLogger->playingOrder.begin(
 			roundLogger->roundStartingPlayer);
 	do {
 		if (isRoundWinner(*playerIterator))
 			return false;
+		allBanned &=
+				(bool) roundLogger->playerStatus[playerIterator->playerColor];
 		++playerIterator;
 	} while (playerIterator
 			!= roundLogger->playingOrder.begin(roundLogger->roundStartingPlayer));
+	if (allBanned) {
+		cout << "all banned" << endl;
+		return false;
+	}
 	return true;
 }
 
@@ -122,7 +141,7 @@ bool Round::isPlayerConnectedToHisCities(AI* player, const State& state) const {
 
 void Round::dealCards() {
 	short maxNr = MAX_CITYNR;
-	if ((int) this->roundLogger->playerList.size() < PLAYER_LIMIT)
+	if ((int) this->roundLogger->playerList.size() <= PLAYER_LIMIT)
 		maxNr = CITYNR_LIMIT;
 	for (int i = 0; i < NUMBER_CITYCOLORS; i++) {
 		short kartenzahl = maxNr;
@@ -145,16 +164,8 @@ void Round::dealCards() {
 							stapel[spielernr]);
 		}
 	}
-
 	for (int i = 0; i < (int) roundLogger->playerList.size(); i++)
 		for (int j = 0; j < NUMBER_CITYCOLORS; j++)
 			roundLogger->playingCards[roundLogger->playerList[i]->playerColor][j] =
 					roundLogger->playerList[i]->hand[j];
-
-	cout << endl << "Handkarten:" << endl;
-	for (int i = 0; i < (int) roundLogger->playerList.size(); i++) {
-		cout << "Spieler " << (i + 1) << endl;
-		for (int j = 0; j < NUMBER_CITYCOLORS; j++)
-			cout << roundLogger->playerList[i]->hand[j]->name << endl;
-	}
 }

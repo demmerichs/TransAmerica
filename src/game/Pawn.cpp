@@ -7,8 +7,10 @@
 
 #include "../../hdr/game/Pawn.h"
 
-Pawn::Pawn(PLAYERCOLOR farb, Vector pos) :
-		Vector(pos), spielerfarbe(farb) {
+#include "../../hdr/game/Coordinate.h"
+
+Pawn::Pawn(PLAYERCOLOR farb, const Coordinate* pos) :
+		Vector(*pos), spielerfarbe(farb) {
 	schienennetznummer = farb;
 }
 

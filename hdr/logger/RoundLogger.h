@@ -34,6 +34,7 @@ class RoundLogger {
 	Counter lostPoints;
 
 	const Pawn** pawnList;
+	BANNED_STATUS* playerStatus;
 
 	vector<Move*> moveList;
 public:
@@ -48,6 +49,7 @@ public:
 	const City*** getPlayingCards() const;
 	const PlayingOrder& getPlayingOrder() const;
 	const AI* getRoundStartingPlayer() const;
+	const BANNED_STATUS getPlayerStatus(const AI* player) const;
 
 	friend class Round;
 };

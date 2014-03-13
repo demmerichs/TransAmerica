@@ -30,7 +30,7 @@ templateAI::~templateAI() { /*TODO adapt*/
 Move templateAI::doMove(State &currentState, vector<Move*> moveList) { /*TODO adapt*/
 }
 
-Vector templateAI::setPawn(State &currentState) { /*TODO adapt*/
+const Coordinate* templateAI::setPawn(State &currentState) { /*TODO adapt*/
 }
 
 bool templateAI::countPoints(State& currentState,

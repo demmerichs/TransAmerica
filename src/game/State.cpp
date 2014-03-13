@@ -156,11 +156,15 @@ const Connection* State::getConnection(Vector a, Vector b) const {
 	return ruckgabe;
 }
 
-void State::addPawn(Pawn insert) {
-	this->numberPawns++;
-	this->railwayNumber[insert.x][insert.y] = insert.schienennetznummer;
-	sortedPawns[insert.spielerfarbe] = new Pawn(insert);
-	unsortedPawns.push_back(sortedPawns[insert.spielerfarbe]);
+BANNED_STATUS State::addPawn(Pawn insert) {
+	if (railwayNumber[insert.x][insert.y] == NORAILS) {
+		this->numberPawns++;
+		this->railwayNumber[insert.x][insert.y] = insert.schienennetznummer;
+		sortedPawns[insert.spielerfarbe] = new Pawn(insert);
+		unsortedPawns.push_back(sortedPawns[insert.spielerfarbe]);
+		return NOT_BANNED;
+	} else
+		return INVALID_PAWN_SET;
 }
 
 void State::resetAll() {

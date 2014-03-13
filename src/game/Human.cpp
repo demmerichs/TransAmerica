@@ -6,7 +6,9 @@
  */
 
 #include "../../hdr/game/Human.h"
+
 #include "../../hdr/game/City.h"
+#include "../../hdr/game/Board.h"
 #include "UserInputWindow.h"
 
 Human::Human(PLAYERCOLOR playerColor, UserInputWindow* userInput) :
@@ -22,13 +24,13 @@ Move Human::doMove(State& currentState, vector<Move*> moveList) {
 	return userInput->getMoveFromUser(moveList);
 }
 
-Vector Human::setPawn(State&) {
+const Coordinate* Human::setPawn(State& currentState) {
 	for (int i = 0; i < NUMBER_CITYCOLORS; i++) {
 		if (hand[i]->cityColor == C_YELLOW)
-			return *hand[i];
+			return hand[i];
 	}
 	cout << "Gelbe Stadt nicht gefunden in Handkarten!" << endl;
-	return Vector(10, 6);
+	return currentState.board.grid[10][6];
 }
 
 bool Human::countPoints(State&, vector<Connection*>) {

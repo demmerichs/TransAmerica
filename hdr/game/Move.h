@@ -8,11 +8,12 @@
 #ifndef MOVE_H_
 #define MOVE_H_
 
-#include"Constants.h"
-#include"Connection.h"
-#include"State.h"
+#include "Constants.h"
+#include "Connection.h"
+#include "State.h"
 
 class Move {
+	friend class Round;
 private:
 	bool gueltigkeit;
 	bool gueltigkeitUEberprueft;
@@ -20,6 +21,7 @@ private:
 	PLAYERCOLOR spielerfarbe;
 	short anzahlSchienen;
 	const Connection* Belegt[2];
+	BANNED_STATUS bannedStatus;
 
 public:
 	Move(PLAYERCOLOR spielerfarbe, const Connection* belegt1,
@@ -38,11 +40,13 @@ public:
 		this->richtigBelegt = zuweisung.richtigBelegt;
 		for (int i = 0; i < anzahlSchienen; i++)
 			Belegt[i] = zuweisung.Belegt[i];
+		this->bannedStatus = zuweisung.bannedStatus;
 		return *this;
 	}
 
 	const Connection* const * getBelegt() const;
 	PLAYERCOLOR getSpielerfarbe() const;
+	BANNED_STATUS getBannedStatus() const;
 };
 
 #endif /* MOVE_H_ */

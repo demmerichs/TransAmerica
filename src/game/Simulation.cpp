@@ -31,8 +31,9 @@ void Simulation::run() {
 		cout << "Player " << simulationLogger->playerList[i]->playerColor
 				<< " has won "
 				<< simulationLogger->gamesWon.get(
-						simulationLogger->playerList[i]) / simulationLogger->winnerPoints
-				<< " game(s)." << endl;
+						simulationLogger->playerList[i])
+						/ (double) simulationLogger->winnerPoints << " game(s)."
+				<< endl;
 	//TODO end
 	ran = true;
 }

@@ -21,7 +21,7 @@ enum Farbart {
 
 Spielbrett::Spielbrett(const Board& board, DynamicState* dynamicState,
 		Counter points) :
-		board(&board), dynamicState(dynamicState), points(points), hand(0) {
+		board(&board), hand(0), dynamicState(dynamicState), points(points) {
 	drawCity = false;
 	setBackgroundRole(QPalette::Base);
 	setAutoFillBackground(false);
@@ -59,10 +59,6 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	if (drawCity)
 		drawCityNames(&painter);
 	painter.setWorldTransform(scale.inverted(), true);
-}
-
-void Spielbrett::zustandChanged(int counter) {
-	update();
 }
 
 void Spielbrett::drawCityChanged(bool enable) {
@@ -204,13 +200,25 @@ void Spielbrett::drawRailway(QPainter *painter) {
 }
 
 void Spielbrett::drawPawns(QPainter *painter) {
-	painter->setPen(thinPen);
 	for (int k = 0; k < dynamicState->numberPawns; k++) {
 		Pawn* i = dynamicState->unsortedPawns[k];
 		QBrush brush(getQColor(i->spielerfarbe));
 		painter->setBrush(brush);
 		QPoint point = transform.map(QPoint(i->x * sL - 18, i->y * sL - 25));
+		painter->setPen(thinPen);
 		painter->drawRoundedRect(point.x(), point.y(), 10, 25, 2, 2);
+		if (dynamicState->lastMove)
+			if (i->spielerfarbe == dynamicState->lastMove->getSpielerfarbe()
+					&& dynamicState->lastMove->getBannedStatus()
+							!= NOT_BANNED) {
+				QString qstring = QString::fromStdString(
+						bannedStatusToString(
+								dynamicState->lastMove->getBannedStatus()));
+				QRect rect(point.x(), point.y(), 10, 25);
+				painter->setPen(fatPen);
+				painter->setFont(QFont("Times", 10, QFont::Bold));
+				painter->drawText(rect, Qt::AlignCenter, qstring);
+			}
 	}
 }
 
@@ -237,7 +245,7 @@ void Spielbrett::drawCityNames(QPainter* painter) {
 	QPixmap* schild = new QPixmap("images/schildkl.gif");
 	const City* const * townList = dynamicState->board.cityList;
 	painter->setPen(fatPen);
-	painter->setFont(QFont("Times", 5, QFont::Bold));
+	painter->setFont(QFont("Times", 8, QFont::Bold));
 	for (int i = 0; i < dynamicState->board.numberCities; i++) {
 		QRect* rect = new QRect(
 				transform.map(

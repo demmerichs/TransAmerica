@@ -35,7 +35,7 @@ using std::set;
 class AI {
 protected:
 	virtual Move doMove(State &aktuell, vector<Move*> moveList) =0; /**<Inside this methode you calculate your next move in the game.*/
-	virtual Vector setPawn(State &aktuell) =0; /**<At the beginning of each round you have to define your starting position of your pawn.*/
+	virtual const Coordinate* setPawn(State &aktuell) =0; /**<At the beginning of each round you have to define your starting position of your pawn.*/
 	virtual bool countPoints(State &currentState,
 			vector<Connection*>& returnPath) =0;
 	/**<Here you can count your minus points at the end of each round.

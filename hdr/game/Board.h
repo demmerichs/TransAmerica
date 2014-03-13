@@ -43,7 +43,7 @@ public:
 	const Connection* const * const * const * const edges; /** < These are the connection(-pointers) between two coordinates. If you get edges[x][y][z], you get the connection starting in (x,y) and going in directin z (see also DIRECTION in Constants.h)*/
 
 	Coordinate*** constructGrid() const; /** < Constructs the grid.*/
-	City** constructCities() const;/** < Constructs the cityList. */ // TODO bei 2-3 Spielern direkt aussortieren
+	City** constructCities() const;/** < Constructs the cityList. */
 	Connection**** constructEdges() const; /** < Constructs the edges. */
 	void dump() const; /** < Dumps the board on the standard output stream. */
 	City* const lookForCity(short xkoo, short ykoo) const;/** < Finds the city, if it exists in the list. */

@@ -15,6 +15,7 @@
 #include "../../hdr/game/City.h"
 #include "../../hdr/game/Move.h"
 #include "../../hdr/game/Pawn.h"
+#include "../../hdr/game/Board.h"
 //==============================
 // the actual code
 testKI::testKI(PLAYERCOLOR playerColor) :
@@ -93,13 +94,13 @@ Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 	return ruckgabe;
 }
 
-Vector testKI::setPawn(State &currentState) {
+const Coordinate* testKI::setPawn(State &currentState) {
 	for (int i = 0; i < NUMBER_CITYCOLORS; i++) {
 		if (hand[i]->cityColor == C_YELLOW)
-			return *hand[i];
+			return hand[i];
 	}
 	cout << "Gelbe Stadt nicht gefunden in Handkarten!" << endl;
-	return Vector(10, 6);
+	return currentState.board.grid[10][6];
 }
 
 bool testKI::countPoints(State& currentState, vector<Connection*>& returnPath) {

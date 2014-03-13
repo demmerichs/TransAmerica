@@ -8,12 +8,14 @@
 #ifndef PAWN_H_
 #define PAWN_H_
 
-#include"Vector.h"
+class Coordinate;
+
+#include "Vector.h"
 #include "Constants.h"
 
 class Pawn: public Vector {
 public:
-	Pawn(PLAYERCOLOR colour, Vector pos);
+	Pawn(PLAYERCOLOR colour, const Coordinate* pos);
 	Pawn(const Pawn &copy) :
 			Vector(copy), schienennetznummer(copy.schienennetznummer), spielerfarbe(
 					copy.spielerfarbe) {

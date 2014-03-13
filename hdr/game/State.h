@@ -59,7 +59,7 @@ public:
 	void setRail(const Connection &);
 	void resetRailwayNr_ToNr_(const short, const short);
 	const Connection* getConnection(Vector a, Vector b) const;
-	void addPawn(Pawn insert);
+	BANNED_STATUS addPawn(Pawn insert);
 	void resetAll();
 	unsigned short** evaluateBoard(Vector target) const;
 	unsigned short distance(const Vector& target,

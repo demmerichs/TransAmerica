@@ -24,3 +24,21 @@ std::ostream& operator<<(std::ostream& lhs, DIRECTION direction) {
 	return lhs;
 }
 
+string bannedStatusToString(BANNED_STATUS status) {
+	switch (status) {
+	case NOT_BANNED:
+		return "0";
+	case INVALID_PAWN_SET:
+		return "1";
+	case MOVE_WITHOUT_RAILS:
+		return "2";
+	case MOVE_WRONG_COLOR:
+		return "3";
+	case MOVE_NOT_CONNECTED_RAILWAY:
+		return "4";
+	case MOVE_TOO_MANY_BARRIERS:
+		return "5";
+	default:
+		return "";
+	}
+}

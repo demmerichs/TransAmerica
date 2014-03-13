@@ -29,7 +29,7 @@ public:
 	testKI(PLAYERCOLOR playerColor);
 	virtual ~testKI();
 	Move doMove(State &currentState, vector<Move*> moveList);
-	Vector setPawn(State &currentState);
+	const Coordinate* setPawn(State &currentState);
 	bool countPoints(State& currentState, vector<Connection*>& returnPath);
 	void gatherInformationEndOfRound(const RoundLogger* informationAboutGame);
 	Vector getNaechsterPunktZu(Vector, State) const;

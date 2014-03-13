@@ -30,7 +30,7 @@ debuggerAI::~debuggerAI() {
 Move debuggerAI::doMove(State &currentState, vector<Move*> moveList) {
 }
 
-Vector debuggerAI::setPawn(State &currentState) {
+const Coordinate* debuggerAI::setPawn(State &currentState) {
 }
 
 bool debuggerAI::countPoints(State& currentState,

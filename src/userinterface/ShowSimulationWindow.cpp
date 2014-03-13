@@ -68,7 +68,6 @@ void ShowSimulationWindow::setZp() {
  */
 
 bool ShowSimulationWindow::setGameCounter(int i) {
-	cout << "game" << endl;
 	int newGameCounter;
 	if (i == gameSpinBox->maximum())
 		newGameCounter = i - 1;
@@ -84,7 +83,6 @@ bool ShowSimulationWindow::setGameCounter(int i) {
 }
 
 bool ShowSimulationWindow::setRoundCounter(int i) {
-	cout << "round" << endl;
 	int newRoundCounter;
 	if (i == roundSpinBox->maximum())
 		if (setGameCounter(gameCounter + 1))
@@ -106,7 +104,6 @@ bool ShowSimulationWindow::setRoundCounter(int i) {
 }
 
 bool ShowSimulationWindow::setMoveCounter(int i) {
-	cout << "move" << endl;
 	int newMoveCounter;
 	if (i == moveSpinBox->maximum())
 		if (setRoundCounter(roundCounter + 1))

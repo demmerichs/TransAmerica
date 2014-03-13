@@ -11,10 +11,14 @@ RoundLogger::RoundLogger(const PlayingOrder& playingOrder,
 		const vector<AI*> playerList, const Board& board,
 		const AI* roundStartingPlayer) :
 		playingOrder(playingOrder), playerList(playerList), board(board), roundStartingPlayer(
-				roundStartingPlayer), lostPoints(0), pawnList(0) {
+				roundStartingPlayer), lostPoints(0), pawnList(0), playerStatus(
+				0) {
 	pawnList = new const Pawn*[MAX_PLAYER];
-	for (int i = 0; i < MAX_PLAYER; i++)
+	playerStatus = new BANNED_STATUS[MAX_PLAYER];
+	for (int i = 0; i < MAX_PLAYER; i++) {
 		pawnList[i] = 0;
+		playerStatus[i] = NOT_BANNED;
+	}
 	playingCards = new const City**[MAX_PLAYER];
 	for (int i = 0; i < MAX_PLAYER; i++) {
 		playingCards[i] = new const City*[NUMBER_CITYCOLORS];
