@@ -56,6 +56,7 @@ private:
 private slots:
 	void addAI(QListWidgetItem* add);
 	void removeAI(QListWidgetItem* remove);
+    void verify();
 };
 
 #endif // INITIALIZE_H

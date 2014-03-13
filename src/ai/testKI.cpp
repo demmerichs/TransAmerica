@@ -11,10 +11,13 @@
 // included dependencies
 #include "../../hdr/ai/testKI.h"
 
+#include <cmath>
+
 #include "../../hdr/game/Constants.h"
 #include "../../hdr/game/City.h"
 #include "../../hdr/game/Move.h"
 #include "../../hdr/game/Pawn.h"
+using std::abs;
 //==============================
 // the actual code
 testKI::testKI(PLAYERCOLOR playerColor) :

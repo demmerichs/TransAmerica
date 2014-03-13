@@ -9,6 +9,7 @@ class QPixmap;
 QColor getQColor(PLAYERCOLOR i);
 QPixmap getCityPixmap(CITYCOLOR i);
 QPixmap getCity_hPixmap(CITYCOLOR i);
+QPixmap getRatPixmap(PLAYERCOLOR i);
 
 #endif // QKONSTANTEN_H
 
