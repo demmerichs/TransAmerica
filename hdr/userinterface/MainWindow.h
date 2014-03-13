@@ -20,6 +20,7 @@ public:
 private:
 	GameExec* myGameExe;
 	ShowSimulationWindow* wp;
+    QTabWidget* tabWidget;
 	QToolBar* myToolBar;
 	QAction* newSimulation;
 private slots:

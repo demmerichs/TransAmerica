@@ -5,6 +5,7 @@
 using std::ifstream;
 using std::string;
 
+
 #include "../../hdr/userinterface/QKonstanten.h"
 
 Initialize::Initialize(const QString &title, QWidget *parent) :
@@ -32,7 +33,7 @@ Initialize::Initialize(const QString &title, QWidget *parent) :
 	layout->addWidget(buttonBox, 3, 0, 1, 2);
 	setLayout(layout);
 	setWindowTitle(title);
-	connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(verify()));
 	connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 	connect(listWidgetA, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this,
 			SLOT(addAI(QListWidgetItem*)));
@@ -88,3 +89,19 @@ void Initialize::setAIAvailable() {
 		aiAvailable << input.data();
 	}
 }
+void Initialize::verify(){
+    if (aiSelected.size()>=2) {
+        accept();
+        return;
+    }
+
+    QMessageBox::StandardButton answer;
+    answer = QMessageBox::warning(this, tr("Incomplete Form"),
+        tr("The form does not contain all the necessary information.\n"
+           "Do you want to discard it?"),
+        QMessageBox::Yes | QMessageBox::No);
+
+    if (answer == QMessageBox::Yes)
+        reject();
+}
+

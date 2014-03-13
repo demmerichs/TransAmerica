@@ -60,7 +60,10 @@ void ShowSimulationWindow::setZp() {
 						gameCounter - 1, roundCounter - 1));
 	else
 		spielbrett->setHand(0);
-	spielbrett->update();
+    if(simulationp) spielbrett->setAIpoints(
+                simulationp->getPointsEndOfRound(gameCounter -1, roundCounter -2));
+    else spielbrett->setAIpoints(Counter(13));
+    spielbrett->update();
 }
 
 /**
@@ -150,7 +153,7 @@ void ShowSimulationWindow::updateSpinBoxes() {
 	moveSpinBox->blockSignals(true);
 	gameSpinBox->setRange(0, simulationp->getGameList().size() + 1);
 	if (1 <= gameCounter
-			&& gameCounter <= (int) simulationp->getGameList().size()) {
+            && gameCounter <= (int) simulationp->getGameList().size()) {
 		roundSpinBox->setRange(0,
 				simulationp->getGameList()[gameCounter - 1]->getRoundList().size()
 						+ 1);

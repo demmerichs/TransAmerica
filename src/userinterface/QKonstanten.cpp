@@ -49,3 +49,20 @@ QPixmap getCity_hPixmap(CITYCOLOR i){
     else
         return QPixmap(" ");
 }
+QPixmap getRatPixmap(PLAYERCOLOR i){
+    if (i == P_BLUE)
+        return QPixmap("images/ratblau.gif");
+    else if (i == P_YELLOW)
+        return QPixmap("images/ratgelb.gif");
+    else if (i == P_GREEN)
+        return QPixmap("images/ratgruen.gif");
+    else if (i == P_VIOLET)
+        return QPixmap("images/ratlila.gif");
+    else if (i == P_ORANGE)
+        return QPixmap("images/ratorange.gif");
+    else if (i == P_WHITE)
+        return QPixmap("images/ratrot.gif");
+    else
+        return QPixmap("");
+}
+

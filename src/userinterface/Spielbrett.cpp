@@ -23,6 +23,7 @@ Spielbrett::Spielbrett(const Board& board, DynamicState* dynamicState,
 		Counter points) :
 		board(&board), hand(0), dynamicState(dynamicState), points(points) {
 	drawCity = false;
+
 	setBackgroundRole(QPalette::Base);
 	setAutoFillBackground(false);
 	setMouseTracking(true);
@@ -58,6 +59,7 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	drawPawns(&painter);
 	if (drawCity)
 		drawCityNames(&painter);
+	drawRat(&painter);
 	painter.setWorldTransform(scale.inverted(), true);
 }
 
@@ -251,18 +253,19 @@ void Spielbrett::drawCityNames(QPainter* painter) {
 				transform.map(
 						QPoint(townList[i]->x * sL - 200 + 5,
 								townList[i]->y * sL + 10)), QSize(400, 50));
-		QRect* boundingRect = new QRect;
-		painter->drawText(*rect, Qt::AlignHCenter | Qt::AlignTop,
-				QString::fromStdString(townList[i]->name), boundingRect);
-		boundingRect->setWidth(boundingRect->width() + 4);
-		boundingRect->setHeight(boundingRect->height());
-		boundingRect->setTopLeft(
+		QRect boundingRect;
+		boundingRect = painter->boundingRect(*rect,
+				Qt::AlignHCenter | Qt::AlignTop,
+				QString::fromStdString(townList[i]->name));
+		boundingRect.setWidth(boundingRect.width() + 4);
+		boundingRect.setHeight(boundingRect.height());
+		boundingRect.setTopLeft(
 				transform.map(QPoint(townList[i]->x * sL, townList[i]->y * sL))
-						+ QPoint(-boundingRect->width() / 2, 8));
-		boundingRect->setTop(boundingRect->top() - 1);
-		painter->drawPixmap(boundingRect->topLeft(),
-				schild->scaled(boundingRect->size()));
-		painter->drawText(*boundingRect, Qt::AlignCenter,
+						+ QPoint(-boundingRect.width() / 2, 8));
+		boundingRect.setTop(boundingRect.top() - 1);
+		painter->drawPixmap(boundingRect.topLeft(),
+				schild->scaled(boundingRect.size()));
+		painter->drawText(boundingRect, Qt::AlignCenter,
 				QString::fromStdString(townList[i]->name));
 	}
 }
@@ -286,6 +289,14 @@ void Spielbrett::drawHand(QPainter* painter) {
 						QString::fromStdString(hand[i]->name));
 			}
 		}
+	}
+}
+
+void Spielbrett::drawRat(QPainter *painter) {
+	for (int i = 0; i < dynamicState->numberPawns; i++) {
+		painter->drawPixmap(
+				585. / 16. * (points.get(PLAYERCOLOR_LIST[i]) + 3) - 6.5 + i, 0,
+				getRatPixmap(PLAYERCOLOR_LIST[i]));
 	}
 }
 
