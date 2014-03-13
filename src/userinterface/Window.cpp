@@ -20,10 +20,12 @@ Window::Window(const Board& board) {
 	/**
 	 Layout-Design
 	 */
-    QHBoxLayout* mainLayout = new QHBoxLayout;
+    QGridLayout* mainLayout = new QGridLayout;
 	toolLayout = new QFormLayout;
-    mainLayout->addWidget(spielbrett);
-    mainLayout->addLayout(toolLayout);
+    mainLayout->addWidget(spielbrett,0,0);
+    mainLayout->addLayout(toolLayout,0,1);
+    mainLayout->setColumnMinimumWidth(0,300);
+    mainLayout->setColumnStretch(0,1);
 	toolLayout->addRow(toolBoxLabel);
 	toolLayout->addRow(tr("Zeige Staedte:"), showTownsCheckBox);
 	toolLayout->addRow(newGameButton);

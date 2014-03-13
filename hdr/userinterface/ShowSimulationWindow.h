@@ -34,7 +34,7 @@ private:
 	QSpinBox* moveSpinBox;
 	QSpinBox* roundSpinBox;
 	QSpinBox* gameSpinBox;
-    QProgressBar* simulationProgress;
+   QProgressBar* simulationProgress;
 	void updateSpinBoxes();
 	bool setGameCounter(int i);
 	bool setRoundCounter(int i);
