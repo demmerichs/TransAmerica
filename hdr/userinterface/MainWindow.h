@@ -19,27 +19,26 @@ public:
 	MainWindow();
 private:
 	GameExec* myGameExe;
-	ShowSimulationWindow* wp;
+	Window* wp;
 	QToolBar* myToolBar;
-    QMenu* settingsMenu;
-    QAction* newSimulationAct;
-    QAction* newGameAct;
-    QAction* saveSpielbrettAct;
-    QAction* showDataAct;
-    QAction* changeStyleAct;
+	QMenu* settingsMenu;
+	QAction* newSimulationAct;
+	QAction* newGameAct;
+	QAction* saveSpielbrettAct;
+	QAction* showDataAct;
+	QAction* changeStyleAct;
 
-    void createActions();
-    void createToolBar();
-    void createMenus();
-    void createStatusBar();
-
+	void createActions();
+	void createToolBar();
+	void createMenus();
+	void createStatusBar();
 
 private slots:
 	void openInit();
-    void saveSpielbrett();
+	void saveSpielbrett();
 	void startSimulation(int games, vector<AI*> aiList);
-    void displayOnStatusBar(QString string, int time=0);
-    void setStyle();
+	void displayOnStatusBar(QString string, int time = 0);
+	void setStyle();
 };
 
 #endif // MAINWINDOW_H

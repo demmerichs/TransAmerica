@@ -26,6 +26,7 @@ public:
 
 	DynamicState(const Board &board); //Startzustand
 	DynamicState(const DynamicState&);
+	DynamicState(const State&);
 	virtual ~DynamicState();
 };
 

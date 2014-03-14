@@ -13,14 +13,14 @@
 #include "../../hdr/userinterface/Spielbrett.h"
 
 ShowSimulationWindow::ShowSimulationWindow(SimulationLogger* simulationp) :
-		Window(simulationp->getBoard()), simulationp(simulationp) {
+		Window(&simulationp->getBoard()), simulationp(simulationp) {
 	gameSpinBox = new QSpinBox;
 	roundSpinBox = new QSpinBox;
 	moveSpinBox = new QSpinBox;
-    createProgressBar();
-    fillTabWidget();
-    gameSpinBox->setWrapping(false);
-    gameSpinBox->setSuffix(tr(". Spiel"));
+	createProgressBar();
+	fillTabWidget();
+	gameSpinBox->setWrapping(false);
+	gameSpinBox->setSuffix(tr(". Spiel"));
 	gameSpinBox->setSuffix(tr(". Spiel"));
 	roundSpinBox->setWrapping(false);
 	roundSpinBox->setSuffix(tr(". Runde"));
@@ -29,10 +29,10 @@ ShowSimulationWindow::ShowSimulationWindow(SimulationLogger* simulationp) :
 	toolLayout->addRow(tr("Geladenes Spiel:"), gameSpinBox);
 	toolLayout->addRow(tr("Geladene Runde: "), roundSpinBox);
 	toolLayout->addRow(tr("Geladener Zug:  "), moveSpinBox);
-    toolLayout->addWidget(simulationProgress);
+	toolLayout->addWidget(simulationProgress);
 
-    mainLayout->removeWidget(spielbrett);
-    mainLayout->addWidget(tabWidget,0,0);
+	mainLayout->removeWidget(spielbrett);
+	mainLayout->addWidget(tabWidget, 0, 0);
 	connect(gameSpinBox, SIGNAL(valueChanged(int)), this,
 			SLOT(gameSpinChanged(int)));
 	connect(roundSpinBox, SIGNAL(valueChanged(int)), this,
@@ -66,10 +66,13 @@ void ShowSimulationWindow::setZp() {
 						gameCounter - 1, roundCounter - 1));
 	else
 		spielbrett->setHand(0);
-    if(simulationp) spielbrett->setAIpoints(
-                simulationp->getPointsEndOfRound(gameCounter -1, roundCounter -2));
-    else spielbrett->setAIpoints(Counter(13));
-    spielbrett->update();
+	if (simulationp)
+		spielbrett->setAIpoints(
+				simulationp->getPointsEndOfRound(gameCounter - 1,
+						roundCounter - 2));
+	else
+		spielbrett->setAIpoints(Counter(13));
+	spielbrett->update();
 }
 
 /**
@@ -159,7 +162,7 @@ void ShowSimulationWindow::updateSpinBoxes() {
 	moveSpinBox->blockSignals(true);
 	gameSpinBox->setRange(0, simulationp->getGameList().size() + 1);
 	if (1 <= gameCounter
-            && gameCounter <= (int) simulationp->getGameList().size()) {
+			&& gameCounter <= (int) simulationp->getGameList().size()) {
 		roundSpinBox->setRange(0,
 				simulationp->getGameList()[gameCounter - 1]->getRoundList().size()
 						+ 1);
@@ -177,29 +180,29 @@ void ShowSimulationWindow::updateSpinBoxes() {
 	roundSpinBox->blockSignals(false);
 	moveSpinBox->blockSignals(false);
 }
-void ShowSimulationWindow::createProgressBar(){
-    simulationProgress = new QProgressBar;
-    simulationProgress->setRange(0, 10000);
-    simulationProgress->setValue(0);
+void ShowSimulationWindow::createProgressBar() {
+	simulationProgress = new QProgressBar;
+	simulationProgress->setRange(0, 10000);
+	simulationProgress->setValue(0);
 
-    QTimer *timer = new QTimer(this);
-    connect(timer, SIGNAL(timeout()), this, SLOT(advanceProgressBar()));
-    timer->start(1000);
+	QTimer *timer = new QTimer(this);
+	connect(timer, SIGNAL(timeout()), this, SLOT(advanceProgressBar()));
+	timer->start(1000);
 }
-void ShowSimulationWindow::advanceProgressBar(){
-    int curVal = simulationProgress->value();
-    int maxVal = simulationProgress->maximum();
-    simulationProgress->setValue(curVal + (maxVal - curVal) / 100);
+void ShowSimulationWindow::advanceProgressBar() {
+	int curVal = simulationProgress->value();
+	int maxVal = simulationProgress->maximum();
+	simulationProgress->setValue(curVal + (maxVal - curVal) / 100);
 }
-void ShowSimulationWindow::showDataWidget(){
-    tabWidget->setCurrentWidget(dataWidget);
+void ShowSimulationWindow::showDataWidget() {
+	tabWidget->setCurrentWidget(dataWidget);
 }
-void ShowSimulationWindow::showSpielbrett(){
-    tabWidget->setCurrentWidget(spielbrett);
+void ShowSimulationWindow::showSpielbrett() {
+	tabWidget->setCurrentWidget(spielbrett);
 }
 
-void ShowSimulationWindow::fillTabWidget(){
-    dataWidget = new DataWidget();
-    tabWidget->addTab(dataWidget, "Data & Statistics");
+void ShowSimulationWindow::fillTabWidget() {
+	dataWidget = new DataWidget();
+	tabWidget->addTab(dataWidget, "Data & Statistics");
 
 }

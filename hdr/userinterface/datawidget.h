@@ -5,20 +5,18 @@
 #include <QLabel>
 #include <QVBoxLayout>
 
-class DataWidget : public QWidget
-{
-    Q_OBJECT
+class DataWidget: public QWidget {
+Q_OBJECT
 public:
-    explicit DataWidget(QWidget *parent = 0);
+	explicit DataWidget(QWidget *parent = 0);
 
-    
 signals:
-    
+
 public slots:
 
 private:
-    QLabel* testLabel;
-    
+	QLabel* testLabel;
+
 };
 
 #endif // DATAWIDGET_H

@@ -27,21 +27,23 @@ class Window: public QWidget {
 Q_OBJECT
 	friend class Spielbrett;
 public:
-	Window(const Board& board);
+	Window(const Board* board);
 	~Window();
 protected:
 	DynamicState* aZp;
 	Spielbrett* spielbrett;
 	QFormLayout* toolLayout;
-    QGridLayout* mainLayout;
+	QGridLayout* mainLayout;
 	/**
 	 diverse Labels
-     diverse Combo-/Spin-boxen
+	 diverse Combo-/Spin-boxen
 	 */
 	QLabel* toolBoxLabel;
 //	QPushButton* newGameButton;
 	QCheckBox* showTownsCheckBox;
-    QTabWidget* tabWidget;
+	QTabWidget* tabWidget;
+
+	void setSpielbrettState() const;
 };
 
 #endif // WINDOW_H

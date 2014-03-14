@@ -27,7 +27,7 @@ public:
 
 	Move doMove(State&, vector<Move*>);
 	const Coordinate* setPawn(State&);
-	bool countPoints(State&, vector<Connection*>);
+	bool countPoints(State&, vector<Connection*>&);
 	void gatherInformationEndOfRound(const RoundLogger*);
 };
 

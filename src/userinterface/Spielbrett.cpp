@@ -19,9 +19,9 @@ enum Farbart {
 	spielerfarbe, stadtfarbe
 };
 
-Spielbrett::Spielbrett(const Board& board, DynamicState* dynamicState,
+Spielbrett::Spielbrett(const Board* board, DynamicState* dynamicState,
 		Counter points) :
-		board(&board), hand(0), dynamicState(dynamicState), points(points) {
+		board(board), hand(0), dynamicState(dynamicState), points(points) {
 	drawCity = false;
 
 	setBackgroundRole(QPalette::Base);
@@ -42,9 +42,8 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	painter.drawPixmap(0, 0, *background);
 
 	if (!dynamicState) {
-        painter.drawText(background->rect(),
-                         Qt::AlignCenter,
-                         "NO VALID DATA LOADED");
+		painter.drawText(background->rect(), Qt::AlignCenter,
+				"NO VALID DATA LOADED");
 		return;
 	}
 

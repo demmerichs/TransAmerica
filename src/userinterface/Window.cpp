@@ -5,7 +5,7 @@
 #include "../../hdr/logger/GameLogger.h"
 #include "../../hdr/logger/RoundLogger.h"
 
-Window::Window(const Board& board) {
+Window::Window(const Board* board) {
 	aZp = 0;
 	toolBoxLabel = new QLabel(tr("ToolBox"));
 	QFont font = toolBoxLabel->font();
@@ -45,4 +45,8 @@ Window::Window(const Board& board) {
 
 Window::~Window() {
 	//TODO auto-generated destructor-sub
+}
+
+void Window::setSpielbrettState() const{
+	spielbrett->dynamicState=aZp;
 }
