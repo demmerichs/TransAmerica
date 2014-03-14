@@ -3,13 +3,14 @@
 
 MainWindow::MainWindow() {
 
-    QApplication::setStyle(new StyleTransamerica);
+    //QApplication::setStyle(new StyleTransamerica);
 	wp = new ShowSimulationWindow(0);
 	setCentralWidget(wp);
 
     createActions();
     createToolBar();
     createStatusBar();
+    createMenus();
 
     setUnifiedTitleAndToolBarOnMac(true);
 
@@ -60,6 +61,11 @@ void MainWindow::createActions(){
     saveSpielbrettAct = new QAction(QIcon("images/SaveIcon.png"), tr("&Save as image"), this);
     saveSpielbrettAct->setStatusTip(tr("Save the currently displayed board as image"));
     saveSpielbrettAct->setShortcut(QKeySequence::Save);
+
+    changeStyleAct = new QAction("Change Style", this);
+    changeStyleAct->setStatusTip("Changes the Style of the Application");
+
+    connect(changeStyleAct, SIGNAL(triggered()), this, SLOT(setStyle()));
     connect(saveSpielbrettAct, SIGNAL(triggered()), this, SLOT(saveSpielbrett()));
 
 //    newGameAct->setDisabled(true);
@@ -78,11 +84,30 @@ void MainWindow::createToolBar(){
 void MainWindow::createStatusBar(){
     statusBar()->showMessage(tr("Ready"));
 }
+void MainWindow::createMenus(){
+    settingsMenu = menuBar()->addMenu(tr("Settings"));
+    settingsMenu->addAction(changeStyleAct);
+}
 
 void MainWindow::saveSpielbrett(){
 
 }
 void MainWindow::displayOnStatusBar(QString string, int time){
     statusBar()->showMessage(string,time);
+}
+void MainWindow::setStyle(){
+    QStringList items;
+    items.append("TransamericaStyle");
+    items.append(QStyleFactory::keys());
+
+    bool ok = false;
+    QString style = QInputDialog::getItem(this, tr("Style Selection"), tr("Style:"), items, 0, false, &ok);
+    if (ok && !style.isEmpty()){
+       if (style == "TransamericaStyle")
+           QApplication::setStyle(new StyleTransamerica);
+       else
+           QApplication::setStyle(QStyleFactory::create(style));
+   }
+
 }
 
