@@ -15,13 +15,13 @@ class QPushButton;
 class AI;
 class State;
 class City;
+class Move;
 //==============================
 // included dependencies
 #include <vector>
 using std::vector;
 
 #include "Window.h"
-
 //==============================
 // the actual class
 

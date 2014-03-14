@@ -11,7 +11,9 @@
 #define SHOWSIMULATIONWINDOW_H_
 //==============================
 // forward declared dependencies
-class QSPinBox;
+class QSpinBox;
+class QProgressBar;
+class SimulationLogger;
 //==============================
 // included dependencies
 #include "Window.h"
@@ -21,7 +23,7 @@ class QSPinBox;
 
 class ShowSimulationWindow: public Window {
 Q_OBJECT
-	friend class Spielbrett;
+	friend class GUIBoard;
 	friend class MainWindow;
 public:
 	ShowSimulationWindow(SimulationLogger* simulationp);
@@ -35,22 +37,22 @@ private:
 	QSpinBox* moveSpinBox;
 	QSpinBox* roundSpinBox;
 	QSpinBox* gameSpinBox;
-    QProgressBar* simulationProgress;
-    DataWidget* dataWidget;
+	QProgressBar* simulationProgress;
+	DataWidget* dataWidget;
 	void updateSpinBoxes();
 	bool setGameCounter(int i);
 	bool setRoundCounter(int i);
 	bool setMoveCounter(int i);
 	void setZp();
-    void createProgressBar();
-    void fillTabWidget();
+	void createProgressBar();
+	void fillTabWidget();
 private slots:
 	void gameSpinChanged(int i);
 	void roundSpinChanged(int i);
 	void moveSpinChanged(int i);
-    void advanceProgressBar();
-    void showDataWidget();
-    void showSpielbrett();
+	void advanceProgressBar();
+	void showDataWidget();
+	void showSpielbrett();
 };
 
 #endif /* SHOWSIMULATIONWINDOW_H_ */

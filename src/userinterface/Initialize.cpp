@@ -5,7 +5,7 @@
 using std::ifstream;
 using std::string;
 
-#include "../../hdr/userinterface/QKonstanten.h"
+#include "../../hdr/userinterface/QConstants.h"
 
 Initialize::Initialize(const QString &title, QWidget *parent) :
 		QDialog(parent), humanPlayer(true), humanColor(P_YELLOW) { //TODO integrate in dialog box as choose

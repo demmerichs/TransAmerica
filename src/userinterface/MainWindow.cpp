@@ -1,4 +1,14 @@
 #include "../../hdr/userinterface/MainWindow.h"
+
+#include <QAction>
+#include <QToolBar>
+#include <QStatusBar>
+#include <QMenuBar>
+#include <QMenu>
+#include <QStyleFactory>
+#include <QInputDialog>
+#include <QApplication>
+
 #include "../../hdr/userinterface/styletransamerica.h"
 #include "../../hdr/userinterface/UserInputWindow.h"
 #include "../../hdr/game/Human.h"

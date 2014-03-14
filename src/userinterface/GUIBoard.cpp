@@ -1,10 +1,17 @@
 //==============================
 // included dependencies
+#include "../../hdr/userinterface/GUIBoard.h"
+
+#include <QPen>
+#include <QPainter>
+#include <QMouseEvent>
+#include <cassert>
 #include <cmath>
 using std::abs;
 
-#include "../../hdr/userinterface/Spielbrett.h"
-
+#include "QConstants.h"
+#include "DynamicState.h"
+#include "../game/Board.h"
 //==============================
 const QPen thinPen(Qt::darkGray, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
 const QPen thinRedPen(Qt::red, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
@@ -19,9 +26,9 @@ enum Farbart {
 	spielerfarbe, stadtfarbe
 };
 
-Spielbrett::Spielbrett(const Board* board, DynamicState* dynamicState,
-		Counter points) :
-		board(board), hand(0), dynamicState(dynamicState), points(points) {
+GUIBoard::GUIBoard(const Board* board, Counter points,
+		DynamicState* dynamicState, const City** hand) :
+		board(board), hand(hand), dynamicState(dynamicState), points(points) {
 	drawCity = false;
 
 	setBackgroundRole(QPalette::Base);
@@ -36,7 +43,7 @@ Spielbrett::Spielbrett(const Board* board, DynamicState* dynamicState,
 	invertedTransform = transform.inverted();
 }
 
-void Spielbrett::paintEvent(QPaintEvent*) {
+void GUIBoard::paintEvent(QPaintEvent*) {
 	QPainter painter(this);
 	painter.setWorldTransform(scale, true);
 	painter.drawPixmap(0, 0, *background);
@@ -63,12 +70,12 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	painter.setWorldTransform(scale.inverted(), true);
 }
 
-void Spielbrett::drawCityChanged(bool enable) {
+void GUIBoard::drawCityChanged(bool enable) {
 	drawCity = enable;
 	update();
 }
 
-void Spielbrett::mouseReleaseEvent(QMouseEvent* event) {
+void GUIBoard::mouseReleaseEvent(QMouseEvent* event) {
 	QPoint clickPoint = event->pos();
 	clickPoint = scale.inverted().map(clickPoint);
 	clickPoint = invertedTransform.map(clickPoint);
@@ -107,7 +114,7 @@ void Spielbrett::mouseReleaseEvent(QMouseEvent* event) {
 	update();
 }
 
-void Spielbrett::drawGrid(QPainter* painter) {
+void GUIBoard::drawGrid(QPainter* painter) {
 	for (int i = 0; i < MAX_X; i++) {
 		for (int j = 0; j < MAX_Y; j++) {
 			if (dynamicState->board.edges[i][j][0]) {
@@ -138,7 +145,7 @@ void Spielbrett::drawGrid(QPainter* painter) {
 	}
 }
 
-void Spielbrett::drawRailway(QPainter *painter) {
+void GUIBoard::drawRailway(QPainter *painter) {
 	painter->setPen(fatPen);
 	for (int i = 0; i < MAX_X; i++) {
 		for (int j = 0; j < MAX_Y; j++) {
@@ -201,7 +208,7 @@ void Spielbrett::drawRailway(QPainter *painter) {
 				}
 }
 
-void Spielbrett::drawPawns(QPainter *painter) {
+void GUIBoard::drawPawns(QPainter *painter) {
 	for (int k = 0; k < dynamicState->numberPawns; k++) {
 		Pawn* i = dynamicState->unsortedPawns[k];
 		QBrush brush(getQColor(i->spielerfarbe));
@@ -221,7 +228,7 @@ void Spielbrett::drawPawns(QPainter *painter) {
 	}
 }
 
-void Spielbrett::drawCitys(QPainter *painter) {
+void GUIBoard::drawCitys(QPainter *painter) {
 	for (int i = 0; i < board->numberCities; i++) {
 		if (dynamicState->board.cityList[i]) {
 			/*cout << "i = " << i << "  x = " <<dynamicState->gameBoard.cityList[i]->place.x
@@ -240,7 +247,7 @@ void Spielbrett::drawCitys(QPainter *painter) {
 	}
 }
 
-void Spielbrett::drawCityNames(QPainter* painter) {
+void GUIBoard::drawCityNames(QPainter* painter) {
 	QPixmap* schild = new QPixmap("images/schildkl.gif");
 	const City* const * townList = dynamicState->board.cityList;
 	painter->setPen(fatPen);
@@ -267,7 +274,7 @@ void Spielbrett::drawCityNames(QPainter* painter) {
 	}
 }
 
-void Spielbrett::drawHand(QPainter* painter) {
+void GUIBoard::drawHand(QPainter* painter) {
 	if (hand) {
 		double size = 101.66;
 		painter->setPen(fatPen);
@@ -289,7 +296,7 @@ void Spielbrett::drawHand(QPainter* painter) {
 	}
 }
 
-void Spielbrett::drawRat(QPainter *painter) {
+void GUIBoard::drawRat(QPainter *painter) {
 	for (int i = 0; i < dynamicState->numberPawns; i++) {
 		painter->drawPixmap(
 				585. / 16. * (points.get(PLAYERCOLOR_LIST[i]) + 3) - 6.5 + i, 0,
@@ -297,7 +304,7 @@ void Spielbrett::drawRat(QPainter *painter) {
 	}
 }
 
-void Spielbrett::resizeEvent(QResizeEvent *event) {
+void GUIBoard::resizeEvent(QResizeEvent *event) {
 	QSize size = event->size();
 	double Width = size.rwidth();
 	double Height = size.rheight();
@@ -310,9 +317,27 @@ void Spielbrett::resizeEvent(QResizeEvent *event) {
 		scaleFactor = Height / ImageHeight;
 	scale = QTransform::fromScale(scaleFactor, scaleFactor);
 }
-QSize Spielbrett::minimumSizeHint() {
+QSize GUIBoard::minimumSizeHint() {
 	return QSize(610, 392);
 }
-QSize Spielbrett::sizeHint() {
+QSize GUIBoard::sizeHint() {
 	return QSize(1220, 784);
+}
+
+void GUIBoard::setBoard(const Board* board) {
+	this->board = board;
+}
+void GUIBoard::setDynamicState(const DynamicState* dynamicState) {
+	if (this->dynamicState)
+		delete this->dynamicState;
+	this->dynamicState = dynamicState;
+	this->board = &(dynamicState->board);
+}
+
+void GUIBoard::setHand(const City** hand) {
+	this->hand = hand;
+}
+
+void GUIBoard::setPoints(Counter points) {
+	this->points = points;
 }

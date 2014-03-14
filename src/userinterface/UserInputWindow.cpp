@@ -6,9 +6,14 @@
  */
 
 #include "UserInputWindow.h"
+
+#include <QPushButton>
+#include <QFormLayout>
+#include <QEventLoop>
+
 #include "../../hdr/game/Move.h"
 #include "../../hdr/userinterface/DynamicState.h"
-#include "../../hdr/userinterface/Spielbrett.h"
+#include "../../hdr/userinterface/GUIBoard.h"
 #include "../../hdr/game/Board.h"
 
 UserInputWindow::UserInputWindow(const Board* board) :
@@ -23,10 +28,10 @@ UserInputWindow::~UserInputWindow() {
 
 Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 		const City** hand, vector<Move*> moveList) {
-	aZp = new DynamicState(currentState);
+	DynamicState* aZp = new DynamicState(currentState);
 	if (moveList.size() > 0)
 		aZp->lastMove = moveList[moveList.size() - 1];
-	setSpielbrettState();
+	spielbrett->setDynamicState(aZp);
 	spielbrett->setHand(hand);
 	this->spielbrett->update();
 	this->update();

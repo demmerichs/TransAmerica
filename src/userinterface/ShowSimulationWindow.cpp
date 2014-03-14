@@ -6,11 +6,18 @@
  */
 
 #include "ShowSimulationWindow.h"
+
+#include <QSpinBox>
+#include <QFormLayout>
+#include <QGridLayout>
+#include <QTabWidget>
+#include <QProgressBar>
+
 #include "../../hdr/logger/SimulationLogger.h"
 #include "../../hdr/logger/GameLogger.h"
 #include "../../hdr/logger/RoundLogger.h"
 #include "../../hdr/userinterface/DynamicState.h"
-#include "../../hdr/userinterface/Spielbrett.h"
+#include "../../hdr/userinterface/GUIBoard.h"
 
 ShowSimulationWindow::ShowSimulationWindow(SimulationLogger* simulationp) :
 		Window(&simulationp->getBoard()), simulationp(simulationp) {
@@ -51,15 +58,10 @@ ShowSimulationWindow::~ShowSimulationWindow() {
 }
 
 void ShowSimulationWindow::setZp() {
-	if (simulationp) {
-		if (aZp)
-			delete aZp;
-		aZp = new DynamicState(
-				simulationp->calculateDynamicState(gameCounter - 1,
-						roundCounter - 1, moveCounter));
-	}
-	spielbrett->dynamicState = aZp;
-	spielbrett->board = &aZp->board;
+	DynamicState* aZp = new DynamicState(
+			simulationp->calculateDynamicState(gameCounter - 1,
+					roundCounter - 1, moveCounter));
+	spielbrett->setDynamicState(aZp);
 	if (aZp->lastMove)
 		spielbrett->setHand(
 				simulationp->getHandOfPlayer(aZp->lastMove->getSpielerfarbe(),
@@ -67,11 +69,11 @@ void ShowSimulationWindow::setZp() {
 	else
 		spielbrett->setHand(0);
 	if (simulationp)
-		spielbrett->setAIpoints(
+		spielbrett->setPoints(
 				simulationp->getPointsEndOfRound(gameCounter - 1,
 						roundCounter - 2));
 	else
-		spielbrett->setAIpoints(Counter(13));
+		spielbrett->setPoints(Counter(13));
 	spielbrett->update();
 }
 
@@ -184,10 +186,6 @@ void ShowSimulationWindow::createProgressBar() {
 	simulationProgress = new QProgressBar;
 	simulationProgress->setRange(0, 10000);
 	simulationProgress->setValue(0);
-
-	QTimer *timer = new QTimer(this);
-	connect(timer, SIGNAL(timeout()), this, SLOT(advanceProgressBar()));
-	timer->start(1000);
 }
 void ShowSimulationWindow::advanceProgressBar() {
 	int curVal = simulationProgress->value();

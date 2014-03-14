@@ -19,7 +19,7 @@ public:
 
 	int add(AI* player, int counter);
 	int get(AI* player) const;
-    int get(PLAYERCOLOR) const; //TODO @OEtzi007: is this okay? (needed in Spielbrett::drawRat(..))
+    int get(PLAYERCOLOR) const; //TODO @OEtzi007: is this okay? (needed in GUIBoard::drawRat(..))
 
 	Counter operator+(const Counter& rhs) const;
 	Counter operator-(const Counter& rhs) const;
