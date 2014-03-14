@@ -5,7 +5,6 @@
  *      Author: David
  */
 
-#include <vector>
 #include <QApplication>
 
 #include "hdr/logger/SimulationLogger.h"
@@ -14,8 +13,13 @@
 #include "hdr/game/Simulation.h"
 #include "hdr/userinterface/MainWindow.h"
 
+QString versionnumber("0.00.00");
+
 int main(int argc, char* argv[]) {
-	QApplication a(argc, argv);
+    QApplication a(argc, argv);
+    a.setApplicationName("Transamerica");
+    a.setApplicationVersion(versionnumber);
+    //TODO @OEtzi007: would be great to insert the current version
 	MainWindow mainWindow;
 	return a.exec();
 }

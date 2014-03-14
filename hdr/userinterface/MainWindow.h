@@ -20,12 +20,22 @@ public:
 private:
 	GameExec* myGameExe;
 	ShowSimulationWindow* wp;
-    QTabWidget* tabWidget;
 	QToolBar* myToolBar;
-	QAction* newSimulation;
+    QAction* newSimulationAct;
+    QAction* newGameAct;
+    QAction* saveSpielbrettAct;
+    QAction* showDataAct;
+
+    void createActions();
+    void createToolBar();
+    void createMenus();
+    void createStatusBar();
+
 private slots:
 	void openInit();
+    void saveSpielbrett();
 	void startSimulation(int games, vector<AI*> aiList);
+    void displayOnStatusBar(QString string, int time=0);
 };
 
 #endif // MAINWINDOW_H

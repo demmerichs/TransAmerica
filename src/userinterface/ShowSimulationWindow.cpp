@@ -18,8 +18,9 @@ ShowSimulationWindow::ShowSimulationWindow(SimulationLogger* simulationp) :
 	roundSpinBox = new QSpinBox;
 	moveSpinBox = new QSpinBox;
     createProgressBar();
-	gameSpinBox->setWrapping(false);
-	gameSpinBox->setSuffix(tr(". Spiel"));
+    fillTabWidget();
+    gameSpinBox->setWrapping(false);
+    gameSpinBox->setSuffix(tr(". Spiel"));
 	gameSpinBox->setSuffix(tr(". Spiel"));
 	roundSpinBox->setWrapping(false);
 	roundSpinBox->setSuffix(tr(". Runde"));
@@ -29,6 +30,9 @@ ShowSimulationWindow::ShowSimulationWindow(SimulationLogger* simulationp) :
 	toolLayout->addRow(tr("Geladene Runde: "), roundSpinBox);
 	toolLayout->addRow(tr("Geladener Zug:  "), moveSpinBox);
     toolLayout->addWidget(simulationProgress);
+
+    mainLayout->removeWidget(spielbrett);
+    mainLayout->addWidget(tabWidget,0,0);
 	connect(gameSpinBox, SIGNAL(valueChanged(int)), this,
 			SLOT(gameSpinChanged(int)));
 	connect(roundSpinBox, SIGNAL(valueChanged(int)), this,
@@ -186,4 +190,16 @@ void ShowSimulationWindow::advanceProgressBar(){
     int curVal = simulationProgress->value();
     int maxVal = simulationProgress->maximum();
     simulationProgress->setValue(curVal + (maxVal - curVal) / 100);
+}
+void ShowSimulationWindow::showDataWidget(){
+    tabWidget->setCurrentWidget(dataWidget);
+}
+void ShowSimulationWindow::showSpielbrett(){
+    tabWidget->setCurrentWidget(spielbrett);
+}
+
+void ShowSimulationWindow::fillTabWidget(){
+    dataWidget = new DataWidget();
+    tabWidget->addTab(dataWidget, "Data & Statistics");
+
 }

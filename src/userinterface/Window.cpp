@@ -15,20 +15,25 @@ Window::Window(const Board& board) {
 
 	toolBoxLabel->setFont(font);
 	showTownsCheckBox = new QCheckBox;
-	newGameButton = new QPushButton(tr("New Game"));
+//	newGameButton = new QPushButton(tr("New Game"));
     spielbrett = new Spielbrett(board, aZp, Counter(13));
 	/**
 	 Layout-Design
 	 */
-    QGridLayout* mainLayout = new QGridLayout;
+    tabWidget= new QTabWidget();
+    tabWidget->setTabPosition(QTabWidget::South);
+    tabWidget->setSizePolicy(spielbrett->sizePolicy());
+    tabWidget->addTab(spielbrett, "Spielbrett");
+    mainLayout = new QGridLayout;
 	toolLayout = new QFormLayout;
-    mainLayout->addWidget(spielbrett,0,0);
+    mainLayout->addWidget(tabWidget,0,0);
     mainLayout->addLayout(toolLayout,0,1);
     mainLayout->setColumnMinimumWidth(0,300);
     mainLayout->setColumnStretch(0,1);
-	toolLayout->addRow(toolBoxLabel);
+    mainLayout->setColumnStretch(1,0.5);
+    toolLayout->addRow(toolBoxLabel);
 	toolLayout->addRow(tr("Zeige Staedte:"), showTownsCheckBox);
-	toolLayout->addRow(newGameButton);
+//	toolLayout->addRow(newGameButton);
 	setLayout(mainLayout);
 
 	/**

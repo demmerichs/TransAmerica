@@ -8,7 +8,7 @@ void StyleTransamerica::polish(QPalette &palette)
     QColor slightlyOpaqueBlack(0, 0, 0, 63);
 
     QPixmap backgroundImage("images/paperbackground.jpg");
-    QPixmap buttonImage("images/paperbutton.jpg");
+    QPixmap buttonImage("images/paperbackground.jpg");
     QPixmap midImage = buttonImage;
 
     QPainter painter;

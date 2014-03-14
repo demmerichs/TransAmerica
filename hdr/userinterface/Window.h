@@ -33,13 +33,15 @@ protected:
 	DynamicState* aZp;
 	Spielbrett* spielbrett;
 	QFormLayout* toolLayout;
+    QGridLayout* mainLayout;
 	/**
 	 diverse Labels
-	 diverse Combo-/Spin-boxen
+     diverse Combo-/Spin-boxen
 	 */
 	QLabel* toolBoxLabel;
-	QPushButton* newGameButton;
+//	QPushButton* newGameButton;
 	QCheckBox* showTownsCheckBox;
+    QTabWidget* tabWidget;
 };
 
 #endif // WINDOW_H

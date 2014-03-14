@@ -15,6 +15,7 @@ class QSPinBox;
 //==============================
 // included dependencies
 #include "Window.h"
+#include "datawidget.h"
 //==============================
 // the actual class
 
@@ -34,18 +35,22 @@ private:
 	QSpinBox* moveSpinBox;
 	QSpinBox* roundSpinBox;
 	QSpinBox* gameSpinBox;
-   QProgressBar* simulationProgress;
+    QProgressBar* simulationProgress;
+    DataWidget* dataWidget;
 	void updateSpinBoxes();
 	bool setGameCounter(int i);
 	bool setRoundCounter(int i);
 	bool setMoveCounter(int i);
 	void setZp();
     void createProgressBar();
+    void fillTabWidget();
 private slots:
 	void gameSpinChanged(int i);
 	void roundSpinChanged(int i);
 	void moveSpinChanged(int i);
     void advanceProgressBar();
+    void showDataWidget();
+    void showSpielbrett();
 };
 
 #endif /* SHOWSIMULATIONWINDOW_H_ */

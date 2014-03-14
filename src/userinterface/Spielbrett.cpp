@@ -42,8 +42,9 @@ void Spielbrett::paintEvent(QPaintEvent*) {
 	painter.drawPixmap(0, 0, *background);
 
 	if (!dynamicState) {
-		painter.drawText(this->width() / 2, this->height() / 2,
-				"NO VALID SIMULATION LOADED");
+        painter.drawText(background->rect(),
+                         Qt::AlignCenter,
+                         "NO VALID DATA LOADED");
 		return;
 	}
 
