@@ -19,6 +19,24 @@ QColor getQColor(PLAYERCOLOR i) {
 		return QColor(Qt::black);
 }
 
+QColor getQColorCity(CITYCOLOR i) {
+	switch (i) {
+	case C_BLUE:
+		return QColor(Qt::blue);
+	case C_GREEN:
+		return QColor("#016523");
+	case C_ORANGE:
+		return QColor("#a35000");
+	case C_RED:
+		return QColor(Qt::red);
+	case C_YELLOW:
+		return QColor("#807500");
+	default:
+		return QColor(Qt::black);
+
+	}
+}
+
 QPixmap getCityPixmap(CITYCOLOR i) {
 	if (i == 0)
 		return QPixmap("images/blau.gif");

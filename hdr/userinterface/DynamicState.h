@@ -22,7 +22,8 @@ class Move;
 class DynamicState: public State {
 public:
 	Move* lastMove;
-	bool*** fromUserSelectedRails;
+	bool*** fromUserSelectedConnections;
+	bool** fromUserSelectedCoordinates;
 
 	DynamicState(const Board &board); //Startzustand
 	DynamicState(const DynamicState&);

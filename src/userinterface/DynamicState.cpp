@@ -9,50 +9,71 @@
 
 DynamicState::DynamicState(const Board& board) :
 		State(board), lastMove(0) {
-	fromUserSelectedRails = new bool**[MAX_X];
+	fromUserSelectedConnections = new bool**[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
-		fromUserSelectedRails[i] = new bool*[MAX_Y];
+		fromUserSelectedConnections[i] = new bool*[MAX_Y];
 		for (int j = 0; j < MAX_Y; j++) {
-			fromUserSelectedRails[i][j] = new bool[3];
+			fromUserSelectedConnections[i][j] = new bool[3];
 			for (int k = 0; k < 3; k++)
-				fromUserSelectedRails[i][j][k] = false;
+				fromUserSelectedConnections[i][j][k] = false;
 		}
+	}
+	fromUserSelectedCoordinates = new bool*[MAX_X];
+	for (int i = 0; i < MAX_X; i++) {
+		fromUserSelectedCoordinates[i] = new bool[MAX_Y];
+		for (int j = 0; j < MAX_Y; j++)
+			fromUserSelectedCoordinates[i][j] = false;
 	}
 }
 
 DynamicState::DynamicState(const DynamicState& copy) :
 		State(copy), lastMove(copy.lastMove) {
-	fromUserSelectedRails = new bool**[MAX_X];
+	fromUserSelectedConnections = new bool**[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
-		fromUserSelectedRails[i] = new bool*[MAX_Y];
+		fromUserSelectedConnections[i] = new bool*[MAX_Y];
 		for (int j = 0; j < MAX_Y; j++) {
-			fromUserSelectedRails[i][j] = new bool[3];
+			fromUserSelectedConnections[i][j] = new bool[3];
 			for (int k = 0; k < 3; k++)
-				fromUserSelectedRails[i][j][k] =
-						copy.fromUserSelectedRails[i][j][k];
+				fromUserSelectedConnections[i][j][k] =
+						copy.fromUserSelectedConnections[i][j][k];
 		}
+	}
+	fromUserSelectedCoordinates = new bool*[MAX_X];
+	for (int i = 0; i < MAX_X; i++) {
+		fromUserSelectedCoordinates[i] = new bool[MAX_Y];
+		for (int j = 0; j < MAX_Y; j++)
+			fromUserSelectedCoordinates[i][j] = false;
 	}
 }
 
 DynamicState::DynamicState(const State& copy) :
 		State(copy), lastMove(0) {
-	fromUserSelectedRails = new bool**[MAX_X];
+	fromUserSelectedConnections = new bool**[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
-		fromUserSelectedRails[i] = new bool*[MAX_Y];
+		fromUserSelectedConnections[i] = new bool*[MAX_Y];
 		for (int j = 0; j < MAX_Y; j++) {
-			fromUserSelectedRails[i][j] = new bool[3];
+			fromUserSelectedConnections[i][j] = new bool[3];
 			for (int k = 0; k < 3; k++)
-				fromUserSelectedRails[i][j][k] = false;
+				fromUserSelectedConnections[i][j][k] = false;
 		}
+	}
+	fromUserSelectedCoordinates = new bool*[MAX_X];
+	for (int i = 0; i < MAX_X; i++) {
+		fromUserSelectedCoordinates[i] = new bool[MAX_Y];
+		for (int j = 0; j < MAX_Y; j++)
+			fromUserSelectedCoordinates[i][j] = false;
 	}
 }
 
 DynamicState::~DynamicState() {
 	for (int i = 0; i < MAX_X; i++) {
 		for (int j = 0; j < MAX_Y; j++)
-			delete[] fromUserSelectedRails[i][j];
-		delete[] fromUserSelectedRails[i];
+			delete[] fromUserSelectedConnections[i][j];
+		delete[] fromUserSelectedConnections[i];
 	}
-	delete[] fromUserSelectedRails;
+	delete[] fromUserSelectedConnections;
+	for (int i = 0; i < MAX_X; i++)
+		delete fromUserSelectedCoordinates[i];
+	delete fromUserSelectedCoordinates;
 }
 

@@ -38,6 +38,8 @@ string bannedStatusToString(BANNED_STATUS status) {
 		return "4";
 	case MOVE_TOO_MANY_BARRIERS:
 		return "5";
+	case MOVE_RAILS_ALREADY_EXIST:
+		return "6";
 	default:
 		return "";
 	}

@@ -13,6 +13,9 @@
 #include"Constants.h"
 
 class Connection {
+private:
+	Connection(const Connection&);
+	Connection operator=(const Connection&);
 public:
 	Connection(const Coordinate& erste, const Coordinate& zweite,
 			bool Hindernis);
