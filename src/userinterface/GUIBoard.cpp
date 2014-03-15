@@ -27,8 +27,9 @@ enum Farbart {
 };
 
 GUIBoard::GUIBoard(const Board* board, Counter points,
-		DynamicState* dynamicState, const City** hand) :
-		board(board), hand(hand), dynamicState(dynamicState), points(points) {
+		DynamicState* dynamicState, const City** hand, int deadLine) :
+		board(board), hand(hand), dynamicState(dynamicState), points(points), deadLine(
+				deadLine) {
 	drawCity = false;
 
 	setBackgroundRole(QPalette::Base);
@@ -299,9 +300,15 @@ void GUIBoard::drawHand(QPainter* painter) {
 void GUIBoard::drawRat(QPainter *painter) {
 	for (int i = 0; i < dynamicState->numberPawns; i++) {
 		painter->drawPixmap(
-				585. / 16. * (points.get(PLAYERCOLOR_LIST[i]) + 3) - 6.5 + i, 0,
-				getRatPixmap(PLAYERCOLOR_LIST[i]));
+				585. / 16.
+						* (points.get(
+								dynamicState->unsortedPawns[i]->spielerfarbe)
+								+ 2) + 6.5 + 3 * i, i,
+				getRatPixmap(dynamicState->unsortedPawns[i]->spielerfarbe));
 	}
+	painter->setPen(fatPen);
+	painter->drawLine(585. / 16. * (deadLine + 3), 0,
+			585. / 16. * (deadLine + 3), 20);
 }
 
 void GUIBoard::resizeEvent(QResizeEvent *event) {
@@ -340,4 +347,8 @@ void GUIBoard::setHand(const City** hand) {
 
 void GUIBoard::setPoints(Counter points) {
 	this->points = points;
+}
+
+void GUIBoard::setDeadLine(int deadLine) {
+	this->deadLine = deadLine;
 }

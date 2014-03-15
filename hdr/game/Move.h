@@ -38,7 +38,7 @@ public:
 		this->anzahlSchienen = zuweisung.anzahlSchienen;
 		this->gueltigkeitUEberprueft = zuweisung.gueltigkeitUEberprueft;
 		this->richtigBelegt = zuweisung.richtigBelegt;
-		for (int i = 0; i < anzahlSchienen; i++)
+		for (int i = 0; i < 2; i++)
 			Belegt[i] = zuweisung.Belegt[i];
 		this->bannedStatus = zuweisung.bannedStatus;
 		return *this;

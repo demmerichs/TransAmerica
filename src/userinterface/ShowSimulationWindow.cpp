@@ -69,11 +69,19 @@ void ShowSimulationWindow::setZp() {
 	else
 		spielbrett->setHand(0);
 	if (simulationp)
-		spielbrett->setPoints(
-				simulationp->getPointsEndOfRound(gameCounter - 1,
-						roundCounter - 2));
+		if (moveCounter == this->moveSpinBox->maximum() - 1)
+			spielbrett->setPoints(
+					simulationp->getPointsEndOfRound(gameCounter - 1,
+							roundCounter - 1));
+		else
+			spielbrett->setPoints(
+					simulationp->getPointsEndOfRound(gameCounter - 1,
+							roundCounter - 2));
 	else
 		spielbrett->setPoints(Counter(13));
+	if (simulationp)
+		spielbrett->setDeadLine(
+				simulationp->getDeadLine(gameCounter - 1, roundCounter - 1));
 	spielbrett->update();
 }
 

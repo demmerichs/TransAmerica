@@ -13,7 +13,8 @@
 #include "../../hdr/userinterface/UserInputWindow.h"
 #include "../../hdr/game/Human.h"
 
-MainWindow::MainWindow() {
+MainWindow::MainWindow() :
+		wp(0) {
 	/*
 	 wp = new ShowSimulationWindow(0);
 	 setCentralWidget(wp);

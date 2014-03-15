@@ -30,6 +30,7 @@ private:
 	const City** hand;
 	const DynamicState* dynamicState;
 	Counter points;
+	int deadLine;
 
 	/*draw group*/
 	void drawGrid(QPainter* painter);
@@ -49,12 +50,13 @@ protected:
 	void paintEvent(QPaintEvent* event);
 	void mouseReleaseEvent(QMouseEvent* event);
 public:
-	GUIBoard(const Board* board, Counter points, DynamicState* dynamicState =
-			0, const City** hand = 0);
+	GUIBoard(const Board* board, Counter points, DynamicState* dynamicState = 0,
+			const City** hand = 0, int deadLine = 0);
 	void setBoard(const Board* board);
 	void setDynamicState(const DynamicState* dynamicState);
 	void setHand(const City** hand);
 	void setPoints(Counter points);
+	void setDeadLine(int deadLine);
 public slots:
 	void drawCityChanged(bool);
 };

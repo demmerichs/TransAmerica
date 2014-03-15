@@ -89,14 +89,16 @@ bool Game::noLoser() const {
 }
 
 void Game::setNewDeadLine() {
+	int minimum = 13;
 	PlayingOrder::iterator playerIterator = gameLogger->playingOrder.begin(
 			gameLogger->gameStartingPlayer);
 	do {
-		if (gameLogger->deadLine > gameLogger->points.get(*playerIterator))
-			gameLogger->deadLine = gameLogger->points.get(*playerIterator);
+		if (minimum > gameLogger->points.get(*playerIterator))
+			minimum = gameLogger->points.get(*playerIterator);
+		++playerIterator;
 	} while (playerIterator
 			!= gameLogger->playingOrder.begin(gameLogger->gameStartingPlayer));
-	gameLogger->deadLine -= 3;
+	gameLogger->deadLine = minimum - 3;
 	if (gameLogger->deadLine < 0)
 		gameLogger->deadLine = 0;
 }
