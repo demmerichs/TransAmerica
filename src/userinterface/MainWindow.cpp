@@ -14,15 +14,17 @@
 #include "../../hdr/game/Human.h"
 
 MainWindow::MainWindow() {
-	/*
+
+    QApplication::setWindowIcon(QIcon("images/TransamericaAppIcon.png"));
+    /*
 	 wp = new ShowSimulationWindow(0);
 	 setCentralWidget(wp);
 	 */
-	//createActions();	//TODO put into ShowSimulationWindow
+    //createActions();	//TODO put into ShowSimulationWindow
 	//createToolBar();
 	//createStatusBar();
-	//createMenus();
-	setUnifiedTitleAndToolBarOnMac(false); //@nikbo: sieht so besser aus ;)
+    //createMenus();
+    //@nikbo: sieht so besser aus ;)
 
 	showMaximized();
 	openInit();
