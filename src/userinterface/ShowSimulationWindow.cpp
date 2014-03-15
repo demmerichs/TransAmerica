@@ -68,7 +68,7 @@ void ShowSimulationWindow::setZp() {
 						gameCounter - 1, roundCounter - 1));
 	else
 		spielbrett->setHand(0);
-	if (simulationp)
+	if (simulationp) {
 		if (moveCounter == this->moveSpinBox->maximum() - 1)
 			spielbrett->setPoints(
 					simulationp->getPointsEndOfRound(gameCounter - 1,
@@ -77,11 +77,11 @@ void ShowSimulationWindow::setZp() {
 			spielbrett->setPoints(
 					simulationp->getPointsEndOfRound(gameCounter - 1,
 							roundCounter - 2));
-	else
-		spielbrett->setPoints(Counter(13));
-	if (simulationp)
 		spielbrett->setDeadLine(
 				simulationp->getDeadLine(gameCounter - 1, roundCounter - 1));
+		spielbrett->setPlayerList(simulationp->getPlayerList());
+	} else
+		spielbrett->setPoints(Counter(13));
 	spielbrett->update();
 }
 

@@ -301,13 +301,10 @@ void GUIBoard::drawHand(QPainter* painter) {
 }
 
 void GUIBoard::drawRat(QPainter *painter) {
-	for (int i = 0; i < dynamicState->numberPawns; i++) {
+	for (int i = 0; i < (int) playerList.size(); i++) {
 		painter->drawPixmap(
-				585. / 16.
-						* (points.get(
-								dynamicState->unsortedPawns[i]->spielerfarbe)
-								+ 2) + 6.5 + 3 * i, i,
-				getRatPixmap(dynamicState->unsortedPawns[i]->spielerfarbe));
+				585. / 16. * (points.get(playerList[i]) + 2) + 6.5 + 3 * i, i,
+				getRatPixmap(playerList[i]->playerColor));
 	}
 	painter->setPen(fatPen);
 	painter->drawLine(585. / 16. * (deadLine + 3), 0,
@@ -334,8 +331,8 @@ QSize GUIBoard::sizeHint() {
 	return QSize(1220, 784);
 }
 
-void GUIBoard::setAIList(vector<AI*> aiList) {
-	this->aiList = aiList;
+void GUIBoard::setPlayerList(vector<AI*> playerList) {
+	this->playerList = playerList;
 }
 
 void GUIBoard::setBoard(const Board* board) {

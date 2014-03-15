@@ -31,9 +31,6 @@ int Counter::add(AI* player, int counter) {
 int Counter::get(AI* player) const {
 	return counter[player->playerColor];
 }
-int Counter::get(PLAYERCOLOR player) const {
-    return counter[player];
-}
 
 Counter Counter::operator+(const Counter& rhs) const {
 	Counter retValue(0);

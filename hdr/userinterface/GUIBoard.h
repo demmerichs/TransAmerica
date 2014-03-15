@@ -26,7 +26,7 @@ private:
 	QTransform scale;
 	QPixmap* background;
 
-	vector<AI*> aiList;
+	vector<AI*> playerList;
 	const Board* board;
 	const City** hand;
 	const DynamicState* dynamicState;
@@ -55,7 +55,7 @@ public:
 	bool selectCoordinates;
 	GUIBoard(const Board* board, Counter points, DynamicState* dynamicState = 0,
 			const City** hand = 0, int deadLine = 0);
-	void setAIList(vector<AI*> aiList);
+	void setPlayerList(vector<AI*> aiList);
 	void setBoard(const Board* board);
 	void setDynamicState(const DynamicState* dynamicState);
 	void setHand(const City** hand);
