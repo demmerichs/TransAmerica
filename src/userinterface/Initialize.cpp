@@ -8,7 +8,7 @@ using std::string;
 #include "../../hdr/userinterface/QConstants.h"
 
 Initialize::Initialize(const QString &title, QWidget *parent) :
-		QDialog(parent), humanPlayer(true), humanColor(P_YELLOW) { //TODO integrate in dialog box as choose
+        QDialog(parent), humanPlayer(false), humanColor(P_YELLOW) { //TODO integrate in dialog box as choose
 	nameLabel = new QLabel(tr("Name:"));
 	nameEdit = new QLineEdit;
 
@@ -40,8 +40,16 @@ Initialize::Initialize(const QString &title, QWidget *parent) :
 			SLOT(removeAI(QListWidgetItem*)));
 	for (int i = 0; i < MAX_PLAYER; i++)
 		notSelected.insert(PLAYERCOLOR_LIST[i]);
-	notSelected.erase(P_YELLOW); //TODO human is yellow: integrate to initialize-dialog
-	this->show();
+
+    QMessageBox::StandardButton answer;
+    answer = QMessageBox::warning(this, tr("Play with Human;"),
+                                  tr("Do you want to play a game against AIs?"),
+                                  QMessageBox::Yes| QMessageBox::No);
+    if (answer==QMessageBox::Yes){
+        notSelected.erase(P_YELLOW);
+        humanPlayer = true;
+    }
+    this->show();
 }
 
 QString Initialize::name() {
@@ -86,8 +94,9 @@ void Initialize::setAIAvailable() {
 			inAI >> input; //ignore #input
 		}
 		input = input.substr(1, input.length() - 4); //ignore "(...) and (...).h"
-		aiAvailable << input.data();
+        aiAvailable << input.data();
 	}
+    aiAvailable << "Human";
 }
 void Initialize::verify() {
 	if (aiSelected.size() >= 2) {

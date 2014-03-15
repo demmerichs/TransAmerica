@@ -13,18 +13,18 @@
 #include "../../hdr/userinterface/UserInputWindow.h"
 #include "../../hdr/game/Human.h"
 
-MainWindow::MainWindow() :
-		wp(0) {
-	QApplication::setWindowIcon(QIcon("images/TransamericaAppIcon.png"));
-	/*
+MainWindow::MainWindow(): wp(0) {
+
+    QApplication::setWindowIcon(QIcon("images/TransamericaAppIcon.png")); //TODO create some .ico
+    /*
 	 wp = new ShowSimulationWindow(0);
 	 setCentralWidget(wp);
 	 */
-	//createActions();	//TODO put into ShowSimulationWindow
-	//createToolBar();
-	//createStatusBar();
-	//createMenus();
-	//@nikbo: sieht so besser aus ;)
+    createActions();	//TODO put into ShowSimulationWindow //NOTE @OEtzi do you think so?
+    createToolBar();
+    createStatusBar();
+    createMenus();
+
 	showMaximized();
 	openInit();
 }
@@ -79,7 +79,9 @@ void MainWindow::createActions() {
 			this);
 	showDataAct->setStatusTip(
 			tr("Switch to the Data & Statistic of the current Simulation"));
-	connect(showDataAct, SIGNAL(triggered()), wp, SLOT(showDataWidget()));
+
+    if (wp) connect(showDataAct, SIGNAL(triggered()), wp, SLOT(showDataWidget()));
+    else showDataAct->setDisabled(true);
 
 	saveSpielbrettAct = new QAction(QIcon("images/SaveIcon.png"),
 			tr("&Save as image"), this);
@@ -94,7 +96,7 @@ void MainWindow::createActions() {
 	connect(saveSpielbrettAct, SIGNAL(triggered()), this,
 			SLOT(saveSpielbrett()));
 
-//    newGameAct->setDisabled(true);
+    newGameAct->setDisabled(true);
 //    showDataAct->setDisabled(true);
 //    saveSpielbrettAct->setDisabled(true);
 }
