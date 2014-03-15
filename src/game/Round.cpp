@@ -41,7 +41,7 @@ void Round::play() {
 			State copy(currentState);
 			Move* currentMove = new Move(
 					currentPlayer->doMove(copy, roundLogger->getMoveList()));
-			if (currentMove->valid(currentState, currentPlayer->playerColor)) { //TODO update BANNED_STATUS
+			if (currentMove->valid(currentState, currentPlayer->playerColor)) {
 				currentMove->execute(currentState);
 			} else
 				roundLogger->playerStatus[currentPlayer->playerColor] =

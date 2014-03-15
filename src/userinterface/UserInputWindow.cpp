@@ -38,7 +38,9 @@ Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 	this->show();
 	QEventLoop* pause = new QEventLoop;
 	connect(enterMove, SIGNAL(clicked(bool)), pause, SLOT(quit()));
+	spielbrett->selectConnections = true;
 	pause->exec();
+	spielbrett->selectConnections = false;
 	const Connection* one = 0, *two = 0;
 	int counter = 0;
 	for (int i = 0; i < MAX_X; i++)
@@ -53,7 +55,7 @@ Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 				}
 	return Move(P_YELLOW, one, two);
 }
-void UserInputWindow::showDataWidget(){
-    return;
-            //NOTE probably not the best solution
+void UserInputWindow::showDataWidget() {
+	return;
+	//NOTE probably not the best solution
 }

@@ -8,7 +8,7 @@ using std::string;
 #include "../../hdr/userinterface/QConstants.h"
 
 Initialize::Initialize(const QString &title, QWidget *parent) :
-        QDialog(parent), humanPlayer(false), humanColor(P_YELLOW) { //TODO integrate in dialog box as choose
+		QDialog(parent) {
 	nameLabel = new QLabel(tr("Name:"));
 	nameEdit = new QLineEdit;
 
@@ -41,15 +41,19 @@ Initialize::Initialize(const QString &title, QWidget *parent) :
 	for (int i = 0; i < MAX_PLAYER; i++)
 		notSelected.insert(PLAYERCOLOR_LIST[i]);
 
-    QMessageBox::StandardButton answer;
-    answer = QMessageBox::warning(this, tr("Play with Human;"),
-                                  tr("Do you want to play a game against AIs?"),
-                                  QMessageBox::Yes| QMessageBox::No);
-    if (answer==QMessageBox::Yes){
-        notSelected.erase(P_YELLOW);
-        humanPlayer = true;
-    }
-    this->show();
+	QMessageBox::StandardButton answer;
+	answer = QMessageBox::warning(this, tr("Play with Human;"),
+			tr("Do you want to play a game against AIs?"),
+			QMessageBox::Yes | QMessageBox::No);
+	if (answer == QMessageBox::Yes) {
+		notSelected.erase(P_YELLOW);
+		humanPlayer = true;
+		humanColor = P_YELLOW;
+	} else {
+		humanPlayer = false;
+		humanColor = NORAILS;
+	}
+	this->show();
 }
 
 QString Initialize::name() {
@@ -61,7 +65,8 @@ int Initialize::numberOfGames() {
 }
 
 void Initialize::addAI(QListWidgetItem* add) {
-	if (aiSelected.size() >= 6) {
+	if ((int) aiSelected.size() >= MAX_PLAYER
+			|| ((humanPlayer && (int) aiSelected.size() + 1 >= MAX_PLAYER))) {
 		QMessageBox::warning(this, tr("AI Selection"),
 				tr("Maximum has been reached!"), QMessageBox::Ok);
 		return;
@@ -94,9 +99,9 @@ void Initialize::setAIAvailable() {
 			inAI >> input; //ignore #input
 		}
 		input = input.substr(1, input.length() - 4); //ignore "(...) and (...).h"
-        aiAvailable << input.data();
+		aiAvailable << input.data();
 	}
-    aiAvailable << "Human";
+	aiAvailable << "Human";
 }
 void Initialize::verify() {
 	if (aiSelected.size() >= 2) {

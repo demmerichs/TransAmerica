@@ -13,17 +13,19 @@
 #include "../../hdr/userinterface/UserInputWindow.h"
 #include "../../hdr/game/Human.h"
 
-MainWindow::MainWindow(): wp(0) {
+MainWindow::MainWindow() :
+		wp(0) {
 
-    QApplication::setWindowIcon(QIcon("images/TransamericaAppIcon.png")); //TODO create some .ico
-    /*
+	QApplication::setWindowIcon(QIcon("images/TransamericaAppIcon.png")); //TODO create some .ico
+	/*
 	 wp = new ShowSimulationWindow(0);
 	 setCentralWidget(wp);
 	 */
-    createActions();	//TODO put into ShowSimulationWindow //NOTE @OEtzi do you think so?
-    createToolBar();
-    createStatusBar();
-    createMenus();
+	createActions();//TODO put into ShowSimulationWindow //NOTE @OEtzi do you think so?
+					//TODO @nikbo: no, was a mistake and forgot to remove TODO ;) thank you
+	createToolBar();
+	createStatusBar();
+	createMenus();
 
 	showMaximized();
 	openInit();
@@ -31,12 +33,7 @@ MainWindow::MainWindow(): wp(0) {
 
 void MainWindow::startSimulation(int games, vector<AI*> aiList) {
 	myGameExe = new GameExec(wp, aiList, games);
-	//wp->simulationp = myGameExe->simulationLogger;
 	myGameExe->simulateSimulation();
-	/*wp->updateSpinBoxes();
-	 wp->setZp();
-	 wp->update();
-	 wp->showSpielbrett();*/
 	if (wp)
 		delete wp;
 	wp = new ShowSimulationWindow(myGameExe->simulationLogger);
@@ -80,8 +77,10 @@ void MainWindow::createActions() {
 	showDataAct->setStatusTip(
 			tr("Switch to the Data & Statistic of the current Simulation"));
 
-    if (wp) connect(showDataAct, SIGNAL(triggered()), wp, SLOT(showDataWidget()));
-    else showDataAct->setDisabled(true);
+	if (wp)
+		connect(showDataAct, SIGNAL(triggered()), wp, SLOT(showDataWidget()));
+	else
+		showDataAct->setDisabled(true);
 
 	saveSpielbrettAct = new QAction(QIcon("images/SaveIcon.png"),
 			tr("&Save as image"), this);
@@ -96,7 +95,7 @@ void MainWindow::createActions() {
 	connect(saveSpielbrettAct, SIGNAL(triggered()), this,
 			SLOT(saveSpielbrett()));
 
-    newGameAct->setDisabled(true);
+	newGameAct->setDisabled(true);
 //    showDataAct->setDisabled(true);
 //    saveSpielbrettAct->setDisabled(true);
 }
