@@ -6,12 +6,17 @@
  */
 
 #include "UserInputWindow.h"
+
+#include <QPushButton>
+#include <QFormLayout>
+#include <QEventLoop>
+
 #include "../../hdr/game/Move.h"
 #include "../../hdr/userinterface/DynamicState.h"
-#include "../../hdr/userinterface/Spielbrett.h"
+#include "../../hdr/userinterface/GUIBoard.h"
 #include "../../hdr/game/Board.h"
 
-UserInputWindow::UserInputWindow(const Board& board) :
+UserInputWindow::UserInputWindow(const Board* board) :
 		Window(board) {
 	enterMove = new QPushButton(tr("Enter Move"));
 	toolLayout->addRow(enterMove);
@@ -21,12 +26,13 @@ UserInputWindow::~UserInputWindow() {
 	// TODO Auto-generated destructor stub
 }
 
-Move UserInputWindow::getMoveFromUser(vector<Move*> moveList) {
-	aZp = new DynamicState(this->spielbrett->board);
-	for (int i = 0; i < (int) moveList.size(); i++)
-		moveList[i]->execute(*aZp);
+Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
+		const City** hand, vector<Move*> moveList) {
+	DynamicState* aZp = new DynamicState(currentState);
 	if (moveList.size() > 0)
 		aZp->lastMove = moveList[moveList.size() - 1];
+	spielbrett->setDynamicState(aZp);
+	spielbrett->setHand(hand);
 	this->spielbrett->update();
 	this->update();
 	this->show();

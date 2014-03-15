@@ -21,7 +21,7 @@ Human::~Human() {
 }
 
 Move Human::doMove(State& currentState, vector<Move*> moveList) {
-	return userInput->getMoveFromUser(moveList);
+	return userInput->getMoveFromUser(this, currentState, hand, moveList);
 }
 
 const Coordinate* Human::setPawn(State& currentState) {
@@ -33,7 +33,7 @@ const Coordinate* Human::setPawn(State& currentState) {
 	return currentState.board.grid[10][6];
 }
 
-bool Human::countPoints(State&, vector<Connection*>) {
+bool Human::countPoints(State&, vector<Connection*>&) {
 	return false;
 }
 

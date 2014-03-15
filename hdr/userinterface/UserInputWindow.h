@@ -12,24 +12,28 @@
 //==============================
 // forward declared dependencies
 class QPushButton;
+class AI;
+class State;
+class City;
+class Move;
 //==============================
 // included dependencies
 #include <vector>
 using std::vector;
 
 #include "Window.h"
-
 //==============================
 // the actual class
 
 class UserInputWindow: public Window {
 	friend class Human;
 public:
-	UserInputWindow(const Board& board);
+	UserInputWindow(const Board* board);
 	virtual ~UserInputWindow();
 private:
 	QPushButton* enterMove;
-	Move getMoveFromUser(vector<Move*> moveList);
+	Move getMoveFromUser(AI* player, State& currentState, const City** hand,
+			vector<Move*> moveList);
 };
 
 #endif /* USERINPUTWINDOW_H_ */

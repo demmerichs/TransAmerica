@@ -5,11 +5,10 @@
 using std::ifstream;
 using std::string;
 
-
-#include "../../hdr/userinterface/QKonstanten.h"
+#include "../../hdr/userinterface/QConstants.h"
 
 Initialize::Initialize(const QString &title, QWidget *parent) :
-		QDialog(parent) {
+		QDialog(parent), humanPlayer(true), humanColor(P_YELLOW) { //TODO integrate in dialog box as choose
 	nameLabel = new QLabel(tr("Name:"));
 	nameEdit = new QLineEdit;
 
@@ -33,7 +32,7 @@ Initialize::Initialize(const QString &title, QWidget *parent) :
 	layout->addWidget(buttonBox, 3, 0, 1, 2);
 	setLayout(layout);
 	setWindowTitle(title);
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(verify()));
+	connect(buttonBox, SIGNAL(accepted()), this, SLOT(verify()));
 	connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 	connect(listWidgetA, SIGNAL(itemDoubleClicked(QListWidgetItem*)), this,
 			SLOT(addAI(QListWidgetItem*)));
@@ -41,6 +40,7 @@ Initialize::Initialize(const QString &title, QWidget *parent) :
 			SLOT(removeAI(QListWidgetItem*)));
 	for (int i = 0; i < MAX_PLAYER; i++)
 		notSelected.insert(PLAYERCOLOR_LIST[i]);
+	notSelected.erase(P_YELLOW); //TODO human is yellow: integrate to initialize-dialog
 	this->show();
 }
 
@@ -89,19 +89,19 @@ void Initialize::setAIAvailable() {
 		aiAvailable << input.data();
 	}
 }
-void Initialize::verify(){
-    if (aiSelected.size()>=2) {
-        accept();
-        return;
-    }
+void Initialize::verify() {
+	if (aiSelected.size() >= 2) {
+		accept();
+		return;
+	}
 
-    QMessageBox::StandardButton answer;
-    answer = QMessageBox::warning(this, tr("Incomplete Form"),
-        tr("The form does not contain all the necessary information.\n"
-           "Do you want to discard it?"),
-        QMessageBox::Yes | QMessageBox::No);
+	QMessageBox::StandardButton answer;
+	answer = QMessageBox::warning(this, tr("Incomplete Form"),
+			tr("The form does not contain all the necessary information.\n"
+					"Do you want to discard it?"),
+			QMessageBox::Yes | QMessageBox::No);
 
-    if (answer == QMessageBox::Yes)
-        reject();
+	if (answer == QMessageBox::Yes)
+		reject();
 }
 

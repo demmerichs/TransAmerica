@@ -40,6 +40,8 @@ public:
 	QString name();
 	int numberOfGames();
 	QList<ListElement*> aiSelected;
+	bool humanPlayer;
+	PLAYERCOLOR humanColor;
 private:
 	QStringList aiAvailable;
 	set<PLAYERCOLOR> notSelected;
@@ -56,7 +58,7 @@ private:
 private slots:
 	void addAI(QListWidgetItem* add);
 	void removeAI(QListWidgetItem* remove);
-    void verify();
+	void verify();
 };
 
 #endif // INITIALIZE_H
