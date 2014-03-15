@@ -25,7 +25,7 @@ UserInputWindow::UserInputWindow(const Board* board) :
 UserInputWindow::~UserInputWindow() {
 	// TODO Auto-generated destructor stub
 }
-
+//* TODO @OEtzi: use the slot MainWindow::displayOnStatus to show instructions
 Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 		const City** hand, vector<Move*> moveList) {
 	DynamicState* aZp = new DynamicState(currentState);
@@ -52,4 +52,8 @@ Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 						two = aZp->board.edges[i][j][k];
 				}
 	return Move(P_YELLOW, one, two);
+}
+void UserInputWindow::showDataWidget(){
+    return;
+            //NOTE probably not the best solution
 }

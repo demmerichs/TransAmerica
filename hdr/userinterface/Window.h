@@ -32,6 +32,8 @@ protected:
 	QLabel* toolBoxLabel;
 	QCheckBox* showTownsCheckBox;
 	QTabWidget* tabWidget;
+private slots:
+    virtual void showDataWidget()=0;
 };
 
 #endif /* WINDOW_H_ */

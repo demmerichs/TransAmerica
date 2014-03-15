@@ -26,6 +26,7 @@ using std::vector;
 // the actual class
 
 class UserInputWindow: public Window {
+    Q_OBJECT
 	friend class Human;
 public:
 	UserInputWindow(const Board* board);
@@ -34,6 +35,8 @@ private:
 	QPushButton* enterMove;
 	Move getMoveFromUser(AI* player, State& currentState, const City** hand,
 			vector<Move*> moveList);
+private slots:
+    void showDataWidget();
 };
 
 #endif /* USERINPUTWINDOW_H_ */
