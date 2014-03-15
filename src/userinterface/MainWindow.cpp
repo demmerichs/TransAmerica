@@ -15,6 +15,7 @@
 
 MainWindow::MainWindow() :
 		wp(0) {
+	QApplication::setWindowIcon(QIcon("images/TransamericaAppIcon.png"));
 	/*
 	 wp = new ShowSimulationWindow(0);
 	 setCentralWidget(wp);
@@ -23,8 +24,7 @@ MainWindow::MainWindow() :
 	//createToolBar();
 	//createStatusBar();
 	//createMenus();
-	setUnifiedTitleAndToolBarOnMac(false); //@nikbo: sieht so besser aus ;)
-
+	//@nikbo: sieht so besser aus ;)
 	showMaximized();
 	openInit();
 }
