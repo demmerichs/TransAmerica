@@ -281,7 +281,6 @@ unsigned short State::distance(const Vector& target,
 		const vector<Vector> &possibleStarts) const {
 	unsigned short distance = numeric_limits<unsigned short>::max();
 	unsigned short ** array = this->evaluateBoard(target);
-	//dumpEvaluateBoard(array);
 	for (unsigned i = 0; i < possibleStarts.size(); i++) {
 		Vector act = possibleStarts[i];
 		if (array[act.x][act.y] < distance)

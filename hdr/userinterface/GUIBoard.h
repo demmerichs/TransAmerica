@@ -26,10 +26,12 @@ private:
 	QTransform scale;
 	QPixmap* background;
 
+	vector<AI*> aiList;
 	const Board* board;
 	const City** hand;
 	const DynamicState* dynamicState;
 	Counter points;
+	int deadLine;
 
 	/*draw group*/
 	void drawGrid(QPainter* painter);
@@ -49,12 +51,16 @@ protected:
 	void paintEvent(QPaintEvent* event);
 	void mouseReleaseEvent(QMouseEvent* event);
 public:
-	GUIBoard(const Board* board, Counter points, DynamicState* dynamicState =
-			0, const City** hand = 0);
+	bool selectConnections;
+	bool selectCoordinates;
+	GUIBoard(const Board* board, Counter points, DynamicState* dynamicState = 0,
+			const City** hand = 0, int deadLine = 0);
+	void setAIList(vector<AI*> aiList);
 	void setBoard(const Board* board);
 	void setDynamicState(const DynamicState* dynamicState);
 	void setHand(const City** hand);
 	void setPoints(Counter points);
+	void setDeadLine(int deadLine);
 public slots:
 	void drawCityChanged(bool);
 };

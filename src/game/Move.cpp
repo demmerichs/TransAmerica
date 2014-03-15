@@ -46,7 +46,7 @@ Move::Move(const Move& copy) :
 Move::~Move() {
 }
 
-bool Move::valid(State aktZu, PLAYERCOLOR spielerfarb) {
+bool Move::valid(State currentState, PLAYERCOLOR spielerfarb) {
 	gueltigkeitUEberprueft = true;
 	//checken, ob der Spieler richtige Farbe verwendet hat
 	if (spielerfarb != this->spielerfarbe) {
@@ -62,19 +62,42 @@ bool Move::valid(State aktZu, PLAYERCOLOR spielerfarb) {
 		gueltigkeit = false;
 		return false;
 	}
+	//checken, dass keine Schiene auf einer vorhandenen Schiene platziert wurde
+	if (currentState.railSet[Belegt[0]->first.x][Belegt[0]->first.y][Belegt[0]->direction]) {
+		cout << "The first connection is already set." << endl;
+		bannedStatus = MOVE_RAILS_ALREADY_EXIST;
+		gueltigkeit = false;
+		return false;
+	}
+	if (anzahlSchienen == 2) {
+		if (currentState.railSet[Belegt[1]->first.x][Belegt[1]->first.y][Belegt[1]->direction]) {
+			cout << "The second connection is already set." << endl;
+			bannedStatus = MOVE_RAILS_ALREADY_EXIST;
+			gueltigkeit = false;
+			return false;
+		}
+		//checken, dass die gesetzten Schienen verschieden sind
+		if (Belegt[0] == Belegt[1]) {
+			cout << "Both connections of the move are the same." << endl;
+			bannedStatus = MOVE_RAILS_ALREADY_EXIST;
+			gueltigkeit = false;
+			return false;
+		}
+	}
 	//erste Schiene checken
 	//schienennr von Spieler
-	short schienennr = aktZu.getPawn(spielerfarb).schienennetznummer;
+	short schienennr = currentState.getPawn(spielerfarb).schienennetznummer;
 	//prŸfe, ob Connection an schienennr anliegt
-	if (aktZu.isRailwayNumberOfConnectionEqualsNumber(*Belegt[0], schienennr)) {
+	if (currentState.isRailwayNumberOfConnectionEqualsNumber(*Belegt[0],
+			schienennr)) {
 		richtigBelegt = true;
 		//wenn ja, schiene legen, neuer State, also neue schienennr und dann zweite schiene analog
 		if (anzahlSchienen == 1) {
 			gueltigkeit = true;
 		} else {
-			aktZu.setRail(*Belegt[0]);
-			schienennr = aktZu.getPawn(spielerfarbe).schienennetznummer;
-			if (aktZu.isRailwayNumberOfConnectionEqualsNumber(*Belegt[1],
+			currentState.setRail(*Belegt[0]);
+			schienennr = currentState.getPawn(spielerfarbe).schienennetznummer;
+			if (currentState.isRailwayNumberOfConnectionEqualsNumber(*Belegt[1],
 					schienennr)) {
 				gueltigkeit = true;
 			} else {
@@ -87,13 +110,13 @@ bool Move::valid(State aktZu, PLAYERCOLOR spielerfarb) {
 			}
 		}
 	} else if (anzahlSchienen == 2
-			&& aktZu.isRailwayNumberOfConnectionEqualsNumber(*Belegt[1],
+			&& currentState.isRailwayNumberOfConnectionEqualsNumber(*Belegt[1],
 					schienennr)) {
 		richtigBelegt = false;
 		//wenn ja, schiene legen, neuer State, also neue schienennr und dann zweite schiene analog
-		aktZu.setRail(*Belegt[1]);
-		schienennr = aktZu.getPawn(spielerfarbe).schienennetznummer;
-		if (aktZu.isRailwayNumberOfConnectionEqualsNumber(*Belegt[0],
+		currentState.setRail(*Belegt[1]);
+		schienennr = currentState.getPawn(spielerfarbe).schienennetznummer;
+		if (currentState.isRailwayNumberOfConnectionEqualsNumber(*Belegt[0],
 				schienennr)) {
 			gueltigkeit = true;
 		} else {

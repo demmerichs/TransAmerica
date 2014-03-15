@@ -44,7 +44,7 @@ Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 	for (int i = 0; i < MAX_X; i++)
 		for (int j = 0; j < MAX_Y; j++)
 			for (int k = 0; k < 3; k++)
-				if (aZp->fromUserSelectedRails[i][j][k]) {
+				if (aZp->fromUserSelectedConnections[i][j][k]) {
 					counter++;
 					if (counter == 1)
 						one = aZp->board.edges[i][j][k];

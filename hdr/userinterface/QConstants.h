@@ -7,6 +7,7 @@ class QPixmap;
 #include "../../hdr/game/Constants.h"
 
 QColor getQColor(PLAYERCOLOR i);
+QColor getQColorCity(CITYCOLOR i);
 QPixmap getCityPixmap(CITYCOLOR i);
 QPixmap getCity_hPixmap(CITYCOLOR i);
 QPixmap getRatPixmap(PLAYERCOLOR i);

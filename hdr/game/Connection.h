@@ -13,8 +13,12 @@
 #include"Constants.h"
 
 class Connection {
+private:
+	Connection(const Connection&);
+	Connection operator=(const Connection&);
 public:
-	Connection(const Coordinate& erste, const Coordinate& zweite, bool Hindernis);
+	Connection(const Coordinate& erste, const Coordinate& zweite,
+			bool Hindernis);
 	virtual ~Connection();
 	const Coordinate &first; //Summe der Komponenten kleiner als bei second zur Eindeutigkeit
 	const Coordinate &second;
@@ -22,6 +26,7 @@ public:
 	const bool hindernis;
 
 	const Connection& operator=(const Connection&) const;
+	void dump() const;
 };
 
 #endif /* CONNECTION_H_ */

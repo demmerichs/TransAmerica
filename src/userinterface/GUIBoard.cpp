@@ -27,8 +27,9 @@ enum Farbart {
 };
 
 GUIBoard::GUIBoard(const Board* board, Counter points,
-		DynamicState* dynamicState, const City** hand) :
-		board(board), hand(hand), dynamicState(dynamicState), points(points) {
+		DynamicState* dynamicState, const City** hand, int deadLine) :
+		board(board), hand(hand), dynamicState(dynamicState), points(points), deadLine(
+				deadLine), selectConnections(false), selectCoordinates(false) {
 	drawCity = false;
 
 	setBackgroundRole(QPalette::Base);
@@ -41,6 +42,7 @@ GUIBoard::GUIBoard(const Board* board, Counter points,
 	transform.scale(1, sqrt(3) / 2.);
 	transform.shear(-0.5, 0);
 	invertedTransform = transform.inverted();
+	this->update();
 }
 
 void GUIBoard::paintEvent(QPaintEvent*) {
@@ -75,7 +77,7 @@ void GUIBoard::drawCityChanged(bool enable) {
 	update();
 }
 
-void GUIBoard::mouseReleaseEvent(QMouseEvent* event) {
+void GUIBoard::mouseReleaseEvent(QMouseEvent* event) { //TODO also mark coordinates and add bools for marking
 	QPoint clickPoint = event->pos();
 	clickPoint = scale.inverted().map(clickPoint);
 	clickPoint = invertedTransform.map(clickPoint);
@@ -109,8 +111,8 @@ void GUIBoard::mouseReleaseEvent(QMouseEvent* event) {
 		resultY = floor(y);
 	} else
 		assert(false);
-	dynamicState->fromUserSelectedRails[resultX][resultY][resultDirection] =
-			!dynamicState->fromUserSelectedRails[resultX][resultY][resultDirection];
+	dynamicState->fromUserSelectedConnections[resultX][resultY][resultDirection] =
+			!dynamicState->fromUserSelectedConnections[resultX][resultY][resultDirection];
 	update();
 }
 
@@ -190,7 +192,7 @@ void GUIBoard::drawRailway(QPainter *painter) {
 			for (int k = 0; k < 3; k++)
 				if (dynamicState->board.edges[i][j][k]) {
 					if (!dynamicState->railSet[i][j][k]
-							&& dynamicState->fromUserSelectedRails[i][j][k]) {
+							&& dynamicState->fromUserSelectedConnections[i][j][k]) {
 						const Connection* const current =
 								dynamicState->board.edges[i][j][k];
 						if (current->hindernis)
@@ -275,9 +277,9 @@ void GUIBoard::drawCityNames(QPainter* painter) {
 }
 
 void GUIBoard::drawHand(QPainter* painter) {
+	QPen coloredPen(fatPen);
 	if (hand) {
 		double size = 101.66;
-		painter->setPen(fatPen);
 		painter->setFont(QFont("Times", 10, QFont::Bold));
 		QRect positionRect(0, background->height() - 20, size, 20);
 		//Higlighted Cities
@@ -289,6 +291,8 @@ void GUIBoard::drawHand(QPainter* painter) {
 										(hand[i]->y) * sL - 8.5)),
 						getCity_hPixmap(hand[i]->cityColor));
 				positionRect.moveRight(size * (i + 2));
+				coloredPen.setColor(getQColorCity(hand[i]->cityColor));
+				painter->setPen(coloredPen);
 				painter->drawText(positionRect, Qt::AlignCenter,
 						QString::fromStdString(hand[i]->name));
 			}
@@ -299,9 +303,15 @@ void GUIBoard::drawHand(QPainter* painter) {
 void GUIBoard::drawRat(QPainter *painter) {
 	for (int i = 0; i < dynamicState->numberPawns; i++) {
 		painter->drawPixmap(
-				585. / 16. * (points.get(PLAYERCOLOR_LIST[i]) + 3) - 6.5 + i, 0,
-				getRatPixmap(PLAYERCOLOR_LIST[i]));
+				585. / 16.
+						* (points.get(
+								dynamicState->unsortedPawns[i]->spielerfarbe)
+								+ 2) + 6.5 + 3 * i, i,
+				getRatPixmap(dynamicState->unsortedPawns[i]->spielerfarbe));
 	}
+	painter->setPen(fatPen);
+	painter->drawLine(585. / 16. * (deadLine + 3), 0,
+			585. / 16. * (deadLine + 3), 20);
 }
 
 void GUIBoard::resizeEvent(QResizeEvent *event) {
@@ -324,6 +334,10 @@ QSize GUIBoard::sizeHint() {
 	return QSize(1220, 784);
 }
 
+void GUIBoard::setAIList(vector<AI*> aiList) {
+	this->aiList = aiList;
+}
+
 void GUIBoard::setBoard(const Board* board) {
 	this->board = board;
 }
@@ -340,4 +354,8 @@ void GUIBoard::setHand(const City** hand) {
 
 void GUIBoard::setPoints(Counter points) {
 	this->points = points;
+}
+
+void GUIBoard::setDeadLine(int deadLine) {
+	this->deadLine = deadLine;
 }

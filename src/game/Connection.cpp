@@ -20,3 +20,10 @@ Connection::~Connection() {
 const Connection& Connection::operator=(const Connection& copy) const {
 	return copy;
 }
+
+void Connection::dump() const {
+	cout << "First coordinate of connection is:" << endl;
+	first.dump();
+	cout << "Second coordinate of connection is:" << endl;
+	second.dump();
+}
