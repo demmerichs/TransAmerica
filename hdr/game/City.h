@@ -21,14 +21,16 @@ using std::string;
 //==============================
 // the actual class
 class City: public Coordinate {
-public:
+	friend class Board;
+private:
 	City(string name, CITYCOLOR cityColor, short number, Vector place);
+	City(const City&);
+	City& operator=(const City&);
 	virtual ~City();
-
-	//TODO mehr const setzen
-	string name;
-	CITYCOLOR cityColor;
-	short number; //Staedte kriegen einfache Kennnummern
+public:
+	const string name;
+	const CITYCOLOR cityColor;
+	const short number; //Staedte kriegen einfache Kennnummern
 };
 
 #endif /* CITY_H_ */

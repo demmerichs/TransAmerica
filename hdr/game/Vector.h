@@ -40,10 +40,8 @@ public:
 	 that represents the distance on the board in terms of steps. @Important: This distance doesn't represent
 	 the number of steps, because it doesn't take care of bridges/tunnels!*/
 	DIRECTION direction() const;
-
-	void dump() const {
-		cout << x << " " << y << endl;
-	} /**< Dumps the values of the vector on the standard stream. */
+	static Vector getDirectionVector(DIRECTION direction);
+	void dump() const;/**< Dumps the values of the vector on the standard stream. */
 };
 
 #endif /* VECTOR_H_ */
