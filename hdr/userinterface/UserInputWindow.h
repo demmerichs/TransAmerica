@@ -39,7 +39,7 @@ private:
 	const Coordinate* getPawnFromUser(AI* player, State& currentState,
 			const City** hand);
 private slots:
-	void showDataWidget();
+    void showDataWidget();
 };
 
 #endif /* USERINPUTWINDOW_H_ */

@@ -7,6 +7,7 @@
 #include <QMouseEvent>
 #include <cassert>
 #include <cmath>
+#include <iostream>
 using std::abs;
 
 #include "QConstants.h"
@@ -70,6 +71,7 @@ void GUIBoard::paintEvent(QPaintEvent*) {
 	if (drawCity)
 		drawCityNames(&painter);
 	drawRat(&painter);
+    drawPoints(&painter);
 	painter.setWorldTransform(scale.inverted(), true);
 }
 
@@ -346,6 +348,23 @@ void GUIBoard::drawRat(QPainter *painter) {
 	painter->setPen(fatPen);
 	painter->drawLine(585. / 16. * (deadLine + 3), 0,
 			585. / 16. * (deadLine + 3), 20);
+}
+
+void GUIBoard::drawPoints(QPainter* painter){
+    QRectF bRect (0,272, 103, 19.2);
+    QPen coloredPen(fatPen);
+    painter->setFont(QFont("Times", 10, QFont::Bold));
+    for (int i=0; i < (int) playerList.size(); i++){
+        QString printString;
+        printString = QString(" %1 (%2) %3")
+                            .arg(QString::fromStdString(playerList[i]->AIname))
+                            .arg(QString::fromStdString(playerList[i]->owner))
+                            .arg(points.get(playerList[i]));
+        coloredPen.setColor(getQColor(playerList[i]->playerColor));
+        painter->setPen(coloredPen);
+        painter->drawText(bRect,printString);
+        bRect.moveTop(bRect.top()+19.2);
+    }
 }
 
 void GUIBoard::drawSelectedCoordinates(QPainter* painter) {

@@ -21,9 +21,8 @@ MainWindow::MainWindow() :
 	 wp = new ShowSimulationWindow(0);
 	 setCentralWidget(wp);
 	 */
-	createActions();//TODO put into ShowSimulationWindow //NOTE @OEtzi do you think so?
-					//TODO @nikbo: no, was a mistake and forgot to remove TODO ;) thank you
-	createToolBar();
+    createActions();
+    createToolBar();
 	createStatusBar();
 	createMenus();
 
@@ -48,6 +47,7 @@ void MainWindow::openInit() {
 		if (dialog.humanPlayer) {
 			UserInputWindow* UIWp = new UserInputWindow(new Board(true));
 			wp = UIWp;
+            connect(wp, SIGNAL(requestDisplayOnStatusBar(QString,int)),this, SLOT(displayOnStatusBar(QString,int)));
 			setCentralWidget(wp);
 			aiList.push_back(new Human(dialog.humanColor, UIWp));
 		}

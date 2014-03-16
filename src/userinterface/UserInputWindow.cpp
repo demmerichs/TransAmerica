@@ -64,6 +64,8 @@ Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 	QEventLoop* pause = new QEventLoop;
 	connect(enterMove, SIGNAL(clicked(bool)), pause, SLOT(quit()));
 	spielbrett->selectConnections = true;
+
+    emit requestDisplayOnStatusBar("Please select your rails on the board.", 0);
 	pause->exec();
 	spielbrett->selectConnections = false;
 	const Connection* one = 0, *two = 0;
@@ -78,6 +80,7 @@ Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 					else
 						two = aZp->board.edges[i][j][k];
 				}
+    emit requestDisplayOnStatusBar("... waiting for the AIs", 0);
 	return Move(P_YELLOW, one, two);
 }
 

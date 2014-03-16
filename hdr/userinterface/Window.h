@@ -34,6 +34,9 @@ protected:
 	QTabWidget* tabWidget;
 private slots:
     virtual void showDataWidget()=0;
+signals:
+    void requestDisplayOnStatusBar(QString text, int time=0); //TODO @OEtzi use this with emit req... ;
+
 };
 
 #endif /* WINDOW_H_ */
