@@ -4,6 +4,8 @@ all:
 	qmake -project ../
 	qmake -spec macx-g++ Release.pro
 	make
+	cp ObjectAIs/DavidAI_local.o ./DavidAI.o
+	make
 
 clean:
 	make clean
