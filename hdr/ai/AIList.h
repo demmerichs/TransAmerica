@@ -8,7 +8,7 @@
 // included dependencies
 #include "testKI.h"
 #include "debuggerAI.h"
-//#include "DavidAI.h"
+#include "DavidAI.h"
 //==============================
 // the actual class
 

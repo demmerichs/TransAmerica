@@ -100,7 +100,7 @@ int Round::losingPoints(AI* player) const {
 		}
 	}
 	for (int i = 0; i < 5; i++) {
-		minuspoints += currentState.distance(*(player->hand[i]),
+		minuspoints += currentState.distance(player->hand[i],
 				currentState.pointsBelongingToRailwaySystem(
 						player->playerColor));
 	}

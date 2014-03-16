@@ -196,7 +196,7 @@ void State::resetAll() {
  }
  }
  */
-unsigned short** State::evaluateBoard(Vector target) const {
+unsigned short** State::evaluateBoard(const Coordinate* target) const {
 	unsigned short **index = new unsigned short*[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
 		index[i] = new unsigned short[MAX_Y];
@@ -206,11 +206,11 @@ unsigned short** State::evaluateBoard(Vector target) const {
 			index[i][j] = numeric_limits<unsigned short>::max() / 2;
 		}
 	}
-	index[target.x][target.y] = 0;
+	index[target->x][target->y] = 0;
 
 	vector<Vector> old_changed;
 	vector<Vector> new_changed;
-	old_changed.push_back(target);
+	old_changed.push_back(*target);
 	vector<Vector>::iterator it;
 	while (old_changed.size() != 0) {
 		for (it = old_changed.begin(); it != old_changed.end(); it++) {
@@ -266,23 +266,23 @@ unsigned short State::find_min(Vector actual, unsigned short ** &index) const {
 	return min;
 }
 
-vector<Vector> State::pointsBelongingToRailwaySystem(
+vector<const Coordinate*> State::pointsBelongingToRailwaySystem(
 		PLAYERCOLOR playercolour) const {
-	int playersRailwayID = this->getPawn(playercolour).schienennetznummer;
-	vector<Vector> returnval;
+	int playersRailwayID = getPawn(playercolour).schienennetznummer;
+	vector<const Coordinate*> returnval;
 	for (int i = 0; i < MAX_X; i++)
 		for (int j = 0; j < MAX_Y; j++)
-			if (playersRailwayID == this->railwayNumber[i][j])
-				returnval.push_back(Vector(i, j));
+			if (playersRailwayID == railwayNumber[i][j])
+				returnval.push_back(board.grid[i][j]);
 	return returnval;
 }
 
-unsigned short State::distance(const Vector& target,
-		const vector<Vector> &possibleStarts) const {
+unsigned short State::distance(const Coordinate* target,
+		const vector<const Coordinate*> &possibleStarts) const {
 	unsigned short distance = numeric_limits<unsigned short>::max();
 	unsigned short ** array = this->evaluateBoard(target);
 	for (unsigned i = 0; i < possibleStarts.size(); i++) {
-		Vector act = possibleStarts[i];
+		Vector act = *possibleStarts[i];
 		if (array[act.x][act.y] < distance)
 			distance = array[act.x][act.y];
 	}

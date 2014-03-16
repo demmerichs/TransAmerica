@@ -62,10 +62,10 @@ public:
 	const Connection* getConnection(Vector a, Vector b) const;
 	BANNED_STATUS addPawn(Pawn insert);
 	void resetAll();
-	unsigned short** evaluateBoard(Vector target) const;
-	unsigned short distance(const Vector& target,
-			const vector<Vector> &possibleStarts) const;
-	vector<Vector> pointsBelongingToRailwaySystem(
+	unsigned short** evaluateBoard(const Coordinate* target) const;
+	unsigned short distance(const Coordinate* target,
+			const vector<const Coordinate*> &possibleStarts) const;
+	vector<const Coordinate*> pointsBelongingToRailwaySystem(
 			PLAYERCOLOR playercolour) const;
 	void dump() const;
 

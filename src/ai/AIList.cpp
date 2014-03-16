@@ -12,8 +12,8 @@ AI* createAI(string name, PLAYERCOLOR playerColor) {
 		return new testKI(playerColor);
 	if (name.compare("debuggerAI") == 0)
 		return new debuggerAI(playerColor);
-    //if (name.compare("DavidAI") == 0)
-    //	return new DavidAI(playerColor);
+	if (name.compare("DavidAI") == 0)
+		return new DavidAI(playerColor);
 	return 0;
 }
 
