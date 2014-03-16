@@ -41,6 +41,7 @@ private:
 	void drawCityNames(QPainter* painter);
 	void drawHand(QPainter* painter);
 	void drawRat(QPainter* painter);
+	void drawSelectedCoordinates(QPainter* painter);
 	/**
 	 some functions to get along with proper drawings
 	 */

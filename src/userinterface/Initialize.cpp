@@ -65,8 +65,7 @@ int Initialize::numberOfGames() {
 }
 
 void Initialize::addAI(QListWidgetItem* add) {
-	if ((int) aiSelected.size() >= MAX_PLAYER
-			|| ((humanPlayer && (int) aiSelected.size() + 1 >= MAX_PLAYER))) {
+	if (humanPlayer + (int) aiSelected.size() >= MAX_PLAYER) {
 		QMessageBox::warning(this, tr("AI Selection"),
 				tr("Maximum has been reached!"), QMessageBox::Ok);
 		return;
@@ -104,7 +103,7 @@ void Initialize::setAIAvailable() {
 	aiAvailable << "Human";
 }
 void Initialize::verify() {
-	if (aiSelected.size() >= 2) {
+	if (humanPlayer + (int) aiSelected.size() >= 2) {
 		accept();
 		return;
 	}

@@ -66,6 +66,7 @@ void GUIBoard::paintEvent(QPaintEvent*) {
 	drawCitys(&painter);
 	drawHand(&painter);
 	drawPawns(&painter);
+	drawSelectedCoordinates(&painter);
 	if (drawCity)
 		drawCityNames(&painter);
 	drawRat(&painter);
@@ -77,43 +78,80 @@ void GUIBoard::drawCityChanged(bool enable) {
 	update();
 }
 
-void GUIBoard::mouseReleaseEvent(QMouseEvent* event) { //TODO also mark coordinates and add bools for marking
-	QPoint clickPoint = event->pos();
-	clickPoint = scale.inverted().map(clickPoint);
-	clickPoint = invertedTransform.map(clickPoint);
-	double x, y, z;
-	x = clickPoint.x() / sL;
-	y = clickPoint.y() / sL;
-	z = x - y;
-	double xDev, yDev, zDev;
-	int resultX, resultY;
-	int resultDirection;
-	xDev = fmod(x, 1.0) - 0.5;
-	yDev = fmod(y, 1.0) - 0.5;
-	zDev = ((fmod(z, 1.0) >= 0) ? fmod(z, 1.0) : 1.0 + fmod(z, 1.0)) - 0.5;
-	if (abs(xDev) >= abs(yDev) && abs(xDev) >= abs(zDev)) {
-		resultDirection = SOUTH_WEST;
-		if (xDev > 0)
-			resultX = ceil(x);
-		else
-			resultX = floor(x);
-		resultY = floor(y);
-	} else if (abs(yDev) >= abs(xDev) && abs(yDev) >= abs(zDev)) {
-		resultDirection = EAST;
-		resultX = floor(x);
-		if (yDev > 0)
-			resultY = ceil(y);
-		else
-			resultY = floor(y);
-	} else if (abs(zDev) >= abs(xDev) && abs(zDev) >= abs(yDev)) {
-		resultDirection = SOUTH_EAST;
-		resultX = floor(x);
-		resultY = floor(y);
-	} else
-		assert(false);
-	dynamicState->fromUserSelectedConnections[resultX][resultY][resultDirection] =
-			!dynamicState->fromUserSelectedConnections[resultX][resultY][resultDirection];
-	update();
+double distance(QPoint point) {
+	double retVal = sqrt(
+			(double) point.x() * point.x() + point.y() * point.y());
+	return retVal;
+}
+
+void GUIBoard::mouseReleaseEvent(QMouseEvent* event) {
+	if (selectConnections || selectCoordinates) {
+		bool preferConnection;
+		QPoint clickPoint = event->pos();
+		clickPoint = scale.inverted().map(clickPoint);
+		clickPoint = invertedTransform.map(clickPoint);
+		QPointF clickF(clickPoint);
+		clickPoint = transform.map(clickPoint);
+		clickF = clickF / sL;
+		int xMin, yMin;
+		xMin = floor(clickF.x());
+		yMin = floor(clickF.y());
+		QPoint possiblePoints[] = { transform.map(QPoint(xMin, yMin) * sL),
+				transform.map(QPoint(xMin + 1, yMin) * sL), transform.map(
+						QPoint(xMin, yMin + 1) * sL), transform.map(
+						QPoint(xMin + 1, yMin + 1) * sL) };
+		Vector possibleVectors[] = { Vector(xMin, yMin), Vector(xMin + 1, yMin),
+				Vector(xMin, yMin + 1), Vector(xMin + 1, yMin + 1) };
+		Vector nearest = possibleVectors[0], secondNearest = possibleVectors[1];
+		double nearDis = distance(clickPoint - possiblePoints[0]),
+				secondNearDis = distance(clickPoint - possiblePoints[1]);
+		for (int i = 1; i < 4; i++) {
+			if (distance(clickPoint - possiblePoints[i]) < nearDis) {
+				secondNearDis = nearDis;
+				secondNearest = nearest;
+				nearDis = distance(clickPoint - possiblePoints[i]);
+				nearest = possibleVectors[i];
+			} else if (distance(clickPoint - possiblePoints[i])
+					< secondNearDis) {
+				secondNearDis = distance(clickPoint - possiblePoints[i]);
+				secondNearest = possibleVectors[i];
+			}
+		}
+		if (selectCoordinates && selectConnections) {
+			QPoint midPoint = transform.map(
+					(QPoint(nearest.x + secondNearest.x,
+							nearest.y + secondNearest.y)) * sL / 2.);
+			if (distance(midPoint - clickPoint)
+					< distance(
+							transform.map(QPoint(nearest.x, nearest.y) * sL)
+									- clickPoint))
+				preferConnection = true;
+			else
+				preferConnection = false;
+		}
+		if (selectCoordinates && (!selectConnections || !preferConnection)) {
+			const Coordinate* target =
+					dynamicState->board.grid[nearest.x][nearest.y];
+			dynamicState->setFromUserSelectedCoordinate(target);
+		} else if (selectConnections
+				&& (!selectCoordinates || preferConnection)) {
+			Vector possibleConnection(0, 0);
+			DIRECTION possibleConnectionDirection;
+			if (nearest.x + nearest.y < secondNearest.x + secondNearest.y) {
+				possibleConnection = nearest;
+				possibleConnectionDirection =
+						(secondNearest - nearest).direction();
+			} else {
+				possibleConnection = secondNearest;
+				possibleConnectionDirection =
+						(nearest - secondNearest).direction();
+			}
+			const Connection* targetConnection =
+					dynamicState->board.edges[possibleConnection.x][possibleConnection.y][possibleConnectionDirection];
+			dynamicState->setFromUserSelectedConnection(targetConnection);
+		}
+		update();
+	}
 }
 
 void GUIBoard::drawGrid(QPainter* painter) {
@@ -191,8 +229,7 @@ void GUIBoard::drawRailway(QPainter *painter) {
 		for (int j = 0; j < MAX_Y; j++)
 			for (int k = 0; k < 3; k++)
 				if (dynamicState->board.edges[i][j][k]) {
-					if (!dynamicState->railSet[i][j][k]
-							&& dynamicState->fromUserSelectedConnections[i][j][k]) {
+					if (dynamicState->getFromUserSelectedConnections()[i][j][k]) {
 						const Connection* const current =
 								dynamicState->board.edges[i][j][k];
 						if (current->hindernis)
@@ -309,6 +346,19 @@ void GUIBoard::drawRat(QPainter *painter) {
 	painter->setPen(fatPen);
 	painter->drawLine(585. / 16. * (deadLine + 3), 0,
 			585. / 16. * (deadLine + 3), 20);
+}
+
+void GUIBoard::drawSelectedCoordinates(QPainter* painter) {
+	QPen special(fatPen);
+	special.setWidth(10);
+	painter->setPen(special);
+	for (int i = 0; i < MAX_X; i++)
+		for (int j = 0; j < MAX_Y; j++)
+			if (dynamicState->board.grid[i][j]) {
+				if (dynamicState->getFromUserSelectedCoordinates()[i][j]) {
+					painter->drawPoint(transform.map(QPoint(i * sL, j * sL)));
+				}
+			}
 }
 
 void GUIBoard::resizeEvent(QResizeEvent *event) {

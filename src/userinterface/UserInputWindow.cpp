@@ -25,6 +25,31 @@ UserInputWindow::UserInputWindow(const Board* board) :
 UserInputWindow::~UserInputWindow() {
 	// TODO Auto-generated destructor stub
 }
+
+const Coordinate* UserInputWindow::getPawnFromUser(AI* player,
+		State& currentState, const City** hand) {
+	enterMove->setText(QString("Set Pawn"));
+	DynamicState* aZp = new DynamicState(currentState);
+	spielbrett->setDynamicState(aZp);
+	spielbrett->setHand(hand);
+	this->spielbrett->update();
+	this->update();
+	this->show();
+	QEventLoop* pause = new QEventLoop;
+	connect(enterMove, SIGNAL(clicked(bool)), pause, SLOT(quit()));
+	spielbrett->selectCoordinates = true;
+	pause->exec();
+	spielbrett->selectCoordinates = false;
+	Vector pos(0, 0);
+	for (int i = 0; i < MAX_X; i++)
+		for (int j = 0; j < MAX_Y; j++)
+			if (aZp->getFromUserSelectedCoordinates()[i][j])
+				pos = Vector(i, j);
+	const Coordinate* retValue = aZp->board.grid[pos.x][pos.y];
+	enterMove->setText(QString("Enter Move"));
+	return retValue;
+}
+
 //* TODO @OEtzi: use the slot MainWindow::displayOnStatus to show instructions
 Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 		const City** hand, vector<Move*> moveList) {
@@ -46,7 +71,7 @@ Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 	for (int i = 0; i < MAX_X; i++)
 		for (int j = 0; j < MAX_Y; j++)
 			for (int k = 0; k < 3; k++)
-				if (aZp->fromUserSelectedConnections[i][j][k]) {
+				if (aZp->getFromUserSelectedConnections()[i][j][k]) {
 					counter++;
 					if (counter == 1)
 						one = aZp->board.edges[i][j][k];
@@ -55,7 +80,8 @@ Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 				}
 	return Move(P_YELLOW, one, two);
 }
+
 void UserInputWindow::showDataWidget() {
 	return;
-	//NOTE probably not the best solution
+	//TODO NOTE probably not the best solution
 }

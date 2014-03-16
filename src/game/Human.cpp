@@ -25,12 +25,7 @@ Move Human::doMove(State& currentState, vector<Move*> moveList) {
 }
 
 const Coordinate* Human::setPawn(State& currentState) {
-	for (int i = 0; i < NUMBER_CITYCOLORS; i++) {
-		if (hand[i]->cityColor == C_YELLOW)
-			return hand[i];
-	}
-	cout << "Gelbe Stadt nicht gefunden in Handkarten!" << endl;
-	return currentState.board.grid[10][6];
+	return userInput->getPawnFromUser(this, currentState, hand);
 }
 
 bool Human::countPoints(State&, vector<Connection*>&) {

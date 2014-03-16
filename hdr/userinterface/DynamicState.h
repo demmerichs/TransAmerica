@@ -20,15 +20,20 @@ class Move;
 // the actual class
 
 class DynamicState: public State {
-public:
-	Move* lastMove;
 	bool*** fromUserSelectedConnections;
 	bool** fromUserSelectedCoordinates;
+public:
+	Move* lastMove;
 
 	DynamicState(const Board &board); //Startzustand
 	DynamicState(const DynamicState&);
 	DynamicState(const State&);
 	virtual ~DynamicState();
+
+	void setFromUserSelectedConnection(const Connection* connection) const;
+	void setFromUserSelectedCoordinate(const Coordinate* coordinate) const;
+	bool*** getFromUserSelectedConnections() const;
+	bool** getFromUserSelectedCoordinates() const;
 };
 
 #endif /* DYNAMICSTATE_H_ */

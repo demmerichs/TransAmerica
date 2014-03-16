@@ -16,6 +16,7 @@ class AI;
 class State;
 class City;
 class Move;
+class Coordinate;
 //==============================
 // included dependencies
 #include <vector>
@@ -26,7 +27,7 @@ using std::vector;
 // the actual class
 
 class UserInputWindow: public Window {
-    Q_OBJECT
+Q_OBJECT
 	friend class Human;
 public:
 	UserInputWindow(const Board* board);
@@ -35,8 +36,10 @@ private:
 	QPushButton* enterMove;
 	Move getMoveFromUser(AI* player, State& currentState, const City** hand,
 			vector<Move*> moveList);
+	const Coordinate* getPawnFromUser(AI* player, State& currentState,
+			const City** hand);
 private slots:
-    void showDataWidget();
+	void showDataWidget();
 };
 
 #endif /* USERINPUTWINDOW_H_ */

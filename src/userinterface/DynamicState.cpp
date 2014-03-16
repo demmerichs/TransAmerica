@@ -7,6 +7,8 @@
 
 #include "DynamicState.h"
 
+#include "Connection.h"
+
 DynamicState::DynamicState(const Board& board) :
 		State(board), lastMove(0) {
 	fromUserSelectedConnections = new bool**[MAX_X];
@@ -77,3 +79,30 @@ DynamicState::~DynamicState() {
 	delete fromUserSelectedCoordinates;
 }
 
+void DynamicState::setFromUserSelectedConnection(
+		const Connection* connection) const {
+	if (!railSet[connection->first.x][connection->first.y][connection->direction])
+		fromUserSelectedConnections[connection->first.x][connection->first.y][connection->direction] =
+				!fromUserSelectedConnections[connection->first.x][connection->first.y][connection->direction];
+}
+
+void DynamicState::setFromUserSelectedCoordinate(
+		const Coordinate* coordinate) const {
+	bool insert = true;
+	for (int i = 0; i < (int) unsortedPawns.size(); i++) {
+		if (unsortedPawns[i]->x == coordinate->x
+				&& unsortedPawns[i]->y == coordinate->y)
+			insert = false;
+	}
+	if (insert)
+		fromUserSelectedCoordinates[coordinate->x][coordinate->y] =
+				!fromUserSelectedCoordinates[coordinate->x][coordinate->y];
+}
+
+bool*** DynamicState::getFromUserSelectedConnections() const {
+	return fromUserSelectedConnections;
+}
+
+bool** DynamicState::getFromUserSelectedCoordinates() const {
+	return fromUserSelectedCoordinates;
+}
