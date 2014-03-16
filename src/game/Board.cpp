@@ -79,7 +79,7 @@ void Board::dump() const {
 	}
 }
 
-City* const Board::lookForCity(short x, short y) const {
+const City* const Board::lookForCity(short x, short y) const {
 	for (int i = 0; i < numberCities; i++) {
 		if (cityList[i]->x == x && cityList[i]->y == y) {
 			return cityList[i];
@@ -207,10 +207,10 @@ City** Board::constructCities() const {
 	return testStadtliste;
 }
 
-Coordinate*** Board::constructGrid() const {
-	Coordinate*** testGitter = new Coordinate**[MAX_X];
+const Coordinate*** Board::constructGrid() const {
+	const Coordinate*** testGitter = new const Coordinate**[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
-		testGitter[i] = new Coordinate*[MAX_Y];
+		testGitter[i] = new const Coordinate*[MAX_Y];
 	}
 	ifstream Koordinateninput((BOARDNAME + "coordinates.txt").data());
 	for (int y = 0; y < MAX_Y; y++) {
@@ -235,9 +235,9 @@ Coordinate*** Board::constructGrid() const {
 	return testGitter;
 }
 
-City* Board::getCity(CITYCOLOR farbe, short nr) const {
+const City* Board::getCity(CITYCOLOR farbe, short nr) const {
 	for (int i = 0; i < numberCities; i++) {
-		City* aktStadt = this->cityList[i];
+		const City* aktStadt = this->cityList[i];
 		if (aktStadt->cityColor == farbe && aktStadt->number == nr)
 			return aktStadt;
 	}

@@ -38,17 +38,32 @@ short Vector::distance() const {
 }
 
 DIRECTION Vector::direction() const {
-//zu jeder Coordinate: 0=(1,0); 1=(0,1); 2=(1,1) s. DirectionValueOfVector
-	short summe = x * 2 + y;
-	switch (summe) {
-	case 1:
+//zu jeder Coordinate: EAST=(1,0); SOUTH_WEST=(0,1); SOUTH_EAST=(1,1)
+	if (x == 1) {
+		if (y == 0)
+			return EAST;
+		else if (y == 1)
+			return SOUTH_EAST;
+	} else if (x == 0 && y == 1)
 		return SOUTH_WEST;
-	case 2:
-		return EAST;
-	case 3:
-		return SOUTH_EAST;
+	cout << "RichtungsWert hat keine Richtung uebergeben bekommen" << endl;
+	return UNDEFINED;
+}
+
+Vector Vector::getDirectionVector(DIRECTION direction) {
+	switch (direction) {
+	case EAST:
+		return Vector(1, 0);
+	case SOUTH_WEST:
+		return Vector(0, 1);
+	case SOUTH_EAST:
+		return Vector(1, 1);
 	default:
-		cout << "RichtungsWert hat keine Richtung uebergeben bekommen" << endl;
-		return UNDEFINED;
+		cout << "No valid directionvalue was passed." << endl;
+		return Vector(0, 0);
 	}
+}
+
+void Vector::dump() const {
+	cout << x << " " << y << endl;
 }
