@@ -36,7 +36,7 @@ void MainWindow::startSimulation(int games, vector<AI*> aiList) {
 	if (wp)
 		delete wp;
 	wp = new ShowSimulationWindow(myGameExe->simulationLogger);
-	wp->showMaximized();
+    setCentralWidget(wp);
 }
 
 void MainWindow::openInit() {

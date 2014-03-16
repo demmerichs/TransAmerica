@@ -9,6 +9,7 @@
 #include "testKI.h"
 #include "debuggerAI.h"
 #include "DavidAI.h"
+#include "NB_SimpleAI.h"
 //==============================
 // the actual class
 
