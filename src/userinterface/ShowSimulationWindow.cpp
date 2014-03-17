@@ -24,7 +24,6 @@ ShowSimulationWindow::ShowSimulationWindow(SimulationLogger* simulationp) :
 	gameSpinBox = new QSpinBox;
 	roundSpinBox = new QSpinBox;
 	moveSpinBox = new QSpinBox;
-	createProgressBar();
 	fillTabWidget();
 	gameSpinBox->setWrapping(false);
 	gameSpinBox->setSuffix(tr(". Spiel"));
@@ -36,7 +35,6 @@ ShowSimulationWindow::ShowSimulationWindow(SimulationLogger* simulationp) :
 	toolLayout->addRow(tr("Geladenes Spiel:"), gameSpinBox);
 	toolLayout->addRow(tr("Geladene Runde: "), roundSpinBox);
 	toolLayout->addRow(tr("Geladener Zug:  "), moveSpinBox);
-	toolLayout->addWidget(simulationProgress);
 
 	mainLayout->removeWidget(spielbrett);
 	mainLayout->addWidget(tabWidget, 0, 0);
@@ -189,16 +187,6 @@ void ShowSimulationWindow::updateSpinBoxes() {
 	gameSpinBox->blockSignals(false);
 	roundSpinBox->blockSignals(false);
 	moveSpinBox->blockSignals(false);
-}
-void ShowSimulationWindow::createProgressBar() {
-	simulationProgress = new QProgressBar;
-	simulationProgress->setRange(0, 10000);
-	simulationProgress->setValue(0);
-}
-void ShowSimulationWindow::advanceProgressBar() {
-	int curVal = simulationProgress->value();
-	int maxVal = simulationProgress->maximum();
-	simulationProgress->setValue(curVal + (maxVal - curVal) / 100);
 }
 void ShowSimulationWindow::showDataWidget() {
 	tabWidget->setCurrentWidget(dataWidget);

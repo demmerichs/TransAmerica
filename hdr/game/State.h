@@ -67,6 +67,7 @@ public:
 	vector<const Coordinate*> pointsBelongingToRailwaySystem(
 			PLAYERCOLOR playercolour) const;
 	void dump() const;
+    void dumpEvaluateBoard(unsigned short**&);
 
 	void setRound(short x) {
 		round = x;

@@ -6,7 +6,7 @@
  */
 
 #include "../../hdr/game/Simulation.h"
-
+#include <QProgressDialog>
 Simulation::Simulation(SimulationLogger* simulationLogger) :
 		simulationLogger(simulationLogger), ran(false) {
 }
@@ -16,16 +16,25 @@ Simulation::~Simulation() {
 
 void Simulation::run() {
 	assert(!ran);
+    QProgressDialog progress("Running the simulation...", "Abort",0,
+                             simulationLogger->gameList.size());
+    progress.setWindowModality(Qt::WindowModal);
+    progress.show();
 	for (int i = 0; i < (int) simulationLogger->gameList.size(); i++) {
-		vector<AI*> order = getPlayingOrder(i);
+        if (progress.wasCanceled()){
+            break;
+        }
+        vector<AI*> order = getPlayingOrder(i);
 		PlayingOrder playingOrder(order);
 		GameLogger* currentGameLogger = new GameLogger(simulationLogger,
 				playingOrder, order[0]);
 		Game currentGame(currentGameLogger);
 		currentGame.play();
+        progress.setValue(i);
 		simulationLogger->gamesWon += currentGameLogger->getGameWon();
 		simulationLogger->gameList[i] = currentGameLogger;
 	}
+    progress.setValue(simulationLogger->gameList.size());
 	//TODO ausgabe punkte
 	for (int i = 0; i < (int) simulationLogger->playerList.size(); i++)
 		cout << "Player " << simulationLogger->playerList[i]->playerColor

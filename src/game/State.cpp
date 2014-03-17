@@ -172,17 +172,17 @@ void State::resetAll() {
 		}
 	unsortedPawns.clear();
 }
-/*
+
  #include <iomanip>
  void State::dumpEvaluateBoard(unsigned short ** & index) {
  for (int j = 0; j < MAX_Y; j++) {
  for (int i = 0; i < MAX_X; i++) {
- cout << setw(6) << index[i][j];
+ cout << std::setw(6) << index[i][j];
  }
  cout << endl;
  }
  }
- */
+
 unsigned short** State::evaluateBoard(const Coordinate* target) const {
 	unsigned short **index = new unsigned short*[MAX_X];
 	for (int i = 0; i < MAX_X; i++) {
