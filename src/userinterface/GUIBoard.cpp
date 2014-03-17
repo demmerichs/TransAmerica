@@ -71,7 +71,7 @@ void GUIBoard::paintEvent(QPaintEvent*) {
 	if (drawCity)
 		drawCityNames(&painter);
 	drawRat(&painter);
-    drawPoints(&painter);
+	drawPoints(&painter);
 	painter.setWorldTransform(scale.inverted(), true);
 }
 
@@ -252,9 +252,10 @@ void GUIBoard::drawRailway(QPainter *painter) {
 void GUIBoard::drawPawns(QPainter *painter) {
 	for (int k = 0; k < dynamicState->numberPawns; k++) {
 		Pawn* i = dynamicState->unsortedPawns[k];
+		Vector pos = *i;
 		QBrush brush(getQColor(i->spielerfarbe));
 		painter->setBrush(brush);
-		QPoint point = transform.map(QPoint(i->x * sL - 18, i->y * sL - 25));
+		QPoint point = transform.map(QPoint(pos.x * sL - 18, pos.y * sL - 25));
 		painter->setPen(thinPen);
 		painter->drawRoundedRect(point.x(), point.y(), 10, 25, 2, 2);
 		if (dynamicState->playerStatus[i->spielerfarbe] != NOT_BANNED) {
@@ -350,21 +351,21 @@ void GUIBoard::drawRat(QPainter *painter) {
 			585. / 16. * (deadLine + 3), 20);
 }
 
-void GUIBoard::drawPoints(QPainter* painter){
-    QRectF bRect (0,272, 103, 19.2);
-    QPen coloredPen(fatPen);
-    painter->setFont(QFont("Times", 10, QFont::Bold));
-    for (int i=0; i < (int) playerList.size(); i++){
-        QString printString;
-        printString = QString(" %1 (%2) %3")
-                            .arg(QString::fromStdString(playerList[i]->AIname))
-                            .arg(QString::fromStdString(playerList[i]->owner))
-                            .arg(points.get(playerList[i]));
-        coloredPen.setColor(getQColor(playerList[i]->playerColor));
-        painter->setPen(coloredPen);
-        painter->drawText(bRect,printString);
-        bRect.moveTop(bRect.top()+19.2);
-    }
+void GUIBoard::drawPoints(QPainter* painter) {
+	QRectF bRect(0, 272, 103, 19.2);
+	QPen coloredPen(fatPen);
+	painter->setFont(QFont("Times", 10, QFont::Bold));
+	for (int i = 0; i < (int) playerList.size(); i++) {
+		QString printString;
+		printString = QString(" %1 (%2) %3").arg(
+				QString::fromStdString(playerList[i]->AIname)).arg(
+				QString::fromStdString(playerList[i]->owner)).arg(
+				points.get(playerList[i]));
+		coloredPen.setColor(getQColor(playerList[i]->playerColor));
+		painter->setPen(coloredPen);
+		painter->drawText(bRect, printString);
+		bRect.moveTop(bRect.top() + 19.2);
+	}
 }
 
 void GUIBoard::drawSelectedCoordinates(QPainter* painter) {

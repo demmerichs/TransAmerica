@@ -28,6 +28,7 @@ using std::endl;
  */
 class Vector {
 public:
+	Vector();
 	Vector(short x, short y);
 	Vector(const Vector& copy);
 	virtual ~Vector();

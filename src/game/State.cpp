@@ -66,7 +66,8 @@ State::State(const State &copy) :
 		playerStatus[i] = copy.playerStatus[i];
 	}
 	for (unsigned i = 0; i < copy.unsortedPawns.size(); i++)
-		unsortedPawns.push_back(copy.unsortedPawns[i]);
+		unsortedPawns.push_back(
+				sortedPawns[copy.unsortedPawns[i]->spielerfarbe]);
 	for (int i = 0; i < MAX_X; i++)
 		for (int j = 0; j < MAX_Y; j++)
 			for (int k = 0; k < 3; k++)
@@ -147,25 +148,11 @@ void State::setRail(const Connection &sollGelegt) {
 //TODO Exceptions
 }
 
-const Connection* State::getConnection(Vector a, Vector b) const {
-	Vector eins = a;
-	Vector zwei = b;
-	const Connection* ruckgabe = 0;
-	if ((b - a).x < 0 || (b - a).y < 0) {
-		eins = b;
-		zwei = a;
-	}
-	if (eins.x >= 0 && eins.y >= 0 && zwei.x >= 0 && zwei.y >= 0
-			&& eins.x < MAX_X && eins.y < MAX_Y && zwei.x < MAX_X
-			&& zwei.y < MAX_Y)
-		ruckgabe = this->board.edges[eins.x][eins.y][(zwei - eins).direction()];
-	return ruckgabe;
-}
-
 BANNED_STATUS State::addPawn(Pawn insert) {
-	if (railwayNumber[insert.x][insert.y] == NORAILS) {
+	if (railwayNumber[((Vector) insert).x][((Vector) insert).y] == NORAILS) {
 		this->numberPawns++;
-		this->railwayNumber[insert.x][insert.y] = insert.schienennetznummer;
+		this->railwayNumber[((Vector) insert).x][((Vector) insert).y] =
+				insert.schienennetznummer;
 		sortedPawns[insert.spielerfarbe] = new Pawn(insert);
 		unsortedPawns.push_back(sortedPawns[insert.spielerfarbe]);
 		return NOT_BANNED;
@@ -222,14 +209,14 @@ unsigned short** State::evaluateBoard(const Coordinate* target) const {
 	return index;
 }
 
-void State::calculate_surround(Vector actual, unsigned short ** &index,
+void State::calculate_surround(Vector current, unsigned short ** &index,
 		vector<Vector> &new_changed) const {
-	Vector vecs[6] = { Vector(1, 0), Vector(1, 1), Vector(0, 1), Vector(-1, 0),
-			Vector(-1, -1), Vector(0, -1) };
+	Vector direction[6] = { Vector(1, 0), Vector(1, 1), Vector(0, 1), Vector(-1,
+			0), Vector(-1, -1), Vector(0, -1) };
 	unsigned short results[6];
 	Vector now(0, 0);
 	for (int i = 0; i < 6; i++) {
-		now = (actual + vecs[i]);
+		now = (current + direction[i]);
 		if (now.x >= 0 && now.x < MAX_X && now.y >= 0 && now.y < MAX_Y) {
 			results[i] = find_min(now, index);
 			if (index[now.x][now.y] > results[i]) {
@@ -245,7 +232,7 @@ unsigned short State::find_min(Vector actual, unsigned short ** &index) const {
 	Vector richtungsvektoren[] = { Vector(1, 0), Vector(1, 1), Vector(0, 1),
 			Vector(-1, 0), Vector(-1, -1), Vector(0, -1) };
 	for (int i = 0; i < 6; i++) {
-		const Connection* connection = getConnection(
+		const Connection* connection = board.getConnection(
 				actual + richtungsvektoren[i], actual);
 		if (connection != 0) {
 			unsigned short value =

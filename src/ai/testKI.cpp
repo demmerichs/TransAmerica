@@ -49,7 +49,7 @@ Move testKI::doMove(State &currentState, vector<Move*> moveList) {
 					first = Vector(0, sign(diff.y));
 			} else
 				first = Vector(sign(diff.x), sign(diff.x));
-			firsty = currentState.getConnection(a, a + first);
+			firsty = currentState.board.getConnection(a, a + first);
 			diff = aktStadt - a - first;
 			dis = diff.distance();
 			if (dis != 0) {
@@ -61,7 +61,7 @@ Move testKI::doMove(State &currentState, vector<Move*> moveList) {
 						second = Vector(0, sign(diff.y));
 				} else
 					second = Vector(sign(diff.x), sign(diff.x));
-				secondary = currentState.getConnection(a + first,
+				secondary = currentState.board.getConnection(a + first,
 						a + first + second);
 			}
 			Move ruckgabe(this->playerColor, firsty, secondary);

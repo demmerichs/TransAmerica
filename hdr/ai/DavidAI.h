@@ -13,8 +13,6 @@
 // forward declared dependencies
 class Move;
 class RoundLogger;
-class State;
-class Connection;
 //==============================
 // included dependencies
 #include <vector>

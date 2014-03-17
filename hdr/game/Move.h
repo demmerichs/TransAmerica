@@ -20,6 +20,7 @@ private:
 	bool richtigBelegt;
 	PLAYERCOLOR spielerfarbe;
 	short anzahlSchienen;
+	short sumRailValue;
 	const Connection* Belegt[2];
 	BANNED_STATUS bannedStatus;
 
@@ -47,6 +48,7 @@ public:
 	const Connection* const * getBelegt() const;
 	PLAYERCOLOR getSpielerfarbe() const;
 	BANNED_STATUS getBannedStatus() const;
+	short getSumRailValue() const;
 };
 
 #endif /* MOVE_H_ */

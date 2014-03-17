@@ -90,8 +90,8 @@ void DynamicState::setFromUserSelectedCoordinate(
 		const Coordinate* coordinate) const {
 	bool insert = true;
 	for (int i = 0; i < (int) unsortedPawns.size(); i++) {
-		if (unsortedPawns[i]->x == coordinate->x
-				&& unsortedPawns[i]->y == coordinate->y)
+		if (((Vector) *unsortedPawns[i]).x == coordinate->x
+				&& ((Vector) *unsortedPawns[i]).y == coordinate->y)
 			insert = false;
 	}
 	if (insert)

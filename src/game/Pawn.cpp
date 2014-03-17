@@ -10,10 +10,17 @@
 #include "../../hdr/game/Coordinate.h"
 
 Pawn::Pawn(PLAYERCOLOR farb, const Coordinate* pos) :
-		Vector(*pos), spielerfarbe(farb) {
+		position(pos), spielerfarbe(farb) {
 	schienennetznummer = farb;
 }
 
 Pawn::~Pawn() {
 }
 
+Pawn::operator Vector() {
+	return Vector(*position);
+}
+
+Pawn::operator const Coordinate*() {
+	return position;
+}

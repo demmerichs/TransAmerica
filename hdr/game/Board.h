@@ -48,6 +48,10 @@ public:
 	void dump() const; /** < Dumps the board on the standard output stream. */
 	const City* const lookForCity(short xkoo, short ykoo) const;/** < Finds the city, if it exists in the list. */
 	const City* getCity(CITYCOLOR color, short number) const; /** < Gets the city with the passed color and number.*/
+	const Coordinate* getCoordinate(Vector vector) const;
+	const Connection* getConnection(const Coordinate* a,
+			const Coordinate* b) const;
+	const Connection* getConnection(Vector a, Vector b) const;
 };
 
 #endif /* BOARD_H_ */

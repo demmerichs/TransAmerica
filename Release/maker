@@ -6,10 +6,10 @@ all:
 	qmake -project ../src ../hdr ../Main.cpp
 	qmake -spec macx-g++ Release.pro
 	make
-	g++ -c ../localAIs/local/DavidAI_local.cpp
-	mv DavidAI_local.o ObjectAIs/DavidAI_local.o
-	cp ObjectAIs/DavidAI_local.o ./DavidAI.o
-	make
+#	g++ -c ../localAIs/local/DavidAI_local.cpp
+#	mv DavidAI_local.o ObjectAIs/DavidAI_local.o
+#	cp ObjectAIs/DavidAI_local.o ./DavidAI.o
+#	make
 
 clean:
 	make clean

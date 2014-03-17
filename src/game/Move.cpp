@@ -22,7 +22,8 @@
 Move::Move(PLAYERCOLOR spielerfarbe, const Connection* belegt1,
 		const Connection* belegt2) :
 		gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), spielerfarbe(
-				spielerfarbe), anzahlSchienen(2), bannedStatus(NOT_BANNED) {
+				spielerfarbe), anzahlSchienen(2), sumRailValue(0), bannedStatus(
+				NOT_BANNED) {
 	Belegt[0] = belegt1;
 	Belegt[1] = belegt2;
 	if (belegt1 == 0) {
@@ -37,8 +38,8 @@ Move::Move(PLAYERCOLOR spielerfarbe, const Connection* belegt1,
 Move::Move(const Move& copy) :
 		gueltigkeit(copy.gueltigkeit), gueltigkeitUEberprueft(
 				copy.gueltigkeitUEberprueft), richtigBelegt(copy.richtigBelegt), spielerfarbe(
-				copy.spielerfarbe), anzahlSchienen(copy.anzahlSchienen), bannedStatus(
-				copy.bannedStatus) {
+				copy.spielerfarbe), anzahlSchienen(copy.anzahlSchienen), sumRailValue(
+				copy.sumRailValue), bannedStatus(copy.bannedStatus) {
 	Belegt[0] = copy.Belegt[0];
 	Belegt[1] = copy.Belegt[1];
 }
@@ -135,16 +136,16 @@ bool Move::valid(State currentState, PLAYERCOLOR spielerfarb) {
 		gueltigkeit = false;
 		return false;
 	}
-	short summe = 0;
+	sumRailValue = 0;
 	for (int i = 0; i < 2; i++) {
 		if (Belegt[i] != 0) {
 			if (Belegt[i]->hindernis)
-				summe += 2;
+				sumRailValue += 2;
 			else
-				summe += 1;
+				sumRailValue += 1;
 		}
 	}
-	if (summe > 2) {
+	if (sumRailValue > 2) {
 		cout
 				<< "This move is invalid, because of containing two connections, but at least one of them is a barrier."
 				<< endl;
@@ -196,4 +197,8 @@ PLAYERCOLOR Move::getSpielerfarbe() const {
 
 const Connection* const * Move::getBelegt() const {
 	return Belegt;
+}
+
+short Move::getSumRailValue() const {
+	return sumRailValue;
 }
