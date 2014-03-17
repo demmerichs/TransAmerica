@@ -21,8 +21,8 @@ MainWindow::MainWindow() :
 	 wp = new ShowSimulationWindow(0);
 	 setCentralWidget(wp);
 	 */
-    createActions();
-    createToolBar();
+	createActions();
+	createToolBar();
 	createStatusBar();
 	createMenus();
 
@@ -47,7 +47,8 @@ void MainWindow::openInit() {
 		if (dialog.humanPlayer) {
 			UserInputWindow* UIWp = new UserInputWindow(new Board(true));
 			wp = UIWp;
-            connect(wp, SIGNAL(requestDisplayOnStatusBar(QString,int)),this, SLOT(displayOnStatusBar(QString,int)));
+			connect(wp, SIGNAL(requestDisplayOnStatusBar(QString,int)), this,
+					SLOT(displayOnStatusBar(QString,int)));
 			setCentralWidget(wp);
 			aiList.push_back(new Human(dialog.humanColor, UIWp));
 		}
@@ -55,7 +56,8 @@ void MainWindow::openInit() {
 			aiList.push_back(
 					createAI(dialog.aiSelected[i]->aiName.toStdString(),
 							dialog.aiSelected[i]->color));
-		startSimulation(dialog.numberOfGames(), aiList);
+		int numberOfGames = dialog.numberOfGames();
+		startSimulation(numberOfGames, aiList);
 	}
 	return;
 }

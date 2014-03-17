@@ -21,22 +21,25 @@ using std::set;
 
 #include "../game/Constants.h"
 //==============================
+// a small helper class
+class ListElement: public QListWidgetItem {
+public:
+	ListElement(QString aiName, PLAYERCOLOR color) :
+			QListWidgetItem(aiName, 0, QListWidgetItem::UserType), aiName(
+					aiName), color(color) {
+	}
+	~ListElement() {
+	}
+	QString aiName;
+	PLAYERCOLOR color;
+};
+//==============================
 // the actual class
 class Initialize: public QDialog {
 Q_OBJECT
-	class ListElement: public QListWidgetItem {
-	public:
-		ListElement(QString aiName, PLAYERCOLOR color) :
-				QListWidgetItem(aiName, 0, QListWidgetItem::UserType), aiName(
-						aiName), color(color) {
-		}
-		~ListElement() {
-		}
-		QString aiName;
-		PLAYERCOLOR color;
-	};
 public:
 	Initialize(const QString &title, QWidget* parent);
+	virtual ~Initialize();
 	QString name();
 	int numberOfGames();
 	QList<ListElement*> aiSelected;

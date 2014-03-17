@@ -1,4 +1,12 @@
-LOCALSOURCES=DavidAI_local.cpp
+CXX           = g++
+CXXFLAGS      = -pipe -g -gdwarf-2 -arch x86_64 -Xarch_x86_64 -mmacosx-version-min=10.5 -Wall -W $(DEFINES)
+INCPATH       = -I/usr/local/Qt4.8/mkspecs/macx-g++ -I. -I/Library/Frameworks/QtCore.framework/Versions/4/Headers -I/usr/include/QtCore -I/Library/Frameworks/QtGui.framework/Versions/4/Headers -I/usr/include/QtGui -I/usr/include -I. -I../hdr/logger -I../hdr/game -I../hdr/game/boardSettings/standard -I../hdr/ai -I../hdr/userinterface -I. -F/Library/Frameworks
+
+ObjectAIs/%_local.o: ../localAIs/local/%_local.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
+
+*.o: ObjectAIs/*_local.o Release.app/Contents/MacOS/Release
+	cp &< &@
 
 all:
 	rm -rf TransAmerica.pro
@@ -6,9 +14,7 @@ all:
 	qmake -project ../src ../hdr ../Main.cpp
 	qmake -spec macx-g++ Release.pro
 	make
-	g++ -c ../localAIs/local/DavidAI_local.cpp
-	mv DavidAI_local.o ObjectAIs/DavidAI_local.o
-	cp ObjectAIs/DavidAI_local.o ./DavidAI.o
+	make -f maker DavidAI.o
 	make
 
 clean:
