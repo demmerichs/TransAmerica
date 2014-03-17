@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">TransAmercia
-   &#160;<span id="projectnumber">v0.2.1</span>
+   &#160;<span id="projectnumber">v0.4</span>
    </div>
   </td>
  </tr>
@@ -103,7 +103,7 @@ Inheritance diagram for State:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af4b0da86f50a141f59fe722fe2a521e5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="af4b0da86f50a141f59fe722fe2a521e5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>State</b> (const <a class="el" href="class_board.html">Board</a> &amp;<a class="el" href="class_spielbrett.html">Spielbrett</a>)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>State</b> (const <a class="el" href="class_board.html">Board</a> &amp;Spielbrett)</td></tr>
 <tr class="separator:af4b0da86f50a141f59fe722fe2a521e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ca97340266d486dfa42225f19c40de3"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5ca97340266d486dfa42225f19c40de3"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>State</b> (const <a class="el" href="class_state.html">State</a> &amp;)</td></tr>
@@ -126,24 +126,21 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>setRail</b> (const <a
 <tr class="memitem:a482b551469c15e5f88967ab6c42ca3dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a482b551469c15e5f88967ab6c42ca3dc"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>resetRailwayNr_ToNr_</b> (const short, const short)</td></tr>
 <tr class="separator:a482b551469c15e5f88967ab6c42ca3dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a720ae4c2d0f49932b0f117d9beb98863"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a720ae4c2d0f49932b0f117d9beb98863"></a>
-const <a class="el" href="class_connection.html">Connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getConnection</b> (<a class="el" href="class_vector.html">Vector</a> a, <a class="el" href="class_vector.html">Vector</a> b) const </td></tr>
-<tr class="separator:a720ae4c2d0f49932b0f117d9beb98863"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a192466fc65d42a405b6c461f5ae1c7"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9a192466fc65d42a405b6c461f5ae1c7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addPawn</b> (<a class="el" href="class_pawn.html">Pawn</a> insert)</td></tr>
-<tr class="separator:a9a192466fc65d42a405b6c461f5ae1c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f874b300f7f84742b5883f22d0db17f"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1f874b300f7f84742b5883f22d0db17f"></a>
+BANNED_STATUS&#160;</td><td class="memItemRight" valign="bottom"><b>addPawn</b> (<a class="el" href="class_pawn.html">Pawn</a> insert)</td></tr>
+<tr class="separator:a1f874b300f7f84742b5883f22d0db17f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3cf3d6f8fd90d8a59d53ccb1290a46c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae3cf3d6f8fd90d8a59d53ccb1290a46c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>resetAll</b> ()</td></tr>
 <tr class="separator:ae3cf3d6f8fd90d8a59d53ccb1290a46c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bc0dd359e67c72d457a64277afaf621"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a5bc0dd359e67c72d457a64277afaf621"></a>
-unsigned short **&#160;</td><td class="memItemRight" valign="bottom"><b>evaluateBoard</b> (<a class="el" href="class_vector.html">Vector</a> target) const </td></tr>
-<tr class="separator:a5bc0dd359e67c72d457a64277afaf621"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adbb160a96efbc5fde9c7346bafe26988"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adbb160a96efbc5fde9c7346bafe26988"></a>
-unsigned short&#160;</td><td class="memItemRight" valign="bottom"><b>distance</b> (const <a class="el" href="class_vector.html">Vector</a> &amp;target, const vector&lt; <a class="el" href="class_vector.html">Vector</a> &gt; &amp;possibleStarts) const </td></tr>
-<tr class="separator:adbb160a96efbc5fde9c7346bafe26988"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8797cce1b552bfb36f01cc8fba0f7e48"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8797cce1b552bfb36f01cc8fba0f7e48"></a>
-vector&lt; <a class="el" href="class_vector.html">Vector</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pointsBelongingToRailwaySystem</b> (PLAYERCOLOR playercolour) const </td></tr>
-<tr class="separator:a8797cce1b552bfb36f01cc8fba0f7e48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae53ddb9f0ce4e7c94124bf3d809e7983"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae53ddb9f0ce4e7c94124bf3d809e7983"></a>
+unsigned short **&#160;</td><td class="memItemRight" valign="bottom"><b>evaluateBoard</b> (const <a class="el" href="class_coordinate.html">Coordinate</a> *target) const </td></tr>
+<tr class="separator:ae53ddb9f0ce4e7c94124bf3d809e7983"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cb65e47fcc3f791c52cf75d904777d5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4cb65e47fcc3f791c52cf75d904777d5"></a>
+unsigned short&#160;</td><td class="memItemRight" valign="bottom"><b>distance</b> (const <a class="el" href="class_coordinate.html">Coordinate</a> *target, const vector&lt; const <a class="el" href="class_coordinate.html">Coordinate</a> * &gt; &amp;possibleStarts) const </td></tr>
+<tr class="separator:a4cb65e47fcc3f791c52cf75d904777d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2169b0cf7c5d5bcd680145f1f34a168"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa2169b0cf7c5d5bcd680145f1f34a168"></a>
+vector&lt; const <a class="el" href="class_coordinate.html">Coordinate</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>pointsBelongingToRailwaySystem</b> (PLAYERCOLOR playercolour) const </td></tr>
+<tr class="separator:aa2169b0cf7c5d5bcd680145f1f34a168"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a27499f3070aef89461dbec0c99a24225"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27499f3070aef89461dbec0c99a24225"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>dump</b> () const </td></tr>
 <tr class="separator:a27499f3070aef89461dbec0c99a24225"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -174,6 +171,9 @@ const <a class="el" href="class_board.html">Board</a> &amp;&#160;</td><td class=
 <tr class="memitem:a7da42bb202d9bb967db82e1b8c65070e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7da42bb202d9bb967db82e1b8c65070e"></a>
 vector&lt; <a class="el" href="class_pawn.html">Pawn</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>unsortedPawns</b></td></tr>
 <tr class="separator:a7da42bb202d9bb967db82e1b8c65070e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6a551fe108a225babf4fa59e61d75cb"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6a551fe108a225babf4fa59e61d75cb"></a>
+BANNED_STATUS *&#160;</td><td class="memItemRight" valign="bottom"><b>playerStatus</b></td></tr>
+<tr class="separator:ab6a551fe108a225babf4fa59e61d75cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>hdr/game/<a class="el" href="_state_8h_source.html">State.h</a></li>
@@ -182,7 +182,7 @@ vector&lt; <a class="el" href="class_pawn.html">Pawn</a> * &gt;&#160;</td><td cl
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 12 2014 19:32:09 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 17 2014 14:42:07 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

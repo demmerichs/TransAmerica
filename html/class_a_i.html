@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">TransAmercia
-   &#160;<span id="projectnumber">v0.2.1</span>
+   &#160;<span id="projectnumber">v0.4</span>
    </div>
   </td>
  </tr>
@@ -101,10 +101,11 @@ Inheritance diagram for AI:</div>
  <div class="center">
   <img src="class_a_i.png" usemap="#AI_map" alt=""/>
   <map id="AI_map" name="AI_map">
-<area href="classdebugger_a_i.html" alt="debuggerAI" shape="rect" coords="0,56,78,80"/>
-<area href="class_human.html" alt="Human" shape="rect" coords="88,56,166,80"/>
-<area href="classtemplate_a_i.html" alt="templateAI" shape="rect" coords="176,56,254,80"/>
-<area href="classtest_k_i.html" alt="testKI" shape="rect" coords="264,56,342,80"/>
+<area href="class_david_a_i.html" alt="DavidAI" shape="rect" coords="0,56,78,80"/>
+<area href="classdebugger_a_i.html" alt="debuggerAI" shape="rect" coords="88,56,166,80"/>
+<area href="class_human.html" alt="Human" shape="rect" coords="176,56,254,80"/>
+<area href="classtemplate_a_i.html" alt="templateAI" shape="rect" coords="264,56,342,80"/>
+<area href="classtest_k_i.html" alt="testKI" shape="rect" coords="352,56,430,80"/>
 </map>
  </div></div>
 <table class="memberdecls">
@@ -126,8 +127,8 @@ Public Attributes</h2></td></tr>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:ade352ac8d216d67feca731a127b50e6f"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_move.html">Move</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#ade352ac8d216d67feca731a127b50e6f">doMove</a> (<a class="el" href="class_state.html">State</a> &amp;aktuell, vector&lt; <a class="el" href="class_move.html">Move</a> * &gt; moveList)=0</td></tr>
 <tr class="separator:ade352ac8d216d67feca731a127b50e6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0fbc5b7d4230575baf80217d0c250cc9"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="class_vector.html">Vector</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a0fbc5b7d4230575baf80217d0c250cc9">setPawn</a> (<a class="el" href="class_state.html">State</a> &amp;aktuell)=0</td></tr>
-<tr class="separator:a0fbc5b7d4230575baf80217d0c250cc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a06aa99d4b4ac2530dbdad122183600e8"><td class="memItemLeft" align="right" valign="top">virtual const <a class="el" href="class_coordinate.html">Coordinate</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a06aa99d4b4ac2530dbdad122183600e8">setPawn</a> (<a class="el" href="class_state.html">State</a> &amp;aktuell)=0</td></tr>
+<tr class="separator:a06aa99d4b4ac2530dbdad122183600e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a158672aaf98fab1b1ede48002f83d3ff"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a158672aaf98fab1b1ede48002f83d3ff">countPoints</a> (<a class="el" href="class_state.html">State</a> &amp;currentState, vector&lt; <a class="el" href="class_connection.html">Connection</a> * &gt; &amp;returnPath)=0</td></tr>
 <tr class="separator:a158672aaf98fab1b1ede48002f83d3ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8565a9ef04ac4f9913913c99f65213b2"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_i.html#a8565a9ef04ac4f9913913c99f65213b2">gatherInformationEndOfRound</a> (const <a class="el" href="class_round_logger.html">RoundLogger</a> *currentInfos)=0</td></tr>
@@ -201,7 +202,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Round</b></td></tr>
 </div><div class="memdoc">
 <p>Here you can count your minus points at the end of each round. If you want to do so, you have to return true. For the beginning it is okay, if you just return false. Then the gamemaster will count the minuspoints. He counts in most cases the minimum of minuspoints you get, however in some cases the algorithm doesn't evaluate the best value. </p>
 
-<p>Implemented in <a class="el" href="classdebugger_a_i.html#a4eae0a3715a66df1e9773a0bb8851318">debuggerAI</a>, <a class="el" href="classtemplate_a_i.html#a254a3e1a7a2cd1d16bec816cb9fab075">templateAI</a>, and <a class="el" href="classtest_k_i.html#a76d7f00e5e5464c34bb2ad5e9062abf9">testKI</a>.</p>
+<p>Implemented in <a class="el" href="classdebugger_a_i.html#a4eae0a3715a66df1e9773a0bb8851318">debuggerAI</a>, <a class="el" href="classtemplate_a_i.html#a254a3e1a7a2cd1d16bec816cb9fab075">templateAI</a>, <a class="el" href="class_david_a_i.html#afcc7dbeec6565efdaf1dd25559d536ca">DavidAI</a>, <a class="el" href="classtest_k_i.html#a76d7f00e5e5464c34bb2ad5e9062abf9">testKI</a>, and <a class="el" href="class_human.html#a1d9b69f7ac17c8ead5d78e5af312250a">Human</a>.</p>
 
 </div>
 </div>
@@ -238,7 +239,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Round</b></td></tr>
 </div><div class="memdoc">
 <p>Inside this methode you calculate your next move in the game. </p>
 
-<p>Implemented in <a class="el" href="classdebugger_a_i.html#a6948d2ae193d1086955b71efe3a87de1">debuggerAI</a>, <a class="el" href="classtemplate_a_i.html#a9abd9bfabeb26ba77ed5090cb1716a2a">templateAI</a>, <a class="el" href="classtest_k_i.html#a195ad45b09daced4e650ce228f4da8f3">testKI</a>, and <a class="el" href="class_human.html#a797f11c25934d3e6ebdfa612715f899a">Human</a>.</p>
+<p>Implemented in <a class="el" href="classdebugger_a_i.html#a6948d2ae193d1086955b71efe3a87de1">debuggerAI</a>, <a class="el" href="classtemplate_a_i.html#a9abd9bfabeb26ba77ed5090cb1716a2a">templateAI</a>, <a class="el" href="class_david_a_i.html#a66501d9cbc5972a6fc237a87774a9425">DavidAI</a>, <a class="el" href="classtest_k_i.html#a195ad45b09daced4e650ce228f4da8f3">testKI</a>, and <a class="el" href="class_human.html#a797f11c25934d3e6ebdfa612715f899a">Human</a>.</p>
 
 </div>
 </div>
@@ -265,11 +266,11 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Round</b></td></tr>
 </div><div class="memdoc">
 <p>At the end of each round you can take a look at the whole game and the playing cards of your opponents. This can be usefull, if you want to figure out there strategy and react to that over a simulation period. </p>
 
-<p>Implemented in <a class="el" href="classdebugger_a_i.html#ab90bbce673b55483d6156dea09726952">debuggerAI</a>, <a class="el" href="classtemplate_a_i.html#acfc0b92fbecc56c0dbde089c350f99e5">templateAI</a>, <a class="el" href="classtest_k_i.html#a84b8e65aca959d95d89d80194e241db5">testKI</a>, and <a class="el" href="class_human.html#af9bb973f12694c98e504766193a4652f">Human</a>.</p>
+<p>Implemented in <a class="el" href="classdebugger_a_i.html#ab90bbce673b55483d6156dea09726952">debuggerAI</a>, <a class="el" href="classtemplate_a_i.html#acfc0b92fbecc56c0dbde089c350f99e5">templateAI</a>, <a class="el" href="class_david_a_i.html#a160ac3d032a3b6afb77f693ca3d5c8b6">DavidAI</a>, <a class="el" href="classtest_k_i.html#a84b8e65aca959d95d89d80194e241db5">testKI</a>, and <a class="el" href="class_human.html#af9bb973f12694c98e504766193a4652f">Human</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a0fbc5b7d4230575baf80217d0c250cc9"></a>
+<a class="anchor" id="a06aa99d4b4ac2530dbdad122183600e8"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -277,7 +278,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Round</b></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">virtual <a class="el" href="class_vector.html">Vector</a> AI::setPawn </td>
+          <td class="memname">virtual const <a class="el" href="class_coordinate.html">Coordinate</a>* AI::setPawn </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_state.html">State</a> &amp;&#160;</td>
           <td class="paramname"><em>aktuell</em></td><td>)</td>
@@ -292,7 +293,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Round</b></td></tr>
 </div><div class="memdoc">
 <p>At the beginning of each round you have to define your starting position of your pawn. </p>
 
-<p>Implemented in <a class="el" href="classdebugger_a_i.html#afffed83382c79018969a6c6fb3642bc3">debuggerAI</a>, <a class="el" href="classtemplate_a_i.html#a8636ca39a86a19fab33cf0b082291b62">templateAI</a>, <a class="el" href="classtest_k_i.html#afebbc9eeab8c836490f0191e0bb6627e">testKI</a>, and <a class="el" href="class_human.html#a31b9983eba5b8ccd37c7b41b4ecba912">Human</a>.</p>
+<p>Implemented in <a class="el" href="classdebugger_a_i.html#a591f2da150bcd245766baac371f6471c">debuggerAI</a>, <a class="el" href="classtemplate_a_i.html#ae18d50c605f126fc1d340368a76574bb">templateAI</a>, <a class="el" href="class_david_a_i.html#ac0a45c07a7325ff590803dd2f0864415">DavidAI</a>, <a class="el" href="classtest_k_i.html#a26e674042460c4cb75905cabf0d228d7">testKI</a>, and <a class="el" href="class_human.html#a625d50876b0cefaa236262e5d3a1f609">Human</a>.</p>
 
 </div>
 </div>
@@ -364,7 +365,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Round</b></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 12 2014 19:32:09 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 17 2014 14:42:07 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

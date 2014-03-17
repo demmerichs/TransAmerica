@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">TransAmercia
-   &#160;<span id="projectnumber">v0.2.1</span>
+   &#160;<span id="projectnumber">v0.4</span>
    </div>
   </td>
  </tr>
@@ -113,30 +113,29 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment">// the actual class</span></div>
 <div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="class_vector.html">   29</a></span>&#160;<span class="comment"></span><span class="keyword">class </span><a class="code" href="class_vector.html">Vector</a> {</div>
 <div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_vector.html">Vector</a>(<span class="keywordtype">short</span> x, <span class="keywordtype">short</span> y);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="class_vector.html">Vector</a>(<span class="keyword">const</span> <a class="code" href="class_vector.html">Vector</a>&amp; copy);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_vector.html">Vector</a>();</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keywordtype">short</span> x;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">short</span> y;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_vector.html">Vector</a> operator-(<span class="keyword">const</span> <a class="code" href="class_vector.html">Vector</a>) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_vector.html">Vector</a> operator+(<span class="keyword">const</span> <a class="code" href="class_vector.html">Vector</a>) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">short</span> <a class="code" href="class_vector.html#ac57f428cc1e03ce8cd3c9f6c98a8336f">distance</a>() <span class="keyword">const</span>; </div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    DIRECTION direction() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="class_vector.html#a50123df9754e508f3d4aa7cb72f38905">   44</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vector.html#a50123df9754e508f3d4aa7cb72f38905">dump</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;        cout &lt;&lt; x &lt;&lt; <span class="stringliteral">&quot; &quot;</span> &lt;&lt; y &lt;&lt; endl;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    } </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;};</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* VECTOR_H_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="class_vector_html_ac57f428cc1e03ce8cd3c9f6c98a8336f"><div class="ttname"><a href="class_vector.html#ac57f428cc1e03ce8cd3c9f6c98a8336f">Vector::distance</a></div><div class="ttdeci">short distance() const </div><div class="ttdef"><b>Definition:</b> Vector.cpp:31</div></div>
-<div class="ttc" id="class_vector_html_a50123df9754e508f3d4aa7cb72f38905"><div class="ttname"><a href="class_vector.html#a50123df9754e508f3d4aa7cb72f38905">Vector::dump</a></div><div class="ttdeci">void dump() const </div><div class="ttdef"><b>Definition:</b> Vector.h:44</div></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <a class="code" href="class_vector.html">Vector</a>();</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    <a class="code" href="class_vector.html">Vector</a>(<span class="keywordtype">short</span> x, <span class="keywordtype">short</span> y);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_vector.html">Vector</a>(<span class="keyword">const</span> <a class="code" href="class_vector.html">Vector</a>&amp; copy);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_vector.html">Vector</a>();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <span class="keywordtype">short</span> x;</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keywordtype">short</span> y;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <a class="code" href="class_vector.html">Vector</a> operator-(<span class="keyword">const</span> <a class="code" href="class_vector.html">Vector</a>) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <a class="code" href="class_vector.html">Vector</a> operator+(<span class="keyword">const</span> <a class="code" href="class_vector.html">Vector</a>) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">short</span> <a class="code" href="class_vector.html#ac57f428cc1e03ce8cd3c9f6c98a8336f">distance</a>() <span class="keyword">const</span>; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    DIRECTION direction() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="keyword">static</span> <a class="code" href="class_vector.html">Vector</a> getDirectionVector(DIRECTION direction);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_vector.html#a50123df9754e508f3d4aa7cb72f38905">dump</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;};</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* VECTOR_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="class_vector_html_ac57f428cc1e03ce8cd3c9f6c98a8336f"><div class="ttname"><a href="class_vector.html#ac57f428cc1e03ce8cd3c9f6c98a8336f">Vector::distance</a></div><div class="ttdeci">short distance() const </div><div class="ttdef"><b>Definition:</b> Vector.cpp:35</div></div>
+<div class="ttc" id="class_vector_html_a50123df9754e508f3d4aa7cb72f38905"><div class="ttname"><a href="class_vector.html#a50123df9754e508f3d4aa7cb72f38905">Vector::dump</a></div><div class="ttdeci">void dump() const </div><div class="ttdef"><b>Definition:</b> Vector.cpp:71</div></div>
 <div class="ttc" id="class_vector_html"><div class="ttname"><a href="class_vector.html">Vector</a></div><div class="ttdef"><b>Definition:</b> Vector.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 12 2014 19:32:09 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 17 2014 14:42:06 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

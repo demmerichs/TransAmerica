@@ -4,7 +4,7 @@
 GameExec::GameExec(Window* wp, vector<AI*> aiList, int games) :
 		wp(wp) {
 	board = new Board((int) aiList.size() > PLAYER_LIMIT);
-	simulationLogger = new SimulationLogger(aiList, *board, games, 1395055174); //TODO remove seed
+	simulationLogger = new SimulationLogger(aiList, *board, games);
 }
 
 void GameExec::simulateSimulation() {

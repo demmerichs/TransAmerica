@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">TransAmercia
-   &#160;<span id="projectnumber">v0.2.1</span>
+   &#160;<span id="projectnumber">v0.4</span>
    </div>
   </td>
  </tr>
@@ -97,28 +97,36 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#ifndef PAWN_H_</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define PAWN_H_</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor"></span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include&quot;Vector.h&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;Constants.h&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;</div>
-<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="class_pawn.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pawn.html">Pawn</a>: <span class="keyword">public</span> <a class="code" href="class_vector.html">Vector</a> {</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <a class="code" href="class_pawn.html">Pawn</a>(PLAYERCOLOR colour, <a class="code" href="class_vector.html">Vector</a> pos);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="class_pawn.html">Pawn</a>(<span class="keyword">const</span> <a class="code" href="class_pawn.html">Pawn</a> &amp;copy) :</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;            <a class="code" href="class_vector.html">Vector</a>(copy), schienennetznummer(copy.schienennetznummer), spielerfarbe(</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;                    copy.spielerfarbe) {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    }</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_pawn.html">Pawn</a>();</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <span class="keywordtype">short</span> schienennetznummer;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">const</span> PLAYERCOLOR spielerfarbe;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;};</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* PAWN_H_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="class_pawn_html"><div class="ttname"><a href="class_pawn.html">Pawn</a></div><div class="ttdef"><b>Definition:</b> Pawn.h:14</div></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">class </span><a class="code" href="class_coordinate.html">Coordinate</a>;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;Vector.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;Constants.h&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="class_pawn.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_pawn.html">Pawn</a> {</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <a class="code" href="class_pawn.html">Pawn</a>(PLAYERCOLOR colour, <span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>* pos);</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_pawn.html">Pawn</a>(<span class="keyword">const</span> <a class="code" href="class_pawn.html">Pawn</a> &amp;copy) :</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            position(copy.position), schienennetznummer(</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;                    copy.schienennetznummer), spielerfarbe(copy.spielerfarbe) {</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    }</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_pawn.html">Pawn</a>();</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>* position;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">short</span> schienennetznummer;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">const</span> PLAYERCOLOR spielerfarbe;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">operator</span> <a class="code" href="class_vector.html">Vector</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keyword">operator</span> <span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>*();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;};</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* PAWN_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="class_pawn_html"><div class="ttname"><a href="class_pawn.html">Pawn</a></div><div class="ttdef"><b>Definition:</b> Pawn.h:16</div></div>
+<div class="ttc" id="class_coordinate_html"><div class="ttname"><a href="class_coordinate.html">Coordinate</a></div><div class="ttdef"><b>Definition:</b> Coordinate.h:27</div></div>
 <div class="ttc" id="class_vector_html"><div class="ttname"><a href="class_vector.html">Vector</a></div><div class="ttdef"><b>Definition:</b> Vector.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 12 2014 19:32:09 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 17 2014 14:42:06 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

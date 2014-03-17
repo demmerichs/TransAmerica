@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['playercolor',['playerColor',['../class_a_i.html#a6fb1d4fd29373df36e0263b22e81cee2',1,'AI']]]
+  ['owner',['owner',['../class_a_i.html#aaaf79ce0ba28ff418449f2b7ec0b5090',1,'AI']]]
 ];

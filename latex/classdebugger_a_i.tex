@@ -18,7 +18,7 @@ Inheritance diagram for debugger\-A\-I\-:\begin{figure}[H]
 \item 
 {\bf Move} {\bf do\-Move} ({\bf State} \&current\-State, vector$<$ {\bf Move} $\ast$ $>$ move\-List)
 \item 
-{\bf Vector} {\bf set\-Pawn} ({\bf State} \&current\-State)
+const {\bf Coordinate} $\ast$ {\bf set\-Pawn} ({\bf State} \&current\-State)
 \item 
 bool {\bf count\-Points} ({\bf State} \&current\-State, vector$<$ {\bf Connection} $\ast$ $>$ \&return\-Path)
 \item 
@@ -68,14 +68,14 @@ Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a8565a9ef04ac4f9913913c99f65213b2
 
 \index{debugger\-A\-I@{debugger\-A\-I}!set\-Pawn@{set\-Pawn}}
 \index{set\-Pawn@{set\-Pawn}!debuggerAI@{debugger\-A\-I}}
-\subsubsection[{set\-Pawn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector} debugger\-A\-I\-::set\-Pawn (
+\subsubsection[{set\-Pawn}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Coordinate} $\ast$ debugger\-A\-I\-::set\-Pawn (
 \begin{DoxyParamCaption}
 \item[{{\bf State} \&}]{aktuell}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classdebugger_a_i_afffed83382c79018969a6c6fb3642bc3}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classdebugger_a_i_a591f2da150bcd245766baac371f6471c}
 At the beginning of each round you have to define your starting position of your pawn. 
 
-Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a0fbc5b7d4230575baf80217d0c250cc9}.
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a06aa99d4b4ac2530dbdad122183600e8}.
 
 
 

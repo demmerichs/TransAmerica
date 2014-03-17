@@ -9,7 +9,7 @@ Inheritance diagram for State\-:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries State} (const {\bf Board} \&{\bf Spielbrett})\label{class_state_af4b0da86f50a141f59fe722fe2a521e5}
+{\bfseries State} (const {\bf Board} \&Spielbrett)\label{class_state_af4b0da86f50a141f59fe722fe2a521e5}
 
 \item 
 {\bfseries State} (const {\bf State} \&)\label{class_state_a5ca97340266d486dfa42225f19c40de3}
@@ -33,22 +33,19 @@ void {\bfseries set\-Rail} (const {\bf Connection} \&)\label{class_state_ac05cee
 void {\bfseries reset\-Railway\-Nr\-\_\-\-To\-Nr\-\_\-} (const short, const short)\label{class_state_a482b551469c15e5f88967ab6c42ca3dc}
 
 \item 
-const {\bf Connection} $\ast$ {\bfseries get\-Connection} ({\bf Vector} a, {\bf Vector} b) const \label{class_state_a720ae4c2d0f49932b0f117d9beb98863}
-
-\item 
-void {\bfseries add\-Pawn} ({\bf Pawn} insert)\label{class_state_a9a192466fc65d42a405b6c461f5ae1c7}
+B\-A\-N\-N\-E\-D\-\_\-\-S\-T\-A\-T\-U\-S {\bfseries add\-Pawn} ({\bf Pawn} insert)\label{class_state_a1f874b300f7f84742b5883f22d0db17f}
 
 \item 
 void {\bfseries reset\-All} ()\label{class_state_ae3cf3d6f8fd90d8a59d53ccb1290a46c}
 
 \item 
-unsigned short $\ast$$\ast$ {\bfseries evaluate\-Board} ({\bf Vector} target) const \label{class_state_a5bc0dd359e67c72d457a64277afaf621}
+unsigned short $\ast$$\ast$ {\bfseries evaluate\-Board} (const {\bf Coordinate} $\ast$target) const \label{class_state_ae53ddb9f0ce4e7c94124bf3d809e7983}
 
 \item 
-unsigned short {\bfseries distance} (const {\bf Vector} \&target, const vector$<$ {\bf Vector} $>$ \&possible\-Starts) const \label{class_state_adbb160a96efbc5fde9c7346bafe26988}
+unsigned short {\bfseries distance} (const {\bf Coordinate} $\ast$target, const vector$<$ const {\bf Coordinate} $\ast$ $>$ \&possible\-Starts) const \label{class_state_a4cb65e47fcc3f791c52cf75d904777d5}
 
 \item 
-vector$<$ {\bf Vector} $>$ {\bfseries points\-Belonging\-To\-Railway\-System} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R playercolour) const \label{class_state_a8797cce1b552bfb36f01cc8fba0f7e48}
+vector$<$ const {\bf Coordinate} $\ast$ $>$ {\bfseries points\-Belonging\-To\-Railway\-System} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R playercolour) const \label{class_state_aa2169b0cf7c5d5bcd680145f1f34a168}
 
 \item 
 void {\bfseries dump} () const \label{class_state_a27499f3070aef89461dbec0c99a24225}
@@ -79,6 +76,9 @@ const {\bf Board} \& {\bfseries board}\label{class_state_a74702298b35b8a798e8521
 
 \item 
 vector$<$ {\bf Pawn} $\ast$ $>$ {\bfseries unsorted\-Pawns}\label{class_state_a7da42bb202d9bb967db82e1b8c65070e}
+
+\item 
+B\-A\-N\-N\-E\-D\-\_\-\-S\-T\-A\-T\-U\-S $\ast$ {\bfseries player\-Status}\label{class_state_ab6a551fe108a225babf4fa59e61d75cb}
 
 \end{DoxyCompactItemize}
 

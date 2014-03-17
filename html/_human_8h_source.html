@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">TransAmercia
-   &#160;<span id="projectnumber">v0.2.1</span>
+   &#160;<span id="projectnumber">v0.4</span>
    </div>
   </td>
  </tr>
@@ -115,27 +115,28 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_human.html">Human</a>();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_move.html">Move</a> <a class="code" href="class_human.html#a797f11c25934d3e6ebdfa612715f899a">doMove</a>(<a class="code" href="class_state.html">State</a>&amp;, vector&lt;Move*&gt;);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_vector.html">Vector</a> <a class="code" href="class_human.html#a31b9983eba5b8ccd37c7b41b4ecba912">setPawn</a>(<a class="code" href="class_state.html">State</a>&amp;);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">bool</span> countPoints(<a class="code" href="class_state.html">State</a>&amp;, vector&lt;Connection*&gt;);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>* <a class="code" href="class_human.html#a625d50876b0cefaa236262e5d3a1f609">setPawn</a>(<a class="code" href="class_state.html">State</a>&amp;);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_human.html#a1d9b69f7ac17c8ead5d78e5af312250a">countPoints</a>(<a class="code" href="class_state.html">State</a>&amp;, vector&lt;Connection*&gt;&amp;);</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_human.html#af9bb973f12694c98e504766193a4652f">gatherInformationEndOfRound</a>(<span class="keyword">const</span> <a class="code" href="class_round_logger.html">RoundLogger</a>*);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HUMAN_H_ */</span><span class="preprocessor"></span></div>
+<div class="ttc" id="class_human_html_a625d50876b0cefaa236262e5d3a1f609"><div class="ttname"><a href="class_human.html#a625d50876b0cefaa236262e5d3a1f609">Human::setPawn</a></div><div class="ttdeci">const Coordinate * setPawn(State &amp;)</div><div class="ttdef"><b>Definition:</b> Human.cpp:27</div></div>
 <div class="ttc" id="class_state_html"><div class="ttname"><a href="class_state.html">State</a></div><div class="ttdef"><b>Definition:</b> State.h:32</div></div>
 <div class="ttc" id="class_move_html"><div class="ttname"><a href="class_move.html">Move</a></div><div class="ttdef"><b>Definition:</b> Move.h:15</div></div>
 <div class="ttc" id="class_a_i_html_a6fb1d4fd29373df36e0263b22e81cee2"><div class="ttname"><a href="class_a_i.html#a6fb1d4fd29373df36e0263b22e81cee2">AI::playerColor</a></div><div class="ttdeci">const PLAYERCOLOR playerColor</div><div class="ttdef"><b>Definition:</b> AI.h:55</div></div>
-<div class="ttc" id="class_user_input_window_html"><div class="ttname"><a href="class_user_input_window.html">UserInputWindow</a></div><div class="ttdef"><b>Definition:</b> UserInputWindow.h:25</div></div>
+<div class="ttc" id="class_user_input_window_html"><div class="ttname"><a href="class_user_input_window.html">UserInputWindow</a></div><div class="ttdef"><b>Definition:</b> UserInputWindow.h:29</div></div>
 <div class="ttc" id="class_a_i_html"><div class="ttname"><a href="class_a_i.html">AI</a></div><div class="ttdef"><b>Definition:</b> AI.h:35</div></div>
 <div class="ttc" id="class_round_logger_html"><div class="ttname"><a href="class_round_logger.html">RoundLogger</a></div><div class="ttdef"><b>Definition:</b> RoundLogger.h:27</div></div>
-<div class="ttc" id="class_human_html_af9bb973f12694c98e504766193a4652f"><div class="ttname"><a href="class_human.html#af9bb973f12694c98e504766193a4652f">Human::gatherInformationEndOfRound</a></div><div class="ttdeci">void gatherInformationEndOfRound(const RoundLogger *)</div><div class="ttdef"><b>Definition:</b> Human.cpp:38</div></div>
+<div class="ttc" id="class_human_html_a1d9b69f7ac17c8ead5d78e5af312250a"><div class="ttname"><a href="class_human.html#a1d9b69f7ac17c8ead5d78e5af312250a">Human::countPoints</a></div><div class="ttdeci">bool countPoints(State &amp;, vector&lt; Connection * &gt; &amp;)</div><div class="ttdef"><b>Definition:</b> Human.cpp:31</div></div>
+<div class="ttc" id="class_coordinate_html"><div class="ttname"><a href="class_coordinate.html">Coordinate</a></div><div class="ttdef"><b>Definition:</b> Coordinate.h:27</div></div>
+<div class="ttc" id="class_human_html_af9bb973f12694c98e504766193a4652f"><div class="ttname"><a href="class_human.html#af9bb973f12694c98e504766193a4652f">Human::gatherInformationEndOfRound</a></div><div class="ttdeci">void gatherInformationEndOfRound(const RoundLogger *)</div><div class="ttdef"><b>Definition:</b> Human.cpp:35</div></div>
 <div class="ttc" id="class_human_html"><div class="ttname"><a href="class_human.html">Human</a></div><div class="ttdef"><b>Definition:</b> Human.h:22</div></div>
-<div class="ttc" id="class_human_html_a31b9983eba5b8ccd37c7b41b4ecba912"><div class="ttname"><a href="class_human.html#a31b9983eba5b8ccd37c7b41b4ecba912">Human::setPawn</a></div><div class="ttdeci">Vector setPawn(State &amp;)</div><div class="ttdef"><b>Definition:</b> Human.cpp:25</div></div>
-<div class="ttc" id="class_human_html_a797f11c25934d3e6ebdfa612715f899a"><div class="ttname"><a href="class_human.html#a797f11c25934d3e6ebdfa612715f899a">Human::doMove</a></div><div class="ttdeci">Move doMove(State &amp;, vector&lt; Move * &gt;)</div><div class="ttdef"><b>Definition:</b> Human.cpp:21</div></div>
-<div class="ttc" id="class_vector_html"><div class="ttname"><a href="class_vector.html">Vector</a></div><div class="ttdef"><b>Definition:</b> Vector.h:29</div></div>
+<div class="ttc" id="class_human_html_a797f11c25934d3e6ebdfa612715f899a"><div class="ttname"><a href="class_human.html#a797f11c25934d3e6ebdfa612715f899a">Human::doMove</a></div><div class="ttdeci">Move doMove(State &amp;, vector&lt; Move * &gt;)</div><div class="ttdef"><b>Definition:</b> Human.cpp:23</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 12 2014 19:32:09 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 17 2014 14:42:06 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
