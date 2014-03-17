@@ -353,7 +353,7 @@ void GUIBoard::drawRat(QPainter *painter) {
 void GUIBoard::drawPoints(QPainter* painter){
     QRectF bRect (0,272, 103, 19.2);
     QPen coloredPen(fatPen);
-    painter->setFont(QFont("Times", 10, QFont::Bold));
+    painter->setFont(QFont("Times"));
     for (int i=0; i < (int) playerList.size(); i++){
         QString printString;
         printString = QString(" %1 (%2) %3")
@@ -362,7 +362,7 @@ void GUIBoard::drawPoints(QPainter* painter){
                             .arg(points.get(playerList[i]));
         coloredPen.setColor(getQColor(playerList[i]->playerColor));
         painter->setPen(coloredPen);
-        painter->drawText(bRect,printString);
+        painter->drawText(bRect,Qt::AlignCenter, printString);
         bRect.moveTop(bRect.top()+19.2);
     }
 }
