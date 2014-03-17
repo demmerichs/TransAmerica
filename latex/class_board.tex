@@ -7,7 +7,10 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bf Coordinate} $\ast$$\ast$$\ast$ {\bf construct\-Grid} () const 
+{\bfseries Board} (bool above\-Player\-Limit)\label{class_board_aff1a3f7565e1170a3320afda3c7448d2}
+
+\item 
+const {\bf Coordinate} $\ast$$\ast$$\ast$ {\bf construct\-Grid} () const 
 \item 
 {\bf City} $\ast$$\ast$ {\bf construct\-Cities} () const 
 \item 
@@ -15,17 +18,27 @@
 \item 
 void {\bf dump} () const 
 \item 
-{\bf City} $\ast$const {\bf look\-For\-City} (short xkoo, short ykoo) const 
+const {\bf City} $\ast$const {\bf look\-For\-City} (short xkoo, short ykoo) const 
 \item 
-{\bf City} $\ast$ {\bf get\-City} (C\-I\-T\-Y\-C\-O\-L\-O\-R color, short number) const 
+const {\bf City} $\ast$ {\bf get\-City} (C\-I\-T\-Y\-C\-O\-L\-O\-R color, short number) const 
+\item 
+const {\bf Coordinate} $\ast$ {\bf get\-Coordinate} ({\bf Vector} vector) const 
+\item 
+const {\bf Connection} $\ast$ {\bfseries get\-Connection} (const {\bf Coordinate} $\ast$a, const {\bf Coordinate} $\ast$b) const \label{class_board_a307c75d8408e6d65637910aa86abf312}
+
+\item 
+const {\bf Connection} $\ast$ {\bfseries get\-Connection} ({\bf Vector} a, {\bf Vector} b) const \label{class_board_a3a9d9071f7c2dd647ffbc75dc9aa4e5c}
+
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-const short {\bfseries number\-Cities}\label{class_board_a6869c6319c27411982843c0e3aa101fe}
+const bool {\bfseries above\-Player\-Limit}\label{class_board_a748cd1cd67cd6d74a6577e7100d862fa}
 
 \item 
-{\bf City} $\ast$const $\ast$const {\bf city\-List}
+const short {\bf number\-Cities}
+\item 
+const {\bf City} $\ast$const $\ast$const {\bf city\-List}
 \item 
 const {\bf Coordinate} $\ast$const $\ast$const \\*
 $\ast$const {\bf grid}
@@ -55,11 +68,11 @@ $<$ Constructs the grid. \index{Board@{Board}!construct\-Edges@{construct\-Edges
 ) const}\label{class_board_a8235b5e3e7f30c370da7d7defffdade4}
 $<$ Constructs the city\-List. \index{Board@{Board}!construct\-Grid@{construct\-Grid}}
 \index{construct\-Grid@{construct\-Grid}!Board@{Board}}
-\subsubsection[{construct\-Grid}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Coordinate} $\ast$$\ast$$\ast$ Board\-::construct\-Grid (
+\subsubsection[{construct\-Grid}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Coordinate} $\ast$$\ast$$\ast$ Board\-::construct\-Grid (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
-) const}\label{class_board_ae2eea85780d8edb14a2aa0697600bd60}
+) const}\label{class_board_af815ac6ffa5d714247dc934cc446f0d5}
 $<$ These are the connection(-\/pointers) between two coordinates. If you get edges[x][y][z], you get the connection starting in (x,y) and going in directin z (see also D\-I\-R\-E\-C\-T\-I\-O\-N in \doxyref{Constants.\-h}{p.}{_constants_8h_source}) \index{Board@{Board}!dump@{dump}}
 \index{dump@{dump}!Board@{Board}}
 \subsubsection[{dump}]{\setlength{\rightskip}{0pt plus 5cm}void Board\-::dump (
@@ -69,33 +82,43 @@ $<$ These are the connection(-\/pointers) between two coordinates. If you get ed
 ) const}\label{class_board_a2b3cd1e79ce4b94cdeeea22843941123}
 $<$ Constructs the edges. \index{Board@{Board}!get\-City@{get\-City}}
 \index{get\-City@{get\-City}!Board@{Board}}
-\subsubsection[{get\-City}]{\setlength{\rightskip}{0pt plus 5cm}{\bf City} $\ast$ Board\-::get\-City (
+\subsubsection[{get\-City}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf City} $\ast$ Board\-::get\-City (
 \begin{DoxyParamCaption}
 \item[{C\-I\-T\-Y\-C\-O\-L\-O\-R}]{color, }
 \item[{short}]{number}
 \end{DoxyParamCaption}
-) const}\label{class_board_ac16f00b496f4eb32db6fe1c7ba417eee}
-$<$ Finds the city, if it exists in the list. \index{Board@{Board}!look\-For\-City@{look\-For\-City}}
+) const}\label{class_board_a26b39c1ea4b2999323754f29f37cf28b}
+$<$ Finds the city, if it exists in the list. \index{Board@{Board}!get\-Coordinate@{get\-Coordinate}}
+\index{get\-Coordinate@{get\-Coordinate}!Board@{Board}}
+\subsubsection[{get\-Coordinate}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Coordinate} $\ast$ Board\-::get\-Coordinate (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector}}]{vector}
+\end{DoxyParamCaption}
+) const}\label{class_board_a749739339983af5a19ecf1b268160b9a}
+$<$ Gets the city with the passed color and number. \index{Board@{Board}!look\-For\-City@{look\-For\-City}}
 \index{look\-For\-City@{look\-For\-City}!Board@{Board}}
-\subsubsection[{look\-For\-City}]{\setlength{\rightskip}{0pt plus 5cm}{\bf City} $\ast$const Board\-::look\-For\-City (
+\subsubsection[{look\-For\-City}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf City} $\ast$const Board\-::look\-For\-City (
 \begin{DoxyParamCaption}
 \item[{short}]{xkoo, }
 \item[{short}]{ykoo}
 \end{DoxyParamCaption}
-) const}\label{class_board_a9d1b238232d07ee935416c1801383496}
+) const}\label{class_board_aa910167d8c747965e32d1dbb4021cfe4}
 $<$ Dumps the board on the standard output stream. 
 
 \subsection{Member Data Documentation}
 \index{Board@{Board}!city\-List@{city\-List}}
 \index{city\-List@{city\-List}!Board@{Board}}
-\subsubsection[{city\-List}]{\setlength{\rightskip}{0pt plus 5cm}{\bf City}$\ast$ const$\ast$ const Board\-::city\-List}\label{class_board_afac43a25bd5e29c0ec95b6a5744df041}
+\subsubsection[{city\-List}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf City}$\ast$ const$\ast$ const Board\-::city\-List}\label{class_board_ad6f7d73277288f98beb89832d7b4c146}
 $<$ This is the number of cities on the game board. \index{Board@{Board}!edges@{edges}}
 \index{edges@{edges}!Board@{Board}}
 \subsubsection[{edges}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Connection}$\ast$ const$\ast$ const$\ast$ const$\ast$ const Board\-::edges}\label{class_board_a60585dc155394a04bcad3b7e40965ee3}
 $<$ This is the grid on the game board (2-\/dimensional array of coordinate-\/pointers). It is starting with (0,0) in the upper left corner. \index{Board@{Board}!grid@{grid}}
 \index{grid@{grid}!Board@{Board}}
 \subsubsection[{grid}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Coordinate}$\ast$ const$\ast$ const$\ast$ const Board\-::grid}\label{class_board_aae9536dd128ba63f9c7f0a665ae92ea6}
-$<$ This is the list of city-\/pointers, pointing to the cities, existing in the game. 
+$<$ This is the list of city-\/pointers, pointing to the cities, existing in the game. \index{Board@{Board}!number\-Cities@{number\-Cities}}
+\index{number\-Cities@{number\-Cities}!Board@{Board}}
+\subsubsection[{number\-Cities}]{\setlength{\rightskip}{0pt plus 5cm}const short Board\-::number\-Cities}\label{class_board_a6869c6319c27411982843c0e3aa101fe}
+$<$ If the board is constructed for more than P\-L\-A\-Y\-E\-R\-\_\-\-L\-I\-M\-I\-T players, this value is true. 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

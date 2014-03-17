@@ -23,7 +23,7 @@
  <tr style="height: 56px;">
   <td style="padding-left: 0.5em;">
    <div id="projectname">TransAmercia
-   &#160;<span id="projectnumber">v0.2.1</span>
+   &#160;<span id="projectnumber">v0.4</span>
    </div>
   </td>
  </tr>
@@ -83,12 +83,12 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#signals">Signals</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-attribs">Protected Attributes</a> &#124;
-<a href="#friends">Friends</a> &#124;
 <a href="class_window-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">Window Class Reference</div>  </div>
+<div class="title">Window Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="dynheader">
@@ -102,46 +102,46 @@ Inheritance diagram for Window:</div>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="signals"></a>
+Signals</h2></td></tr>
+<tr class="memitem:ab6b062b8af87f2ec993bf633fc4f2d46"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab6b062b8af87f2ec993bf633fc4f2d46"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>requestDisplayOnStatusBar</b> (QString text, int time=0)</td></tr>
+<tr class="separator:ab6b062b8af87f2ec993bf633fc4f2d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6618b9cdce9ce98c7c6c423fa93c4fd5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a6618b9cdce9ce98c7c6c423fa93c4fd5">Window</a> (const <a class="el" href="class_board.html">Board</a> &amp;board)</td></tr>
-<tr class="separator:a6618b9cdce9ce98c7c6c423fa93c4fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a8e72943c68fb85203871a86681bc6b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#a5a8e72943c68fb85203871a86681bc6b">Window</a> (const <a class="el" href="class_board.html">Board</a> *board)</td></tr>
+<tr class="separator:a5a8e72943c68fb85203871a86681bc6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:aaa03b9cfa8a9e80463cdf13971645183"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aaa03b9cfa8a9e80463cdf13971645183"></a>
-<a class="el" href="class_dynamic_state.html">DynamicState</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>aZp</b></td></tr>
-<tr class="separator:aaa03b9cfa8a9e80463cdf13971645183"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7159f373a53e01ba489092f2e381c245"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7159f373a53e01ba489092f2e381c245"></a>
-<a class="el" href="class_spielbrett.html">Spielbrett</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>spielbrett</b></td></tr>
-<tr class="separator:a7159f373a53e01ba489092f2e381c245"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc83752db1657acb7c47a135b5cc481c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc83752db1657acb7c47a135b5cc481c"></a>
+<a class="el" href="class_g_u_i_board.html">GUIBoard</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>spielbrett</b></td></tr>
+<tr class="separator:afc83752db1657acb7c47a135b5cc481c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7864a9891249e0e918d6ee5741a95a96"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a7864a9891249e0e918d6ee5741a95a96"></a>
 QFormLayout *&#160;</td><td class="memItemRight" valign="bottom"><b>toolLayout</b></td></tr>
 <tr class="separator:a7864a9891249e0e918d6ee5741a95a96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4750bf3acf837e41ee9e4e6a9fa9856"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab4750bf3acf837e41ee9e4e6a9fa9856"></a>
+QGridLayout *&#160;</td><td class="memItemRight" valign="bottom"><b>mainLayout</b></td></tr>
+<tr class="separator:ab4750bf3acf837e41ee9e4e6a9fa9856"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af706f2d75cb1992ceccbd067f7c2979e"><td class="memItemLeft" align="right" valign="top">QLabel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_window.html#af706f2d75cb1992ceccbd067f7c2979e">toolBoxLabel</a></td></tr>
 <tr class="separator:af706f2d75cb1992ceccbd067f7c2979e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab85826e5d46ea16c3b9f91b966bec9a2"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab85826e5d46ea16c3b9f91b966bec9a2"></a>
-QPushButton *&#160;</td><td class="memItemRight" valign="bottom"><b>newGameButton</b></td></tr>
-<tr class="separator:ab85826e5d46ea16c3b9f91b966bec9a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8412b9181c563862e596c3dd6c7d9cbf"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a8412b9181c563862e596c3dd6c7d9cbf"></a>
 QCheckBox *&#160;</td><td class="memItemRight" valign="bottom"><b>showTownsCheckBox</b></td></tr>
 <tr class="separator:a8412b9181c563862e596c3dd6c7d9cbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="friends"></a>
-Friends</h2></td></tr>
-<tr class="memitem:a6c7b6620b9129799f52341ffa94cff69"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a6c7b6620b9129799f52341ffa94cff69"></a>
-class&#160;</td><td class="memItemRight" valign="bottom"><b>Spielbrett</b></td></tr>
-<tr class="separator:a6c7b6620b9129799f52341ffa94cff69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5631a2fe8d9f7c62e344270543cff20"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ab5631a2fe8d9f7c62e344270543cff20"></a>
+QTabWidget *&#160;</td><td class="memItemRight" valign="bottom"><b>tabWidget</b></td></tr>
+<tr class="separator:ab5631a2fe8d9f7c62e344270543cff20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a6618b9cdce9ce98c7c6c423fa93c4fd5"></a>
+<a class="anchor" id="a5a8e72943c68fb85203871a86681bc6b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">Window::Window </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="class_board.html">Board</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="class_board.html">Board</a> *&#160;</td>
           <td class="paramname"><em>board</em></td><td>)</td>
           <td></td>
         </tr>
@@ -181,7 +181,7 @@ class&#160;</td><td class="memItemRight" valign="bottom"><b>Spielbrett</b></td><
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Mar 12 2014 19:32:10 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Mon Mar 17 2014 14:42:07 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

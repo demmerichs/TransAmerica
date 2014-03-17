@@ -9,6 +9,10 @@
 #include <cmath>
 using std::abs;
 
+Vector::Vector() :
+		x(0), y(0) {
+}
+
 Vector::Vector(short x, short y) :
 		x(x), y(y) {
 }

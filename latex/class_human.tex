@@ -14,10 +14,9 @@ Inheritance diagram for Human\-:\begin{figure}[H]
 \item 
 {\bf Move} {\bf do\-Move} ({\bf State} \&, vector$<$ {\bf Move} $\ast$ $>$)
 \item 
-{\bf Vector} {\bf set\-Pawn} ({\bf State} \&)
+const {\bf Coordinate} $\ast$ {\bf set\-Pawn} ({\bf State} \&)
 \item 
-bool {\bfseries count\-Points} ({\bf State} \&, vector$<$ {\bf Connection} $\ast$ $>$)\label{class_human_a97378e4328a84ce3b0b0e7695bcdd432}
-
+bool {\bf count\-Points} ({\bf State} \&, vector$<$ {\bf Connection} $\ast$ $>$ \&)
 \item 
 void {\bf gather\-Information\-End\-Of\-Round} (const {\bf Round\-Logger} $\ast$)
 \end{DoxyCompactItemize}
@@ -25,6 +24,18 @@ void {\bf gather\-Information\-End\-Of\-Round} (const {\bf Round\-Logger} $\ast$
 
 
 \subsection{Member Function Documentation}
+\index{Human@{Human}!count\-Points@{count\-Points}}
+\index{count\-Points@{count\-Points}!Human@{Human}}
+\subsubsection[{count\-Points}]{\setlength{\rightskip}{0pt plus 5cm}bool Human\-::count\-Points (
+\begin{DoxyParamCaption}
+\item[{{\bf State} \&}]{current\-State, }
+\item[{vector$<$ {\bf Connection} $\ast$ $>$ \&}]{return\-Path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_human_a1d9b69f7ac17c8ead5d78e5af312250a}
+Here you can count your minus points at the end of each round. If you want to do so, you have to return true. For the beginning it is okay, if you just return false. Then the gamemaster will count the minuspoints. He counts in most cases the minimum of minuspoints you get, however in some cases the algorithm doesn't evaluate the best value. 
+
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a158672aaf98fab1b1ede48002f83d3ff}.
+
 \index{Human@{Human}!do\-Move@{do\-Move}}
 \index{do\-Move@{do\-Move}!Human@{Human}}
 \subsubsection[{do\-Move}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Move} Human\-::do\-Move (
@@ -50,14 +61,14 @@ Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a8565a9ef04ac4f9913913c99f65213b2
 
 \index{Human@{Human}!set\-Pawn@{set\-Pawn}}
 \index{set\-Pawn@{set\-Pawn}!Human@{Human}}
-\subsubsection[{set\-Pawn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector} Human\-::set\-Pawn (
+\subsubsection[{set\-Pawn}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Coordinate} $\ast$ Human\-::set\-Pawn (
 \begin{DoxyParamCaption}
 \item[{{\bf State} \&}]{aktuell}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_human_a31b9983eba5b8ccd37c7b41b4ecba912}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{class_human_a625d50876b0cefaa236262e5d3a1f609}
 At the beginning of each round you have to define your starting position of your pawn. 
 
-Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a0fbc5b7d4230575baf80217d0c250cc9}.
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a06aa99d4b4ac2530dbdad122183600e8}.
 
 
 

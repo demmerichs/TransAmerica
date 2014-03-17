@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['setpawn',['setPawn',['../classdebugger_a_i.html#afffed83382c79018969a6c6fb3642bc3',1,'debuggerAI::setPawn()'],['../classtemplate_a_i.html#a8636ca39a86a19fab33cf0b082291b62',1,'templateAI::setPawn()'],['../classtest_k_i.html#afebbc9eeab8c836490f0191e0bb6627e',1,'testKI::setPawn()'],['../class_a_i.html#a0fbc5b7d4230575baf80217d0c250cc9',1,'AI::setPawn()'],['../class_human.html#a31b9983eba5b8ccd37c7b41b4ecba912',1,'Human::setPawn()']]],
+  ['setpawn',['setPawn',['../class_david_a_i.html#ac0a45c07a7325ff590803dd2f0864415',1,'DavidAI::setPawn()'],['../classdebugger_a_i.html#a591f2da150bcd245766baac371f6471c',1,'debuggerAI::setPawn()'],['../classtemplate_a_i.html#ae18d50c605f126fc1d340368a76574bb',1,'templateAI::setPawn()'],['../classtest_k_i.html#a26e674042460c4cb75905cabf0d228d7',1,'testKI::setPawn()'],['../class_a_i.html#a06aa99d4b4ac2530dbdad122183600e8',1,'AI::setPawn()'],['../class_human.html#a625d50876b0cefaa236262e5d3a1f609',1,'Human::setPawn()']]],
   ['simulatesimulation',['simulateSimulation',['../class_game_exec.html#a6c5c86f3ac503830673b9dd97e71464e',1,'GameExec']]]
 ];

@@ -10,7 +10,12 @@ Inheritance diagram for Coordinate\-:\begin{figure}[H]
 \includegraphics[height=3.000000cm]{class_coordinate}
 \end{center}
 \end{figure}
-\subsection*{Public Member Functions}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+const {\bf City} $\ast$const {\bf vor\-Ort}
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 {\bf Coordinate} (short x, short y)
@@ -19,16 +24,24 @@ Inheritance diagram for Coordinate\-:\begin{figure}[H]
 
 \item 
 {\bf Coordinate} (short x, short y, const {\bf City} $\ast$const City\-On\-Coordinate)
+\item 
+{\bfseries Coordinate} (const {\bf Coordinate} \&)\label{class_coordinate_a248289957684dfd5be0caf74afdef444}
+
+\item 
+{\bf Coordinate} \& {\bfseries operator=} (const {\bf Coordinate} \&)\label{class_coordinate_aa10406cfde8b6bcfe07244304fe7a06a}
+
 \end{DoxyCompactItemize}
-\subsection*{Public Attributes}
+\subsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-const {\bf City} $\ast$const {\bf vor\-Ort}
+class {\bfseries Board}\label{class_coordinate_a12525b6ed7c8186be0bee5cf78e2a49c}
+
 \end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
 
 
 \subsection{Detailed Description}
-Objects of this class are coordiantes on the board, where the x-\/axis is parallel to the west-\/east direction and the y-\/axis parallel to the north-\/(south-\/west) direction. The (0,0) coordinate is the most upper left corner of the board. The range of the x-\/values is from 0 to M\-A\-X\-\_\-\-X and the y-\/values from 0 to M\-A\-X\-\_\-\-Y. 
+Objects of this class are coordiantes on the board, where the x-\/axis is parallel to the west-\/east direction and the y-\/axis parallel to the north-\/(south-\/west) direction. The (0,0) coordinate is the most upper left corner of the board. The range of the x-\/values is from 0 to M\-A\-X\-\_\-\-X-\/1 and the y-\/values from 0 to M\-A\-X\-\_\-\-Y-\/1. 
 
 \subsection{Constructor \& Destructor Documentation}
 \index{Coordinate@{Coordinate}!Coordinate@{Coordinate}}
@@ -38,7 +51,7 @@ Objects of this class are coordiantes on the board, where the x-\/axis is parall
 \item[{short}]{x, }
 \item[{short}]{y}
 \end{DoxyParamCaption}
-)}\label{class_coordinate_afa539ca7218f25717e25482babf0bfc9}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_coordinate_afa539ca7218f25717e25482babf0bfc9}
 This constructor creates a coordinate with no city on it. \index{Coordinate@{Coordinate}!Coordinate@{Coordinate}}
 \index{Coordinate@{Coordinate}!Coordinate@{Coordinate}}
 \subsubsection[{Coordinate}]{\setlength{\rightskip}{0pt plus 5cm}Coordinate\-::\-Coordinate (
@@ -47,7 +60,7 @@ This constructor creates a coordinate with no city on it. \index{Coordinate@{Coo
 \item[{short}]{y, }
 \item[{const {\bf City} $\ast$const}]{City\-On\-Coordinate}
 \end{DoxyParamCaption}
-)}\label{class_coordinate_ad60539c2d440527e34f4ab23a85c8389}
+)\hspace{0.3cm}{\ttfamily [protected]}}\label{class_coordinate_ad60539c2d440527e34f4ab23a85c8389}
 This constructor creates a coordinate with city on it. 
 
 \subsection{Member Data Documentation}

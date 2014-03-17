@@ -252,9 +252,14 @@ void GUIBoard::drawRailway(QPainter *painter) {
 void GUIBoard::drawPawns(QPainter *painter) {
 	for (int k = 0; k < dynamicState->numberPawns; k++) {
 		Pawn* i = dynamicState->unsortedPawns[k];
+>>>>>>>>>>>>>>>>>>>> File 1
+>>>>>>>>>>>>>>>>>>>> File 2
+>>>>>>>>>>>>>>>>>>>> File 3
+		Vector pos = *i;
+<<<<<<<<<<<<<<<<<<<<
 		QBrush brush(getQColor(i->spielerfarbe));
 		painter->setBrush(brush);
-		QPoint point = transform.map(QPoint(i->x * sL - 18, i->y * sL - 25));
+		QPoint point = transform.map(QPoint(pos.x * sL - 18, pos.y * sL - 25));
 		painter->setPen(thinPen);
 		painter->drawRoundedRect(point.x(), point.y(), 10, 25, 2, 2);
 		if (dynamicState->playerStatus[i->spielerfarbe] != NOT_BANNED) {

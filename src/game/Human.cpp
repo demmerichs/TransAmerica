@@ -13,7 +13,8 @@
 
 Human::Human(PLAYERCOLOR playerColor, UserInputWindow* userInput) :
 		AI(playerColor), userInput(userInput) {
-	// TODO Auto-generated constructor stub
+	AIname = "You";
+	owner = "You";
 }
 
 Human::~Human() {

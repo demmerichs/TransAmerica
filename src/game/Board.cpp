@@ -244,3 +244,33 @@ const City* Board::getCity(CITYCOLOR farbe, short nr) const {
 	assert(true);
 	return cityList[0];
 }
+
+const Coordinate* Board::getCoordinate(Vector vector) const {
+	if (vector.x >= 0 && vector.y >= 0 && vector.x < MAX_X && vector.y < MAX_Y)
+		return grid[vector.x][vector.y];
+	else
+		return 0;
+}
+
+const Connection* Board::getConnection(const Coordinate* a,
+		const Coordinate* b) const {
+	if (a && b)
+		return getConnection(*a, *b);
+	else
+		return 0;
+}
+
+const Connection* Board::getConnection(Vector a, Vector b) const {
+	Vector eins = a;
+	Vector zwei = b;
+	const Connection* ruckgabe = 0;
+	if ((b - a).x < 0 || (b - a).y < 0) {
+		eins = b;
+		zwei = a;
+	}
+	if (eins.x >= 0 && eins.y >= 0 && zwei.x >= 0 && zwei.y >= 0
+			&& eins.x < MAX_X && eins.y < MAX_Y && zwei.x < MAX_X
+			&& zwei.y < MAX_Y && (zwei - eins).direction() != UNDEFINED)
+		ruckgabe = edges[eins.x][eins.y][(zwei - eins).direction()];
+	return ruckgabe;
+}

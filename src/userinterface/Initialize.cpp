@@ -56,6 +56,19 @@ Initialize::Initialize(const QString &title, QWidget *parent) :
 	this->show();
 }
 
+Initialize::~Initialize() {
+	for (int i = 0; i < (int) aiSelected.size(); i++)
+		delete aiSelected[i];
+	delete nameLabel;
+	delete nameEdit;
+	delete simulationLabel;
+	delete simulationSpin;
+	delete listWidgetA;
+	delete listWidgetB;
+	delete buttonBox;
+	delete layout;
+}
+
 QString Initialize::name() {
 	return nameEdit->text();
 }

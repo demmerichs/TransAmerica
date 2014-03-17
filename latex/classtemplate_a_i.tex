@@ -18,7 +18,7 @@ Inheritance diagram for template\-A\-I\-:\begin{figure}[H]
 \item 
 {\bf Move} {\bf do\-Move} ({\bf State} \&current\-State, vector$<$ {\bf Move} $\ast$ $>$ move\-List)
 \item 
-{\bf Vector} {\bf set\-Pawn} ({\bf State} \&current\-State)
+const {\bf Coordinate} $\ast$ {\bf set\-Pawn} ({\bf State} \&current\-State)
 \item 
 bool {\bf count\-Points} ({\bf State} \&current\-State, vector$<$ {\bf Connection} $\ast$ $>$ \&return\-Path)
 \item 
@@ -68,14 +68,14 @@ Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a8565a9ef04ac4f9913913c99f65213b2
 
 \index{template\-A\-I@{template\-A\-I}!set\-Pawn@{set\-Pawn}}
 \index{set\-Pawn@{set\-Pawn}!templateAI@{template\-A\-I}}
-\subsubsection[{set\-Pawn}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector} template\-A\-I\-::set\-Pawn (
+\subsubsection[{set\-Pawn}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Coordinate} $\ast$ template\-A\-I\-::set\-Pawn (
 \begin{DoxyParamCaption}
 \item[{{\bf State} \&}]{aktuell}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtemplate_a_i_a8636ca39a86a19fab33cf0b082291b62}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtemplate_a_i_ae18d50c605f126fc1d340368a76574bb}
 At the beginning of each round you have to define your starting position of your pawn. 
 
-Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a0fbc5b7d4230575baf80217d0c250cc9}.
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a06aa99d4b4ac2530dbdad122183600e8}.
 
 
 

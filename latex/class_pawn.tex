@@ -1,22 +1,25 @@
 \section{Pawn Class Reference}
 \label{class_pawn}\index{Pawn@{Pawn}}
-Inheritance diagram for Pawn\-:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=2.000000cm]{class_pawn}
-\end{center}
-\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Pawn} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R colour, {\bf Vector} pos)\label{class_pawn_a0edb7824a9ebc6d83f3836ed66c769f5}
+{\bfseries Pawn} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R colour, const {\bf Coordinate} $\ast$pos)\label{class_pawn_a9a79a9379034c3763ad24e83bc76aa6f}
 
 \item 
 {\bfseries Pawn} (const {\bf Pawn} \&copy)\label{class_pawn_a512724e66a28f71702973bcd87bd883b}
 
+\item 
+{\bfseries operator Vector} ()\label{class_pawn_ab6b390dfea31278ba595d533965e19b9}
+
+\item 
+{\bfseries operator const Coordinate $\ast$} ()\label{class_pawn_ad17fd7ed0dadac386aaa0a00a039f9ea}
+
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
+\item 
+const {\bf Coordinate} $\ast$ {\bfseries position}\label{class_pawn_a92aa2a9cdd9adc5ebb5d79f61e2a7e51}
+
 \item 
 short {\bfseries schienennetznummer}\label{class_pawn_a8f02932d671c756305cbe3959104d5bf}
 

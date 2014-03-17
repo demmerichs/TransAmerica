@@ -29,7 +29,7 @@ string {\bf A\-Iname}
 \item 
 virtual {\bf Move} {\bf do\-Move} ({\bf State} \&aktuell, vector$<$ {\bf Move} $\ast$ $>$ move\-List)=0
 \item 
-virtual {\bf Vector} {\bf set\-Pawn} ({\bf State} \&aktuell)=0
+virtual const {\bf Coordinate} $\ast$ {\bf set\-Pawn} ({\bf State} \&aktuell)=0
 \item 
 virtual bool {\bf count\-Points} ({\bf State} \&current\-State, vector$<$ {\bf Connection} $\ast$ $>$ \&return\-Path)=0
 \item 
@@ -75,7 +75,7 @@ A constructor where you can set the name of your \doxyref{A\-I}{p.}{class_a_i} a
 )\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{class_a_i_a158672aaf98fab1b1ede48002f83d3ff}
 Here you can count your minus points at the end of each round. If you want to do so, you have to return true. For the beginning it is okay, if you just return false. Then the gamemaster will count the minuspoints. He counts in most cases the minimum of minuspoints you get, however in some cases the algorithm doesn't evaluate the best value. 
 
-Implemented in {\bf debugger\-A\-I} \doxyref{}{p.}{classdebugger_a_i_a4eae0a3715a66df1e9773a0bb8851318}, {\bf template\-A\-I} \doxyref{}{p.}{classtemplate_a_i_a254a3e1a7a2cd1d16bec816cb9fab075}, and {\bf test\-K\-I} \doxyref{}{p.}{classtest_k_i_a76d7f00e5e5464c34bb2ad5e9062abf9}.
+Implemented in {\bf debugger\-A\-I} \doxyref{}{p.}{classdebugger_a_i_a4eae0a3715a66df1e9773a0bb8851318}, {\bf template\-A\-I} \doxyref{}{p.}{classtemplate_a_i_a254a3e1a7a2cd1d16bec816cb9fab075}, {\bf David\-A\-I} \doxyref{}{p.}{class_david_a_i_afcc7dbeec6565efdaf1dd25559d536ca}, {\bf test\-K\-I} \doxyref{}{p.}{classtest_k_i_a76d7f00e5e5464c34bb2ad5e9062abf9}, and {\bf Human} \doxyref{}{p.}{class_human_a1d9b69f7ac17c8ead5d78e5af312250a}.
 
 \index{A\-I@{A\-I}!do\-Move@{do\-Move}}
 \index{do\-Move@{do\-Move}!AI@{A\-I}}
@@ -87,7 +87,7 @@ Implemented in {\bf debugger\-A\-I} \doxyref{}{p.}{classdebugger_a_i_a4eae0a3715
 )\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{class_a_i_ade352ac8d216d67feca731a127b50e6f}
 Inside this methode you calculate your next move in the game. 
 
-Implemented in {\bf debugger\-A\-I} \doxyref{}{p.}{classdebugger_a_i_a6948d2ae193d1086955b71efe3a87de1}, {\bf template\-A\-I} \doxyref{}{p.}{classtemplate_a_i_a9abd9bfabeb26ba77ed5090cb1716a2a}, {\bf test\-K\-I} \doxyref{}{p.}{classtest_k_i_a195ad45b09daced4e650ce228f4da8f3}, and {\bf Human} \doxyref{}{p.}{class_human_a797f11c25934d3e6ebdfa612715f899a}.
+Implemented in {\bf debugger\-A\-I} \doxyref{}{p.}{classdebugger_a_i_a6948d2ae193d1086955b71efe3a87de1}, {\bf template\-A\-I} \doxyref{}{p.}{classtemplate_a_i_a9abd9bfabeb26ba77ed5090cb1716a2a}, {\bf David\-A\-I} \doxyref{}{p.}{class_david_a_i_a66501d9cbc5972a6fc237a87774a9425}, {\bf test\-K\-I} \doxyref{}{p.}{classtest_k_i_a195ad45b09daced4e650ce228f4da8f3}, and {\bf Human} \doxyref{}{p.}{class_human_a797f11c25934d3e6ebdfa612715f899a}.
 
 \index{A\-I@{A\-I}!gather\-Information\-End\-Of\-Round@{gather\-Information\-End\-Of\-Round}}
 \index{gather\-Information\-End\-Of\-Round@{gather\-Information\-End\-Of\-Round}!AI@{A\-I}}
@@ -98,18 +98,18 @@ Implemented in {\bf debugger\-A\-I} \doxyref{}{p.}{classdebugger_a_i_a6948d2ae19
 )\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{class_a_i_a8565a9ef04ac4f9913913c99f65213b2}
 At the end of each round you can take a look at the whole game and the playing cards of your opponents. This can be usefull, if you want to figure out there strategy and react to that over a simulation period. 
 
-Implemented in {\bf debugger\-A\-I} \doxyref{}{p.}{classdebugger_a_i_ab90bbce673b55483d6156dea09726952}, {\bf template\-A\-I} \doxyref{}{p.}{classtemplate_a_i_acfc0b92fbecc56c0dbde089c350f99e5}, {\bf test\-K\-I} \doxyref{}{p.}{classtest_k_i_a84b8e65aca959d95d89d80194e241db5}, and {\bf Human} \doxyref{}{p.}{class_human_af9bb973f12694c98e504766193a4652f}.
+Implemented in {\bf debugger\-A\-I} \doxyref{}{p.}{classdebugger_a_i_ab90bbce673b55483d6156dea09726952}, {\bf template\-A\-I} \doxyref{}{p.}{classtemplate_a_i_acfc0b92fbecc56c0dbde089c350f99e5}, {\bf David\-A\-I} \doxyref{}{p.}{class_david_a_i_a160ac3d032a3b6afb77f693ca3d5c8b6}, {\bf test\-K\-I} \doxyref{}{p.}{classtest_k_i_a84b8e65aca959d95d89d80194e241db5}, and {\bf Human} \doxyref{}{p.}{class_human_af9bb973f12694c98e504766193a4652f}.
 
 \index{A\-I@{A\-I}!set\-Pawn@{set\-Pawn}}
 \index{set\-Pawn@{set\-Pawn}!AI@{A\-I}}
-\subsubsection[{set\-Pawn}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Vector} A\-I\-::set\-Pawn (
+\subsubsection[{set\-Pawn}]{\setlength{\rightskip}{0pt plus 5cm}virtual const {\bf Coordinate}$\ast$ A\-I\-::set\-Pawn (
 \begin{DoxyParamCaption}
 \item[{{\bf State} \&}]{aktuell}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{class_a_i_a0fbc5b7d4230575baf80217d0c250cc9}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}\label{class_a_i_a06aa99d4b4ac2530dbdad122183600e8}
 At the beginning of each round you have to define your starting position of your pawn. 
 
-Implemented in {\bf debugger\-A\-I} \doxyref{}{p.}{classdebugger_a_i_afffed83382c79018969a6c6fb3642bc3}, {\bf template\-A\-I} \doxyref{}{p.}{classtemplate_a_i_a8636ca39a86a19fab33cf0b082291b62}, {\bf test\-K\-I} \doxyref{}{p.}{classtest_k_i_afebbc9eeab8c836490f0191e0bb6627e}, and {\bf Human} \doxyref{}{p.}{class_human_a31b9983eba5b8ccd37c7b41b4ecba912}.
+Implemented in {\bf debugger\-A\-I} \doxyref{}{p.}{classdebugger_a_i_a591f2da150bcd245766baac371f6471c}, {\bf template\-A\-I} \doxyref{}{p.}{classtemplate_a_i_ae18d50c605f126fc1d340368a76574bb}, {\bf David\-A\-I} \doxyref{}{p.}{class_david_a_i_ac0a45c07a7325ff590803dd2f0864415}, {\bf test\-K\-I} \doxyref{}{p.}{classtest_k_i_a26e674042460c4cb75905cabf0d228d7}, and {\bf Human} \doxyref{}{p.}{class_human_a625d50876b0cefaa236262e5d3a1f609}.
 
 
 
