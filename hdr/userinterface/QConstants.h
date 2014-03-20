@@ -3,6 +3,7 @@
 
 class QColor;
 class QPixmap;
+class QString;
 
 #include "../../hdr/game/Constants.h"
 
@@ -11,6 +12,9 @@ QColor getQColorCity(CITYCOLOR i);
 QPixmap getCityPixmap(CITYCOLOR i);
 QPixmap getCity_hPixmap(CITYCOLOR i);
 QPixmap getRatPixmap(PLAYERCOLOR i);
+
+QString bannedStatusQString(BANNED_STATUS);
+QString playercolorToQString(PLAYERCOLOR i);
 
 #endif /* QCONSTANTS_H_ */
 

@@ -82,3 +82,29 @@ QPixmap getRatPixmap(PLAYERCOLOR i) {
 		return QPixmap("");
 }
 
+QString bannedStatusQString(BANNED_STATUS status){
+    if (status == MOVE_WITHOUT_RAILS)
+        return QString("Es wurde ein Zug mit keiner Schiene initialisiert");
+    if (status == MOVE_WRONG_COLOR)
+        return QString("Spieler hat falsche Farbe initialisiert");
+
+}
+
+QString playercolorToQString(PLAYERCOLOR i){
+    if (i == P_BLUE)
+        return QString("blue");
+    else if (i == P_YELLOW)
+        return QString("yellow");
+    else if (i == P_GREEN)
+        return QString("green");
+    else if (i == P_VIOLET)
+        return QString("violett");
+    else if (i == P_ORANGE)
+        return QString("orange");
+    else if (i == P_WHITE)
+        return QString("white");
+    else
+        return QString("...");
+}
+
+

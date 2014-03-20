@@ -25,10 +25,7 @@ protected:
 	GUIBoard* spielbrett;
 	QFormLayout* toolLayout;
 	QGridLayout* mainLayout;
-	/**
-	 diverse Labels
-	 diverse Combo-/Spin-boxen
-	 */
+
 	QLabel* toolBoxLabel;
 	QCheckBox* showTownsCheckBox;
 	QTabWidget* tabWidget;

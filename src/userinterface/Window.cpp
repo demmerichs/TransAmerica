@@ -21,7 +21,6 @@ Window::Window(const Board* board) {
 
 	toolBoxLabel->setFont(font);
 	showTownsCheckBox = new QCheckBox;
-//	newGameButton = new QPushButton(tr("New Game"));
 	spielbrett = new GUIBoard(board, Counter(13));
 	/**
 	 Layout-Design

@@ -4,6 +4,10 @@
 StatisticsLogger::StatisticsLogger(SimulationLogger *SLog){
     numberOfGames = SLog->getGameList().size();
     gamesWon = new Counter(SLog->getGamesWon());
+    //playerlist = SLog->getPlayerList();
+}
+StatisticsLogger::~StatisticsLogger(){
+    delete gamesWon;
 }
 
 void StatisticsLogger::addEvent(int position, PLAYERCOLOR player, BANNED_STATUS status){
@@ -23,4 +27,10 @@ QList <QPair<int,PLAYERCOLOR> > StatisticsLogger::getEventsFromStatus(BANNED_STA
 }
 QList<QPair<int, QPair<PLAYERCOLOR, BANNED_STATUS> > > &StatisticsLogger::getPositionList(){
     return positionList;
+}
+QString StatisticsLogger::playercolorToQString(PLAYERCOLOR pColor){
+    QString returnString = QString("%1 (%2)")
+                                    .arg(QString::fromStdString(playerlist[pColor]->AIname))
+                                    .arg(playercolorToQString(pColor));
+    return returnString;
 }

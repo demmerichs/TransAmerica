@@ -26,15 +26,14 @@ ShowSimulationWindow::ShowSimulationWindow(SimulationLogger* simulationp) :
 	moveSpinBox = new QSpinBox;
 	fillTabWidget();
 	gameSpinBox->setWrapping(false);
-	gameSpinBox->setSuffix(tr(". Spiel"));
-	gameSpinBox->setSuffix(tr(". Spiel"));
+    gameSpinBox->setSuffix(tr(". Game"));
 	roundSpinBox->setWrapping(false);
-	roundSpinBox->setSuffix(tr(". Runde"));
+    roundSpinBox->setSuffix(tr(". Roun"));
 	moveSpinBox->setWrapping(false);
-	moveSpinBox->setSuffix(tr(". Zug"));
-	toolLayout->addRow(tr("Geladenes Spiel:"), gameSpinBox);
-	toolLayout->addRow(tr("Geladene Runde: "), roundSpinBox);
-	toolLayout->addRow(tr("Geladener Zug:  "), moveSpinBox);
+    moveSpinBox->setSuffix(tr(". Move"));
+    toolLayout->addRow(tr("Loaded Game:"), gameSpinBox);
+    toolLayout->addRow(tr("Loaded Round: "), roundSpinBox);
+    toolLayout->addRow(tr("Loaded Move:  "), moveSpinBox);
 
 	mainLayout->removeWidget(spielbrett);
 	mainLayout->addWidget(tabWidget, 0, 0);
@@ -197,7 +196,7 @@ void ShowSimulationWindow::showSpielbrett() {
 }
 
 void ShowSimulationWindow::fillTabWidget() {
-	dataWidget = new DataWidget();
+    dataWidget = new DataWidget(simulationp, 0, this);
 	tabWidget->addTab(dataWidget, "Data & Statistics");
 
 }
