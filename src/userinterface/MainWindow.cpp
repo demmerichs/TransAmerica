@@ -126,16 +126,16 @@ void MainWindow::displayOnStatusBar(QString string, int time) {
 }
 void MainWindow::setStyle() {
 	QStringList items;
-	items.append("TransamericaStyle");
+    //items.append("TransamericaStyle");
 	items.append(QStyleFactory::keys());
 
 	bool ok = false;
 	QString style = QInputDialog::getItem(this, tr("Style Selection"),
 			tr("Style:"), items, 0, false, &ok);
 	if (ok && !style.isEmpty()) {
-		if (style == "TransamericaStyle")
-			QApplication::setStyle(new StyleTransamerica);
-		else
+        if (style == "TransamericaStyle")
+            QApplication::setStyle(new StyleTransamerica);
+        else
 			QApplication::setStyle(QStyleFactory::create(style));
 	}
 

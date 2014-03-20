@@ -16,7 +16,9 @@
 QString versionnumber("0.00.00");
 
 int main(int argc, char* argv[]) {
-    QApplication a(argc, argv);
+   // Q_INIT_RESOURCE(QApplication);
+
+    QApplication a(argc,argv);
     a.setApplicationName("Transamerica");
     a.setApplicationVersion(versionnumber);
     //TODO @OEtzi007: would be great to insert the current version

@@ -173,7 +173,8 @@ void ShowSimulationWindow::updateSpinBoxes() {
 			&& gameCounter <= (int) simulationp->getGameList().size()) {
 		roundSpinBox->setRange(0,
 				simulationp->getGameList()[gameCounter - 1]->getRoundList().size()
-						+ 1);
+                        + 1); /* TODO prevent from Segmentation fault when aborting the Simulation.run() function */
+        //BUG see above
 		if (1 <= roundCounter
 				&& roundCounter
 						<= (int) simulationp->getGameList()[gameCounter - 1]->getRoundList().size())

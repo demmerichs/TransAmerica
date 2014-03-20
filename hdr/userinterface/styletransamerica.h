@@ -1,6 +1,7 @@
 #ifndef STYLETRANSAMERICA_H
 #define STYLETRANSAMERICA_H
 
+
 #include <QMotifStyle>
 #include <QPalette>
 
@@ -11,6 +12,7 @@ QT_END_NAMESPACE
 
 class StyleTransamerica : public QMotifStyle
 {
+
     Q_OBJECT
 public:
     StyleTransamerica() {}
