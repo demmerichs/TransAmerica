@@ -14,6 +14,7 @@ class Board;
 //==============================
 // included dependencies
 #include <QWidget>
+#include <QGroupBox>
 //==============================
 // the actual class
 class Window: public QWidget {
@@ -26,8 +27,8 @@ protected:
 	QFormLayout* toolLayout;
 	QGridLayout* mainLayout;
 
-	QLabel* toolBoxLabel;
-	QCheckBox* showTownsCheckBox;
+    QGroupBox* toolBox;
+    QCheckBox* showTownsCheckBox;
 	QTabWidget* tabWidget;
 private slots:
     virtual void showDataWidget()=0;

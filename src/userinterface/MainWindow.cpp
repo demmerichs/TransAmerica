@@ -102,9 +102,10 @@ void MainWindow::createActions() {
 }
 
 void MainWindow::createToolBar() {
-	myToolBar = addToolBar("ToolBar");
-    myToolBar->setAllowedAreas(Qt::LeftToolBarArea);
-    myToolBar->setFloatable(false);
+    myToolBar = addToolBar("Tool Bar");
+    addToolBar(Qt::LeftToolBarArea, myToolBar);
+    myToolBar->setMovable(false);
+
 
 	myToolBar->addAction(newSimulationAct);
 	myToolBar->addAction(newGameAct);

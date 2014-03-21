@@ -28,7 +28,7 @@ ShowSimulationWindow::ShowSimulationWindow(SimulationLogger* simulationp) :
 	gameSpinBox->setWrapping(false);
     gameSpinBox->setSuffix(tr(". Game"));
 	roundSpinBox->setWrapping(false);
-    roundSpinBox->setSuffix(tr(". Roun"));
+    roundSpinBox->setSuffix(tr(". Round"));
 	moveSpinBox->setWrapping(false);
     moveSpinBox->setSuffix(tr(". Move"));
     toolLayout->addRow(tr("Loaded Game:"), gameSpinBox);

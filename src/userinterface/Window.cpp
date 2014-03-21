@@ -13,31 +13,25 @@
 #include "../../hdr/logger/RoundLogger.h"
 
 Window::Window(const Board* board) {
-	toolBoxLabel = new QLabel(tr("ToolBox"));
-	QFont font = toolBoxLabel->font();
-	font.setBold(true);
-	font.setUnderline(true);
-	font.setPointSize(font.pointSize() * 1.4);
-
-	toolBoxLabel->setFont(font);
+    toolBox = new QGroupBox("Tool Box");
 	showTownsCheckBox = new QCheckBox;
 	spielbrett = new GUIBoard(board, Counter(13));
 	/**
 	 Layout-Design
 	 */
 	tabWidget = new QTabWidget();
-	tabWidget->setTabPosition(QTabWidget::South);
+    tabWidget->setTabPosition(QTabWidget::East);
 	tabWidget->setSizePolicy(spielbrett->sizePolicy());
 	tabWidget->addTab(spielbrett, "Spielbrett");
 	mainLayout = new QGridLayout;
 	toolLayout = new QFormLayout;
 	mainLayout->addWidget(tabWidget, 0, 0);
-	mainLayout->addLayout(toolLayout, 0, 1);
+    mainLayout->addWidget(toolBox, 0, 1);
 	mainLayout->setColumnMinimumWidth(0, 300);
 	mainLayout->setColumnStretch(0, 1);
 	mainLayout->setColumnStretch(1, 0.5);
-	toolLayout->addRow(toolBoxLabel);
-	toolLayout->addRow(tr("Zeige Staedte:"), showTownsCheckBox);
+    toolLayout->addRow(tr("Show city names:"), showTownsCheckBox);
+    toolBox->setLayout(toolLayout);
 //	toolLayout->addRow(newGameButton);
 	setLayout(mainLayout);
 
