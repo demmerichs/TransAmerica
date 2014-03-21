@@ -5,8 +5,8 @@ INCPATH       = -I/usr/local/Qt4.8/mkspecs/macx-g++ -I. -I/Library/Frameworks/Qt
 ObjectAIs/%_local.o: ../localAIs/local/%_local.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o $@ $<
 
-*.o: ObjectAIs/*_local.o Release.app/Contents/MacOS/Release
-	cp &< &@
+%.o: ObjectAIs/%_local.o Release.app/Contents/MacOS/Release
+	cp $< $@
 
 all:
 	rm -rf TransAmerica.pro

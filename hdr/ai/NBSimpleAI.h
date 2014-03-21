@@ -1,8 +1,8 @@
 
 //==============================
 // include guards
-#ifndef NB_SIMPLEAI_H
-#define NB_SIMPLEAI_H
+#ifndef NBSIMPLEAI_H_
+#define NBSIMPLEAI_H_
 //==============================
 // forward declared dependencies
 class Move;
@@ -29,4 +29,4 @@ public:
     void gatherInformationEndOfRound(const RoundLogger* informationAboutGame);
 };
 
-#endif // NB_SIMPLEAI_H
+#endif // NBSIMPLEAI_H_
