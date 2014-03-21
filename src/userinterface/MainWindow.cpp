@@ -16,11 +16,8 @@
 MainWindow::MainWindow() :
 		wp(0) {
 
-	QApplication::setWindowIcon(QIcon("images/TransamericaAppIcon.png")); //TODO create some .ico
-	/*
-	 wp = new ShowSimulationWindow(0);
-	 setCentralWidget(wp);
-	 */
+    QApplication::setWindowIcon(QIcon("images/TransamericaAppIcon.png")); //TODO create some .ico
+
 	createActions();
 	createToolBar();
 	createStatusBar();
@@ -42,6 +39,7 @@ void MainWindow::startSimulation(int games, vector<AI*> aiList) {
 void MainWindow::openInit() {
 	Initialize dialog("Initialize Simulation", this);
 	if (dialog.exec() == QDialog::Accepted) {
+        bool isPureSimulation = true;
 		setWindowTitle(dialog.name());
 		vector<AI*> aiList;
 		if (dialog.humanPlayer) {
@@ -51,12 +49,18 @@ void MainWindow::openInit() {
 					SLOT(displayOnStatusBar(QString,int)));
 			setCentralWidget(wp);
 			aiList.push_back(new Human(dialog.humanColor, UIWp));
+            isPureSimulation = false;
 		}
 		for (int i = 0; i < dialog.aiSelected.size(); i++)
 			aiList.push_back(
 					createAI(dialog.aiSelected[i]->aiName.toStdString(),
 							dialog.aiSelected[i]->color));
 		int numberOfGames = dialog.numberOfGames();
+        if (isPureSimulation)
+            connect(showDataAct, SIGNAL(triggered()), wp, SLOT(showDataWidget()));
+        else
+            showDataAct->setDisabled(true);
+
 		startSimulation(numberOfGames, aiList);
 	}
 	return;
@@ -79,11 +83,6 @@ void MainWindow::createActions() {
 	showDataAct->setStatusTip(
 			tr("Switch to the Data & Statistic of the current Simulation"));
 
-	if (wp)
-		connect(showDataAct, SIGNAL(triggered()), wp, SLOT(showDataWidget()));
-	else
-		showDataAct->setDisabled(true);
-
 	saveSpielbrettAct = new QAction(QIcon("images/SaveIcon.png"),
 			tr("&Save as image"), this);
 	saveSpielbrettAct->setStatusTip(
@@ -104,6 +103,9 @@ void MainWindow::createActions() {
 
 void MainWindow::createToolBar() {
 	myToolBar = addToolBar("ToolBar");
+    myToolBar->setAllowedAreas(Qt::LeftToolBarArea);
+    myToolBar->setFloatable(false);
+
 	myToolBar->addAction(newSimulationAct);
 	myToolBar->addAction(newGameAct);
 	myToolBar->addAction(showDataAct);
@@ -114,6 +116,10 @@ void MainWindow::createStatusBar() {
 	statusBar()->showMessage(tr("Ready"));
 }
 void MainWindow::createMenus() {
+    gameMenu = menuBar()->addMenu(tr("Game"));
+    gameMenu->addAction(newGameAct);
+    gameMenu->addAction(newSimulationAct);
+
 	settingsMenu = menuBar()->addMenu(tr("Settings"));
 	settingsMenu->addAction(changeStyleAct);
 }
@@ -126,7 +132,7 @@ void MainWindow::displayOnStatusBar(QString string, int time) {
 }
 void MainWindow::setStyle() {
 	QStringList items;
-    //items.append("TransamericaStyle");
+    items.append("TransamericaStyle");
 	items.append(QStyleFactory::keys());
 
 	bool ok = false;

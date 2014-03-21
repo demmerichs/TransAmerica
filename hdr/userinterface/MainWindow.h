@@ -22,6 +22,7 @@ private:
 	Window* wp;
 	QToolBar* myToolBar;
 	QMenu* settingsMenu;
+    QMenu* gameMenu;
 	QAction* newSimulationAct;
 	QAction* newGameAct;
 	QAction* saveSpielbrettAct;

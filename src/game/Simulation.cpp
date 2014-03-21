@@ -18,7 +18,7 @@ void Simulation::run() {
 	assert(!ran);
     QProgressDialog progress("Running the simulation...", "Abort",0,
                              simulationLogger->gameList.size());
-    progress.setWindowModality(Qt::WindowModal);
+    progress.setWindowModality(Qt::ApplicationModal);
     progress.show();
 	for (int i = 0; i < (int) simulationLogger->gameList.size(); i++) {
         if (progress.wasCanceled()){
@@ -44,6 +44,7 @@ void Simulation::run() {
 						/ (double) simulationLogger->winnerPoints << " game(s)."
 				<< endl;
 	//TODO end
+    simulationLogger->fillStatisticsLogger();
 	ran = true;
 }
 

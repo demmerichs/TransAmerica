@@ -87,6 +87,8 @@ QString bannedStatusQString(BANNED_STATUS status){
         return QString("Es wurde ein Zug mit keiner Schiene initialisiert");
     if (status == MOVE_WRONG_COLOR)
         return QString("Spieler hat falsche Farbe initialisiert");
+    else
+        return QString("Not known/not implemented");
 
 }
 

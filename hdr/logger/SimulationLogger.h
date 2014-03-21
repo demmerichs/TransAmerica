@@ -14,6 +14,7 @@
 class AI;
 class GameLogger;
 class DynamicState;
+class StatisticsLogger;
 //==============================
 // included dependencies
 #include<vector>
@@ -21,12 +22,14 @@ class DynamicState;
 
 #include "../game/Counter.h"
 #include "../game/Board.h"
+#include "StatisticsLogger.h" //TODO delete
 //==============================
 // the actual class
 class SimulationLogger {
 	const vector<AI*> playerList;
 	Counter gamesWon;
 	vector<GameLogger*> gameList;
+    StatisticsLogger* statLogger;
 	const Board board;
 	const unsigned int seed;
 	const unsigned int winnerPoints;
@@ -41,6 +44,8 @@ public:
 	const vector<AI*>& getPlayerList() const;
 	const unsigned int getSeed() const;
 	const unsigned int getWinnerPoints() const;
+    StatisticsLogger *getStatisticsLogger() const;
+    void fillStatisticsLogger()const;
 
 	DynamicState calculateDynamicState(int game, int round, int move) const;
 	const City** getHandOfPlayer(PLAYERCOLOR playerColor, int game,

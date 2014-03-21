@@ -14,16 +14,18 @@
 #include <QAbstractAnimation>
 #include <QLineEdit>
 #include <QSortFilterProxyModel>
-#include <QTreeView>
+#include <QStandardItemModel>
+#include <QTableView>
 
 
 
 class DataWidget: public QWidget {
     Q_OBJECT
 public:
-    explicit DataWidget(SimulationLogger *simLogger,StatisticsLogger* statLogger = 0,
+    explicit DataWidget(SimulationLogger *sLogger,
                         QWidget *parent = 0);
-    void setSourceModel(QAbstractItemModel *model);
+    void setInfringeModel(QAbstractItemModel *model);
+    void setPointModel(QAbstractItemModel *model);
 
 signals:
 
@@ -34,12 +36,16 @@ private slots:
 
 private:
     StatisticsLogger* statLogger;
+    SimulationLogger* simLogger;
     QGroupBox* pointsGroupBox;
     QGroupBox* statusGroupBox;
+    QGroupBox* searchGroupBox;
 
     QSortFilterProxyModel *infringementModel;
+    QStandardItemModel *pointModel;
 
-    QTreeView *infringementView;
+    QTableView *infringementView;
+    QTableView *pointView;
     QCheckBox *filterCaseSensitivityCheckBox;
     QCheckBox *sortCaseSensitivityCheckBox;
     QLabel *filterPatternLabel;
@@ -50,7 +56,9 @@ private:
     QComboBox *filterColumnComboBox;
 
     QAbstractItemModel* createInfringeModel(QObject* parent);
-    void addRow(QAbstractItemModel* model, const QPair<int,QPair<PLAYERCOLOR,BANNED_STATUS> > data);
+    QAbstractItemModel* createPointModel(QObject* parent);
+    void addStatusRow(QAbstractItemModel* model, const QPair<int,QPair<PLAYERCOLOR,BANNED_STATUS> > data);
+    void addPointsRow(QAbstractItemModel* model, PLAYERCOLOR , double, int);
 };
 
 #endif // DATAWIDGET_H

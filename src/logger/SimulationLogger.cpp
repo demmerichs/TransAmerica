@@ -24,7 +24,7 @@ SimulationLogger::SimulationLogger(vector<AI*> playerList, Board& board,
 			twoPlayersSameColor |= (playerList[i]->playerColor
 					== playerList[j]->playerColor);
 	assert(!twoPlayersSameColor);
-
+    statLogger = new StatisticsLogger(this);
 }
 
 SimulationLogger::~SimulationLogger() {
@@ -32,6 +32,7 @@ SimulationLogger::~SimulationLogger() {
 		delete gameList[i];
 	for (int i = 0; i < (int) playerList.size(); i++)
 		delete playerList[i];
+    delete statLogger;
 }
 
 int gcd(int a, int b) {
@@ -95,6 +96,20 @@ int SimulationLogger::getDeadLine(int game, int round) const {
 		return gameList[game]->getDeadLine();
 }
 
+void SimulationLogger::fillStatisticsLogger() const{
+    for (int i=0; i<gameList.size(); i++){
+        for(int j=0; j<gameList[i]->getRoundList().size(); j++){
+            const RoundLogger* actRound = gameList[i]->getRoundList()[j];
+            const vector<AI*> actPlayerList = actRound->getPlayerList();
+            for (int k=0; k<actPlayerList.size(); k++)
+                if (actRound->getPlayerStatus(actPlayerList[k])!=NOT_BANNED)
+                    statLogger->addEvent((i+1)*10+j+1, /*TODO create a proper pos. system*/
+                                         actPlayerList[k]->playerColor,
+                                         actRound->getPlayerStatus(actPlayerList[k]));
+        }
+    }
+}
+
 const Board& SimulationLogger::getBoard() const {
 	return board;
 }
@@ -113,6 +128,10 @@ const vector<AI*>& SimulationLogger::getPlayerList() const {
 
 const unsigned int SimulationLogger::getSeed() const {
 	return seed;
+}
+
+StatisticsLogger* SimulationLogger::getStatisticsLogger() const{
+    return statLogger;
 }
 
 const unsigned int SimulationLogger::getWinnerPoints() const {

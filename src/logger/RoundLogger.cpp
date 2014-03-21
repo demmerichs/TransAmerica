@@ -58,6 +58,13 @@ const PlayingOrder& RoundLogger::getPlayingOrder() const {
 const AI* RoundLogger::getRoundStartingPlayer() const {
 	return roundStartingPlayer;
 }
+const BANNED_STATUS RoundLogger::getPlayerStatus(const AI *player) const{
+    //TODO @OEtzi007 change  the implementation
+    for (int i=0; i<playerList.size();i++){
+        if (player == playerList[i])
+            return playerStatus[i];
+    }
+}
 
 RoundLogger::~RoundLogger() {
 	// TODO Auto-generated destructor stub

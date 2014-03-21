@@ -196,7 +196,7 @@ void ShowSimulationWindow::showSpielbrett() {
 }
 
 void ShowSimulationWindow::fillTabWidget() {
-    dataWidget = new DataWidget(simulationp, 0, this);
-	tabWidget->addTab(dataWidget, "Data & Statistics");
+    dataWidget = new DataWidget(simulationp, this);
+    tabWidget->addTab(dataWidget, "Game Data");
 
 }

@@ -1,31 +1,42 @@
 #include <QStandardItemModel>
+#include <QHeaderView>
 #include "../../hdr/userinterface/datawidget.h"
 #include "../../hdr/userinterface/QConstants.h"
 
-DataWidget::DataWidget(SimulationLogger* simLogger,StatisticsLogger *statLogger,
+DataWidget::DataWidget(SimulationLogger* sLogger,
                        QWidget *parent) :
-    QWidget(parent), statLogger(statLogger)
+    QWidget(parent),
+    statLogger(sLogger->getStatisticsLogger()),
+    simLogger(sLogger)
 {
-    // TODO get the statisticLogger working
-    delete statLogger;
-    statLogger = new StatisticsLogger(simLogger);
-
 
     pointsGroupBox = new QGroupBox("Games won:");
+
+    pointModel = new QStandardItemModel;
+
+    pointView = new QTableView;
+    pointView->setAlternatingRowColors(true);
+    pointView->setSortingEnabled(true);
+    pointView->horizontalHeader()->setStretchLastSection(true);
+    pointView->verticalHeader()->setHidden(true);
+
     QVBoxLayout* pointsLayout = new QVBoxLayout();
-    pointsLayout->addWidget(new QLabel("This is a place for a table with "
-                                   "points of the AIs"));
-    
+    pointsLayout->addWidget(pointView);
+    pointsGroupBox->setFlat(false);
+    pointsGroupBox->setLayout(pointsLayout);
+
     statusGroupBox = new QGroupBox("Committed Infringements:");
+
 
     infringementModel = new QSortFilterProxyModel;
     infringementModel->setDynamicSortFilter(true);
 
-    infringementView = new QTreeView;
-    infringementView->setRootIsDecorated(false);
+    infringementView = new QTableView;
     infringementView->setAlternatingRowColors(true);
     infringementView->setModel(infringementModel);
     infringementView->setSortingEnabled(true);
+    infringementView->horizontalHeader()->setStretchLastSection(true);
+    infringementView->verticalHeader()->setHidden(true);
 
     sortCaseSensitivityCheckBox = new QCheckBox(tr("Case sensitive sorting"));
     filterCaseSensitivityCheckBox = new QCheckBox(tr("Case sensitive filter"));
@@ -42,9 +53,9 @@ DataWidget::DataWidget(SimulationLogger* simLogger,StatisticsLogger *statLogger,
     filterSyntaxLabel->setBuddy(filterSyntaxComboBox);
 
     filterColumnComboBox = new QComboBox;
+    filterColumnComboBox->addItem(tr("Position"));
     filterColumnComboBox->addItem(tr("AI"));
     filterColumnComboBox->addItem(tr("Banned Status"));
-    filterColumnComboBox->addItem(tr("Position"));
     filterColumnLabel = new QLabel(tr("Filter &column:"));
     filterColumnLabel->setBuddy(filterColumnComboBox);
 
@@ -77,24 +88,31 @@ DataWidget::DataWidget(SimulationLogger* simLogger,StatisticsLogger *statLogger,
     mainLayout->addWidget(pointsGroupBox);
     mainLayout->addWidget(statusGroupBox);
 
-    statLogger->addEvent(1,P_BLUE,static_cast<BANNED_STATUS>(NORAILS));
 
-    setSourceModel(createInfringeModel(this));
+    setInfringeModel(createInfringeModel(this));
+    setPointModel(createPointModel(this));
+
+    infringementView->resizeColumnsToContents();
+    pointView->resizeColumnsToContents();
+
 
     setLayout(mainLayout);
 
 
     infringementView->sortByColumn(1, Qt::AscendingOrder);
-    filterColumnComboBox->setCurrentIndex(1);
+    filterColumnComboBox->setCurrentIndex(2);
 
-    filterPatternLineEdit->setText("...");
-    filterCaseSensitivityCheckBox->setChecked(true);
-    sortCaseSensitivityCheckBox->setChecked(true);
+    filterPatternLineEdit->setText("");
+    filterCaseSensitivityCheckBox->setChecked(false);
+    sortCaseSensitivityCheckBox->setChecked(false);
 }
-void DataWidget::setSourceModel(QAbstractItemModel *model)
+void DataWidget::setInfringeModel(QAbstractItemModel *model)
 {
     infringementModel->setSourceModel(model);
-    infringementView->setModel(model);
+}
+
+void DataWidget::setPointModel(QAbstractItemModel *model){
+    pointView->setModel(model);
 }
 
 void DataWidget::filterRegExpChanged()
@@ -125,27 +143,48 @@ void DataWidget::sortChanged()
 QAbstractItemModel* DataWidget::createInfringeModel(QObject *parent){
     QStandardItemModel* model = new QStandardItemModel(0,3,parent);
 
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("AI"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Banned Status"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Position"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("AI"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Banned Status"));
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("Position"));
+
 
     if (statLogger){
-        qDebug("Drin!");
         QList<QPair<int, QPair<PLAYERCOLOR, BANNED_STATUS> > > statusList = statLogger->getPositionList();
         for (int i=0; i<statLogger->getNumberOfEvents(); i++){
-            addRow(model, statusList.at(i));
+            addStatusRow(model, statusList.at(i));
         }
     }
-    addRow(model, qMakePair(1, qMakePair(P_BLUE, MOVE_WRONG_COLOR)));
-    addRow(model, qMakePair(2, qMakePair(P_GREEN, MOVE_WITHOUT_RAILS)));
+
     return model;
  }
 
-void DataWidget::addRow(QAbstractItemModel *model, const QPair<int, QPair<PLAYERCOLOR, BANNED_STATUS> > data){
+void DataWidget::addStatusRow(QAbstractItemModel *model, const QPair<int, QPair<PLAYERCOLOR, BANNED_STATUS> > data){
     model->insertRow(0);
-    // TODO convert enum to QString which is readable
-    model->setData(model->index(0,2), data.first);
-    model->setData(model->index(0,0), playercolorToQString(data.second.first));
-    model->setData(model->index(0,1), bannedStatusQString(data.second.second));
+    model->setData(model->index(0,0), data.first);
+    model->setData(model->index(0,1), playercolorToQString(data.second.first)); //TODO change to statLogger->
+    model->setData(model->index(0,2), bannedStatusQString(data.second.second));
 
+}
+
+QAbstractItemModel* DataWidget::createPointModel(QObject *parent){
+    QStandardItemModel* model = new QStandardItemModel(0,3,parent);
+
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("AI"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Victorys"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Other Stuff"));
+
+    for (int i=0; i< simLogger->getPlayerList().size(); i++){
+        addPointsRow(model, simLogger->getPlayerList()[i]->playerColor,
+                     simLogger->getGamesWon().get(simLogger->getPlayerList()[i]), 0);
+    }
+    return model;
+
+}
+
+void DataWidget::addPointsRow(QAbstractItemModel *model, PLAYERCOLOR player, double won, int stuff){
+    model->insertRow(0);
+
+    model->setData(model->index(0,0), playercolorToQString(player));
+    model->setData(model->index(0,1), QString::number(won/6. /*TODO @OEtzi why???*/));
+    model->setData(model->index(0,2), "... more data");
 }
