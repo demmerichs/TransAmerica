@@ -35,7 +35,7 @@ QList<QPair<int, QPair<PLAYERCOLOR, BANNED_STATUS> > > &StatisticsLogger::getPos
 //BUG this function is a spawn of the devil
 QString StatisticsLogger::playercolorToQString(PLAYERCOLOR pColor){
     assert(simLogger);
-    QString AIname("sobuggy");
+    QString AIname;
     for (int i=0; i<simLogger->getPlayerList().size();i++){
         if (simLogger->getPlayerList()[i]->playerColor == pColor)
             AIname = QString("%1").arg(QString::fromStdString(simLogger->getPlayerList()[i]->AIname));

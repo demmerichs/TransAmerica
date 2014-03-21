@@ -164,6 +164,7 @@ void DataWidget::addStatusRow(QAbstractItemModel *model, const QPair<int, QPair<
     model->setData(model->index(0,1), playercolorToQString(data.second.first)); //TODO change to statLogger->
     model->setData(model->index(0,2), bannedStatusQString(data.second.second));
 
+
 }
 
 QAbstractItemModel* DataWidget::createPointModel(QObject *parent){
