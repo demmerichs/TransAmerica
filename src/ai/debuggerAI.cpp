@@ -27,14 +27,14 @@ debuggerAI::debuggerAI(PLAYERCOLOR playerColor) :
 debuggerAI::~debuggerAI() {
 }
 
-Move debuggerAI::doMove(State &currentState, vector<Move*> moveList) {
+Move debuggerAI::doMove(State currentState, vector<Move*> moveList) {
 }
 
-const Coordinate* debuggerAI::setPawn(State &currentState) {
+const Coordinate* debuggerAI::setPawn(State currentState) {
 }
 
-bool debuggerAI::countPoints(State& currentState,
-		vector<Connection*>& returnPath) {
+bool debuggerAI::countPoints(State currentState,
+		vector<const Connection*>& returnPath) {
 	return false;
 }
 

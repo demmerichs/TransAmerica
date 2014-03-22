@@ -38,9 +38,9 @@ void Round::play() {
 	while (checkRoundWinnerOrAllBanned()) {
 		if (roundLogger->playerStatus[currentPlayer->playerColor]
 				== NOT_BANNED) {
-			State copy(currentState);
 			Move* currentMove = new Move(
-					currentPlayer->doMove(copy, roundLogger->getMoveList()));
+					currentPlayer->doMove(currentState,
+							roundLogger->getMoveList()));
 			if (currentMove->valid(currentState, currentPlayer->playerColor)) {
 				currentMove->execute(currentState);
 			} else
@@ -85,12 +85,10 @@ void Round::setPawns() {
 
 int Round::losingPoints(AI* player) const {
 	unsigned short minuspoints = 0;
-	vector<Connection*> path;
-	State copy(currentState);
-	if (player->countPoints(copy, path)) {
+	vector<const Connection*> path;
+	if (player->countPoints(currentState, path)) {
 		State copy(currentState);
-		for (int i = 0; i < (int) path.size(); i++)
-			copy.setRail(*(path[i]));
+		copy.setRails(path);
 		if (isPlayerConnectedToHisCities(player, copy)) {
 			for (int i = 0; i < (int) path.size(); i++) {
 				minuspoints += (1 + path[i]->hindernis);

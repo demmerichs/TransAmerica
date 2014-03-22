@@ -28,9 +28,9 @@ class testKI: public AI {
 public:
 	testKI(PLAYERCOLOR playerColor);
 	virtual ~testKI();
-	Move doMove(State &currentState, vector<Move*> moveList);
-	const Coordinate* setPawn(State &currentState);
-	bool countPoints(State& currentState, vector<Connection*>& returnPath);
+	Move doMove(State currentState, vector<Move*> moveList);
+	const Coordinate* setPawn(State currentState);
+	bool countPoints(State currentState, vector<const Connection*>& returnPath);
 	void gatherInformationEndOfRound(const RoundLogger* informationAboutGame);
 	Vector getNaechsterPunktZu(Vector, State) const;
 

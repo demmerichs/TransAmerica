@@ -27,14 +27,14 @@ NBSimpleAI::NBSimpleAI(PLAYERCOLOR playerColor) : /*TODO adapt*/
 NBSimpleAI::~NBSimpleAI() { /*TODO adapt*/
 }
 
-Move NBSimpleAI::doMove(State &currentState, vector<Move*> moveList) { /*TODO adapt*/
+Move NBSimpleAI::doMove(State currentState, vector<Move*> moveList) { /*TODO adapt*/
 }
 
-const Coordinate* NBSimpleAI::setPawn(State &currentState) { /*TODO adapt*/
+const Coordinate* NBSimpleAI::setPawn(State currentState) { /*TODO adapt*/
 }
 
-bool NBSimpleAI::countPoints(State& currentState,
-		vector<Connection*>& returnPath) { /*TODO adapt*/
+bool NBSimpleAI::countPoints(State currentState,
+		vector<const Connection*>& returnPath) { /*TODO adapt*/
 }
 
 void NBSimpleAI::gatherInformationEndOfRound(

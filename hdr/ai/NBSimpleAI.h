@@ -1,4 +1,3 @@
-
 //==============================
 // include guards
 #ifndef NBSIMPLEAI_H_
@@ -21,12 +20,12 @@ using std::vector;
 
 class NBSimpleAI: public AI {
 public:
-    NBSimpleAI(PLAYERCOLOR playerColor);
-    virtual ~NBSimpleAI();
-    Move doMove(State &currentState, vector<Move*> moveList);
-    const Coordinate* setPawn(State &currentState);
-    bool countPoints(State& currentState, vector<Connection*>& returnPath);
-    void gatherInformationEndOfRound(const RoundLogger* informationAboutGame);
+	NBSimpleAI(PLAYERCOLOR playerColor);
+	virtual ~NBSimpleAI();
+	Move doMove(State currentState, vector<Move*> moveList);
+	const Coordinate* setPawn(State currentState);
+	bool countPoints(State currentState, vector<const Connection*>& returnPath);
+	void gatherInformationEndOfRound(const RoundLogger* informationAboutGame);
 };
 
 #endif // NBSIMPLEAI_H_

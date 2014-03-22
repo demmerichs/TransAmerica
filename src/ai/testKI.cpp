@@ -30,7 +30,7 @@ testKI::testKI(PLAYERCOLOR playerColor) :
 testKI::~testKI() {
 }
 
-Move testKI::doMove(State &currentState, vector<Move*> moveList) {
+Move testKI::doMove(State currentState, vector<Move*> moveList) {
 	const State sicherkopie(currentState);
 	const Connection* firsty = 0;
 	const Connection* secondary = 0;
@@ -38,40 +38,40 @@ Move testKI::doMove(State &currentState, vector<Move*> moveList) {
 		firsty = secondary = 0;
 		Vector aktStadt((*hand[i]));
 		Vector a = getNaechsterPunktZu(aktStadt, currentState);
-        Vector diff = aktStadt - a;
-        short dis = diff.distance();
-        if (dis != 0) {
-            Vector first(0, 0);
-            if (diff.x != diff.y) {
-                if (abs(diff.x) >= abs(diff.y))
-                    first = Vector(sign(diff.x), 0);
-                else
-                    first = Vector(0, sign(diff.y));
-            } else
-                first = Vector(sign(diff.x), sign(diff.x));
-            firsty = currentState.board.getConnection(a, a + first);
-            diff = aktStadt - a - first;
-            dis = diff.distance();
-            if (dis != 0) {
-                Vector second(0, 0);
-                if (diff.x != diff.y) {
-                    if (abs(diff.x) >= abs(diff.y))
-                        second = Vector(sign(diff.x), 0);
-                    else
-                        second = Vector(0, sign(diff.y));
-                } else
-                    second = Vector(sign(diff.x), sign(diff.x));
-                secondary = currentState.board.getConnection(a + first,
-                        a + first + second);
-            }
-            Move ruckgabe(this->playerColor, firsty, secondary);
-            if (ruckgabe.valid(sicherkopie, this->playerColor))
-                return Move(this->playerColor, firsty, secondary);
-            else
-                return Move(this->playerColor, firsty, 0);
-        }
-    }
-    return Move(this->playerColor, 0, 0);
+		Vector diff = aktStadt - a;
+		short dis = diff.distance();
+		if (dis != 0) {
+			Vector first(0, 0);
+			if (diff.x != diff.y) {
+				if (abs(diff.x) >= abs(diff.y))
+					first = Vector(sign(diff.x), 0);
+				else
+					first = Vector(0, sign(diff.y));
+			} else
+				first = Vector(sign(diff.x), sign(diff.x));
+			firsty = currentState.board.getConnection(a, a + first);
+			diff = aktStadt - a - first;
+			dis = diff.distance();
+			if (dis != 0) {
+				Vector second(0, 0);
+				if (diff.x != diff.y) {
+					if (abs(diff.x) >= abs(diff.y))
+						second = Vector(sign(diff.x), 0);
+					else
+						second = Vector(0, sign(diff.y));
+				} else
+					second = Vector(sign(diff.x), sign(diff.x));
+				secondary = currentState.board.getConnection(a + first,
+						a + first + second);
+			}
+			Move ruckgabe(this->playerColor, firsty, secondary);
+			if (ruckgabe.valid(sicherkopie, this->playerColor))
+				return Move(this->playerColor, firsty, secondary);
+			else
+				return Move(this->playerColor, firsty, 0);
+		}
+	}
+	return Move(this->playerColor, 0, 0);
 }
 
 short testKI::sign(short a) {
@@ -97,7 +97,7 @@ Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 	return ruckgabe;
 }
 
-const Coordinate* testKI::setPawn(State &currentState) {
+const Coordinate* testKI::setPawn(State currentState) {
 	for (int i = 0; i < NUMBER_CITYCOLORS; i++) {
 		if (hand[i]->cityColor == C_YELLOW)
 			return hand[i];
@@ -106,7 +106,8 @@ const Coordinate* testKI::setPawn(State &currentState) {
 	return currentState.board.grid[10][6];
 }
 
-bool testKI::countPoints(State& currentState, vector<Connection*>& returnPath) {
+bool testKI::countPoints(State currentState,
+		vector<const Connection*>& returnPath) {
 	return false;
 }
 

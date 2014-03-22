@@ -34,7 +34,7 @@ const Coordinate* templateAI::setPawn(State &currentState) { /*TODO adapt*/
 }
 
 bool templateAI::countPoints(State& currentState,
-		vector<Connection*>& returnPath) { /*TODO adapt*/
+		vector<const Connection*>& returnPath) { /*TODO adapt*/
 }
 
 void templateAI::gatherInformationEndOfRound(

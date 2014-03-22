@@ -57,7 +57,8 @@ public:
 			const short schienennr) const; //ueberprueft, ob die Connection an der schienennr anliegt
 	short getRailwayNumber(const Vector &koo) const;
 	void setRailwayNumber(const Coordinate &koo, const short nr);
-	void setRail(const Connection &);
+	void setRail(const Connection*);
+	void setRails(vector<const Connection*> connections);
 	void resetRailwayNr_ToNr_(const short, const short);
 	BANNED_STATUS addPawn(Pawn insert);
 	void resetAll();
@@ -67,7 +68,7 @@ public:
 	vector<const Coordinate*> pointsBelongingToRailwaySystem(
 			PLAYERCOLOR playercolour) const;
 	void dump() const;
-    void dumpEvaluateBoard(unsigned short**&);
+	void dumpEvaluateBoard(unsigned short**&);
 
 	void setRound(short x) {
 		round = x;

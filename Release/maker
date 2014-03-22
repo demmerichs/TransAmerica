@@ -27,9 +27,9 @@ local:
 	make -f maker makeAssembler
 	make
 
-makeLocal: compiledAI/DavidAI.s
+makeLocal: compiledAI/DavidAI.s compiledAI/templateAI.s
 
-makeAssembler: DavidAI.o
+makeAssembler: DavidAI.o templateAI.o
 	
 clean:
 	make clean

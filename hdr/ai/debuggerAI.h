@@ -34,9 +34,9 @@ class debuggerAI: public AI {
 public:
 	debuggerAI(PLAYERCOLOR playerColor);
 	virtual ~debuggerAI();
-	Move doMove(State &currentState, vector<Move*> moveList);
-	const Coordinate* setPawn(State &currentState);
-	bool countPoints(State& currentState, vector<Connection*>& returnPath);
+	Move doMove(State currentState, vector<Move*> moveList);
+	const Coordinate* setPawn(State currentState);
+	bool countPoints(State currentState, vector<const Connection*>& returnPath);
 	void gatherInformationEndOfRound(const RoundLogger* informationAboutGame);
 };
 

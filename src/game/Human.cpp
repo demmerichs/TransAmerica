@@ -21,15 +21,15 @@ Human::~Human() {
 	// TODO Auto-generated destructor stub
 }
 
-Move Human::doMove(State& currentState, vector<Move*> moveList) {
+Move Human::doMove(State currentState, vector<Move*> moveList) {
 	return userInput->getMoveFromUser(this, currentState, hand, moveList);
 }
 
-const Coordinate* Human::setPawn(State& currentState) {
+const Coordinate* Human::setPawn(State currentState) {
 	return userInput->getPawnFromUser(this, currentState, hand);
 }
 
-bool Human::countPoints(State&, vector<Connection*>&) {
+bool Human::countPoints(State, vector<const Connection*>&) {
 	return false;
 }
 

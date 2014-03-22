@@ -25,9 +25,9 @@ public:
 	Human(PLAYERCOLOR playerColor, UserInputWindow* uiexec);
 	virtual ~Human();
 
-	Move doMove(State&, vector<Move*>);
-	const Coordinate* setPawn(State&);
-	bool countPoints(State&, vector<Connection*>&);
+	Move doMove(State, vector<Move*>);
+	const Coordinate* setPawn(State);
+	bool countPoints(State, vector<const Connection*>&);
 	void gatherInformationEndOfRound(const RoundLogger*);
 };
 

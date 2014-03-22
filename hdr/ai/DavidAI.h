@@ -32,9 +32,9 @@ class DavidAI: public AI {
 public:
 	DavidAI(PLAYERCOLOR playerColor);
 	virtual ~DavidAI();
-	Move doMove(State &currentState, vector<Move*> moveList);
-	const Coordinate* setPawn(State &currentState);
-	bool countPoints(State& currentState, vector<Connection*>& returnPath);
+	Move doMove(State currentState, vector<Move*> moveList);
+	const Coordinate* setPawn(State currentState);
+	bool countPoints(State currentState, vector<const Connection*>& returnPath);
 	void gatherInformationEndOfRound(const RoundLogger* informationAboutGame);
 };
 
