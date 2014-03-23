@@ -176,7 +176,8 @@ QAbstractItemModel* DataWidget::createPointModel(QObject *parent){
 
     for (int i=0; i< simLogger->getPlayerList().size(); i++){
         addPointsRow(model, simLogger->getPlayerList()[i]->playerColor,
-                     simLogger->getGamesWon().get(simLogger->getPlayerList()[i]), 0);
+                     simLogger->getGamesWon().get(simLogger->getPlayerList()[i])/(double) simLogger->getWinnerPoints()
+                     , 0);
     }
     return model;
 
@@ -186,6 +187,6 @@ void DataWidget::addPointsRow(QAbstractItemModel *model, PLAYERCOLOR player, dou
     model->insertRow(0);
 
     model->setData(model->index(0,0), playercolorToQString(player));
-    model->setData(model->index(0,1), QString::number(won/6. /*TODO @OEtzi why???*/));
+    model->setData(model->index(0,1), won);
     model->setData(model->index(0,2), "... more data");
 }
