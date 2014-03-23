@@ -1,8 +1,7 @@
-
 //==============================
 // include guards
-#ifndef NB_SIMPLEAI_H
-#define NB_SIMPLEAI_H
+#ifndef NBSIMPLEAI_H_
+#define NBSIMPLEAI_H_
 //==============================
 // forward declared dependencies
 class Move;
@@ -21,12 +20,12 @@ using std::vector;
 
 class NBSimpleAI: public AI {
 public:
-    NBSimpleAI(PLAYERCOLOR playerColor);
-    virtual ~NBSimpleAI();
-    Move doMove(State &currentState, vector<Move*> moveList);
-    const Coordinate* setPawn(State &currentState);
-    bool countPoints(State& currentState, vector<Connection*>& returnPath);
-    void gatherInformationEndOfRound(const RoundLogger* informationAboutGame);
+	NBSimpleAI(PLAYERCOLOR playerColor);
+	virtual ~NBSimpleAI();
+	Move doMove(State currentState, vector<Move*> moveList);
+	const Coordinate* setPawn(State currentState);
+	bool countPoints(State currentState, vector<const Connection*>& returnPath);
+	void gatherInformationEndOfRound(const RoundLogger* informationAboutGame);
 };
 
-#endif // NB_SIMPLEAI_H
+#endif // NBSIMPLEAI_H_

@@ -124,16 +124,16 @@ void State::resetRailwayNr_ToNr_(const short von, const short zu) {
 				this->railwayNumber[i][j] = zu;
 }
 
-void State::setRail(const Connection &sollGelegt) {
-	railSet[sollGelegt.first.x][sollGelegt.first.y][sollGelegt.direction] =
+void State::setRail(const Connection* sollGelegt) {
+	railSet[sollGelegt->first.x][sollGelegt->first.y][sollGelegt->direction] =
 			true;
-	short nummerFirst = getRailwayNumber(sollGelegt.first);
-	short nummerSecond = getRailwayNumber(sollGelegt.second);
+	short nummerFirst = getRailwayNumber(sollGelegt->first);
+	short nummerSecond = getRailwayNumber(sollGelegt->second);
 	if (nummerFirst == NORAILS) {
-		setRailwayNumber(sollGelegt.first, nummerSecond);
+		setRailwayNumber(sollGelegt->first, nummerSecond);
 		return;
 	} else if (nummerSecond == NORAILS) {
-		setRailwayNumber(sollGelegt.second, nummerFirst);
+		setRailwayNumber(sollGelegt->second, nummerFirst);
 		return;
 	}
 	if (nummerFirst == nummerSecond) {
@@ -146,6 +146,11 @@ void State::setRail(const Connection &sollGelegt) {
 	else
 		cout << "Zustand::schieneLegen ist fehlerhaft" << endl;
 //TODO Exceptions
+}
+
+void State::setRails(vector<const Connection*> connections) {
+	for (unsigned i = 0; i < connections.size(); i++)
+		setRail(connections[i]);
 }
 
 BANNED_STATUS State::addPawn(Pawn insert) {
@@ -173,15 +178,15 @@ void State::resetAll() {
 	unsortedPawns.clear();
 }
 
- #include <iomanip>
- void State::dumpEvaluateBoard(unsigned short ** & index) {
- for (int j = 0; j < MAX_Y; j++) {
- for (int i = 0; i < MAX_X; i++) {
- cout << std::setw(6) << index[i][j];
- }
- cout << endl;
- }
- }
+#include <iomanip>
+void State::dumpEvaluateBoard(unsigned short ** & index) {
+	for (int j = 0; j < MAX_Y; j++) {
+		for (int i = 0; i < MAX_X; i++) {
+			cout << std::setw(6) << index[i][j];
+		}
+		cout << endl;
+	}
+}
 
 unsigned short** State::evaluateBoard(const Coordinate* target) const {
 	unsigned short **index = new unsigned short*[MAX_X];

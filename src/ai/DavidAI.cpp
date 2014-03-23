@@ -24,15 +24,15 @@ DavidAI::DavidAI(PLAYERCOLOR playerColor) :
 DavidAI::~DavidAI() {
 }
 
-Move DavidAI::doMove(State &currentState, vector<Move*> moveList) {
+Move DavidAI::doMove(State currentState, vector<Move*> moveList) {
 
 }
 
-const Coordinate* DavidAI::setPawn(State &currentState) {
+const Coordinate* DavidAI::setPawn(State currentState) {
 }
 
-bool DavidAI::countPoints(State& currentState,
-		vector<Connection*>& returnPath) {
+bool DavidAI::countPoints(State currentState,
+		vector<const Connection*>& returnPath) {
 }
 
 void DavidAI::gatherInformationEndOfRound(

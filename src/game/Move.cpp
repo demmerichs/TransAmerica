@@ -96,7 +96,7 @@ bool Move::valid(State currentState, PLAYERCOLOR spielerfarb) {
 		if (anzahlSchienen == 1) {
 			gueltigkeit = true;
 		} else {
-			currentState.setRail(*Belegt[0]);
+			currentState.setRail(Belegt[0]);
 			schienennr = currentState.getPawn(spielerfarbe).schienennetznummer;
 			if (currentState.isRailwayNumberOfConnectionEqualsNumber(*Belegt[1],
 					schienennr)) {
@@ -115,7 +115,7 @@ bool Move::valid(State currentState, PLAYERCOLOR spielerfarb) {
 					schienennr)) {
 		richtigBelegt = false;
 		//wenn ja, schiene legen, neuer State, also neue schienennr und dann zweite schiene analog
-		currentState.setRail(*Belegt[1]);
+		currentState.setRail(Belegt[1]);
 		schienennr = currentState.getPawn(spielerfarbe).schienennetznummer;
 		if (currentState.isRailwayNumberOfConnectionEqualsNumber(*Belegt[0],
 				schienennr)) {
@@ -171,12 +171,12 @@ void Move::execute(State& akt) const { //TODO execute je nach Anzahl schienen
 		return;
 	}
 	if (richtigBelegt) {
-		akt.setRail(*Belegt[0]);
+		akt.setRail(Belegt[0]);
 		if (anzahlSchienen == 2)
-			akt.setRail(*Belegt[1]);
+			akt.setRail(Belegt[1]);
 	} else {
-		akt.setRail(*Belegt[1]);
-		akt.setRail(*Belegt[0]);
+		akt.setRail(Belegt[1]);
+		akt.setRail(Belegt[0]);
 	}
 }
 
