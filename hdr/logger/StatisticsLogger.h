@@ -17,8 +17,7 @@ class SimulationLogger;
 //TODO @Oetzi: Maybe you have to do some changes or improvements
 
 class StatisticsLogger {
-//    int numberOfGames;
-//    Counter* gamesWon;
+//    int numberOfGames
     QList <QPair <int, QPair <PLAYERCOLOR, BANNED_STATUS> > >positionList;
     QSet <int> positionsUsed;
 //    const vector<AI*> playerlist;
@@ -26,7 +25,7 @@ class StatisticsLogger {
 public:
      StatisticsLogger(SimulationLogger*);
      ~StatisticsLogger();
-
+     Counter allLostPoints;
 
     void addEvent(int position, PLAYERCOLOR player, BANNED_STATUS status);
 //    QPair<PLAYERCOLOR, BANNED_STATUS> getEventAtPosition (int position);

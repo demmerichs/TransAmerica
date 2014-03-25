@@ -2,8 +2,9 @@
 #include <QList>
 #include <cassert>
 
-StatisticsLogger::StatisticsLogger(SimulationLogger* SLogger):simLogger(SLogger)
-{}
+StatisticsLogger::StatisticsLogger(SimulationLogger* SLogger):simLogger(SLogger),allLostPoints(0)
+{
+}
 
 StatisticsLogger::~StatisticsLogger(){}
 
@@ -42,6 +43,6 @@ QString StatisticsLogger::playercolorToQString(PLAYERCOLOR pColor){
     }
     QString returnString = QString("%1 (%2)")
             .arg("buggy")
-            .arg(playercolorToQString(pColor));
+             .arg(playercolorToQString(pColor));
     return returnString;
 }

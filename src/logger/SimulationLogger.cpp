@@ -101,6 +101,7 @@ void SimulationLogger::fillStatisticsLogger() const{
         for(int j=0; j<gameList[i]->getRoundList().size(); j++){
             const RoundLogger* actRound = gameList[i]->getRoundList()[j];
             const vector<AI*> actPlayerList = actRound->getPlayerList();
+            statLogger->allLostPoints += actRound->getLostPoints();
             for (int k=0; k<actPlayerList.size(); k++)
                 if (actRound->getPlayerStatus(actPlayerList[k])!=NOT_BANNED)
                     statLogger->addEvent((i+1)*10+j+1, /*TODO create a proper pos. system*/

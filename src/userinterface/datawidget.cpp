@@ -172,21 +172,23 @@ QAbstractItemModel* DataWidget::createPointModel(QObject *parent){
 
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("AI"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("Victorys"));
-    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Other Stuff"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("Lost Points"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("Other Stuff"));
 
     for (int i=0; i< simLogger->getPlayerList().size(); i++){
         addPointsRow(model, simLogger->getPlayerList()[i]->playerColor,
                      simLogger->getGamesWon().get(simLogger->getPlayerList()[i])/(double) simLogger->getWinnerPoints()
-                     , 0);
+                     ,statLogger->allLostPoints.get(simLogger->getPlayerList()[i])/(double) simLogger->getWinnerPoints()) ;
     }
     return model;
 
 }
 
-void DataWidget::addPointsRow(QAbstractItemModel *model, PLAYERCOLOR player, double won, int stuff){
+void DataWidget::addPointsRow(QAbstractItemModel *model, PLAYERCOLOR player, double won, int lostPoints){
     model->insertRow(0);
 
     model->setData(model->index(0,0), playercolorToQString(player));
     model->setData(model->index(0,1), won);
-    model->setData(model->index(0,2), "... more data");
+    model->setData(model->index(0,2), lostPoints);
+    model->setData(model->index(0,3), "... more data");
 }
