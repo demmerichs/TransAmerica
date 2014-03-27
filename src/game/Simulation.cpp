@@ -16,6 +16,10 @@ Simulation::~Simulation() {
 
 void Simulation::run() {
 	assert(!ran);
+    bool hasHumanPlayer = false;
+//    for(int i=0; i<simulationLogger->getPlayerList().size();i++){
+//        if (simulationLogger->getPlayerList()[i]==)
+//    }
     QProgressDialog progress("Running the simulation...", "Abort",0,
                              simulationLogger->gameList.size());
     progress.setWindowModality(Qt::ApplicationModal);

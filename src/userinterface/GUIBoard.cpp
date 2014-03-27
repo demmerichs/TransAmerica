@@ -408,13 +408,12 @@ void GUIBoard::setPlayerList(vector<AI*> playerList) {
 void GUIBoard::setBoard(const Board* board) {
 	this->board = board;
 }
-void GUIBoard::setDynamicState(const DynamicState* dynamicState) {
-	if (this->dynamicState)
-		delete this->dynamicState;
-	this->dynamicState = dynamicState;
-	this->board = &(dynamicState->board);
+void GUIBoard::setDynamicState(const DynamicState* dyState) {
+    if (dynamicState)
+        delete dynamicState;
+    dynamicState = dyState;
+    board = &(dyState->board);
 }
-
 void GUIBoard::setHand(const City** hand) {
 	this->hand = hand;
 }

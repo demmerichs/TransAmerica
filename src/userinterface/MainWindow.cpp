@@ -27,8 +27,17 @@ MainWindow::MainWindow() :
 	openInit();
 }
 
-void MainWindow::startSimulation(int games, vector<AI*> aiList) {
+void MainWindow::startSimulation(int games, vector<AI*> aiList, bool isPureSimulation) {
 	myGameExe = new GameExec(wp, aiList, games);
+    if (!isPureSimulation){
+        UIWp = new UserInputWindow(myGameExe->simulationLogger);
+        wp = UIWp;
+        aiList.push_back(new Human(dialog->humanColor, UIWp));
+
+        connect(wp, SIGNAL(requestDisplayOnStatusBar(QString,int)), this,
+                SLOT(displayOnStatusBar(QString,int)));
+        setCentralWidget(wp);
+    }
 	myGameExe->simulateSimulation();
 	if (wp)
 		delete wp;
@@ -38,31 +47,25 @@ void MainWindow::startSimulation(int games, vector<AI*> aiList) {
 }
 
 void MainWindow::openInit() {
-	Initialize dialog("Initialize Simulation", this);
-	if (dialog.exec() == QDialog::Accepted) {
+    dialog = new Initialize("Initialize Simulation", this);
+    if (dialog->exec() == QDialog::Accepted) {
         bool isPureSimulation = true;
-		setWindowTitle(dialog.name());
+        setWindowTitle(dialog->name());
 		vector<AI*> aiList;
-		if (dialog.humanPlayer) {
-			UserInputWindow* UIWp = new UserInputWindow(new Board(true));
-			wp = UIWp;
-			connect(wp, SIGNAL(requestDisplayOnStatusBar(QString,int)), this,
-					SLOT(displayOnStatusBar(QString,int)));
-			setCentralWidget(wp);
-			aiList.push_back(new Human(dialog.humanColor, UIWp));
+        if (dialog->humanPlayer) {
             isPureSimulation = false;
 		}
-		for (int i = 0; i < dialog.aiSelected.size(); i++)
+        for (int i = 0; i < dialog->aiSelected.size(); i++)
 			aiList.push_back(
-					createAI(dialog.aiSelected[i]->aiName.toStdString(),
-							dialog.aiSelected[i]->color));
-		int numberOfGames = dialog.numberOfGames();
+                    createAI(dialog->aiSelected[i]->aiName.toStdString(),
+                            dialog->aiSelected[i]->color));
+        int numberOfGames = dialog->numberOfGames();
         if (isPureSimulation)
             connect(showDataAct, SIGNAL(triggered()), wp, SLOT(showDataWidget()));
         else
             showDataAct->setDisabled(true);
 
-		startSimulation(numberOfGames, aiList);
+        startSimulation(numberOfGames, aiList, isPureSimulation);
 	}
 	return;
 }

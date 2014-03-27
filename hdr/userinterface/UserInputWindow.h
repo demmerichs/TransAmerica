@@ -23,6 +23,7 @@ class Coordinate;
 using std::vector;
 
 #include "Window.h"
+#include "../logger/SimulationLogger.h"
 //==============================
 // the actual class
 
@@ -30,9 +31,10 @@ class UserInputWindow: public Window {
 Q_OBJECT
 	friend class Human;
 public:
-	UserInputWindow(const Board* board);
+    UserInputWindow(SimulationLogger* );
 	virtual ~UserInputWindow();
 private:
+    SimulationLogger* simLogger;
 	QPushButton* enterMove;
 	Move getMoveFromUser(AI* player, State& currentState, const City** hand,
 			vector<Move*> moveList);

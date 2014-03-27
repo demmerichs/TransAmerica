@@ -16,8 +16,8 @@
 #include "../../hdr/userinterface/GUIBoard.h"
 #include "../../hdr/game/Board.h"
 
-UserInputWindow::UserInputWindow(const Board* board) :
-		Window(board) {
+UserInputWindow::UserInputWindow(SimulationLogger* simLogger) :
+    simLogger(simLogger), Window(new Board(true)){
 	enterMove = new QPushButton(tr("Enter Move"));
 	toolLayout->addRow(enterMove);
 }
@@ -28,9 +28,9 @@ UserInputWindow::~UserInputWindow() {
 
 const Coordinate* UserInputWindow::getPawnFromUser(AI* player,
 		State& currentState, const City** hand) {
-	enterMove->setText(QString("Set Pawn"));
-	DynamicState* aZp = new DynamicState(currentState);
-	spielbrett->setDynamicState(aZp);
+    //enterMove->setText(QString("Set Pawn"));
+    DynamicState* aZp = new DynamicState(currentState);
+    spielbrett->setDynamicState(aZp);
 	spielbrett->setHand(hand);
 	this->spielbrett->update();
 	this->update();
@@ -38,7 +38,8 @@ const Coordinate* UserInputWindow::getPawnFromUser(AI* player,
 	QEventLoop* pause = new QEventLoop;
 	connect(enterMove, SIGNAL(clicked(bool)), pause, SLOT(quit()));
 	spielbrett->selectCoordinates = true;
-	pause->exec();
+    emit requestDisplayOnStatusBar(tr("Select your position at the beginning"),0);
+    pause->exec();
 	spielbrett->selectCoordinates = false;
 	Vector pos(0, 0);
 	for (int i = 0; i < MAX_X; i++)
@@ -57,6 +58,7 @@ Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 	if (moveList.size() > 0)
 		aZp->lastMove = moveList[moveList.size() - 1];
 	spielbrett->setDynamicState(aZp);
+    spielbrett->setPlayerList(simLogger->getPlayerList());
 	spielbrett->setHand(hand);
 	this->spielbrett->update();
 	this->update();

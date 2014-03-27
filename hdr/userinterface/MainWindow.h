@@ -10,6 +10,7 @@ class QToolBar;
 #include <QMainWindow>
 #include "GameExec.h"
 #include "ShowSimulationWindow.h"
+#include "UserInputWindow.h"
 #include "Initialize.h"
 //==============================
 // the actual class
@@ -20,6 +21,8 @@ public:
 private:
 	GameExec* myGameExe;
 	Window* wp;
+    Initialize* dialog;
+    UserInputWindow* UIWp;
 	QToolBar* myToolBar;
 	QMenu* settingsMenu;
     QMenu* fileMenu;
@@ -29,7 +32,7 @@ private:
     QAction* sendAct;
     QAction* quitAct;
 	QAction* showDataAct;
-	QAction* changeStyleAct;
+    QAction* changeStyleAct;
 
 	void createActions();
 	void createToolBar();
@@ -39,7 +42,7 @@ private:
 private slots:
 	void openInit();
 	void saveSpielbrett();
-	void startSimulation(int games, vector<AI*> aiList);
+    void startSimulation(int games, vector<AI*> aiList, bool isPureSimulation);
 	void displayOnStatusBar(QString string, int time = 0);
 	void setStyle();
     void notImplemented();

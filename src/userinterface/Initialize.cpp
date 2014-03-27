@@ -98,7 +98,7 @@ void Initialize::removeAI(QListWidgetItem* removeItem) {
 	listWidgetB->removeItemWidget(remove);
 	delete remove;
 	notSelected.insert(colorRemoved);
-	listWidgetB->show();
+    listWidgetB->update();
 }
 
 void Initialize::setAIAvailable() {
