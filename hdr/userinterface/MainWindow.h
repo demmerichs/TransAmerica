@@ -22,10 +22,12 @@ private:
 	Window* wp;
 	QToolBar* myToolBar;
 	QMenu* settingsMenu;
+    QMenu* fileMenu;
     QMenu* gameMenu;
-	QAction* newSimulationAct;
 	QAction* newGameAct;
-	QAction* saveSpielbrettAct;
+    QAction* saveAct;
+    QAction* sendAct;
+    QAction* quitAct;
 	QAction* showDataAct;
 	QAction* changeStyleAct;
 
@@ -40,6 +42,7 @@ private slots:
 	void startSimulation(int games, vector<AI*> aiList);
 	void displayOnStatusBar(QString string, int time = 0);
 	void setStyle();
+    void notImplemented();
 };
 
 #endif // MAINWINDOW_H

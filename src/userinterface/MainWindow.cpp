@@ -16,7 +16,7 @@
 MainWindow::MainWindow() :
 		wp(0) {
 
-    QApplication::setWindowIcon(QIcon("images/TransamericaAppIcon.png")); //TODO create some .ico
+    QApplication::setWindowIcon(QIcon("images/icons/TransamericaAppIcon.png")); //TODO create some .ico
 
 	createActions();
 	createToolBar();
@@ -68,51 +68,61 @@ void MainWindow::openInit() {
 }
 
 void MainWindow::createActions() {
-	newSimulationAct = new QAction(QIcon("images/SimulationIcon.png"),
-			tr("&New Simulation"), this);
-	newSimulationAct->setStatusTip(
-			tr("Creates a new Simulation with selectable AIs"));
-	newSimulationAct->setShortcut(QKeySequence::New);
-	connect(newSimulationAct, SIGNAL(triggered()), this, SLOT(openInit()));
+    newGameAct = new QAction(QIcon("images/icons/TGameIcon.png"),
+            tr("&New Game"), this);
+    newGameAct->setStatusTip(
+            tr("Creates a new Game/Simulation with seclectable AIs"));
+    newGameAct->setShortcut(QKeySequence::New);
+    connect(newGameAct, SIGNAL(triggered()), this, SLOT(openInit()));
 
-	newGameAct = new QAction(QIcon("images/GameIcon.png"), tr("New &Game"),
-			this);
-	newGameAct->setStatusTip(tr("Creates a new Game with a human player"));
 
-	showDataAct = new QAction(QIcon("images/DataIcon.png"), tr("Show &Data"),
+    showDataAct = new QAction(QIcon("images/icons/TDataIcon.png"), tr("Show &Data"),
 			this);
 	showDataAct->setStatusTip(
-			tr("Switch to the Data & Statistic of the current Simulation"));
+            tr("Switch to the Data & Statistic of the current simulation"));
 
-	saveSpielbrettAct = new QAction(QIcon("images/SaveIcon.png"),
-			tr("&Save as image"), this);
-	saveSpielbrettAct->setStatusTip(
-			tr("Save the currently displayed board as image"));
-	saveSpielbrettAct->setShortcut(QKeySequence::Save);
+    saveAct = new QAction(QIcon("images/icons/TSaveIcon.png"),
+            tr("&Save"), this);
+    saveAct->setStatusTip(
+            tr("Save the currently displayed simulation as .trans-File"));
+    saveAct->setShortcut(QKeySequence::Save);
 
-	changeStyleAct = new QAction("Change Style", this);
-	changeStyleAct->setStatusTip("Changes the Style of the Application");
+    changeStyleAct = new QAction(QIcon("images/icons/TStyleIcon"),
+                                 tr("&Change style"), this);
+    changeStyleAct->setStatusTip("Changes the style of the application");
 
 	connect(changeStyleAct, SIGNAL(triggered()), this, SLOT(setStyle()));
-	connect(saveSpielbrettAct, SIGNAL(triggered()), this,
-			SLOT(saveSpielbrett()));
 
-	newGameAct->setDisabled(true);
-//    showDataAct->setDisabled(true);
-//    saveSpielbrettAct->setDisabled(true);
+    sendAct = new QAction(QIcon("images/icons/TSendIcon.png"),
+                          tr("Send"), this);
+    sendAct->setStatusTip("Send the current simulation to a friend");
+
+    quitAct = new QAction(QIcon("images/icons/TQuitIcon.png"),
+                          tr("&Quit"), this);
+    quitAct->setStatusTip("Quit");
+    quitAct->setShortcut(QKeySequence::Close);
+    connect(quitAct, SIGNAL(triggered()), this, SLOT(close()));
+
+    connect(saveAct, SIGNAL(triggered()), this, SLOT(notImplemented()));
+    connect(sendAct, SIGNAL(triggered()), this, SLOT(notImplemented()));
+
 }
 
 void MainWindow::createToolBar() {
     myToolBar = addToolBar("Tool Bar");
     addToolBar(Qt::LeftToolBarArea, myToolBar);
     myToolBar->setMovable(false);
+    myToolBar->setIconSize(QSize(42,42));
 
-
-	myToolBar->addAction(newSimulationAct);
 	myToolBar->addAction(newGameAct);
 	myToolBar->addAction(showDataAct);
 	myToolBar->addSeparator();
-	myToolBar->addAction(saveSpielbrettAct);
+    myToolBar->addAction(saveAct);
+    myToolBar->addAction(sendAct);
+    myToolBar->addSeparator();
+    myToolBar->addAction(changeStyleAct);
+    myToolBar->addSeparator();
+    myToolBar->addAction(quitAct);
 }
 void MainWindow::createStatusBar() {
 	statusBar()->showMessage(tr("Ready"));
@@ -120,7 +130,11 @@ void MainWindow::createStatusBar() {
 void MainWindow::createMenus() {
     gameMenu = menuBar()->addMenu(tr("Game"));
     gameMenu->addAction(newGameAct);
-    gameMenu->addAction(newSimulationAct);
+    gameMenu->addAction(quitAct);
+
+    fileMenu = menuBar()->addMenu(tr("File"));
+    fileMenu->addAction(saveAct);
+    fileMenu->addAction(sendAct);
 
 	settingsMenu = menuBar()->addMenu(tr("Settings"));
 	settingsMenu->addAction(changeStyleAct);
@@ -148,4 +162,8 @@ void MainWindow::setStyle() {
 	}
 
 }
-
+void MainWindow::notImplemented(){
+    QMessageBox::information(this, tr("Empty Slot"), tr("This Slot appears to be empty. \n"
+                                                        "Implementation will be added later."),
+                             QMessageBox::Ok);
+}
