@@ -71,7 +71,7 @@ void GUIBoard::paintEvent(QPaintEvent*) {
 	if (drawCity)
 		drawCityNames(&painter);
 	drawRat(&painter);
-    drawPoints(&painter);
+	drawPoints(&painter);
 	painter.setWorldTransform(scale.inverted(), true);
 }
 
@@ -160,7 +160,7 @@ void GUIBoard::drawGrid(QPainter* painter) {
 	for (int i = 0; i < MAX_X; i++) {
 		for (int j = 0; j < MAX_Y; j++) {
 			if (dynamicState->board.edges[i][j][0]) {
-				if ((dynamicState->board.edges[i][j][0])->hindernis) {
+				if ((dynamicState->board.edges[i][j][0])->barrier) {
 					painter->setPen(thinRedPen);
 				} else
 					painter->setPen(thinPen);
@@ -168,7 +168,7 @@ void GUIBoard::drawGrid(QPainter* painter) {
 						transform.map(QPoint(i * sL + sL, j * sL)));
 			}
 			if (dynamicState->board.edges[i][j][2]) {
-				if (dynamicState->board.edges[i][j][2]->hindernis) {
+				if (dynamicState->board.edges[i][j][2]->barrier) {
 					painter->setPen(thinRedPen);
 				} else
 					painter->setPen(thinPen);
@@ -176,7 +176,7 @@ void GUIBoard::drawGrid(QPainter* painter) {
 						transform.map(QPoint(i * sL + sL, j * sL + sL)));
 			}
 			if (dynamicState->board.edges[i][j][1]) {
-				if ((dynamicState->board.edges[i][j][1])->hindernis) {
+				if ((dynamicState->board.edges[i][j][1])->barrier) {
 					painter->setPen(thinRedPen);
 				} else
 					painter->setPen(thinPen);
@@ -221,11 +221,11 @@ void GUIBoard::drawRailway(QPainter *painter) {
 			if (lastMove[i])
 				painter->drawLine(
 						transform.map(
-								QPoint(lastMove[i]->first.x * sL,
-										lastMove[i]->first.y * sL)),
+								QPoint(lastMove[i]->first->x * sL,
+										lastMove[i]->first->y * sL)),
 						transform.map(
-								QPoint(lastMove[i]->second.x * sL,
-										lastMove[i]->second.y * sL)));
+								QPoint(lastMove[i]->second->x * sL,
+										lastMove[i]->second->y * sL)));
 	}
 	for (int i = 0; i < MAX_X; i++)
 		for (int j = 0; j < MAX_Y; j++)
@@ -234,17 +234,17 @@ void GUIBoard::drawRailway(QPainter *painter) {
 					if (dynamicState->getFromUserSelectedConnections()[i][j][k]) {
 						const Connection* const current =
 								dynamicState->board.edges[i][j][k];
-						if (current->hindernis)
+						if (current->barrier)
 							painter->setPen(fatRedPen);
 						else
 							painter->setPen(fatGreyPen);
 						painter->drawLine(
 								transform.map(
-										QPoint(current->first.x * sL,
-												current->first.y * sL)),
+										QPoint(current->first->x * sL,
+												current->first->y * sL)),
 								transform.map(
-										QPoint(current->second.x * sL,
-												current->second.y * sL)));
+										QPoint(current->second->x * sL,
+												current->second->y * sL)));
 					}
 				}
 }
@@ -351,21 +351,21 @@ void GUIBoard::drawRat(QPainter *painter) {
 			585. / 16. * (deadLine + 3), 20);
 }
 
-void GUIBoard::drawPoints(QPainter* painter){
-    QRectF bRect (0,272, 103, 19.2);
-    QPen coloredPen(fatPen);
-    painter->setFont(QFont("Times",8,QFont::Bold));
-    for (int i=0; i < (int) playerList.size(); i++){
-        QString printString;
-        printString = QString(" %1 (%2) %3")
-                            .arg(QString::fromStdString(playerList[i]->AIname))
-                            .arg(QString::fromStdString(playerList[i]->owner))
-                            .arg(points.get(playerList[i]));
-        coloredPen.setColor(getQColor(playerList[i]->playerColor));
-        painter->setPen(coloredPen);
-        painter->drawText(bRect,Qt::AlignCenter, printString);
-        bRect.moveTop(bRect.top()+19.2);
-    }
+void GUIBoard::drawPoints(QPainter* painter) {
+	QRectF bRect(0, 272, 103, 19.2);
+	QPen coloredPen(fatPen);
+	painter->setFont(QFont("Times", 8, QFont::Bold));
+	for (int i = 0; i < (int) playerList.size(); i++) {
+		QString printString;
+		printString = QString(" %1 (%2) %3").arg(
+				QString::fromStdString(playerList[i]->AIname)).arg(
+				QString::fromStdString(playerList[i]->owner)).arg(
+				points.get(playerList[i]));
+		coloredPen.setColor(getQColor(playerList[i]->playerColor));
+		painter->setPen(coloredPen);
+		painter->drawText(bRect, Qt::AlignCenter, printString);
+		bRect.moveTop(bRect.top() + 19.2);
+	}
 }
 
 void GUIBoard::drawSelectedCoordinates(QPainter* painter) {
@@ -409,10 +409,10 @@ void GUIBoard::setBoard(const Board* board) {
 	this->board = board;
 }
 void GUIBoard::setDynamicState(const DynamicState* dyState) {
-    if (dynamicState)
-        delete dynamicState;
-    dynamicState = dyState;
-    board = &(dyState->board);
+	if (dynamicState)
+		delete dynamicState;
+	dynamicState = dyState;
+	board = &(dyState->board);
 }
 void GUIBoard::setHand(const City** hand) {
 	this->hand = hand;

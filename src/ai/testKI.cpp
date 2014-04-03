@@ -85,7 +85,8 @@ Vector testKI::getNaechsterPunktZu(Vector b, State akt) const {
 	for (int x = 0; x < MAX_X; x++) {
 		for (int y = 0; y < MAX_Y; y++) {
 			Vector a(x, y);
-			if (akt.getRailwayNumber(a) == aktSchienennummer) {
+			if (akt.getRailwayNumber(akt.board.getCoordinate(a))
+					== aktSchienennummer) {
 				short distance = (b - a).distance();
 				if (distance < minAbstand) {
 					minAbstand = distance;

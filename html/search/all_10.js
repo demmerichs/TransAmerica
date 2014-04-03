@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['userinputwindow',['UserInputWindow',['../class_user_input_window.html',1,'']]]
+  ['templateai',['templateAI',['../classtemplate_a_i.html',1,'']]]
 ];

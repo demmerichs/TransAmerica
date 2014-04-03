@@ -100,7 +100,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor"></span><span class="preprocessor">#define HUMAN_H_</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor"></span><span class="comment">//==============================</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// forward declared dependencies</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span><a class="code" href="class_user_input_window.html">UserInputWindow</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">class </span>UserInputWindow;</div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="comment">//==============================</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// included dependencies</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &quot;../../hdr/game/AI.h&quot;</span></div>
@@ -109,34 +109,33 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="comment">// the actual class</span></div>
 <div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
 <div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="class_human.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_human.html">Human</a>: <span class="keyword">public</span> <a class="code" href="class_a_i.html">AI</a> {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="class_user_input_window.html">UserInputWindow</a>* userInput;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    UserInputWindow* userInput;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_human.html">Human</a>(PLAYERCOLOR <a class="code" href="class_a_i.html#a6fb1d4fd29373df36e0263b22e81cee2">playerColor</a>, <a class="code" href="class_user_input_window.html">UserInputWindow</a>* uiexec);</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_human.html">Human</a>(PLAYERCOLOR <a class="code" href="class_a_i.html#a6fb1d4fd29373df36e0263b22e81cee2">playerColor</a>, UserInputWindow* uiexec);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="class_human.html">Human</a>();</div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_move.html">Move</a> <a class="code" href="class_human.html#a797f11c25934d3e6ebdfa612715f899a">doMove</a>(<a class="code" href="class_state.html">State</a>&amp;, vector&lt;Move*&gt;);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>* <a class="code" href="class_human.html#a625d50876b0cefaa236262e5d3a1f609">setPawn</a>(<a class="code" href="class_state.html">State</a>&amp;);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_human.html#a1d9b69f7ac17c8ead5d78e5af312250a">countPoints</a>(<a class="code" href="class_state.html">State</a>&amp;, vector&lt;Connection*&gt;&amp;);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="class_move.html">Move</a> <a class="code" href="class_human.html#a0a2bb57361ed5174e07d3a6b5d0b0814">doMove</a>(<a class="code" href="class_state.html">State</a>, vector&lt;Move*&gt;);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>* <a class="code" href="class_human.html#aba8f547d660bba496a06a3680c1200a7">setPawn</a>(<a class="code" href="class_state.html">State</a>);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_human.html#a6797ee2b57f4f8c363d244fb3d0f2113">countPoints</a>(<a class="code" href="class_state.html">State</a>, vector&lt;const Connection*&gt;&amp;);</div>
 <div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_human.html#af9bb973f12694c98e504766193a4652f">gatherInformationEndOfRound</a>(<span class="keyword">const</span> <a class="code" href="class_round_logger.html">RoundLogger</a>*);</div>
 <div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;};</div>
 <div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* HUMAN_H_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="class_human_html_a625d50876b0cefaa236262e5d3a1f609"><div class="ttname"><a href="class_human.html#a625d50876b0cefaa236262e5d3a1f609">Human::setPawn</a></div><div class="ttdeci">const Coordinate * setPawn(State &amp;)</div><div class="ttdef"><b>Definition:</b> Human.cpp:27</div></div>
+<div class="ttc" id="class_human_html_a6797ee2b57f4f8c363d244fb3d0f2113"><div class="ttname"><a href="class_human.html#a6797ee2b57f4f8c363d244fb3d0f2113">Human::countPoints</a></div><div class="ttdeci">bool countPoints(State, vector&lt; const Connection * &gt; &amp;)</div><div class="ttdef"><b>Definition:</b> Human.cpp:32</div></div>
 <div class="ttc" id="class_state_html"><div class="ttname"><a href="class_state.html">State</a></div><div class="ttdef"><b>Definition:</b> State.h:32</div></div>
 <div class="ttc" id="class_move_html"><div class="ttname"><a href="class_move.html">Move</a></div><div class="ttdef"><b>Definition:</b> Move.h:15</div></div>
-<div class="ttc" id="class_a_i_html_a6fb1d4fd29373df36e0263b22e81cee2"><div class="ttname"><a href="class_a_i.html#a6fb1d4fd29373df36e0263b22e81cee2">AI::playerColor</a></div><div class="ttdeci">const PLAYERCOLOR playerColor</div><div class="ttdef"><b>Definition:</b> AI.h:55</div></div>
-<div class="ttc" id="class_user_input_window_html"><div class="ttname"><a href="class_user_input_window.html">UserInputWindow</a></div><div class="ttdef"><b>Definition:</b> UserInputWindow.h:29</div></div>
-<div class="ttc" id="class_a_i_html"><div class="ttname"><a href="class_a_i.html">AI</a></div><div class="ttdef"><b>Definition:</b> AI.h:35</div></div>
+<div class="ttc" id="class_a_i_html_a6fb1d4fd29373df36e0263b22e81cee2"><div class="ttname"><a href="class_a_i.html#a6fb1d4fd29373df36e0263b22e81cee2">AI::playerColor</a></div><div class="ttdeci">const PLAYERCOLOR playerColor</div><div class="ttdef"><b>Definition:</b> AI.h:56</div></div>
+<div class="ttc" id="class_a_i_html"><div class="ttname"><a href="class_a_i.html">AI</a></div><div class="ttdef"><b>Definition:</b> AI.h:36</div></div>
+<div class="ttc" id="class_human_html_aba8f547d660bba496a06a3680c1200a7"><div class="ttname"><a href="class_human.html#aba8f547d660bba496a06a3680c1200a7">Human::setPawn</a></div><div class="ttdeci">const Coordinate * setPawn(State)</div><div class="ttdef"><b>Definition:</b> Human.cpp:28</div></div>
 <div class="ttc" id="class_round_logger_html"><div class="ttname"><a href="class_round_logger.html">RoundLogger</a></div><div class="ttdef"><b>Definition:</b> RoundLogger.h:27</div></div>
-<div class="ttc" id="class_human_html_a1d9b69f7ac17c8ead5d78e5af312250a"><div class="ttname"><a href="class_human.html#a1d9b69f7ac17c8ead5d78e5af312250a">Human::countPoints</a></div><div class="ttdeci">bool countPoints(State &amp;, vector&lt; Connection * &gt; &amp;)</div><div class="ttdef"><b>Definition:</b> Human.cpp:31</div></div>
 <div class="ttc" id="class_coordinate_html"><div class="ttname"><a href="class_coordinate.html">Coordinate</a></div><div class="ttdef"><b>Definition:</b> Coordinate.h:27</div></div>
-<div class="ttc" id="class_human_html_af9bb973f12694c98e504766193a4652f"><div class="ttname"><a href="class_human.html#af9bb973f12694c98e504766193a4652f">Human::gatherInformationEndOfRound</a></div><div class="ttdeci">void gatherInformationEndOfRound(const RoundLogger *)</div><div class="ttdef"><b>Definition:</b> Human.cpp:35</div></div>
+<div class="ttc" id="class_human_html_af9bb973f12694c98e504766193a4652f"><div class="ttname"><a href="class_human.html#af9bb973f12694c98e504766193a4652f">Human::gatherInformationEndOfRound</a></div><div class="ttdeci">void gatherInformationEndOfRound(const RoundLogger *)</div><div class="ttdef"><b>Definition:</b> Human.cpp:36</div></div>
 <div class="ttc" id="class_human_html"><div class="ttname"><a href="class_human.html">Human</a></div><div class="ttdef"><b>Definition:</b> Human.h:22</div></div>
-<div class="ttc" id="class_human_html_a797f11c25934d3e6ebdfa612715f899a"><div class="ttname"><a href="class_human.html#a797f11c25934d3e6ebdfa612715f899a">Human::doMove</a></div><div class="ttdeci">Move doMove(State &amp;, vector&lt; Move * &gt;)</div><div class="ttdef"><b>Definition:</b> Human.cpp:23</div></div>
+<div class="ttc" id="class_human_html_a0a2bb57361ed5174e07d3a6b5d0b0814"><div class="ttname"><a href="class_human.html#a0a2bb57361ed5174e07d3a6b5d0b0814">Human::doMove</a></div><div class="ttdeci">Move doMove(State, vector&lt; Move * &gt;)</div><div class="ttdef"><b>Definition:</b> Human.cpp:24</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 17 2014 14:42:06 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 3 2014 14:49:21 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

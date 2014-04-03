@@ -20,6 +20,9 @@ using std::string;
 #include "Coordinate.h"
 //==============================
 // the actual class
+/** This class represents the cities on the board.
+ * 	They inheret the class Coordinate, which is a more general point on the board.
+ */
 class City: public Coordinate {
 	friend class Board;
 private:
@@ -28,9 +31,13 @@ private:
 	City& operator=(const City&);
 	virtual ~City();
 public:
-	const string name;
-	const CITYCOLOR cityColor;
-	const short number; //Staedte kriegen einfache Kennnummern
+	const string name; /**< This is the name of the city.*/
+	const CITYCOLOR cityColor; /**< This is the color of the city.*/
+	/** This is the number of the city, which exist only in this programm, but not in the real game.
+	 * The numbers greater than CITYNR_LIMIT are the ones, that are sorted out in the real game (they are striped),
+	 * if the number of players is greater than PLAYER_LIMIT. (see also Constants.h)
+	 */
+	const short number;
 };
 
 #endif /* CITY_H_ */

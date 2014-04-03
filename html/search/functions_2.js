@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['distance',['distance',['../class_vector.html#ac57f428cc1e03ce8cd3c9f6c98a8336f',1,'Vector']]],
-  ['domove',['doMove',['../class_david_a_i.html#a66501d9cbc5972a6fc237a87774a9425',1,'DavidAI::doMove()'],['../classdebugger_a_i.html#a6948d2ae193d1086955b71efe3a87de1',1,'debuggerAI::doMove()'],['../classtemplate_a_i.html#a9abd9bfabeb26ba77ed5090cb1716a2a',1,'templateAI::doMove()'],['../classtest_k_i.html#a195ad45b09daced4e650ce228f4da8f3',1,'testKI::doMove()'],['../class_a_i.html#ade352ac8d216d67feca731a127b50e6f',1,'AI::doMove()'],['../class_human.html#a797f11c25934d3e6ebdfa612715f899a',1,'Human::doMove()']]],
-  ['dump',['dump',['../class_board.html#a2b3cd1e79ce4b94cdeeea22843941123',1,'Board::dump()'],['../class_vector.html#a50123df9754e508f3d4aa7cb72f38905',1,'Vector::dump()']]]
+  ['constructcities',['constructCities',['../class_board.html#a7ec7049e0f1c7313417275106f2f02e9',1,'Board']]],
+  ['constructedges',['constructEdges',['../class_board.html#a8235b5e3e7f30c370da7d7defffdade4',1,'Board']]],
+  ['constructgrid',['constructGrid',['../class_board.html#af815ac6ffa5d714247dc934cc446f0d5',1,'Board']]],
+  ['coordinate',['Coordinate',['../class_coordinate.html#afa539ca7218f25717e25482babf0bfc9',1,'Coordinate::Coordinate(short x, short y)'],['../class_coordinate.html#aa299c35ffbf14f830e03f295bb00ffbe',1,'Coordinate::Coordinate(Vector place, const City *const ort)'],['../class_coordinate.html#ad60539c2d440527e34f4ab23a85c8389',1,'Coordinate::Coordinate(short x, short y, const City *const CityOnCoordinate)']]],
+  ['countpoints',['countPoints',['../class_a_i.html#a78d4f8824f180445661a61751e0fcefd',1,'AI::countPoints()'],['../class_human.html#a6797ee2b57f4f8c363d244fb3d0f2113',1,'Human::countPoints()']]]
 ];

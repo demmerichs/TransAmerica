@@ -6,6 +6,7 @@
  */
 
 #include "../../hdr/game/Move.h"
+#include "../../hdr/game/Coordinate.h"
 
 /*Zug::Zug(short playerColor) :
  gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), playerColor(
@@ -17,8 +18,7 @@
  playerColor), anzahlSchienen(1) {
  Belegt[0] = &belegt;
  Belegt[1] = 0;
- }*/
-
+ }*/ //TODO
 Move::Move(PLAYERCOLOR spielerfarbe, const Connection* belegt1,
 		const Connection* belegt2) :
 		gueltigkeit(false), gueltigkeitUEberprueft(false), richtigBelegt(true), spielerfarbe(
@@ -64,14 +64,14 @@ bool Move::valid(State currentState, PLAYERCOLOR spielerfarb) {
 		return false;
 	}
 	//checken, dass keine Schiene auf einer vorhandenen Schiene platziert wurde
-	if (currentState.railSet[Belegt[0]->first.x][Belegt[0]->first.y][Belegt[0]->direction]) {
+	if (currentState.railSet[Belegt[0]->first->x][Belegt[0]->first->y][Belegt[0]->direction]) {
 		cout << "The first connection is already set." << endl;
 		bannedStatus = MOVE_RAILS_ALREADY_EXIST;
 		gueltigkeit = false;
 		return false;
 	}
 	if (anzahlSchienen == 2) {
-		if (currentState.railSet[Belegt[1]->first.x][Belegt[1]->first.y][Belegt[1]->direction]) {
+		if (currentState.railSet[Belegt[1]->first->x][Belegt[1]->first->y][Belegt[1]->direction]) {
 			cout << "The second connection is already set." << endl;
 			bannedStatus = MOVE_RAILS_ALREADY_EXIST;
 			gueltigkeit = false;
@@ -139,7 +139,7 @@ bool Move::valid(State currentState, PLAYERCOLOR spielerfarb) {
 	sumRailValue = 0;
 	for (int i = 0; i < 2; i++) {
 		if (Belegt[i] != 0) {
-			if (Belegt[i]->hindernis)
+			if (Belegt[i]->barrier)
 				sumRailValue += 2;
 			else
 				sumRailValue += 1;
@@ -182,9 +182,9 @@ void Move::execute(State& akt) const { //TODO execute je nach Anzahl schienen
 
 void Move::dump() const {
 	cout << "First" << endl;
-	cout << (*Belegt[0]).first.x << " " << (*Belegt[0]).first.y << endl;
+	cout << Belegt[0]->first->x << " " << Belegt[0]->first->y << endl;
 	cout << "Richtung" << endl;
-	cout << (*Belegt[0]).direction << endl;
+	cout << Belegt[0]->direction << endl;
 }
 
 BANNED_STATUS Move::getBannedStatus() const {

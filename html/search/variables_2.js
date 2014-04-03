@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['edges',['edges',['../class_board.html#a60585dc155394a04bcad3b7e40965ee3',1,'Board']]]
+  ['citycolor',['cityColor',['../class_city.html#abae5ba345916c1d8723ee5df4dc2971a',1,'City']]],
+  ['citylist',['cityList',['../class_board.html#ad6f7d73277288f98beb89832d7b4c146',1,'Board']]]
 ];

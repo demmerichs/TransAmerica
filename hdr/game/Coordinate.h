@@ -26,12 +26,13 @@ class City;
  */
 class Coordinate: public Vector {
 	friend class Board;
-protected:
-	Coordinate(short x, short y); /**< This constructor creates a coordinate with no city on it.*/
-	Coordinate(Vector place, const City* const ort);
-	Coordinate(short x, short y, const City * const CityOnCoordinate); /**< This constructor creates a coordinate with city on it.*/
+private:
 	Coordinate(const Coordinate&);
 	Coordinate& operator=(const Coordinate&);
+protected:
+	Coordinate(short x, short y); /**< This constructor creates a coordinate with no city on it.*/
+	Coordinate(Vector place, const City* const ort); /**< This constructor creates a coordinate with city on it.*/
+	Coordinate(short x, short y, const City * const CityOnCoordinate); /**< This constructor creates a coordinate with city on it.*/
 	virtual ~Coordinate();
 public:
 	const City * const vorOrt; /**<This pointer is zero, if there is no city on the coordinate, otherwise it's pointing to the city.*/

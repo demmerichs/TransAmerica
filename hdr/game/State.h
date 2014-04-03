@@ -55,8 +55,8 @@ public:
 	Pawn getPawn(const PLAYERCOLOR spielerfarbe) const;
 	bool isRailwayNumberOfConnectionEqualsNumber(const Connection&,
 			const short schienennr) const; //ueberprueft, ob die Connection an der schienennr anliegt
-	short getRailwayNumber(const Vector &koo) const;
-	void setRailwayNumber(const Coordinate &koo, const short nr);
+	short getRailwayNumber(const Coordinate* koo) const;
+	void setRailwayNumber(const Coordinate* koo, const short nr);
 	void setRail(const Connection*);
 	void setRails(vector<const Connection*> connections);
 	void resetRailwayNr_ToNr_(const short, const short);

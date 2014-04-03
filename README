@@ -1,2 +1,8 @@
 Please follow in the future at least a little the semantiv versioning explained here:
 http://semver.org/
+
+If you find bugs, please report them on github with the commit, you created the bug,
+and the seed number, for the random generater. You get the seed number from your console.
+It's the first output, the programme should make.
+If you have an idea, please also describe that in your issue.
+If it has something to do with your AI, try to create the bug with minimal code in the debuggerAI.h (see hdr/ai).

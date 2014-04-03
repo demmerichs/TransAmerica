@@ -90,15 +90,6 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="title">State Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="dynheader">
-Inheritance diagram for State:</div>
-<div class="dyncontent">
- <div class="center">
-  <img src="class_state.png" usemap="#State_map" alt=""/>
-  <map id="State_map" name="State_map">
-<area href="class_dynamic_state.html" alt="DynamicState" shape="rect" coords="0,56,89,80"/>
-</map>
- </div></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -114,15 +105,18 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a0aab91520b80f52278908c673bb80779"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0aab91520b80f52278908c673bb80779"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>isRailwayNumberOfConnectionEqualsNumber</b> (const <a class="el" href="class_connection.html">Connection</a> &amp;, const short schienennr) const </td></tr>
 <tr class="separator:a0aab91520b80f52278908c673bb80779"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ba85094883f4a79e0efd3cfc6088535"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a4ba85094883f4a79e0efd3cfc6088535"></a>
-short&#160;</td><td class="memItemRight" valign="bottom"><b>getRailwayNumber</b> (const <a class="el" href="class_vector.html">Vector</a> &amp;koo) const </td></tr>
-<tr class="separator:a4ba85094883f4a79e0efd3cfc6088535"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a170bfcb662e80c58f01608c441ddfce4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a170bfcb662e80c58f01608c441ddfce4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRailwayNumber</b> (const <a class="el" href="class_coordinate.html">Coordinate</a> &amp;koo, const short nr)</td></tr>
-<tr class="separator:a170bfcb662e80c58f01608c441ddfce4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac05cee15165658aedfe46bca33e8436b"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ac05cee15165658aedfe46bca33e8436b"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>setRail</b> (const <a class="el" href="class_connection.html">Connection</a> &amp;)</td></tr>
-<tr class="separator:ac05cee15165658aedfe46bca33e8436b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adaf456ffdedb803dc54820963568f9c5"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="adaf456ffdedb803dc54820963568f9c5"></a>
+short&#160;</td><td class="memItemRight" valign="bottom"><b>getRailwayNumber</b> (const <a class="el" href="class_coordinate.html">Coordinate</a> *koo) const </td></tr>
+<tr class="separator:adaf456ffdedb803dc54820963568f9c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92259aff86613b371d9f3c992868041c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a92259aff86613b371d9f3c992868041c"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setRailwayNumber</b> (const <a class="el" href="class_coordinate.html">Coordinate</a> *koo, const short nr)</td></tr>
+<tr class="separator:a92259aff86613b371d9f3c992868041c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aadc12f8c71adf85303cbfda99ba09178"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aadc12f8c71adf85303cbfda99ba09178"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setRail</b> (const <a class="el" href="class_connection.html">Connection</a> *)</td></tr>
+<tr class="separator:aadc12f8c71adf85303cbfda99ba09178"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32a25cd9178e12dce98d5b2c15d8a781"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a32a25cd9178e12dce98d5b2c15d8a781"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>setRails</b> (vector&lt; const <a class="el" href="class_connection.html">Connection</a> * &gt; connections)</td></tr>
+<tr class="separator:a32a25cd9178e12dce98d5b2c15d8a781"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a482b551469c15e5f88967ab6c42ca3dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a482b551469c15e5f88967ab6c42ca3dc"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>resetRailwayNr_ToNr_</b> (const short, const short)</td></tr>
 <tr class="separator:a482b551469c15e5f88967ab6c42ca3dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -144,6 +138,9 @@ vector&lt; const <a class="el" href="class_coordinate.html">Coordinate</a> * &gt
 <tr class="memitem:a27499f3070aef89461dbec0c99a24225"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a27499f3070aef89461dbec0c99a24225"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>dump</b> () const </td></tr>
 <tr class="separator:a27499f3070aef89461dbec0c99a24225"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabee39e9ef3cb3a93b878d6ea694d1f4"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aabee39e9ef3cb3a93b878d6ea694d1f4"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>dumpEvaluateBoard</b> (unsigned short **&amp;)</td></tr>
+<tr class="separator:aabee39e9ef3cb3a93b878d6ea694d1f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a468eb35199b879f9df58245540ca849c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a468eb35199b879f9df58245540ca849c"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><b>setRound</b> (short x)</td></tr>
 <tr class="separator:a468eb35199b879f9df58245540ca849c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -182,7 +179,7 @@ BANNED_STATUS *&#160;</td><td class="memItemRight" valign="bottom"><b>playerStat
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 17 2014 14:42:07 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 3 2014 14:49:22 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

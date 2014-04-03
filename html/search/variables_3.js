@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['grid',['grid',['../class_board.html#aae9536dd128ba63f9c7f0a665ae92ea6',1,'Board']]]
+  ['direction',['direction',['../class_connection.html#aa417c011125675e3faf7f5ec1fe4192b',1,'Connection']]]
 ];

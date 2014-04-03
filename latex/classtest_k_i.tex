@@ -12,11 +12,11 @@ Inheritance diagram for test\-K\-I\-:\begin{figure}[H]
 {\bfseries test\-K\-I} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R {\bf player\-Color})\label{classtest_k_i_adc030cad4238e4a44610d9b7152f3e81}
 
 \item 
-{\bf Move} {\bf do\-Move} ({\bf State} \&current\-State, vector$<$ {\bf Move} $\ast$ $>$ move\-List)
+{\bf Move} {\bf do\-Move} ({\bf State} current\-State, vector$<$ {\bf Move} $\ast$ $>$ move\-List)
 \item 
-const {\bf Coordinate} $\ast$ {\bf set\-Pawn} ({\bf State} \&current\-State)
+const {\bf Coordinate} $\ast$ {\bf set\-Pawn} ({\bf State} current\-State)
 \item 
-bool {\bf count\-Points} ({\bf State} \&current\-State, vector$<$ {\bf Connection} $\ast$ $>$ \&return\-Path)
+bool {\bf count\-Points} ({\bf State} current\-State, vector$<$ const {\bf Connection} $\ast$ $>$ \&return\-Path)
 \item 
 void {\bf gather\-Information\-End\-Of\-Round} (const {\bf Round\-Logger} $\ast$information\-About\-Game)
 \item 
@@ -37,25 +37,25 @@ static short {\bfseries sign} (short)\label{classtest_k_i_a22f65151709965a8d75c8
 \index{count\-Points@{count\-Points}!testKI@{test\-K\-I}}
 \subsubsection[{count\-Points}]{\setlength{\rightskip}{0pt plus 5cm}bool test\-K\-I\-::count\-Points (
 \begin{DoxyParamCaption}
-\item[{{\bf State} \&}]{current\-State, }
-\item[{vector$<$ {\bf Connection} $\ast$ $>$ \&}]{return\-Path}
+\item[{{\bf State}}]{current\-State, }
+\item[{vector$<$ const {\bf Connection} $\ast$ $>$ \&}]{return\-Path}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_a76d7f00e5e5464c34bb2ad5e9062abf9}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_aeb801bf009c58857fc61bd65e69d93b9}
 Here you can count your minus points at the end of each round. If you want to do so, you have to return true. For the beginning it is okay, if you just return false. Then the gamemaster will count the minuspoints. He counts in most cases the minimum of minuspoints you get, however in some cases the algorithm doesn't evaluate the best value. 
 
-Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a158672aaf98fab1b1ede48002f83d3ff}.
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a78d4f8824f180445661a61751e0fcefd}.
 
 \index{test\-K\-I@{test\-K\-I}!do\-Move@{do\-Move}}
 \index{do\-Move@{do\-Move}!testKI@{test\-K\-I}}
 \subsubsection[{do\-Move}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Move} test\-K\-I\-::do\-Move (
 \begin{DoxyParamCaption}
-\item[{{\bf State} \&}]{aktuell, }
+\item[{{\bf State}}]{aktuell, }
 \item[{vector$<$ {\bf Move} $\ast$ $>$}]{move\-List}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_a195ad45b09daced4e650ce228f4da8f3}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_a624751d33c0d95a0a22ba81503d7060b}
 Inside this methode you calculate your next move in the game. 
 
-Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_ade352ac8d216d67feca731a127b50e6f}.
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a842cab210825d70a71ed0e966be97cae}.
 
 \index{test\-K\-I@{test\-K\-I}!gather\-Information\-End\-Of\-Round@{gather\-Information\-End\-Of\-Round}}
 \index{gather\-Information\-End\-Of\-Round@{gather\-Information\-End\-Of\-Round}!testKI@{test\-K\-I}}
@@ -72,12 +72,12 @@ Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a8565a9ef04ac4f9913913c99f65213b2
 \index{set\-Pawn@{set\-Pawn}!testKI@{test\-K\-I}}
 \subsubsection[{set\-Pawn}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Coordinate} $\ast$ test\-K\-I\-::set\-Pawn (
 \begin{DoxyParamCaption}
-\item[{{\bf State} \&}]{aktuell}
+\item[{{\bf State}}]{aktuell}
 \end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_a26e674042460c4cb75905cabf0d228d7}
+)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtest_k_i_a6dd6e27511b61a9dee3c9a8a4a910633}
 At the beginning of each round you have to define your starting position of your pawn. 
 
-Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a06aa99d4b4ac2530dbdad122183600e8}.
+Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a5c8b07373394d35e9af201423f1881b4}.
 
 
 

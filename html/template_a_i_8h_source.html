@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>TransAmercia: hdr/ai/templateAI.h Source File</title>
+<title>TransAmercia: hdr/game/templateAI.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -79,7 +79,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_04cf6b94e5f246ace4dcca20476db399.html">ai</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_f9ac9697e996c45f503885d8d672ac41.html">game</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -117,29 +117,27 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    <a class="code" href="classtemplate_a_i.html">templateAI</a>(PLAYERCOLOR <a class="code" href="class_a_i.html#a6fb1d4fd29373df36e0263b22e81cee2">playerColor</a>)<span class="comment">/*TODO adapt*/</span>;</div>
 <div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    <span class="keyword">virtual</span> ~<a class="code" href="classtemplate_a_i.html">templateAI</a>()<span class="comment">/*TODO adapt*/</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_move.html">Move</a> <a class="code" href="classtemplate_a_i.html#a9abd9bfabeb26ba77ed5090cb1716a2a">doMove</a>(<a class="code" href="class_state.html">State</a> &amp;currentState, vector&lt;Move*&gt; moveList);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>* <a class="code" href="classtemplate_a_i.html#ae18d50c605f126fc1d340368a76574bb">setPawn</a>(<a class="code" href="class_state.html">State</a> &amp;currentState);</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classtemplate_a_i.html#a254a3e1a7a2cd1d16bec816cb9fab075">countPoints</a>(<a class="code" href="class_state.html">State</a>&amp; currentState, vector&lt;Connection*&gt;&amp; returnPath);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classtemplate_a_i.html#acfc0b92fbecc56c0dbde089c350f99e5">gatherInformationEndOfRound</a>(<span class="keyword">const</span> <a class="code" href="class_round_logger.html">RoundLogger</a>* informationAboutGame);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;};</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TEMPLATEAI_H_ */</span><span class="preprocessor"></span></div>
-<div class="ttc" id="classtemplate_a_i_html_a254a3e1a7a2cd1d16bec816cb9fab075"><div class="ttname"><a href="classtemplate_a_i.html#a254a3e1a7a2cd1d16bec816cb9fab075">templateAI::countPoints</a></div><div class="ttdeci">bool countPoints(State &amp;currentState, vector&lt; Connection * &gt; &amp;returnPath)</div><div class="ttdef"><b>Definition:</b> templateAI.cpp:36</div></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="class_move.html">Move</a> doMove(<a class="code" href="class_state.html">State</a> &amp;currentState, vector&lt;Move*&gt; moveList);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>* setPawn(<a class="code" href="class_state.html">State</a> &amp;currentState);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keywordtype">bool</span> countPoints(<a class="code" href="class_state.html">State</a>&amp; currentState,</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            vector&lt;const Connection*&gt;&amp; returnPath);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classtemplate_a_i.html#acfc0b92fbecc56c0dbde089c350f99e5">gatherInformationEndOfRound</a>(<span class="keyword">const</span> <a class="code" href="class_round_logger.html">RoundLogger</a>* informationAboutGame);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;};</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* TEMPLATEAI_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="class_state_html"><div class="ttname"><a href="class_state.html">State</a></div><div class="ttdef"><b>Definition:</b> State.h:32</div></div>
 <div class="ttc" id="class_move_html"><div class="ttname"><a href="class_move.html">Move</a></div><div class="ttdef"><b>Definition:</b> Move.h:15</div></div>
-<div class="ttc" id="classtemplate_a_i_html_a9abd9bfabeb26ba77ed5090cb1716a2a"><div class="ttname"><a href="classtemplate_a_i.html#a9abd9bfabeb26ba77ed5090cb1716a2a">templateAI::doMove</a></div><div class="ttdeci">Move doMove(State &amp;currentState, vector&lt; Move * &gt; moveList)</div><div class="ttdef"><b>Definition:</b> templateAI.cpp:30</div></div>
-<div class="ttc" id="class_a_i_html_a6fb1d4fd29373df36e0263b22e81cee2"><div class="ttname"><a href="class_a_i.html#a6fb1d4fd29373df36e0263b22e81cee2">AI::playerColor</a></div><div class="ttdeci">const PLAYERCOLOR playerColor</div><div class="ttdef"><b>Definition:</b> AI.h:55</div></div>
-<div class="ttc" id="class_a_i_html"><div class="ttname"><a href="class_a_i.html">AI</a></div><div class="ttdef"><b>Definition:</b> AI.h:35</div></div>
-<div class="ttc" id="class_connection_html"><div class="ttname"><a href="class_connection.html">Connection</a></div><div class="ttdef"><b>Definition:</b> Connection.h:15</div></div>
+<div class="ttc" id="class_a_i_html_a6fb1d4fd29373df36e0263b22e81cee2"><div class="ttname"><a href="class_a_i.html#a6fb1d4fd29373df36e0263b22e81cee2">AI::playerColor</a></div><div class="ttdeci">const PLAYERCOLOR playerColor</div><div class="ttdef"><b>Definition:</b> AI.h:56</div></div>
+<div class="ttc" id="class_a_i_html"><div class="ttname"><a href="class_a_i.html">AI</a></div><div class="ttdef"><b>Definition:</b> AI.h:36</div></div>
+<div class="ttc" id="class_connection_html"><div class="ttname"><a href="class_connection.html">Connection</a></div><div class="ttdef"><b>Definition:</b> Connection.h:23</div></div>
 <div class="ttc" id="class_round_logger_html"><div class="ttname"><a href="class_round_logger.html">RoundLogger</a></div><div class="ttdef"><b>Definition:</b> RoundLogger.h:27</div></div>
-<div class="ttc" id="classtemplate_a_i_html_ae18d50c605f126fc1d340368a76574bb"><div class="ttname"><a href="classtemplate_a_i.html#ae18d50c605f126fc1d340368a76574bb">templateAI::setPawn</a></div><div class="ttdeci">const Coordinate * setPawn(State &amp;currentState)</div><div class="ttdef"><b>Definition:</b> templateAI.cpp:33</div></div>
 <div class="ttc" id="class_coordinate_html"><div class="ttname"><a href="class_coordinate.html">Coordinate</a></div><div class="ttdef"><b>Definition:</b> Coordinate.h:27</div></div>
 <div class="ttc" id="classtemplate_a_i_html"><div class="ttname"><a href="classtemplate_a_i.html">templateAI</a></div><div class="ttdef"><b>Definition:</b> templateAI.h:33</div></div>
 <div class="ttc" id="classtemplate_a_i_html_acfc0b92fbecc56c0dbde089c350f99e5"><div class="ttname"><a href="classtemplate_a_i.html#acfc0b92fbecc56c0dbde089c350f99e5">templateAI::gatherInformationEndOfRound</a></div><div class="ttdeci">void gatherInformationEndOfRound(const RoundLogger *informationAboutGame)</div><div class="ttdef"><b>Definition:</b> templateAI.cpp:40</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 17 2014 14:42:06 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 3 2014 14:49:21 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

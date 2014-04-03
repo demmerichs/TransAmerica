@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.6"/>
-<title>TransAmercia: Member List</title>
+<title>TransAmercia: StatisticsLogger Class Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -82,18 +82,48 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 
 </div><!-- top -->
 <div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="class_statistics_logger-members.html">List of all members</a>  </div>
   <div class="headertitle">
-<div class="title">DataWidget Member List</div>  </div>
+<div class="title">StatisticsLogger Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
-
-<p>This is the complete list of members for <a class="el" href="class_data_widget.html">DataWidget</a>, including all inherited members.</p>
-<table class="directory">
-  <tr bgcolor="#f0f0f0" class="even"><td class="entry"><b>DataWidget</b>(QWidget *parent=0) (defined in <a class="el" href="class_data_widget.html">DataWidget</a>)</td><td class="entry"><a class="el" href="class_data_widget.html">DataWidget</a></td><td class="entry"><span class="mlabel">explicit</span></td></tr>
-</table></div><!-- contents -->
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a39da7dba6f8e83934bcc0900eb7276c1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a39da7dba6f8e83934bcc0900eb7276c1"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>StatisticsLogger</b> (<a class="el" href="class_simulation_logger.html">SimulationLogger</a> *)</td></tr>
+<tr class="separator:a39da7dba6f8e83934bcc0900eb7276c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2b13008a02bb058dbfd37486de54de1"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ad2b13008a02bb058dbfd37486de54de1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>addEvent</b> (int position, PLAYERCOLOR player, BANNED_STATUS status)</td></tr>
+<tr class="separator:ad2b13008a02bb058dbfd37486de54de1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9c2335842a42d361b69bdf940e0850d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="ae9c2335842a42d361b69bdf940e0850d"></a>
+QList&lt; QPair&lt; int, QPair<br class="typebreak"/>
+&lt; PLAYERCOLOR, BANNED_STATUS &gt; &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getPositionList</b> ()</td></tr>
+<tr class="separator:ae9c2335842a42d361b69bdf940e0850d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08f4020e9537ff2411470f1bad65167c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a08f4020e9537ff2411470f1bad65167c"></a>
+QString&#160;</td><td class="memItemRight" valign="bottom"><b>playercolorToQString</b> (PLAYERCOLOR)</td></tr>
+<tr class="separator:a08f4020e9537ff2411470f1bad65167c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc1d4330de576bdf568f93092f5603aa"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="afc1d4330de576bdf568f93092f5603aa"></a>
+unsigned short&#160;</td><td class="memItemRight" valign="bottom"><b>getNumberOfEvents</b> ()</td></tr>
+<tr class="separator:afc1d4330de576bdf568f93092f5603aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a9c5b8c00fb02c5a9506e0a80a2284e0e"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9c5b8c00fb02c5a9506e0a80a2284e0e"></a>
+<a class="el" href="class_counter.html">Counter</a>&#160;</td><td class="memItemRight" valign="bottom"><b>allLostPoints</b></td></tr>
+<tr class="separator:a9c5b8c00fb02c5a9506e0a80a2284e0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>hdr/logger/<a class="el" href="_statistics_logger_8h_source.html">StatisticsLogger.h</a></li>
+<li>src/logger/StatisticsLogger.cpp</li>
+</ul>
+</div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 17 2014 14:42:07 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 3 2014 14:49:22 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

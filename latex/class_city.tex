@@ -1,5 +1,9 @@
 \section{City Class Reference}
 \label{class_city}\index{City@{City}}
+
+
+{\ttfamily \#include $<$City.\-h$>$}
+
 Inheritance diagram for City\-:\begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -9,14 +13,11 @@ Inheritance diagram for City\-:\begin{figure}[H]
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-const string {\bfseries name}\label{class_city_a310190e6982fe11505a1843f25a574c1}
-
+const string {\bf name}
 \item 
-const C\-I\-T\-Y\-C\-O\-L\-O\-R {\bfseries city\-Color}\label{class_city_abae5ba345916c1d8723ee5df4dc2971a}
-
+const C\-I\-T\-Y\-C\-O\-L\-O\-R {\bf city\-Color}
 \item 
-const short {\bfseries number}\label{class_city_aec8810e4fa1fabf64ce809175d1d6362}
-
+const short {\bf number}
 \end{DoxyCompactItemize}
 \subsection*{Friends}
 \begin{DoxyCompactItemize}
@@ -26,6 +27,21 @@ class {\bfseries Board}\label{class_city_a12525b6ed7c8186be0bee5cf78e2a49c}
 \end{DoxyCompactItemize}
 \subsection*{Additional Inherited Members}
 
+
+\subsection{Detailed Description}
+This class represents the cities on the board. They inheret the class \doxyref{Coordinate}{p.}{class_coordinate}, which is a more general point on the board. 
+
+\subsection{Member Data Documentation}
+\index{City@{City}!city\-Color@{city\-Color}}
+\index{city\-Color@{city\-Color}!City@{City}}
+\subsubsection[{city\-Color}]{\setlength{\rightskip}{0pt plus 5cm}const C\-I\-T\-Y\-C\-O\-L\-O\-R City\-::city\-Color}\label{class_city_abae5ba345916c1d8723ee5df4dc2971a}
+This is the color of the city. \index{City@{City}!name@{name}}
+\index{name@{name}!City@{City}}
+\subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}const string City\-::name}\label{class_city_a310190e6982fe11505a1843f25a574c1}
+This is the name of the city. \index{City@{City}!number@{number}}
+\index{number@{number}!City@{City}}
+\subsubsection[{number}]{\setlength{\rightskip}{0pt plus 5cm}const short City\-::number}\label{class_city_aec8810e4fa1fabf64ce809175d1d6362}
+This is the number of the city, which exist only in this programm, but not in the real game. The numbers greater than C\-I\-T\-Y\-N\-R\-\_\-\-L\-I\-M\-I\-T are the ones, that are sorted out in the real game (they are striped), if the number of players is greater than P\-L\-A\-Y\-E\-R\-\_\-\-L\-I\-M\-I\-T. (see also \doxyref{Constants.\-h}{p.}{_constants_8h_source}) 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

@@ -102,14 +102,14 @@ Inheritance diagram for Human:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:aad9ae63105013786063e50144a46e3db"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aad9ae63105013786063e50144a46e3db"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Human</b> (PLAYERCOLOR <a class="el" href="class_a_i.html#a6fb1d4fd29373df36e0263b22e81cee2">playerColor</a>, <a class="el" href="class_user_input_window.html">UserInputWindow</a> *uiexec)</td></tr>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Human</b> (PLAYERCOLOR <a class="el" href="class_a_i.html#a6fb1d4fd29373df36e0263b22e81cee2">playerColor</a>, UserInputWindow *uiexec)</td></tr>
 <tr class="separator:aad9ae63105013786063e50144a46e3db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a797f11c25934d3e6ebdfa612715f899a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_move.html">Move</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human.html#a797f11c25934d3e6ebdfa612715f899a">doMove</a> (<a class="el" href="class_state.html">State</a> &amp;, vector&lt; <a class="el" href="class_move.html">Move</a> * &gt;)</td></tr>
-<tr class="separator:a797f11c25934d3e6ebdfa612715f899a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a625d50876b0cefaa236262e5d3a1f609"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_coordinate.html">Coordinate</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human.html#a625d50876b0cefaa236262e5d3a1f609">setPawn</a> (<a class="el" href="class_state.html">State</a> &amp;)</td></tr>
-<tr class="separator:a625d50876b0cefaa236262e5d3a1f609"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1d9b69f7ac17c8ead5d78e5af312250a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human.html#a1d9b69f7ac17c8ead5d78e5af312250a">countPoints</a> (<a class="el" href="class_state.html">State</a> &amp;, vector&lt; <a class="el" href="class_connection.html">Connection</a> * &gt; &amp;)</td></tr>
-<tr class="separator:a1d9b69f7ac17c8ead5d78e5af312250a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a2bb57361ed5174e07d3a6b5d0b0814"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_move.html">Move</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human.html#a0a2bb57361ed5174e07d3a6b5d0b0814">doMove</a> (<a class="el" href="class_state.html">State</a>, vector&lt; <a class="el" href="class_move.html">Move</a> * &gt;)</td></tr>
+<tr class="separator:a0a2bb57361ed5174e07d3a6b5d0b0814"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba8f547d660bba496a06a3680c1200a7"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="class_coordinate.html">Coordinate</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human.html#aba8f547d660bba496a06a3680c1200a7">setPawn</a> (<a class="el" href="class_state.html">State</a>)</td></tr>
+<tr class="separator:aba8f547d660bba496a06a3680c1200a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6797ee2b57f4f8c363d244fb3d0f2113"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human.html#a6797ee2b57f4f8c363d244fb3d0f2113">countPoints</a> (<a class="el" href="class_state.html">State</a>, vector&lt; const <a class="el" href="class_connection.html">Connection</a> * &gt; &amp;)</td></tr>
+<tr class="separator:a6797ee2b57f4f8c363d244fb3d0f2113"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9bb973f12694c98e504766193a4652f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_human.html#af9bb973f12694c98e504766193a4652f">gatherInformationEndOfRound</a> (const <a class="el" href="class_round_logger.html">RoundLogger</a> *)</td></tr>
 <tr class="separator:af9bb973f12694c98e504766193a4652f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_class_a_i"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_class_a_i')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="class_a_i.html">AI</a></td></tr>
@@ -130,7 +130,7 @@ Additional Inherited Members</h2></td></tr>
 <tr class="separator:aa65231c872400a31e669b5de3fdcbeae inherit pro_attribs_class_a_i"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a1d9b69f7ac17c8ead5d78e5af312250a"></a>
+<a class="anchor" id="a6797ee2b57f4f8c363d244fb3d0f2113"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -140,13 +140,13 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">bool Human::countPoints </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_state.html">State</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_state.html">State</a>&#160;</td>
           <td class="paramname"><em>currentState</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">vector&lt; <a class="el" href="class_connection.html">Connection</a> * &gt; &amp;&#160;</td>
+          <td class="paramtype">vector&lt; const <a class="el" href="class_connection.html">Connection</a> * &gt; &amp;&#160;</td>
           <td class="paramname"><em>returnPath</em>&#160;</td>
         </tr>
         <tr>
@@ -163,11 +163,11 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p>Here you can count your minus points at the end of each round. If you want to do so, you have to return true. For the beginning it is okay, if you just return false. Then the gamemaster will count the minuspoints. He counts in most cases the minimum of minuspoints you get, however in some cases the algorithm doesn't evaluate the best value. </p>
 
-<p>Implements <a class="el" href="class_a_i.html#a158672aaf98fab1b1ede48002f83d3ff">AI</a>.</p>
+<p>Implements <a class="el" href="class_a_i.html#a78d4f8824f180445661a61751e0fcefd">AI</a>.</p>
 
 </div>
 </div>
-<a class="anchor" id="a797f11c25934d3e6ebdfa612715f899a"></a>
+<a class="anchor" id="a0a2bb57361ed5174e07d3a6b5d0b0814"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -177,7 +177,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="class_move.html">Move</a> Human::doMove </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_state.html">State</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_state.html">State</a>&#160;</td>
           <td class="paramname"><em>aktuell</em>, </td>
         </tr>
         <tr>
@@ -200,7 +200,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p>Inside this methode you calculate your next move in the game. </p>
 
-<p>Implements <a class="el" href="class_a_i.html#ade352ac8d216d67feca731a127b50e6f">AI</a>.</p>
+<p>Implements <a class="el" href="class_a_i.html#a842cab210825d70a71ed0e966be97cae">AI</a>.</p>
 
 </div>
 </div>
@@ -231,7 +231,7 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a625d50876b0cefaa236262e5d3a1f609"></a>
+<a class="anchor" id="aba8f547d660bba496a06a3680c1200a7"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -241,7 +241,7 @@ Additional Inherited Members</h2></td></tr>
         <tr>
           <td class="memname">const <a class="el" href="class_coordinate.html">Coordinate</a> * Human::setPawn </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="class_state.html">State</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="class_state.html">State</a>&#160;</td>
           <td class="paramname"><em>aktuell</em></td><td>)</td>
           <td></td>
         </tr>
@@ -254,7 +254,7 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 <p>At the beginning of each round you have to define your starting position of your pawn. </p>
 
-<p>Implements <a class="el" href="class_a_i.html#a06aa99d4b4ac2530dbdad122183600e8">AI</a>.</p>
+<p>Implements <a class="el" href="class_a_i.html#a5c8b07373394d35e9af201423f1881b4">AI</a>.</p>
 
 </div>
 </div>
@@ -265,7 +265,7 @@ Additional Inherited Members</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 17 2014 14:42:07 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 3 2014 14:49:22 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

@@ -45,13 +45,13 @@ void Board::dump() const {
 				else
 					cout << grid[x / 2][y / 2]->vorOrt->name[0];
 				if (this->edges[x / 2][y / 2][0] != 0
-						&& this->edges[x / 2][y / 2][0]->hindernis)
+						&& this->edges[x / 2][y / 2][0]->barrier)
 					cout << "-";
 				else
 					cout << " ";
 			} else if (x % 2 == 0 && y % 2 == 1) {
 				if (this->edges[x / 2][(y - 1) / 2][1] != 0)
-					if (this->edges[x / 2][(y - 1) / 2][1]->hindernis)
+					if (this->edges[x / 2][(y - 1) / 2][1]->barrier)
 						cout << "/ ";
 					else
 						cout << "  ";
@@ -59,7 +59,7 @@ void Board::dump() const {
 					cout << "  ";
 			} else if (x % 2 == 1 && y % 2 == 0) {
 				if (this->edges[(x - 1) / 2][y / 2][0] != 0)
-					if (this->edges[(x - 1) / 2][y / 2][0]->hindernis)
+					if (this->edges[(x - 1) / 2][y / 2][0]->barrier)
 						cout << "--";
 					else
 						cout << "  ";
@@ -67,7 +67,7 @@ void Board::dump() const {
 					cout << "  ";
 			} else {
 				if (this->edges[(x - 1) / 2][(y - 1) / 2][2] != 0)
-					if (this->edges[(x - 1) / 2][(y - 1) / 2][2]->hindernis)
+					if (this->edges[(x - 1) / 2][(y - 1) / 2][2]->barrier)
 						cout << "\\ ";
 					else
 						cout << "  ";
@@ -100,24 +100,24 @@ Connection**** Board::constructEdges() const {
 			testKanten[i][j] = new Connection*[3];
 			if (i + 1 < MAX_X)
 				if (!grid[i][j] == 0 && !grid[i + 1][j] == 0)
-					testKanten[i][j][0] = new Connection(*grid[i][j],
-							*grid[i + 1][j], false);
+					testKanten[i][j][0] = new Connection(grid[i][j],
+							grid[i + 1][j], false);
 				else
 					testKanten[i][j][0] = 0;
 			else
 				testKanten[i][j][0] = 0;
 			if (j + 1 < MAX_Y)
 				if (!grid[i][j] == 0 && !grid[i][j + 1] == 0)
-					testKanten[i][j][1] = new Connection(*grid[i][j],
-							*grid[i][j + 1], false);
+					testKanten[i][j][1] = new Connection(grid[i][j],
+							grid[i][j + 1], false);
 				else
 					testKanten[i][j][1] = 0;
 			else
 				testKanten[i][j][1] = 0;
 			if (j + 1 < MAX_Y && i + 1 < MAX_X)
 				if (!grid[i][j] == 0 && !grid[i + 1][j + 1] == 0)
-					testKanten[i][j][2] = new Connection(*grid[i][j],
-							*grid[i + 1][j + 1], false);
+					testKanten[i][j][2] = new Connection(grid[i][j],
+							grid[i + 1][j + 1], false);
 				else
 					testKanten[i][j][2] = 0;
 			else
@@ -140,38 +140,38 @@ Connection**** Board::constructEdges() const {
 			switch (input[0]) {
 			case '0':
 				delete testKanten[pos.x][pos.y][0];
-				testKanten[pos.x][pos.y][0] = new Connection(
-						*grid[pos.x][pos.y], *grid[pos.x + 1][pos.y], true);
+				testKanten[pos.x][pos.y][0] = new Connection(grid[pos.x][pos.y],
+						grid[pos.x + 1][pos.y], true);
 				pos = pos + Vector(1, 0);
 				break;
 			case '1':
 				delete testKanten[pos.x][pos.y][1];
-				testKanten[pos.x][pos.y][1] = new Connection(
-						*grid[pos.x][pos.y], *grid[pos.x][pos.y + 1], true);
+				testKanten[pos.x][pos.y][1] = new Connection(grid[pos.x][pos.y],
+						grid[pos.x][pos.y + 1], true);
 				pos = pos + Vector(0, 1);
 				break;
 			case '2':
 				delete testKanten[pos.x][pos.y][2];
-				testKanten[pos.x][pos.y][2] = new Connection(
-						*grid[pos.x][pos.y], *grid[pos.x + 1][pos.y + 1], true);
+				testKanten[pos.x][pos.y][2] = new Connection(grid[pos.x][pos.y],
+						grid[pos.x + 1][pos.y + 1], true);
 				pos = pos + Vector(1, 1);
 				break;
 			case '3':
 				delete testKanten[pos.x - 1][pos.y][0];
 				testKanten[pos.x - 1][pos.y][0] = new Connection(
-						*grid[pos.x - 1][pos.y], *grid[pos.x][pos.y], true);
+						grid[pos.x - 1][pos.y], grid[pos.x][pos.y], true);
 				pos = pos + Vector(-1, 0);
 				break;
 			case '4':
 				delete testKanten[pos.x][pos.y - 1][1];
 				testKanten[pos.x][pos.y - 1][1] = new Connection(
-						*grid[pos.x][pos.y - 1], *grid[pos.x][pos.y], true);
+						grid[pos.x][pos.y - 1], grid[pos.x][pos.y], true);
 				pos = pos + Vector(0, -1);
 				break;
 			case '5':
 				delete testKanten[pos.x - 1][pos.y - 1][2];
 				testKanten[pos.x - 1][pos.y - 1][2] = new Connection(
-						*grid[pos.x - 1][pos.y - 1], *grid[pos.x][pos.y], true);
+						grid[pos.x - 1][pos.y - 1], grid[pos.x][pos.y], true);
 				pos = pos + Vector(-1, -1);
 				break;
 			default:

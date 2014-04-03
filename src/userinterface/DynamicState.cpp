@@ -8,6 +8,7 @@
 #include "DynamicState.h"
 
 #include "Connection.h"
+#include "Coordinate.h"
 
 DynamicState::DynamicState(const Board& board) :
 		State(board), lastMove(0) {
@@ -81,9 +82,9 @@ DynamicState::~DynamicState() {
 
 void DynamicState::setFromUserSelectedConnection(
 		const Connection* connection) const {
-	if (!railSet[connection->first.x][connection->first.y][connection->direction])
-		fromUserSelectedConnections[connection->first.x][connection->first.y][connection->direction] =
-				!fromUserSelectedConnections[connection->first.x][connection->first.y][connection->direction];
+	if (!railSet[connection->first->x][connection->first->y][connection->direction])
+		fromUserSelectedConnections[connection->first->x][connection->first->y][connection->direction] =
+				!fromUserSelectedConnections[connection->first->x][connection->first->y][connection->direction];
 }
 
 void DynamicState::setFromUserSelectedCoordinate(

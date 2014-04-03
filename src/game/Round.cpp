@@ -91,8 +91,8 @@ int Round::losingPoints(AI* player) const {
 		copy.setRails(path);
 		if (isPlayerConnectedToHisCities(player, copy)) {
 			for (int i = 0; i < (int) path.size(); i++) {
-				minuspoints += (1 + path[i]->hindernis);
-				cout << (1 + path[i]->hindernis) << endl;
+				minuspoints += (1 + path[i]->barrier);
+				cout << (1 + path[i]->barrier) << endl;
 			}
 			return minuspoints;
 		}
@@ -131,7 +131,7 @@ bool Round::isRoundWinner(AI* player) const {
 bool Round::isPlayerConnectedToHisCities(AI* player, const State& state) const {
 	short schienennr = state.getPawn(player->playerColor).schienennetznummer;
 	for (int i = 0; i < NUMBER_CITYCOLORS; i++) {
-		if (schienennr != state.getRailwayNumber(*(player->hand[i])))
+		if (schienennr != state.getRailwayNumber(player->hand[i]))
 			return false;
 	}
 	return true;
