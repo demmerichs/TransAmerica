@@ -107,7 +107,10 @@ bool State::isRailwayNumberOfConnectionEqualsNumber(const Connection &von,
 }
 
 short State::getRailwayNumber(const Coordinate* koo) const {
-	return railwayNumber[koo->x][koo->y];
+	if (koo)
+		return railwayNumber[koo->x][koo->y];
+	else
+		return NORAILS;
 }
 
 void State::setRailwayNumber(const Coordinate* koo, const short nr) {

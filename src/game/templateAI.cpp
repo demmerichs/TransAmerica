@@ -9,7 +9,7 @@
 // forward declared dependencies
 //==============================
 // included dependencies
-#include "../../hdr/ai/templateAI.h" /*TODO adapt*/
+#include "../../hdr/game/templateAI.h" /*TODO adapt*/
 
 #include "../../hdr/game/Constants.h"
 #include "../../hdr/game/City.h"

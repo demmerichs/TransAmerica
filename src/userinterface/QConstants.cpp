@@ -21,15 +21,15 @@ QColor getQColor(PLAYERCOLOR i) {
 
 QColor getQColorCity(CITYCOLOR i) {
 	switch (i) {
-	case C_BLUE:
+	case 0:
 		return QColor(Qt::blue);
-	case C_GREEN:
+	case 1:
 		return QColor("#016523");
-	case C_ORANGE:
+	case 2:
 		return QColor("#a35000");
-	case C_RED:
+	case 3:
 		return QColor(Qt::red);
-	case C_YELLOW:
+	case 4:
 		return QColor("#807500");
 	default:
 		return QColor(Qt::black);

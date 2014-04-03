@@ -5,11 +5,17 @@
  *      Author: David
  */
 
+//==============================
+// include guards
 #ifndef COUNTER_H_
 #define COUNTER_H_
-
+//==============================
+// forward declared dependencies
+//==============================
+// included dependencies
 #include"AI.h"
-
+//==============================
+// the actual class
 class Counter {
 	int* counter;
 public:

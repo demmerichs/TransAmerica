@@ -2,7 +2,7 @@ CXX           = g++
 CXXFLAGS      = -pipe -g -gdwarf-2 -arch x86_64 -Xarch_x86_64 -mmacosx-version-min=10.5 -Wall -W $(DEFINES)
 INCPATH       = -I/usr/local/Qt4.8/mkspecs/macx-g++ -I. -I/Library/Frameworks/QtCore.framework/Versions/4/Headers -I/usr/include/QtCore -I/Library/Frameworks/QtGui.framework/Versions/4/Headers -I/usr/include/QtGui -I/usr/include -I. -I../hdr/logger -I../hdr/game -I../hdr/game/boardSettings/standard -I../hdr/ai -I../hdr/userinterface -I. -F/Library/Frameworks
 
-compiledAI/%.s: ../localAIs/local/%_local.cpp
+compiledAI/%.s: ../localAIs/local/%_local.cpp Release.app/Contents/MacOS/Release
 	$(CXX) -S $(CXXFLAGS) $(INCPATH) -o $@ $<
 	
 %.o: compiledAI/%.s
