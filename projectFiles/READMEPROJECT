@@ -1,0 +1,2 @@
+If your local qmake --project is not working - due to mysterious reasons -
+you can use the .pro in this folder and copy them to the "Release" folder.
