@@ -18,12 +18,14 @@ class MainWindow: public QMainWindow {
 Q_OBJECT
 public:
 	MainWindow();
+    ~MainWindow();
 private:
 	GameExec* myGameExe;
-	Window* wp;
-    Initialize* dialog;
-    UserInputWindow* UIWp;
-	QToolBar* myToolBar;
+    Window* wp;
+//    Initialize* dialog;
+//    UserInputWindow* UIWp;
+//    ShowSimulationWindow* SWp;
+    QToolBar* myToolBar;
 	QMenu* settingsMenu;
     QMenu* fileMenu;
     QMenu* gameMenu;
@@ -40,9 +42,9 @@ private:
 	void createStatusBar();
 
 private slots:
-	void openInit();
+//	void openInit();
 	void saveSpielbrett();
-    void startSimulation(int games, vector<AI*> aiList, bool isPureSimulation);
+    void startSimulation(/*int games, vector<AI*> aiList, bool isPureSimulation*/);
 	void displayOnStatusBar(QString string, int time = 0);
 	void setStyle();
     void notImplemented();

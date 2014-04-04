@@ -12,6 +12,9 @@ Initialize::Initialize(const QString &title, QWidget *parent) :
 	nameLabel = new QLabel(tr("Name:"));
 	nameEdit = new QLineEdit;
 
+    hasHumanLabel = new QLabel(tr("Human player:"));
+    hasHumanBox = new QCheckBox;
+
 	simulationLabel = new QLabel(tr("Number of simulations:"));
 	simulationSpin = new QSpinBox;
 	simulationSpin->setRange(1, 1000);
@@ -25,11 +28,13 @@ Initialize::Initialize(const QString &title, QWidget *parent) :
 	layout = new QGridLayout;
 	layout->addWidget(nameLabel, 0, 0);
 	layout->addWidget(nameEdit, 0, 1);
-	layout->addWidget(simulationLabel, 1, 0);
-	layout->addWidget(simulationSpin, 1, 1);
-	layout->addWidget(listWidgetA, 2, 0, 1, 2);
-	layout->addWidget(listWidgetB, 2, 1, 1, 2);
-	layout->addWidget(buttonBox, 3, 0, 1, 2);
+    layout->addWidget(hasHumanLabel,1,0);
+    layout->addWidget(hasHumanBox,1,1);
+    layout->addWidget(simulationLabel, 2, 0);
+    layout->addWidget(simulationSpin, 2, 1);
+    layout->addWidget(listWidgetA, 3, 0, 1, 2);
+    layout->addWidget(listWidgetB, 3, 1, 1, 2);
+    layout->addWidget(buttonBox, 4, 0, 1, 2);
 	setLayout(layout);
 	setWindowTitle(title);
 	connect(buttonBox, SIGNAL(accepted()), this, SLOT(verify()));

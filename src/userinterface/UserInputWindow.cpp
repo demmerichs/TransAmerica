@@ -16,8 +16,8 @@
 #include "../../hdr/userinterface/GUIBoard.h"
 #include "../../hdr/game/Board.h"
 
-UserInputWindow::UserInputWindow(SimulationLogger* simLogger) :
-    simLogger(simLogger), Window(new Board(true)){
+UserInputWindow::UserInputWindow(const Board* board) :
+    Window(board){
 	enterMove = new QPushButton(tr("Enter Move"));
 	toolLayout->addRow(enterMove);
 }
@@ -34,7 +34,7 @@ const Coordinate* UserInputWindow::getPawnFromUser(AI* player,
 	spielbrett->setHand(hand);
 	this->spielbrett->update();
 	this->update();
-	this->show();
+//	this->show();
 	QEventLoop* pause = new QEventLoop;
 	connect(enterMove, SIGNAL(clicked(bool)), pause, SLOT(quit()));
 	spielbrett->selectCoordinates = true;
@@ -58,11 +58,12 @@ Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 	if (moveList.size() > 0)
 		aZp->lastMove = moveList[moveList.size() - 1];
 	spielbrett->setDynamicState(aZp);
-    spielbrett->setPlayerList(simLogger->getPlayerList());
-	spielbrett->setHand(hand);
+    if (simLogger)
+        spielbrett->setPlayerList(simLogger->getPlayerList());
+//	spielbrett->setHand(hand);
 	this->spielbrett->update();
 	this->update();
-	this->show();
+//    this->showMaximized();
 	QEventLoop* pause = new QEventLoop;
 	connect(enterMove, SIGNAL(clicked(bool)), pause, SLOT(quit()));
 	spielbrett->selectConnections = true;
@@ -89,4 +90,7 @@ Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 void UserInputWindow::showDataWidget() {
 	return;
 	//TODO NOTE probably not the best solution
+}
+void UserInputWindow::setSimLogger(SimulationLogger *sLogger){
+    simLogger = sLogger;
 }

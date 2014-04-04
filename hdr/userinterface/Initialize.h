@@ -14,6 +14,7 @@
 #include <QGridLayout>
 #include <QListWidget>
 #include <QMessageBox>
+#include <QCheckBox>
 #include <vector>
 #include <set>
 using std::vector;
@@ -47,9 +48,11 @@ public:
 	PLAYERCOLOR humanColor;
 private:
 	QStringList aiAvailable;
-	set<PLAYERCOLOR> notSelected;
-	QLabel* nameLabel;
+    set<PLAYERCOLOR> notSelected;
+    QLabel* nameLabel;
 	QLineEdit* nameEdit;
+    QCheckBox* hasHumanBox;
+    QLabel* hasHumanLabel;
 	QLabel* simulationLabel;
 	QSpinBox* simulationSpin;
 	QListWidget* listWidgetA;
@@ -62,6 +65,8 @@ private slots:
 	void addAI(QListWidgetItem* add);
 	void removeAI(QListWidgetItem* remove);
 	void verify();
+
+    friend class GameExec;
 };
 
 #endif // INITIALIZE_H

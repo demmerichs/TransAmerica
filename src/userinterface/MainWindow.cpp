@@ -17,36 +17,48 @@ MainWindow::MainWindow() :
 		wp(0) {
 
     QApplication::setWindowIcon(QIcon("images/icons/TransamericaAppIcon.png")); //TODO create some .ico
-
+    myGameExe = new GameExec(this);
 	createActions();
 	createToolBar();
 	createStatusBar();
 	createMenus();
 
+
 	showMaximized();
-	openInit();
+    startSimulation();
 }
 
-void MainWindow::startSimulation(int games, vector<AI*> aiList, bool isPureSimulation) {
-	myGameExe = new GameExec(wp, aiList, games);
-    if (!isPureSimulation){
-        UIWp = new UserInputWindow(myGameExe->simulationLogger);
-        wp = UIWp;
-        aiList.push_back(new Human(dialog->humanColor, UIWp));
-
-        connect(wp, SIGNAL(requestDisplayOnStatusBar(QString,int)), this,
-                SLOT(displayOnStatusBar(QString,int)));
-        setCentralWidget(wp);
-    }
-	myGameExe->simulateSimulation();
-	if (wp)
-		delete wp;
-	wp = new ShowSimulationWindow(myGameExe->simulationLogger);
-    connect (showDataAct, SIGNAL(triggered()),wp, SLOT(showDataWidget()));
-    setCentralWidget(wp);
+MainWindow::~MainWindow(){
+    delete myGameExe;
+    if (wp)
+        delete wp;
 }
 
-void MainWindow::openInit() {
+//void MainWindow::startSimulation(int games, vector<AI*> aiList, bool isPureSimulation) {
+//	myGameExe = new GameExec(wp, aiList, games);
+//    if (!isPureSimulation){
+//        UIWp = new UserInputWindow(myGameExe->simulationLogger);
+//        wp = UIWp;
+//        aiList.push_back(new Human(dialog->humanColor, UIWp));
+
+//        connect(wp, SIGNAL(requestDisplayOnStatusBar(QString,int)), this,
+//                SLOT(displayOnStatusBar(QString,int)));
+//        setCentralWidget(wp);
+//    }
+//	myGameExe->simulateSimulation();
+//	if (wp)
+//		delete wp;
+//	wp = new ShowSimulationWindow(myGameExe->simulationLogger);
+//    connect (showDataAct, SIGNAL(triggered()),wp, SLOT(showDataWidget()));
+//    setCentralWidget(wp);
+//}
+
+void MainWindow::startSimulation(){
+    myGameExe->execute();
+    setCentralWidget(myGameExe->wp);
+}
+
+/*void MainWindow::openInit() {
     dialog = new Initialize("Initialize Simulation", this);
     if (dialog->exec() == QDialog::Accepted) {
         bool isPureSimulation = true;
@@ -67,16 +79,16 @@ void MainWindow::openInit() {
 
         startSimulation(numberOfGames, aiList, isPureSimulation);
 	}
-	return;
+    return;
 }
-
+*/
 void MainWindow::createActions() {
     newGameAct = new QAction(QIcon("images/icons/TGameIcon.png"),
             tr("&New Game"), this);
     newGameAct->setStatusTip(
             tr("Creates a new Game/Simulation with seclectable AIs"));
     newGameAct->setShortcut(QKeySequence::New);
-    connect(newGameAct, SIGNAL(triggered()), this, SLOT(openInit()));
+    connect(newGameAct, SIGNAL(triggered()), this, SLOT(startSimulation()));
 
 
     showDataAct = new QAction(QIcon("images/icons/TDataIcon.png"), tr("Show &Data"),

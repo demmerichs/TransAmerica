@@ -39,35 +39,35 @@ QColor getQColorCity(CITYCOLOR i) {
 
 QPixmap getCityPixmap(CITYCOLOR i) {
 	if (i == 0)
-		return QPixmap("images/blau.gif");
+        return QPixmap("images/Tblau.png");
 	else if (i == 4)
-		return QPixmap("images/gelb.gif");
+        return QPixmap("images/Tgelb.png");
 	else if (i == 1)
-		return QPixmap("images/gruen.gif");
+        return QPixmap("images/Tgruen.png");
 	else if (i == 2)
-		return QPixmap("images/orange.gif");
+        return QPixmap("images/Torange.png");
 	else if (i == 3)
-		return QPixmap("images/rot.gif");
+        return QPixmap("images/Trot.png");
 	else
 		return QPixmap(" ");
 }
 QPixmap getCity_hPixmap(CITYCOLOR i) {
 	if (i == 0)
-		return QPixmap("images/blauh.gif");
+        return QPixmap("images/Tblauh.png");
 	else if (i == 4)
-		return QPixmap("images/gelbh.gif");
+        return QPixmap("images/Tgelbh.png");
 	else if (i == 1)
-		return QPixmap("images/gruenh.gif");
+        return QPixmap("images/Tgruenh.png");
 	else if (i == 2)
-		return QPixmap("images/orangeh.gif");
+        return QPixmap("images/Torangeh.png");
 	else if (i == 3)
-		return QPixmap("images/roth.gif");
+        return QPixmap("images/Troth.png");
 	else
 		return QPixmap(" ");
 }
 QPixmap getRatPixmap(PLAYERCOLOR i) {
 	if (i == P_BLUE)
-		return QPixmap("images/ratblau.gif");
+        return QPixmap("images/ratblau.gif");
 	else if (i == P_YELLOW)
 		return QPixmap("images/ratgelb.gif");
 	else if (i == P_GREEN)

@@ -14,12 +14,12 @@ using std::abs;
 #include "DynamicState.h"
 #include "../game/Board.h"
 //==============================
-const QPen thinPen(Qt::darkGray, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-const QPen thinRedPen(Qt::red, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-const QPen fatPen(Qt::black, 4, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
-const QPen fatGreyPen(Qt::lightGray, 4, Qt::SolidLine, Qt::RoundCap,
+const QPen thinPen(Qt::darkGray, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+const QPen thinRedPen(Qt::red, 2, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+const QPen fatPen(Qt::black, 8, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+const QPen fatGreyPen(Qt::lightGray, 8, Qt::SolidLine, Qt::RoundCap,
 		Qt::RoundJoin);
-const QPen fatRedPen(QColor("#ff6c52"), 4, Qt::SolidLine, Qt::RoundCap,
+const QPen fatRedPen(QColor("#ff6c52"), 8, Qt::SolidLine, Qt::RoundCap,
 		Qt::RoundJoin);
 const double sL = 30.2;
 
@@ -33,14 +33,14 @@ GUIBoard::GUIBoard(const Board* board, Counter points,
 				deadLine), selectConnections(false), selectCoordinates(false) {
 	drawCity = false;
 
-	setBackgroundRole(QPalette::Base);
+    setBackgroundRole(QPalette::Dark);
 	setAutoFillBackground(false);
 	setMouseTracking(true);
 
-	background = new QPixmap("images/bg1.png");
+    background = new QPixmap("images/tbg1.png");
 
-	transform.translate(110.5, 57.5);
-	transform.scale(1, sqrt(3) / 2.);
+    transform.translate(110.5*2, 57.5*2);
+    transform.scale(1*2, sqrt(3)/2.*1.95);
 	transform.shear(-0.5, 0);
 	invertedTransform = transform.inverted();
 	this->update();
@@ -257,12 +257,12 @@ void GUIBoard::drawPawns(QPainter *painter) {
 		painter->setBrush(brush);
 		QPoint point = transform.map(QPoint(pos.x * sL - 18, pos.y * sL - 25));
 		painter->setPen(thinPen);
-		painter->drawRoundedRect(point.x(), point.y(), 10, 25, 2, 2);
+        painter->drawRoundedRect(point.x(), point.y(), 10*2, 25*2, 2, 2);
 		if (dynamicState->playerStatus[i->spielerfarbe] != NOT_BANNED) {
 			QString qstring = QString::fromStdString(
 					bannedStatusToString(
 							dynamicState->playerStatus[i->spielerfarbe]));
-			QRect rect(point.x(), point.y(), 10, 25);
+            QRect rect(point.x(), point.y(), 10*2, 25*2);
 			painter->setPen(fatPen);
 			painter->setFont(QFont("Times", 10, QFont::Bold));
 			painter->drawText(rect, Qt::AlignCenter, qstring);
@@ -293,12 +293,12 @@ void GUIBoard::drawCityNames(QPainter* painter) {
 	QPixmap* schild = new QPixmap("images/schildkl.gif");
 	const City* const * townList = dynamicState->board.cityList;
 	painter->setPen(fatPen);
-	painter->setFont(QFont("Times", 8, QFont::Bold));
+    painter->setFont(QFont("Times", 8*2, QFont::Bold));
 	for (int i = 0; i < dynamicState->board.numberCities; i++) {
 		QRect* rect = new QRect(
 				transform.map(
-						QPoint(townList[i]->x * sL - 200 + 5,
-								townList[i]->y * sL + 10)), QSize(400, 50));
+                        QPoint((townList[i]->x * sL - 200 + 5),
+                                (townList[i]->y * sL + 10))), QSize(800, 100));
 		QRect boundingRect;
 		boundingRect = painter->boundingRect(*rect,
 				Qt::AlignHCenter | Qt::AlignTop,
@@ -307,7 +307,7 @@ void GUIBoard::drawCityNames(QPainter* painter) {
 		boundingRect.setHeight(boundingRect.height());
 		boundingRect.setTopLeft(
 				transform.map(QPoint(townList[i]->x * sL, townList[i]->y * sL))
-						+ QPoint(-boundingRect.width() / 2, 8));
+                        + QPoint(-boundingRect.width() /2, 16));
 		boundingRect.setTop(boundingRect.top() - 1);
 		painter->drawPixmap(boundingRect.topLeft(),
 				schild->scaled(boundingRect.size()));
@@ -319,9 +319,9 @@ void GUIBoard::drawCityNames(QPainter* painter) {
 void GUIBoard::drawHand(QPainter* painter) {
 	QPen coloredPen(fatPen);
 	if (hand) {
-		double size = 101.66;
-		painter->setFont(QFont("Times", 10, QFont::Bold));
-		QRect positionRect(0, background->height() - 20, size, 20);
+        double size = 101.66*2;
+        painter->setFont(QFont("Times", 10*2, QFont::Bold));
+        QRect positionRect(0, background->height() - 40, size, 40);
 		//Higlighted Cities
 		for (int i = 0; i < 5; i++) {
 			if (hand[i]) {
@@ -352,9 +352,9 @@ void GUIBoard::drawRat(QPainter *painter) {
 }
 
 void GUIBoard::drawPoints(QPainter* painter){
-    QRectF bRect (0,272, 103, 19.2);
+    QRectF bRect (0,272*2, 103*2, 19.2*2);
     QPen coloredPen(fatPen);
-    painter->setFont(QFont("Times",8,QFont::Bold));
+    painter->setFont(QFont("Times",8*2,QFont::Bold));
     for (int i=0; i < (int) playerList.size(); i++){
         QString printString;
         printString = QString(" %1 (%2) %3")
@@ -364,7 +364,7 @@ void GUIBoard::drawPoints(QPainter* painter){
         coloredPen.setColor(getQColor(playerList[i]->playerColor));
         painter->setPen(coloredPen);
         painter->drawText(bRect,Qt::AlignCenter, printString);
-        bRect.moveTop(bRect.top()+19.2);
+        bRect.moveTop(bRect.top()+19.2*2);
     }
 }
 
