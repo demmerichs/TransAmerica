@@ -12,6 +12,7 @@
 //==============================
 // forward declared dependencies
 class RoundLogger;
+class City;
 //==============================
 // included dependencies
 #include<string>

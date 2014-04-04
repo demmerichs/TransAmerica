@@ -16,6 +16,7 @@ SimulationLogger::SimulationLogger(vector<AI*> playerList, Board& board,
 		playerList(playerList), gamesWon(0), gameList(
 				vector<GameLogger*>(numberOfGames)), board(board), seed(seed), winnerPoints(
 				calculateWinnerPoints()) {
+	cout << "The seed of this run is: " << seed << endl;
 	srand(seed);
 	assert(numberOfGames == (int )gameList.size());
 	bool twoPlayersSameColor = false;
@@ -24,7 +25,7 @@ SimulationLogger::SimulationLogger(vector<AI*> playerList, Board& board,
 			twoPlayersSameColor |= (playerList[i]->playerColor
 					== playerList[j]->playerColor);
 	assert(!twoPlayersSameColor);
-    statLogger = new StatisticsLogger(this);
+	statLogger = new StatisticsLogger(this);
 }
 
 SimulationLogger::~SimulationLogger() {
@@ -32,7 +33,7 @@ SimulationLogger::~SimulationLogger() {
 		delete gameList[i];
 	for (int i = 0; i < (int) playerList.size(); i++)
 		delete playerList[i];
-    delete statLogger;
+	delete statLogger;
 }
 
 int gcd(int a, int b) {
@@ -96,19 +97,19 @@ int SimulationLogger::getDeadLine(int game, int round) const {
 		return gameList[game]->getDeadLine();
 }
 
-void SimulationLogger::fillStatisticsLogger() const{
-    for (int i=0; i<gameList.size(); i++){
-        for(int j=0; j<gameList[i]->getRoundList().size(); j++){
-            const RoundLogger* actRound = gameList[i]->getRoundList()[j];
-            const vector<AI*> actPlayerList = actRound->getPlayerList();
-            statLogger->allLostPoints += actRound->getLostPoints();
-            for (int k=0; k<actPlayerList.size(); k++)
-                if (actRound->getPlayerStatus(actPlayerList[k])!=NOT_BANNED)
-                    statLogger->addEvent((i+1)*10+j+1, /*TODO create a proper pos. system*/
-                                         actPlayerList[k]->playerColor,
-                                         actRound->getPlayerStatus(actPlayerList[k]));
-        }
-    }
+void SimulationLogger::fillStatisticsLogger() const {
+	for (int i = 0; i < (int) gameList.size(); i++) {
+		for (int j = 0; j < (int) gameList[i]->getRoundList().size(); j++) {
+			const RoundLogger* actRound = gameList[i]->getRoundList()[j];
+			const vector<AI*> actPlayerList = actRound->getPlayerList();
+			statLogger->allLostPoints += actRound->getLostPoints();
+			for (int k = 0; k < (int) actPlayerList.size(); k++)
+				if (actRound->getPlayerStatus(actPlayerList[k]) != NOT_BANNED)
+					statLogger->addEvent((i + 1) * 10 + j + 1, /*TODO create a proper pos. system*/
+					actPlayerList[k]->playerColor,
+							actRound->getPlayerStatus(actPlayerList[k]));
+		}
+	}
 }
 
 const Board& SimulationLogger::getBoard() const {
@@ -131,8 +132,8 @@ const unsigned int SimulationLogger::getSeed() const {
 	return seed;
 }
 
-StatisticsLogger* SimulationLogger::getStatisticsLogger() const{
-    return statLogger;
+StatisticsLogger* SimulationLogger::getStatisticsLogger() const {
+	return statLogger;
 }
 
 const unsigned int SimulationLogger::getWinnerPoints() const {

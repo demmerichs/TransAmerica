@@ -1,11 +1,5 @@
 \section{State Class Reference}
 \label{class_state}\index{State@{State}}
-Inheritance diagram for State\-:\begin{figure}[H]
-\begin{center}
-\leavevmode
-\includegraphics[height=2.000000cm]{class_state}
-\end{center}
-\end{figure}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
@@ -21,13 +15,16 @@ Inheritance diagram for State\-:\begin{figure}[H]
 bool {\bfseries is\-Railway\-Number\-Of\-Connection\-Equals\-Number} (const {\bf Connection} \&, const short schienennr) const \label{class_state_a0aab91520b80f52278908c673bb80779}
 
 \item 
-short {\bfseries get\-Railway\-Number} (const {\bf Vector} \&koo) const \label{class_state_a4ba85094883f4a79e0efd3cfc6088535}
+short {\bfseries get\-Railway\-Number} (const {\bf Coordinate} $\ast$koo) const \label{class_state_adaf456ffdedb803dc54820963568f9c5}
 
 \item 
-void {\bfseries set\-Railway\-Number} (const {\bf Coordinate} \&koo, const short nr)\label{class_state_a170bfcb662e80c58f01608c441ddfce4}
+void {\bfseries set\-Railway\-Number} (const {\bf Coordinate} $\ast$koo, const short nr)\label{class_state_a92259aff86613b371d9f3c992868041c}
 
 \item 
-void {\bfseries set\-Rail} (const {\bf Connection} \&)\label{class_state_ac05cee15165658aedfe46bca33e8436b}
+void {\bfseries set\-Rail} (const {\bf Connection} $\ast$)\label{class_state_aadc12f8c71adf85303cbfda99ba09178}
+
+\item 
+void {\bfseries set\-Rails} (vector$<$ const {\bf Connection} $\ast$ $>$ connections)\label{class_state_a32a25cd9178e12dce98d5b2c15d8a781}
 
 \item 
 void {\bfseries reset\-Railway\-Nr\-\_\-\-To\-Nr\-\_\-} (const short, const short)\label{class_state_a482b551469c15e5f88967ab6c42ca3dc}
@@ -49,6 +46,9 @@ vector$<$ const {\bf Coordinate} $\ast$ $>$ {\bfseries points\-Belonging\-To\-Ra
 
 \item 
 void {\bfseries dump} () const \label{class_state_a27499f3070aef89461dbec0c99a24225}
+
+\item 
+void {\bfseries dump\-Evaluate\-Board} (unsigned short $\ast$$\ast$\&)\label{class_state_aabee39e9ef3cb3a93b878d6ea694d1f4}
 
 \item 
 void {\bfseries set\-Round} (short x)\label{class_state_a468eb35199b879f9df58245540ca849c}

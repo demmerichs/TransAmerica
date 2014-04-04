@@ -1,33 +1,60 @@
 \section{Connection Class Reference}
 \label{class_connection}\index{Connection@{Connection}}
+
+
+{\ttfamily \#include $<$Connection.\-h$>$}
+
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Connection} (const {\bf Coordinate} \&erste, const {\bf Coordinate} \&zweite, bool Hindernis)\label{class_connection_acff2b5b881817a7b6e8d8173a1937640}
-
-\item 
-const {\bf Connection} \& {\bfseries operator=} (const {\bf Connection} \&) const \label{class_connection_a715ee5805776e50b971d5772267e4b46}
-
-\item 
-void {\bfseries dump} () const \label{class_connection_a67b9ea26a5f1419c2715e87f26dbb2f4}
-
+void {\bf dump} () const 
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-const {\bf Coordinate} \& {\bfseries first}\label{class_connection_a1e4300e2849a2daebf4b1e4577ef1ea8}
-
+const {\bf Coordinate} $\ast$ {\bf first}
 \item 
-const {\bf Coordinate} \& {\bfseries second}\label{class_connection_a968eaf3cec0996491425d8569e42416f}
-
+const {\bf Coordinate} $\ast$ {\bf second}
 \item 
-const D\-I\-R\-E\-C\-T\-I\-O\-N {\bfseries direction}\label{class_connection_aa417c011125675e3faf7f5ec1fe4192b}
-
+const D\-I\-R\-E\-C\-T\-I\-O\-N {\bf direction}
 \item 
-const bool {\bfseries hindernis}\label{class_connection_ae29f9a099c5d00919eb45123864fb7f4}
+const bool {\bf barrier}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+class {\bfseries Board}\label{class_connection_a12525b6ed7c8186be0bee5cf78e2a49c}
 
 \end{DoxyCompactItemize}
 
+
+\subsection{Detailed Description}
+This class represents the connections on the board. They have two pointers to Coordinates, which are the ends of the connection. 
+
+\subsection{Member Function Documentation}
+\index{Connection@{Connection}!dump@{dump}}
+\index{dump@{dump}!Connection@{Connection}}
+\subsubsection[{dump}]{\setlength{\rightskip}{0pt plus 5cm}void Connection\-::dump (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}\label{class_connection_a67b9ea26a5f1419c2715e87f26dbb2f4}
+This function dumps the values of the connection on the standard output stream. 
+
+\subsection{Member Data Documentation}
+\index{Connection@{Connection}!barrier@{barrier}}
+\index{barrier@{barrier}!Connection@{Connection}}
+\subsubsection[{barrier}]{\setlength{\rightskip}{0pt plus 5cm}const bool Connection\-::barrier}\label{class_connection_ae5598a9dec2663848ec390311bcce9c4}
+This bool is true, if the connection is a bridge or tunnel. \index{Connection@{Connection}!direction@{direction}}
+\index{direction@{direction}!Connection@{Connection}}
+\subsubsection[{direction}]{\setlength{\rightskip}{0pt plus 5cm}const D\-I\-R\-E\-C\-T\-I\-O\-N Connection\-::direction}\label{class_connection_aa417c011125675e3faf7f5ec1fe4192b}
+This is the direction of the connection. (see also \doxyref{Constants.\-h}{p.}{_constants_8h_source}) \index{Connection@{Connection}!first@{first}}
+\index{first@{first}!Connection@{Connection}}
+\subsubsection[{first}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Coordinate}$\ast$ Connection\-::first}\label{class_connection_aa0357d89d0add31b88656d7f0943fd09}
+This is the first end of the connection. It is always more north/west than the second end. \index{Connection@{Connection}!second@{second}}
+\index{second@{second}!Connection@{Connection}}
+\subsubsection[{second}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Coordinate}$\ast$ Connection\-::second}\label{class_connection_a76991bd258840b4cef0a38d07334b483}
+This is the second end of the connection. It is always more south/east than the first end. 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

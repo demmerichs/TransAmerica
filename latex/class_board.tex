@@ -7,8 +7,7 @@
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-{\bfseries Board} (bool above\-Player\-Limit)\label{class_board_aff1a3f7565e1170a3320afda3c7448d2}
-
+{\bf Board} (bool {\bf above\-Player\-Limit})
 \item 
 const {\bf Coordinate} $\ast$$\ast$$\ast$ {\bf construct\-Grid} () const 
 \item 
@@ -24,17 +23,14 @@ const {\bf City} $\ast$ {\bf get\-City} (C\-I\-T\-Y\-C\-O\-L\-O\-R color, short 
 \item 
 const {\bf Coordinate} $\ast$ {\bf get\-Coordinate} ({\bf Vector} vector) const 
 \item 
-const {\bf Connection} $\ast$ {\bfseries get\-Connection} (const {\bf Coordinate} $\ast$a, const {\bf Coordinate} $\ast$b) const \label{class_board_a307c75d8408e6d65637910aa86abf312}
-
+const {\bf Connection} $\ast$ {\bf get\-Connection} (const {\bf Coordinate} $\ast$a, const {\bf Coordinate} $\ast$b) const 
 \item 
-const {\bf Connection} $\ast$ {\bfseries get\-Connection} ({\bf Vector} a, {\bf Vector} b) const \label{class_board_a3a9d9071f7c2dd647ffbc75dc9aa4e5c}
-
+const {\bf Connection} $\ast$ {\bf get\-Connection} ({\bf Vector} a, {\bf Vector} b) const 
 \end{DoxyCompactItemize}
 \subsection*{Public Attributes}
 \begin{DoxyCompactItemize}
 \item 
-const bool {\bfseries above\-Player\-Limit}\label{class_board_a748cd1cd67cd6d74a6577e7100d862fa}
-
+const bool {\bf above\-Player\-Limit}
 \item 
 const short {\bf number\-Cities}
 \item 
@@ -51,6 +47,16 @@ $\ast$const $\ast$const {\bf edges}
 \subsection{Detailed Description}
 This class provides the game board, which is of course constant and you shouldn't be able to modify anything here with operations out of your A\-I-\/class. 
 
+\subsection{Constructor \& Destructor Documentation}
+\index{Board@{Board}!Board@{Board}}
+\index{Board@{Board}!Board@{Board}}
+\subsubsection[{Board}]{\setlength{\rightskip}{0pt plus 5cm}Board\-::\-Board (
+\begin{DoxyParamCaption}
+\item[{bool}]{above\-Player\-Limit}
+\end{DoxyParamCaption}
+)}\label{class_board_aff1a3f7565e1170a3320afda3c7448d2}
+This constructor constructs a game board. 
+
 \subsection{Member Function Documentation}
 \index{Board@{Board}!construct\-Cities@{construct\-Cities}}
 \index{construct\-Cities@{construct\-Cities}!Board@{Board}}
@@ -59,28 +65,28 @@ This class provides the game board, which is of course constant and you shouldn'
 {}
 \end{DoxyParamCaption}
 ) const}\label{class_board_a7ec7049e0f1c7313417275106f2f02e9}
-$<$ Constructs the grid. \index{Board@{Board}!construct\-Edges@{construct\-Edges}}
+Constructs the city\-List. \index{Board@{Board}!construct\-Edges@{construct\-Edges}}
 \index{construct\-Edges@{construct\-Edges}!Board@{Board}}
 \subsubsection[{construct\-Edges}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Connection} $\ast$$\ast$$\ast$$\ast$ Board\-::construct\-Edges (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const}\label{class_board_a8235b5e3e7f30c370da7d7defffdade4}
-$<$ Constructs the city\-List. \index{Board@{Board}!construct\-Grid@{construct\-Grid}}
+Constructs the edges. \index{Board@{Board}!construct\-Grid@{construct\-Grid}}
 \index{construct\-Grid@{construct\-Grid}!Board@{Board}}
 \subsubsection[{construct\-Grid}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Coordinate} $\ast$$\ast$$\ast$ Board\-::construct\-Grid (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const}\label{class_board_af815ac6ffa5d714247dc934cc446f0d5}
-$<$ These are the connection(-\/pointers) between two coordinates. If you get edges[x][y][z], you get the connection starting in (x,y) and going in directin z (see also D\-I\-R\-E\-C\-T\-I\-O\-N in \doxyref{Constants.\-h}{p.}{_constants_8h_source}) \index{Board@{Board}!dump@{dump}}
+Constructs the grid. \index{Board@{Board}!dump@{dump}}
 \index{dump@{dump}!Board@{Board}}
 \subsubsection[{dump}]{\setlength{\rightskip}{0pt plus 5cm}void Board\-::dump (
 \begin{DoxyParamCaption}
 {}
 \end{DoxyParamCaption}
 ) const}\label{class_board_a2b3cd1e79ce4b94cdeeea22843941123}
-$<$ Constructs the edges. \index{Board@{Board}!get\-City@{get\-City}}
+Dumps the board on the standard output stream. \index{Board@{Board}!get\-City@{get\-City}}
 \index{get\-City@{get\-City}!Board@{Board}}
 \subsubsection[{get\-City}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf City} $\ast$ Board\-::get\-City (
 \begin{DoxyParamCaption}
@@ -88,14 +94,30 @@ $<$ Constructs the edges. \index{Board@{Board}!get\-City@{get\-City}}
 \item[{short}]{number}
 \end{DoxyParamCaption}
 ) const}\label{class_board_a26b39c1ea4b2999323754f29f37cf28b}
-$<$ Finds the city, if it exists in the list. \index{Board@{Board}!get\-Coordinate@{get\-Coordinate}}
+Gets the city with the passed color and number. \index{Board@{Board}!get\-Connection@{get\-Connection}}
+\index{get\-Connection@{get\-Connection}!Board@{Board}}
+\subsubsection[{get\-Connection}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Connection} $\ast$ Board\-::get\-Connection (
+\begin{DoxyParamCaption}
+\item[{const {\bf Coordinate} $\ast$}]{a, }
+\item[{const {\bf Coordinate} $\ast$}]{b}
+\end{DoxyParamCaption}
+) const}\label{class_board_a307c75d8408e6d65637910aa86abf312}
+Gets the connection on the board, or returns 0, if it doesn't exist. a and b are the ends of the connection. \index{Board@{Board}!get\-Connection@{get\-Connection}}
+\index{get\-Connection@{get\-Connection}!Board@{Board}}
+\subsubsection[{get\-Connection}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Connection} $\ast$ Board\-::get\-Connection (
+\begin{DoxyParamCaption}
+\item[{{\bf Vector}}]{a, }
+\item[{{\bf Vector}}]{b}
+\end{DoxyParamCaption}
+) const}\label{class_board_a3a9d9071f7c2dd647ffbc75dc9aa4e5c}
+Gets the connection on the board, or returns 0, if it doesn't exist. a and b are the ends of the connection. \index{Board@{Board}!get\-Coordinate@{get\-Coordinate}}
 \index{get\-Coordinate@{get\-Coordinate}!Board@{Board}}
 \subsubsection[{get\-Coordinate}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Coordinate} $\ast$ Board\-::get\-Coordinate (
 \begin{DoxyParamCaption}
 \item[{{\bf Vector}}]{vector}
 \end{DoxyParamCaption}
 ) const}\label{class_board_a749739339983af5a19ecf1b268160b9a}
-$<$ Gets the city with the passed color and number. \index{Board@{Board}!look\-For\-City@{look\-For\-City}}
+Gets the coordinate on the board, or returns 0, if it doesn't exist. \index{Board@{Board}!look\-For\-City@{look\-For\-City}}
 \index{look\-For\-City@{look\-For\-City}!Board@{Board}}
 \subsubsection[{look\-For\-City}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf City} $\ast$const Board\-::look\-For\-City (
 \begin{DoxyParamCaption}
@@ -103,22 +125,25 @@ $<$ Gets the city with the passed color and number. \index{Board@{Board}!look\-F
 \item[{short}]{ykoo}
 \end{DoxyParamCaption}
 ) const}\label{class_board_aa910167d8c747965e32d1dbb4021cfe4}
-$<$ Dumps the board on the standard output stream. 
+Finds the city, if it exists in the list. 
 
 \subsection{Member Data Documentation}
-\index{Board@{Board}!city\-List@{city\-List}}
+\index{Board@{Board}!above\-Player\-Limit@{above\-Player\-Limit}}
+\index{above\-Player\-Limit@{above\-Player\-Limit}!Board@{Board}}
+\subsubsection[{above\-Player\-Limit}]{\setlength{\rightskip}{0pt plus 5cm}const bool Board\-::above\-Player\-Limit}\label{class_board_a748cd1cd67cd6d74a6577e7100d862fa}
+If the board is constructed for more than P\-L\-A\-Y\-E\-R\-\_\-\-L\-I\-M\-I\-T players, this value is true. \index{Board@{Board}!city\-List@{city\-List}}
 \index{city\-List@{city\-List}!Board@{Board}}
 \subsubsection[{city\-List}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf City}$\ast$ const$\ast$ const Board\-::city\-List}\label{class_board_ad6f7d73277288f98beb89832d7b4c146}
-$<$ This is the number of cities on the game board. \index{Board@{Board}!edges@{edges}}
+This is the list of city-\/pointers, pointing to the cities, existing in the game. \index{Board@{Board}!edges@{edges}}
 \index{edges@{edges}!Board@{Board}}
 \subsubsection[{edges}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Connection}$\ast$ const$\ast$ const$\ast$ const$\ast$ const Board\-::edges}\label{class_board_a60585dc155394a04bcad3b7e40965ee3}
-$<$ This is the grid on the game board (2-\/dimensional array of coordinate-\/pointers). It is starting with (0,0) in the upper left corner. \index{Board@{Board}!grid@{grid}}
+These are the connection(-\/pointers) between two coordinates. If you get edges[x][y][z], you get the connection starting in (x,y) and going in directin z (see also D\-I\-R\-E\-C\-T\-I\-O\-N in \doxyref{Constants.\-h}{p.}{_constants_8h_source}) \index{Board@{Board}!grid@{grid}}
 \index{grid@{grid}!Board@{Board}}
 \subsubsection[{grid}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Coordinate}$\ast$ const$\ast$ const$\ast$ const Board\-::grid}\label{class_board_aae9536dd128ba63f9c7f0a665ae92ea6}
-$<$ This is the list of city-\/pointers, pointing to the cities, existing in the game. \index{Board@{Board}!number\-Cities@{number\-Cities}}
+This is the grid on the game board (2-\/dimensional array of coordinate-\/pointers). It is starting with (0,0) in the upper left corner. \index{Board@{Board}!number\-Cities@{number\-Cities}}
 \index{number\-Cities@{number\-Cities}!Board@{Board}}
 \subsubsection[{number\-Cities}]{\setlength{\rightskip}{0pt plus 5cm}const short Board\-::number\-Cities}\label{class_board_a6869c6319c27411982843c0e3aa101fe}
-$<$ If the board is constructed for more than P\-L\-A\-Y\-E\-R\-\_\-\-L\-I\-M\-I\-T players, this value is true. 
+This is the number of cities on the game board. 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 

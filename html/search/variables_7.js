@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['playercolor',['playerColor',['../class_a_i.html#a6fb1d4fd29373df36e0263b22e81cee2',1,'AI']]]
+  ['hand',['hand',['../class_a_i.html#aa65231c872400a31e669b5de3fdcbeae',1,'AI']]]
 ];

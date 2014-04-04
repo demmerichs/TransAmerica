@@ -16,11 +16,14 @@ Inheritance diagram for template\-A\-I\-:\begin{figure}[H]
 {\bfseries template\-A\-I} (P\-L\-A\-Y\-E\-R\-C\-O\-L\-O\-R {\bf player\-Color})\label{classtemplate_a_i_a419e693d985f701d2ec5a1d9237d24d8}
 
 \item 
-{\bf Move} {\bf do\-Move} ({\bf State} \&current\-State, vector$<$ {\bf Move} $\ast$ $>$ move\-List)
+{\bf Move} {\bfseries do\-Move} ({\bf State} \&current\-State, vector$<$ {\bf Move} $\ast$ $>$ move\-List)\label{classtemplate_a_i_a9abd9bfabeb26ba77ed5090cb1716a2a}
+
 \item 
-const {\bf Coordinate} $\ast$ {\bf set\-Pawn} ({\bf State} \&current\-State)
+const {\bf Coordinate} $\ast$ {\bfseries set\-Pawn} ({\bf State} \&current\-State)\label{classtemplate_a_i_ae18d50c605f126fc1d340368a76574bb}
+
 \item 
-bool {\bf count\-Points} ({\bf State} \&current\-State, vector$<$ {\bf Connection} $\ast$ $>$ \&return\-Path)
+bool {\bfseries count\-Points} ({\bf State} \&current\-State, vector$<$ const {\bf Connection} $\ast$ $>$ \&return\-Path)\label{classtemplate_a_i_a438183584acf6c55e8c9e9f07080f34a}
+
 \item 
 void {\bf gather\-Information\-End\-Of\-Round} (const {\bf Round\-Logger} $\ast$information\-About\-Game)
 \end{DoxyCompactItemize}
@@ -31,30 +34,6 @@ void {\bf gather\-Information\-End\-Of\-Round} (const {\bf Round\-Logger} $\ast$
 This is a template for your \doxyref{A\-I}{p.}{class_a_i}. Everywhere, where T\-O\-D\-O adpat appears, you have to insert your A\-Iname instead of \doxyref{template\-A\-I}{p.}{classtemplate_a_i}. For explanation of the methods, look into the A\-I-\/class documentation. Also you have to add this headerfile into the include-\/list in the file \char`\"{}hdr/ai/\-A\-I\-List.\-h\char`\"{}. 
 
 \subsection{Member Function Documentation}
-\index{template\-A\-I@{template\-A\-I}!count\-Points@{count\-Points}}
-\index{count\-Points@{count\-Points}!templateAI@{template\-A\-I}}
-\subsubsection[{count\-Points}]{\setlength{\rightskip}{0pt plus 5cm}bool template\-A\-I\-::count\-Points (
-\begin{DoxyParamCaption}
-\item[{{\bf State} \&}]{current\-State, }
-\item[{vector$<$ {\bf Connection} $\ast$ $>$ \&}]{return\-Path}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtemplate_a_i_a254a3e1a7a2cd1d16bec816cb9fab075}
-Here you can count your minus points at the end of each round. If you want to do so, you have to return true. For the beginning it is okay, if you just return false. Then the gamemaster will count the minuspoints. He counts in most cases the minimum of minuspoints you get, however in some cases the algorithm doesn't evaluate the best value. 
-
-Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a158672aaf98fab1b1ede48002f83d3ff}.
-
-\index{template\-A\-I@{template\-A\-I}!do\-Move@{do\-Move}}
-\index{do\-Move@{do\-Move}!templateAI@{template\-A\-I}}
-\subsubsection[{do\-Move}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Move} template\-A\-I\-::do\-Move (
-\begin{DoxyParamCaption}
-\item[{{\bf State} \&}]{aktuell, }
-\item[{vector$<$ {\bf Move} $\ast$ $>$}]{move\-List}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtemplate_a_i_a9abd9bfabeb26ba77ed5090cb1716a2a}
-Inside this methode you calculate your next move in the game. 
-
-Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_ade352ac8d216d67feca731a127b50e6f}.
-
 \index{template\-A\-I@{template\-A\-I}!gather\-Information\-End\-Of\-Round@{gather\-Information\-End\-Of\-Round}}
 \index{gather\-Information\-End\-Of\-Round@{gather\-Information\-End\-Of\-Round}!templateAI@{template\-A\-I}}
 \subsubsection[{gather\-Information\-End\-Of\-Round}]{\setlength{\rightskip}{0pt plus 5cm}void template\-A\-I\-::gather\-Information\-End\-Of\-Round (
@@ -66,20 +45,9 @@ At the end of each round you can take a look at the whole game and the playing c
 
 Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a8565a9ef04ac4f9913913c99f65213b2}.
 
-\index{template\-A\-I@{template\-A\-I}!set\-Pawn@{set\-Pawn}}
-\index{set\-Pawn@{set\-Pawn}!templateAI@{template\-A\-I}}
-\subsubsection[{set\-Pawn}]{\setlength{\rightskip}{0pt plus 5cm}const {\bf Coordinate} $\ast$ template\-A\-I\-::set\-Pawn (
-\begin{DoxyParamCaption}
-\item[{{\bf State} \&}]{aktuell}
-\end{DoxyParamCaption}
-)\hspace{0.3cm}{\ttfamily [virtual]}}\label{classtemplate_a_i_ae18d50c605f126fc1d340368a76574bb}
-At the beginning of each round you have to define your starting position of your pawn. 
-
-Implements {\bf A\-I} \doxyref{}{p.}{class_a_i_a06aa99d4b4ac2530dbdad122183600e8}.
-
 
 
 The documentation for this class was generated from the following files\-:\begin{DoxyCompactItemize}
 \item 
-hdr/ai/template\-A\-I.\-h\item 
-src/ai/template\-A\-I.\-cpp\end{DoxyCompactItemize}
+hdr/game/template\-A\-I.\-h\item 
+src/game/template\-A\-I.\-cpp\end{DoxyCompactItemize}

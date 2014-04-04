@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['datawidget',['DataWidget',['../class_data_widget.html',1,'']]],
-  ['davidai',['DavidAI',['../class_david_a_i.html',1,'']]],
-  ['debuggerai',['debuggerAI',['../classdebugger_a_i.html',1,'']]],
-  ['dynamicstate',['DynamicState',['../class_dynamic_state.html',1,'']]]
+  ['game',['Game',['../class_game.html',1,'']]],
+  ['gamelogger',['GameLogger',['../class_game_logger.html',1,'']]]
 ];

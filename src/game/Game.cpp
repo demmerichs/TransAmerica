@@ -55,7 +55,6 @@ void Game::play() {
 					<< " has "
 					<< gameLogger->points.get(gameLogger->playerList[i])
 					<< " points!" << endl;
-		cout << endl;
 		++playerIterator;
 	}
 	//TODO punktevergabe

@@ -144,42 +144,44 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <a class="code" href="class_pawn.html">Pawn</a> getPawn(<span class="keyword">const</span> PLAYERCOLOR spielerfarbe) <span class="keyword">const</span>;</div>
 <div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">bool</span> isRailwayNumberOfConnectionEqualsNumber(<span class="keyword">const</span> <a class="code" href="class_connection.html">Connection</a>&amp;,</div>
 <div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keyword">const</span> <span class="keywordtype">short</span> schienennr) <span class="keyword">const</span>; <span class="comment">//ueberprueft, ob die Connection an der schienennr anliegt</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">short</span> getRailwayNumber(<span class="keyword">const</span> <a class="code" href="class_vector.html">Vector</a> &amp;koo) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> setRailwayNumber(<span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a> &amp;koo, <span class="keyword">const</span> <span class="keywordtype">short</span> nr);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> setRail(<span class="keyword">const</span> <a class="code" href="class_connection.html">Connection</a> &amp;);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> resetRailwayNr_ToNr_(<span class="keyword">const</span> <span class="keywordtype">short</span>, <span class="keyword">const</span> <span class="keywordtype">short</span>);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    BANNED_STATUS addPawn(<a class="code" href="class_pawn.html">Pawn</a> insert);</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keywordtype">void</span> resetAll();</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>** evaluateBoard(<span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>* target) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> distance(<span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>* target,</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;            <span class="keyword">const</span> vector&lt;const Coordinate*&gt; &amp;possibleStarts) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    vector&lt;const Coordinate*&gt; pointsBelongingToRailwaySystem(</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;            PLAYERCOLOR playercolour) <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    <span class="keywordtype">void</span> dump() <span class="keyword">const</span>;</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> setRound(<span class="keywordtype">short</span> x) {</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        round = x;</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;    <span class="keywordtype">void</span> setTurn(<span class="keywordtype">short</span> x) {</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        turn = x;</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">void</span> setPlayersTurn(PLAYERCOLOR x) {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        playersTurn = x;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    }</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;};</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="keywordtype">short</span> getRailwayNumber(<span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>* koo) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">void</span> setRailwayNumber(<span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>* koo, <span class="keyword">const</span> <span class="keywordtype">short</span> nr);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">void</span> setRail(<span class="keyword">const</span> <a class="code" href="class_connection.html">Connection</a>*);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">void</span> setRails(vector&lt;const Connection*&gt; connections);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keywordtype">void</span> resetRailwayNr_ToNr_(<span class="keyword">const</span> <span class="keywordtype">short</span>, <span class="keyword">const</span> <span class="keywordtype">short</span>);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    BANNED_STATUS addPawn(<a class="code" href="class_pawn.html">Pawn</a> insert);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    <span class="keywordtype">void</span> resetAll();</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>** evaluateBoard(<span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>* target) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">short</span> distance(<span class="keyword">const</span> <a class="code" href="class_coordinate.html">Coordinate</a>* target,</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;            <span class="keyword">const</span> vector&lt;const Coordinate*&gt; &amp;possibleStarts) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    vector&lt;const Coordinate*&gt; pointsBelongingToRailwaySystem(</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;            PLAYERCOLOR playercolour) <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    <span class="keywordtype">void</span> dump() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordtype">void</span> dumpEvaluateBoard(<span class="keywordtype">unsigned</span> <span class="keywordtype">short</span>**&amp;);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    <span class="keywordtype">void</span> setRound(<span class="keywordtype">short</span> x) {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        round = x;</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;    }</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    <span class="keywordtype">void</span> setTurn(<span class="keywordtype">short</span> x) {</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        turn = x;</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">void</span> setPlayersTurn(PLAYERCOLOR x) {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        playersTurn = x;</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    }</div>
 <div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* STATE_H_ */</span><span class="preprocessor"></span></div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif </span><span class="comment">/* STATE_H_ */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="class_pawn_html"><div class="ttname"><a href="class_pawn.html">Pawn</a></div><div class="ttdef"><b>Definition:</b> Pawn.h:16</div></div>
 <div class="ttc" id="class_state_html"><div class="ttname"><a href="class_state.html">State</a></div><div class="ttdef"><b>Definition:</b> State.h:32</div></div>
-<div class="ttc" id="class_connection_html"><div class="ttname"><a href="class_connection.html">Connection</a></div><div class="ttdef"><b>Definition:</b> Connection.h:15</div></div>
+<div class="ttc" id="class_connection_html"><div class="ttname"><a href="class_connection.html">Connection</a></div><div class="ttdef"><b>Definition:</b> Connection.h:23</div></div>
 <div class="ttc" id="class_board_html"><div class="ttname"><a href="class_board.html">Board</a></div><div class="ttdef"><b>Definition:</b> Board.h:34</div></div>
 <div class="ttc" id="class_coordinate_html"><div class="ttname"><a href="class_coordinate.html">Coordinate</a></div><div class="ttdef"><b>Definition:</b> Coordinate.h:27</div></div>
 <div class="ttc" id="class_vector_html"><div class="ttname"><a href="class_vector.html">Vector</a></div><div class="ttdef"><b>Definition:</b> Vector.h:29</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Mon Mar 17 2014 14:42:06 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Apr 3 2014 14:49:21 for TransAmercia by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

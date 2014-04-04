@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['hand',['hand',['../class_a_i.html#aa65231c872400a31e669b5de3fdcbeae',1,'AI']]]
+  ['edges',['edges',['../class_board.html#a60585dc155394a04bcad3b7e40965ee3',1,'Board']]]
 ];

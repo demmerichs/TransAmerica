@@ -106,12 +106,15 @@ bool State::isRailwayNumberOfConnectionEqualsNumber(const Connection &von,
 	return ruckgabe;
 }
 
-short State::getRailwayNumber(const Vector &koo) const {
-	return railwayNumber[koo.x][koo.y];
+short State::getRailwayNumber(const Coordinate* koo) const {
+	if (koo)
+		return railwayNumber[koo->x][koo->y];
+	else
+		return NORAILS;
 }
 
-void State::setRailwayNumber(const Coordinate &koo, const short nr) {
-	railwayNumber[koo.x][koo.y] = nr;
+void State::setRailwayNumber(const Coordinate* koo, const short nr) {
+	railwayNumber[koo->x][koo->y] = nr;
 }
 
 void State::resetRailwayNr_ToNr_(const short von, const short zu) {
@@ -125,7 +128,7 @@ void State::resetRailwayNr_ToNr_(const short von, const short zu) {
 }
 
 void State::setRail(const Connection* sollGelegt) {
-	railSet[sollGelegt->first.x][sollGelegt->first.y][sollGelegt->direction] =
+	railSet[sollGelegt->first->x][sollGelegt->first->y][sollGelegt->direction] =
 			true;
 	short nummerFirst = getRailwayNumber(sollGelegt->first);
 	short nummerSecond = getRailwayNumber(sollGelegt->second);
@@ -244,8 +247,8 @@ unsigned short State::find_min(Vector actual, unsigned short ** &index) const {
 					index[(actual + richtungsvektoren[i]).x][(actual
 							+ richtungsvektoren[i]).y];
 // what kind of connection is it?
-			if (!this->railSet[connection->first.x][connection->first.y][connection->direction]) {
-				if (connection->hindernis)
+			if (!this->railSet[connection->first->x][connection->first->y][connection->direction]) {
+				if (connection->barrier)
 					value += 2;
 				else
 					value += 1;

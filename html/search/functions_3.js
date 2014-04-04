@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['gatherinformationendofround',['gatherInformationEndOfRound',['../class_david_a_i.html#a160ac3d032a3b6afb77f693ca3d5c8b6',1,'DavidAI::gatherInformationEndOfRound()'],['../classdebugger_a_i.html#ab90bbce673b55483d6156dea09726952',1,'debuggerAI::gatherInformationEndOfRound()'],['../classtemplate_a_i.html#acfc0b92fbecc56c0dbde089c350f99e5',1,'templateAI::gatherInformationEndOfRound()'],['../classtest_k_i.html#a84b8e65aca959d95d89d80194e241db5',1,'testKI::gatherInformationEndOfRound()'],['../class_a_i.html#a8565a9ef04ac4f9913913c99f65213b2',1,'AI::gatherInformationEndOfRound()'],['../class_human.html#af9bb973f12694c98e504766193a4652f',1,'Human::gatherInformationEndOfRound()']]],
-  ['getcity',['getCity',['../class_board.html#a26b39c1ea4b2999323754f29f37cf28b',1,'Board']]],
-  ['getcoordinate',['getCoordinate',['../class_board.html#a749739339983af5a19ecf1b268160b9a',1,'Board']]]
+  ['distance',['distance',['../class_vector.html#ac57f428cc1e03ce8cd3c9f6c98a8336f',1,'Vector']]],
+  ['domove',['doMove',['../class_a_i.html#a842cab210825d70a71ed0e966be97cae',1,'AI::doMove()'],['../class_human.html#a0a2bb57361ed5174e07d3a6b5d0b0814',1,'Human::doMove()']]],
+  ['dump',['dump',['../class_board.html#a2b3cd1e79ce4b94cdeeea22843941123',1,'Board::dump()'],['../class_connection.html#a67b9ea26a5f1419c2715e87f26dbb2f4',1,'Connection::dump()'],['../class_vector.html#a50123df9754e508f3d4aa7cb72f38905',1,'Vector::dump()']]]
 ];

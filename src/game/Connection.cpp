@@ -6,24 +6,22 @@
  */
 
 #include "../../hdr/game/Connection.h"
+#include "../../hdr/game/Coordinate.h"
 
-Connection::Connection(const Coordinate &first, const Coordinate &second,
+Connection::Connection(const Coordinate *first, const Coordinate *second,
 		bool hindernis) :
-		first((first.x + first.y <= second.x + second.y) ? first : second), second(
-				(first.x + first.y <= second.x + second.y) ? second : first), direction(
-				(second - first).direction()), hindernis(hindernis) {
+		first((first->x + first->y <= second->x + second->y) ? first : second), second(
+				(first->x + first->y <= second->x + second->y) ?
+						second : first), direction(
+				(*second - *first).direction()), barrier(hindernis) {
 }
 
 Connection::~Connection() {
 }
 
-const Connection& Connection::operator=(const Connection& copy) const {
-	return copy;
-}
-
 void Connection::dump() const {
 	cout << "First coordinate of connection is:" << endl;
-	first.dump();
+	first->dump();
 	cout << "Second coordinate of connection is:" << endl;
-	second.dump();
+	second->dump();
 }
