@@ -10,6 +10,8 @@
 #include "Connection.h"
 #include "Coordinate.h"
 
+//TODO @OEtzi make a deleteFromUserSelectedRailsFunction
+
 DynamicState::DynamicState(const Board& board) :
 		State(board), lastMove(0) {
 	fromUserSelectedConnections = new bool**[MAX_X];

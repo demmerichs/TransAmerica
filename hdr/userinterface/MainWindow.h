@@ -35,6 +35,7 @@ private:
     QAction* quitAct;
 	QAction* showDataAct;
     QAction* changeStyleAct;
+    QAction* helpAct;
 
 	void createActions();
 	void createToolBar();
@@ -47,6 +48,7 @@ private slots:
     void startSimulation(/*int games, vector<AI*> aiList, bool isPureSimulation*/);
 	void displayOnStatusBar(QString string, int time = 0);
 	void setStyle();
+    void showHelp();
     void notImplemented();
 };
 

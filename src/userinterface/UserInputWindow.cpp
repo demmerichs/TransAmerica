@@ -7,6 +7,7 @@
 
 #include "UserInputWindow.h"
 
+#include <QMessageBox>
 #include <QPushButton>
 #include <QFormLayout>
 #include <QEventLoop>
@@ -28,7 +29,7 @@ UserInputWindow::~UserInputWindow() {
 
 const Coordinate* UserInputWindow::getPawnFromUser(AI* player,
 		State& currentState, const City** hand) {
-    //enterMove->setText(QString("Set Pawn"));
+    enterMove->setText(QString("Set Pawn"));
     DynamicState* aZp = new DynamicState(currentState);
     spielbrett->setDynamicState(aZp);
 	spielbrett->setHand(hand);
@@ -63,7 +64,9 @@ Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 //	spielbrett->setHand(hand);
 	this->spielbrett->update();
 	this->update();
-//    this->showMaximized();
+    bool moveIsValid = false;
+    Move returnMove (P_YELLOW, 0, 0);
+    while (!moveIsValid){
 	QEventLoop* pause = new QEventLoop;
 	connect(enterMove, SIGNAL(clicked(bool)), pause, SLOT(quit()));
 	spielbrett->selectConnections = true;
@@ -83,8 +86,15 @@ Move UserInputWindow::getMoveFromUser(AI* player, State& currentState,
 					else
 						two = aZp->board.edges[i][j][k];
 				}
+    returnMove = Move (P_YELLOW, one, two);
+    moveIsValid = returnMove.valid(currentState, P_YELLOW);
+    if(!moveIsValid)
+        QMessageBox::warning(this, "Invalid Move", "Sorry, but your move is Invalid! \n"
+                             "Please try another one or take a look in the Help-Section.",
+                             QMessageBox::Ok);
+    }
     emit requestDisplayOnStatusBar("... waiting for the AIs", 0);
-	return Move(P_YELLOW, one, two);
+    return returnMove; //TODO change P_YELLOW to something more dynamic
 }
 
 void UserInputWindow::showDataWidget() {

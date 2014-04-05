@@ -12,6 +12,7 @@
 #include "../../hdr/userinterface/styletransamerica.h"
 #include "../../hdr/userinterface/UserInputWindow.h"
 #include "../../hdr/game/Human.h"
+#include "../../hdr/userinterface/helper.h"
 
 MainWindow::MainWindow() :
 		wp(0) {
@@ -55,7 +56,6 @@ MainWindow::~MainWindow(){
 
 void MainWindow::startSimulation(){
     myGameExe->execute();
-    setCentralWidget(myGameExe->wp);
 }
 
 /*void MainWindow::openInit() {
@@ -116,7 +116,13 @@ void MainWindow::createActions() {
                           tr("&Quit"), this);
     quitAct->setStatusTip("Quit");
     quitAct->setShortcut(QKeySequence::Close);
+
+    helpAct = new QAction(tr("Web Wiki"), this);
+    helpAct->setShortcut(QKeySequence::HelpContents);
+    helpAct->setStatusTip("Displays the web page of the github-wiki");
+
     connect(quitAct, SIGNAL(triggered()), this, SLOT(close()));
+    connect(helpAct, SIGNAL(triggered()), this, SLOT(showHelp()));
 
     connect(saveAct, SIGNAL(triggered()), this, SLOT(notImplemented()));
     connect(sendAct, SIGNAL(triggered()), this, SLOT(notImplemented()));
@@ -151,8 +157,10 @@ void MainWindow::createMenus() {
     fileMenu->addAction(saveAct);
     fileMenu->addAction(sendAct);
 
-	settingsMenu = menuBar()->addMenu(tr("Settings"));
+    settingsMenu = menuBar()->addMenu(tr("Options"));
 	settingsMenu->addAction(changeStyleAct);
+    settingsMenu->addAction(helpAct);
+
 }
 
 void MainWindow::saveSpielbrett() {
@@ -177,6 +185,11 @@ void MainWindow::setStyle() {
 	}
 
 }
+
+void MainWindow::showHelp(){
+    Helper* myHelper = new Helper(this);
+}
+
 void MainWindow::notImplemented(){
     QMessageBox::information(this, tr("Empty Slot"), tr("This Slot appears to be empty. \n"
                                                         "Implementation will be added later."),

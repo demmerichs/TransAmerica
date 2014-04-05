@@ -21,6 +21,7 @@ const QPen fatGreyPen(Qt::lightGray, 8, Qt::SolidLine, Qt::RoundCap,
 		Qt::RoundJoin);
 const QPen fatRedPen(QColor("#ff6c52"), 8, Qt::SolidLine, Qt::RoundCap,
 		Qt::RoundJoin);
+const QPen outlinePen(QColor(Qt::white),0, Qt::SolidLine, Qt::RoundCap);
 const double sL = 30.2;
 
 enum Farbart {
@@ -160,7 +161,7 @@ void GUIBoard::drawGrid(QPainter* painter) {
 	for (int i = 0; i < MAX_X; i++) {
 		for (int j = 0; j < MAX_Y; j++) {
 			if (dynamicState->board.edges[i][j][0]) {
-				if ((dynamicState->board.edges[i][j][0])->hindernis) {
+                if ((dynamicState->board.edges[i][j][0])->barrier) {
 					painter->setPen(thinRedPen);
 				} else
 					painter->setPen(thinPen);
@@ -168,7 +169,7 @@ void GUIBoard::drawGrid(QPainter* painter) {
 						transform.map(QPoint(i * sL + sL, j * sL)));
 			}
 			if (dynamicState->board.edges[i][j][2]) {
-				if (dynamicState->board.edges[i][j][2]->hindernis) {
+                if (dynamicState->board.edges[i][j][2]->barrier) {
 					painter->setPen(thinRedPen);
 				} else
 					painter->setPen(thinPen);
@@ -176,7 +177,7 @@ void GUIBoard::drawGrid(QPainter* painter) {
 						transform.map(QPoint(i * sL + sL, j * sL + sL)));
 			}
 			if (dynamicState->board.edges[i][j][1]) {
-				if ((dynamicState->board.edges[i][j][1])->hindernis) {
+                if ((dynamicState->board.edges[i][j][1])->barrier) {
 					painter->setPen(thinRedPen);
 				} else
 					painter->setPen(thinPen);
@@ -221,11 +222,11 @@ void GUIBoard::drawRailway(QPainter *painter) {
 			if (lastMove[i])
 				painter->drawLine(
 						transform.map(
-								QPoint(lastMove[i]->first.x * sL,
-										lastMove[i]->first.y * sL)),
+                                QPoint(lastMove[i]->first->x * sL,
+                                        lastMove[i]->first->y * sL)),
 						transform.map(
-								QPoint(lastMove[i]->second.x * sL,
-										lastMove[i]->second.y * sL)));
+                                QPoint(lastMove[i]->second->x * sL,
+                                        lastMove[i]->second->y * sL)));
 	}
 	for (int i = 0; i < MAX_X; i++)
 		for (int j = 0; j < MAX_Y; j++)
@@ -234,17 +235,17 @@ void GUIBoard::drawRailway(QPainter *painter) {
 					if (dynamicState->getFromUserSelectedConnections()[i][j][k]) {
 						const Connection* const current =
 								dynamicState->board.edges[i][j][k];
-						if (current->hindernis)
+                        if (current->barrier)
 							painter->setPen(fatRedPen);
 						else
 							painter->setPen(fatGreyPen);
 						painter->drawLine(
 								transform.map(
-										QPoint(current->first.x * sL,
-												current->first.y * sL)),
+                                        QPoint(current->first->x * sL,
+                                                current->first->y * sL)),
 								transform.map(
-										QPoint(current->second.x * sL,
-												current->second.y * sL)));
+                                        QPoint(current->second->x * sL,
+                                                current->second->y * sL)));
 					}
 				}
 }
@@ -281,9 +282,9 @@ void GUIBoard::drawCitys(QPainter *painter) {
 					transform.map(
 							QPoint(
 									(dynamicState->board.cityList[i]->x) * sL
-											- 13,
+                                            - 14,
 									(dynamicState->board.cityList[i]->y) * sL
-											- 8.5)),
+                                            - 10)),
 					getCityPixmap(dynamicState->board.cityList[i]->cityColor));
 		}
 	}
@@ -327,8 +328,8 @@ void GUIBoard::drawHand(QPainter* painter) {
 			if (hand[i]) {
 				painter->drawPixmap(
 						transform.map(
-								QPoint((hand[i]->x) * sL - 13,
-										(hand[i]->y) * sL - 8.5)),
+                                QPoint((hand[i]->x) * sL - 14,
+                                        (hand[i]->y) * sL - 10)),
 						getCity_hPixmap(hand[i]->cityColor));
 				positionRect.moveRight(size * (i + 2));
 				coloredPen.setColor(getQColorCity(hand[i]->cityColor));
@@ -352,25 +353,29 @@ void GUIBoard::drawRat(QPainter *painter) {
 }
 
 void GUIBoard::drawPoints(QPainter* painter){
-    QRectF bRect (0,272*2, 103*2, 19.2*2);
-    QPen coloredPen(fatPen);
-    painter->setFont(QFont("Times",8*2,QFont::Bold));
+    QRectF bRect (0,274*2, 103*2, 19.2*2);
+    QFont font ("Times", 18 ,QFont::Bold);
+
     for (int i=0; i < (int) playerList.size(); i++){
         QString printString;
         printString = QString(" %1 (%2) %3")
                             .arg(QString::fromStdString(playerList[i]->AIname))
                             .arg(QString::fromStdString(playerList[i]->owner))
                             .arg(points.get(playerList[i]));
-        coloredPen.setColor(getQColor(playerList[i]->playerColor));
-        painter->setPen(coloredPen);
-        painter->drawText(bRect,Qt::AlignCenter, printString);
+        QPainterPath path;
+        path.addText(bRect.topLeft(), font, printString);
+        painter->setBrush(QBrush(Qt::white));
+        painter->setBrush(QBrush(getQColor(playerList[i]->playerColor)));
+        painter->setFont(font);
+        painter->setPen(outlinePen);
+        painter->drawPath(path);
         bRect.moveTop(bRect.top()+19.2*2);
     }
 }
 
 void GUIBoard::drawSelectedCoordinates(QPainter* painter) {
 	QPen special(fatPen);
-	special.setWidth(10);
+    special.setWidth(20);
 	painter->setPen(special);
 	for (int i = 0; i < MAX_X; i++)
 		for (int j = 0; j < MAX_Y; j++)

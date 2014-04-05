@@ -30,7 +30,7 @@ QColor getQColorCity(CITYCOLOR i) {
 	case 3:
 		return QColor(Qt::red);
 	case 4:
-		return QColor("#807500");
+        return QColor(Qt::yellow);
 	default:
 		return QColor(Qt::black);
 

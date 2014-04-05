@@ -41,7 +41,7 @@ public:
 
 	Window* wp;
 
-    void handleInitDialog();
+    bool handleInitDialog();
     void execute();
 	void simulateSimulation();
 };

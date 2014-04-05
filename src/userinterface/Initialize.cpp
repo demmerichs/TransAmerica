@@ -25,6 +25,10 @@ Initialize::Initialize(const QString &title, QWidget *parent) :
 	listWidgetA = new QListWidget;
 	listWidgetA->addItems(aiAvailable);
 	listWidgetB = new QListWidget;
+    QHBoxLayout* listLayout = new QHBoxLayout;
+    listLayout->addWidget(listWidgetA);
+    listLayout->addWidget(listWidgetB);
+    listLayout->setMargin(15);
 	layout = new QGridLayout;
 	layout->addWidget(nameLabel, 0, 0);
 	layout->addWidget(nameEdit, 0, 1);
@@ -32,8 +36,7 @@ Initialize::Initialize(const QString &title, QWidget *parent) :
     layout->addWidget(hasHumanBox,1,1);
     layout->addWidget(simulationLabel, 2, 0);
     layout->addWidget(simulationSpin, 2, 1);
-    layout->addWidget(listWidgetA, 3, 0, 1, 2);
-    layout->addWidget(listWidgetB, 3, 1, 1, 2);
+    layout->addLayout(listLayout, 3, 0, 2, 2);
     layout->addWidget(buttonBox, 4, 0, 1, 2);
 	setLayout(layout);
 	setWindowTitle(title);

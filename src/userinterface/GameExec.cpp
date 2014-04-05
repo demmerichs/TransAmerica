@@ -33,22 +33,26 @@ void GameExec::execute(){
         //delete simulationLogger;
     aiList.clear();
 
-    handleInitDialog();
-    if (dialog->humanPlayer){
-        UsInWinp = new UserInputWindow(board);
-        wp = UsInWinp;
+    if(handleInitDialog()){
+        if (dialog->humanPlayer){
+            UsInWinp = new UserInputWindow(board);
+            wp = UsInWinp;
+            parent->setCentralWidget(wp);
+            aiList.push_back(new Human(dialog->humanColor,UsInWinp));
+        }
+        board = new Board((int) aiList.size() > PLAYER_LIMIT);
+        simulationLogger = new SimulationLogger(aiList,*board, dialog->numberOfGames());
+        if(dialog->humanPlayer)
+            UsInWinp->setSimLogger(simulationLogger);
+        simulateSimulation();
+        SimWinp = new ShowSimulationWindow(simulationLogger);
+        wp = SimWinp;
         parent->setCentralWidget(wp);
-        aiList.push_back(new Human(dialog->humanColor,UsInWinp));
+//        if (!hasHuman)
+//            connect(parent->showDataAct, SIGNAL(triggered()), wp, SLOT(showDataWidget()));
+//        else
+//            showDataAct->setDisabled(true);
     }
-    board = new Board((int) aiList.size() > PLAYER_LIMIT);
-    simulationLogger = new SimulationLogger(aiList,*board, dialog->numberOfGames());
-    if(dialog->humanPlayer)
-        UsInWinp->setSimLogger(simulationLogger);
-    simulateSimulation();
-    SimWinp = new ShowSimulationWindow(simulationLogger);
-    wp = SimWinp;
-
-
 
 }
 
@@ -57,9 +61,7 @@ void GameExec::simulateSimulation() {
 	simulation->run();
 
 }
-void GameExec::handleInitDialog(){
-    //if (dialog)
-        //delete dialog;
+bool GameExec::handleInitDialog(){
     dialog = new Initialize(QObject::tr("Initialize Simulation"), parent);
     if (dialog->exec() == QDialog::Accepted) {
         parent->setWindowTitle(dialog->name());
@@ -70,12 +72,10 @@ void GameExec::handleInitDialog(){
             aiList.push_back(
                     createAI(dialog->aiSelected[i]->aiName.toStdString(),
                             dialog->aiSelected[i]->color));
-//        if (!hasHuman)
-//           connect(parent->showDataAct, SIGNAL(triggered()), wp, SLOT(showDataWidget()));
-//        else
-//            showDataAct->setDisabled(true);
 
 
     }
-    return;
+    else
+        return false;
+    return true;
 }
