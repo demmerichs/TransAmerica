@@ -1,9 +1,3 @@
-/*
- * UserInputWindow.h
- *
- *  Created on: 11.03.2014
- *      Author: David
- */
 
 //==============================
 // include guard
@@ -27,6 +21,13 @@ using std::vector;
 //==============================
 // the actual class
 
+/**
+  This class handles the situation, when the user plays
+  a game against the AIs.
+  It is used to get along with changing visability
+  of the provided information.
+  */
+
 class UserInputWindow: public Window {
 Q_OBJECT
 	friend class Human;
@@ -34,13 +35,18 @@ public:
     UserInputWindow(const Board *board );
 	virtual ~UserInputWindow();
 private:
+    //reference to the simulation
+    SimulationLogger* simLogger;
+
 	QPushButton* enterMove;
+
 	Move getMoveFromUser(AI* player, State& currentState, const City** hand,
 			vector<Move*> moveList);
 	const Coordinate* getPawnFromUser(AI* player, State& currentState,
 			const City** hand);
-    SimulationLogger* simLogger;
+
 public slots:
+    //access basic functions
     void showDataWidget();
     void setSimLogger(SimulationLogger*);
 };

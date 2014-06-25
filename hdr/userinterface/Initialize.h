@@ -23,6 +23,7 @@ using std::set;
 #include "../game/Constants.h"
 //==============================
 // a small helper class
+
 class ListElement: public QListWidgetItem {
 public:
 	ListElement(QString aiName, PLAYERCOLOR color) :
@@ -36,19 +37,31 @@ public:
 };
 //==============================
 // the actual class
+
+/**
+  This class helps to select the simulations settings.
+  It will let the user define most of the parameters
+  and check their validity.
+  *//
 class Initialize: public QDialog {
 Q_OBJECT
 public:
 	Initialize(const QString &title, QWidget* parent);
 	virtual ~Initialize();
+
+    //members to hold the significant settings
 	QString name();
 	int numberOfGames();
 	QList<ListElement*> aiSelected;
 	bool humanPlayer;
 	PLAYERCOLOR humanColor;
+
 private:
+    //handle the choices to select from
 	QStringList aiAvailable;
     set<PLAYERCOLOR> notSelected;
+
+    //visual interface
     QLabel* nameLabel;
 	QLineEdit* nameEdit;
     QCheckBox* hasHumanBox;
@@ -62,8 +75,10 @@ private:
 
 	void setAIAvailable();
 private slots:
+    //interactive change of the 'aiSelected'-List
 	void addAI(QListWidgetItem* add);
-	void removeAI(QListWidgetItem* remove);
+    void removeAI(QListWidgetItem* remove);
+    //check the validity of the dialogs selections
 	void verify();
 
     friend class GameExec;

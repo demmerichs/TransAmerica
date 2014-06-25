@@ -17,16 +17,25 @@ class Board;
 #include <QGroupBox>
 //==============================
 // the actual class
+
+/**
+  This is the base of ShowSimulation- and UserInputWindow.
+  It implements the basic needs for a window, which shows
+  the game's board as well as some interactive settings
+  at the side of it.
+  */
 class Window: public QWidget {
 Q_OBJECT
 public:
 	Window(const Board* board);
 	~Window();
 protected:
-	GUIBoard* spielbrett;
+    //Layouts
 	QFormLayout* toolLayout;
 	QGridLayout* mainLayout;
 
+    //Visual Interface
+    GUIBoard* spielbrett;
     QGroupBox* toolBox;
     QCheckBox* showTownsCheckBox;
 	QTabWidget* tabWidget;

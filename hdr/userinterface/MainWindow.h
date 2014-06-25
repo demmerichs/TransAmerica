@@ -14,6 +14,13 @@ class QToolBar;
 #include "Initialize.h"
 //==============================
 // the actual class
+
+/**
+  This class manages the MainWindow.
+  It contains several interactive menus and Push-Buttons
+  with fundamental functions for the simulation.
+  */
+
 class MainWindow: public QMainWindow {
 Q_OBJECT
 public:
@@ -25,10 +32,14 @@ private:
 //    Initialize* dialog;
 //    UserInputWindow* UIWp;
 //    ShowSimulationWindow* SWp;
+
+    //different menus
     QToolBar* myToolBar;
 	QMenu* settingsMenu;
     QMenu* fileMenu;
     QMenu* gameMenu;
+
+    //actions selectable by user
 	QAction* newGameAct;
     QAction* saveAct;
     QAction* sendAct;
@@ -37,13 +48,16 @@ private:
     QAction* changeStyleAct;
     QAction* helpAct;
 
+    //functions to help constructing the actions
 	void createActions();
 	void createToolBar();
 	void createMenus();
 	void createStatusBar();
 
 private slots:
-//	void openInit();
+//  void openInit();
+
+    //slots to connect with the actions
 	void saveSpielbrett();
     void startSimulation(/*int games, vector<AI*> aiList, bool isPureSimulation*/);
 	void displayOnStatusBar(QString string, int time = 0);

@@ -21,17 +21,26 @@ class AI;
 #include "../ai/AIList.h"	//TODO remove list to somewhere more central
 //==============================
 // the actual class
+
+/**
+  This class is used to handle the game's execution.
+  It
+  */
+
 class GameExec {
     static bool isInitialized;
     bool hasHuman;
-    /*The members belonging to the game algorithms*/
+    //The members belonging to the game algorithms
     vector<AI*> aiList;
     SimulationLogger* simulationLogger;
     Simulation* simulation;
     Board* board;
-    /*members handling the GUI*/
+
+    //members handling the GUI
     ShowSimulationWindow* SimWinp;
     UserInputWindow* UsInWinp;
+
+    //Dialog called on the games beginning
     Initialize* dialog;
     QMainWindow* parent;
 public:
@@ -41,8 +50,13 @@ public:
 
 	Window* wp;
 
+    //Call and evaluation of the starting dialog
     bool handleInitDialog();
+
+    //execute the game
     void execute();
+
+    //minor help-function
 	void simulateSimulation();
 };
 

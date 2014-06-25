@@ -1,7 +1,10 @@
+//==============================
+// include guard
 #ifndef STYLETRANSAMERICA_H
 #define STYLETRANSAMERICA_H
 
-
+//==============================
+// forward declared dependencies
 #include <QMotifStyle>
 #include <QPalette>
 
@@ -9,7 +12,13 @@ QT_BEGIN_NAMESPACE
 class QPainterPath;
 QT_END_NAMESPACE
 
+//==============================
+// the actual class
 
+/**
+  This class is used for a Style which
+  is suitable for the board games atmosphere
+  */
 class StyleTransamerica : public QMotifStyle
 {
 
